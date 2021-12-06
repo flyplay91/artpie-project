@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 /*
-|--------------------------------------------------------------------------
+|-------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
 |
@@ -13,6 +13,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+// Front
+Route::get('/register', 'Auth\AuthController@register')->name('register');
+Route::post('/register', 'Auth\AuthController@storeUser');
+
+Route::get('/login', 'Auth\AuthController@login')->name('login');
+Route::post('/login', 'Auth\AuthController@authenticate');
+Route::get('logout', 'Auth\AuthController@logout')->name('logout');
 Route::get('/', function () {
-    return view('welcome');
+    return view('front/pages/home');
 });
+
+// Admin
+// Route::get('/admin', function () {
+//     return view('admin/gallerys/index');
+// });
+
+Route::resource('admin-gallery', 'AdminGallerysController');
