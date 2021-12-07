@@ -31,3 +31,4 @@ Route::get('/', function () {
 // });
 
 Route::resource('admin-gallery', 'AdminGallerysController');
+Route::resource('admin-collection', 'AdminCollectionsController');

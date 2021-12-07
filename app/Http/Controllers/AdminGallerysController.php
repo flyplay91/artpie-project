@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
   
 use Illuminate\Http\Request;
 use App\AdminGallerys;
+use App\AdminCollections;
 
 class AdminGallerysController extends Controller
 {
@@ -14,8 +15,8 @@ class AdminGallerysController extends Controller
     public function index()
     {
         $gallerys = AdminGallerys::all();
-        return view('admin.gallerys.index',compact('gallerys'))
-            ->with('i', (request()->input('page', 1) - 1) * 5);
+        $collections = AdminCollections::all();
+        return view('admin.gallerys.index',compact('gallerys', 'collections'));
     }
 
     /**

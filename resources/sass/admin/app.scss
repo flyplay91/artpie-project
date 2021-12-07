@@ -294,6 +294,58 @@ img {
   }
 }
 
+.block-add-coll {
+  margin-right: 10px;
+  position: relative;
+  
+  form {
+    margin-top: 10px;
+    position: absolute;
+    display: none;
+
+    &.active {
+      display: flex;
+    }
+
+    .form-control {
+      width: 200px;
+    }
+    
+    button {
+      margin-left: 10px;
+    }
+  }
+}
+
+.coll-btns {
+  display: none;
+  position: relative;
+
+  &.active {
+    display: flex;
+  }
+
+  .block-coll__delete {
+    margin-left: 10px;
+  }
+
+  .block-coll__edit {
+    form {
+      position: absolute;
+      margin-top: 10px;
+      display: none;
+      &.active {
+        display: flex;
+      }
+  
+      button {
+        margin-left: 10px;
+      }
+    }
+  }
+  
+}
+
 .boxCtnt {
   padding: 10px;
 
@@ -341,8 +393,8 @@ img {
       position: absolute;
       top: 2px;
       left: 0;
-      width: 15px;
-      height: 15px;
+      width: 18px;
+      height: 18px;
       border-radius: 3px;
       background: #fff;
       border: 2px solid #a0a0a0;
@@ -365,7 +417,7 @@ img {
 }
 
 .ad-gallerys__lists {
-  margin-top: 50px;
+  margin-top: 80px;
 
   .ad-gallerys-sidebar {
     width: 20%;
@@ -373,12 +425,22 @@ img {
 
   .ad-gallerys-items {
     width: 100%;
-  
-    .hdrItems-list__inner {
-      padding: 18px;
-      border: 1px solid #ddd;
-      cursor: pointer;
-      text-align: center;
+    position: relative;
+
+    .hdrItems-list {
+      &.hdrItems-list--addmore {
+        display: none;
+
+        &.active {
+          display: block;
+        }
+      }
+      .hdrItems-list__inner {
+        padding: 18px;
+        border: 1px solid #ddd;
+        cursor: pointer;
+        text-align: center;
+      }
     }
   }
 }

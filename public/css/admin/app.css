@@ -279,6 +279,47 @@ img {
   font-weight: 900;
 }
 
+.block-add-coll {
+  margin-right: 10px;
+  position: relative;
+}
+.block-add-coll form {
+  margin-top: 10px;
+  position: absolute;
+  display: none;
+}
+.block-add-coll form.active {
+  display: flex;
+}
+.block-add-coll form .form-control {
+  width: 200px;
+}
+.block-add-coll form button {
+  margin-left: 10px;
+}
+
+.coll-btns {
+  display: none;
+  position: relative;
+}
+.coll-btns.active {
+  display: flex;
+}
+.coll-btns .block-coll__delete {
+  margin-left: 10px;
+}
+.coll-btns .block-coll__edit form {
+  position: absolute;
+  margin-top: 10px;
+  display: none;
+}
+.coll-btns .block-coll__edit form.active {
+  display: flex;
+}
+.coll-btns .block-coll__edit form button {
+  margin-left: 10px;
+}
+
 .boxCtnt {
   padding: 10px;
 }
@@ -320,8 +361,8 @@ img {
   position: absolute;
   top: 2px;
   left: 0;
-  width: 15px;
-  height: 15px;
+  width: 18px;
+  height: 18px;
   border-radius: 3px;
   background: #fff;
   border: 2px solid #a0a0a0;
@@ -341,15 +382,22 @@ img {
 }
 
 .ad-gallerys__lists {
-  margin-top: 50px;
+  margin-top: 80px;
 }
 .ad-gallerys__lists .ad-gallerys-sidebar {
   width: 20%;
 }
 .ad-gallerys__lists .ad-gallerys-items {
   width: 100%;
+  position: relative;
 }
-.ad-gallerys__lists .ad-gallerys-items .hdrItems-list__inner {
+.ad-gallerys__lists .ad-gallerys-items .hdrItems-list.hdrItems-list--addmore {
+  display: none;
+}
+.ad-gallerys__lists .ad-gallerys-items .hdrItems-list.hdrItems-list--addmore.active {
+  display: block;
+}
+.ad-gallerys__lists .ad-gallerys-items .hdrItems-list .hdrItems-list__inner {
   padding: 18px;
   border: 1px solid #ddd;
   cursor: pointer;
