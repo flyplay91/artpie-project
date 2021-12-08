@@ -123,7 +123,7 @@
 
           </div>
           <div class="col-md-8">
-              <button type="submit" class="btn btn-primary">Submit</button>
+              <button type="submit" class="btn btn-grey">Submit</button>
           </div>
         </div>
 

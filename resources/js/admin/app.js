@@ -39,6 +39,8 @@ $(document).ready(function() {
   // Select collection list events on click collection
   $('.ad-gallerys-sidebar .chkBox2 input.checkbox-coll').change(function() {
     if($('.ad-gallerys-sidebar .chkBox2 input.checkbox-coll:checked').length == 1) {
+      var selected_coll_name = $('.ad-gallerys-sidebar .chkBox2 input.checkbox-coll:checked').val();
+      $('.selected-coll-name').text(selected_coll_name);
       $('.coll-btns').addClass('active');
       $('.hdrItems-list--addmore').addClass('active');
       if ($('#adGallerysItems').length > 0) {
@@ -52,8 +54,10 @@ $(document).ready(function() {
       $('.coll-btns form').attr('action', baseUrl + 'admin-collection/' + coll_id);
       $('.btn-gallery-create').attr('href', baseUrl + 'admin-gallery/create?' + coll_id);
     } else if ($('.ad-gallerys-sidebar .chkBox2 input.checkbox-coll:checked').length == 0) {
+      $('.selected-coll-name').text('');
       $('.checkbox-all-colls').prop('checked', false);
     } else {
+      $('.selected-coll-name').text('');
       $('.coll-btns').removeClass('active');
       $('.hdrItems-list--addmore').removeClass('active');
       if ($('#adGallerysItems').length > 0) {
@@ -63,7 +67,7 @@ $(document).ready(function() {
   });
 
   // Toggle edit collection form
-  $('body').on('click', '.btn-edit-coll', function() {
+  $('body').on('click', '.btn-edit-del-coll', function() {
     $('.coll-btns .block-coll__edit form').toggleClass('active');
   });
 
@@ -90,7 +94,7 @@ $(document).ready(function() {
       url: "/api/api-select-collections",
       method: "post",
        beforeSend: function(){
-         $(".ad-gallerys-items").empty();
+         $("#adGallerysItems").empty();
        },
       data: {
         selected_collection_ids: selected_coll_ids,
@@ -112,12 +116,15 @@ $(document).ready(function() {
         $.each(result.gallery_ids_images, function (key, val) {
           html += '<div class="hdrItems-list">';
             html += '<div class="hdrItems-list__inner">';
-              html += '<img src="/images/'+ val +'">';
+              html += '<a href="' + baseUrl + 'admin-gallery/'+ key +'/edit">';
+                html += '<div class="hdrItems-list__inner-overlay"><label>Edit required</label></div>';
+                html += '<img src="/images/'+ val +'">';
+              html += '</a>';
             html += '</div>';
           html += '</div>';
         });
         
-        $(".ad-gallerys-items").append(html);
+        $("#adGallerysItems").append(html);
         if ($('#adGallerysItems').length > 0) {
           macyInstance.reInit();
         }
