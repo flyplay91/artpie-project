@@ -25,14 +25,14 @@ class ApiSelectCollectionsController extends Controller
                     ->get();
 
         $galleryIdImageArr = [];
-
+        
         foreach($galleryObjs as $galleryObj) {
             $galleryIdImageArr[$galleryObj->id] = $galleryObj->image;
         }
         
         try {
 			return response()->json([
-			    'failed' => '0',
+			    'collection_ids' => $selectedCollIds,
                 'gallery_ids_images' => $galleryIdImageArr
 			]);
 		} catch (Exception $e) {

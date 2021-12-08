@@ -51,7 +51,8 @@ $(document).ready(function() {
       $('.edit-coll-name').val(coll_name);
       $('.coll-btns form').attr('action', baseUrl + 'admin-collection/' + coll_id);
       $('.btn-gallery-create').attr('href', baseUrl + 'admin-gallery/create?' + coll_id);
-      
+    } else if ($('.ad-gallerys-sidebar .chkBox2 input.checkbox-coll:checked').length == 0) {
+      $('.checkbox-all-colls').prop('checked', false);
     } else {
       $('.coll-btns').removeClass('active');
       $('.hdrItems-list--addmore').removeClass('active');
@@ -95,9 +96,19 @@ $(document).ready(function() {
         selected_collection_ids: selected_coll_ids,
       },
       success: function(result) {
-        console.log(result);
+        if (typeof result.collection_ids != 'undefined') {
+          var coll_count = result.collection_ids.length;
+        }
         var html = '';
-        macyInstance.reInit();
+        
+        if (coll_count == 1) {
+          html += '<div class="hdrItems-list active hdrItems-list--addmore">';
+            html += '<div class="hdrItems-list__inner flex aic jcc" style="height: 200px">';
+              html += '<a class="btn-gallery-create" href="'+ baseUrl +'/admin-gallery/create?'+ result.collection_ids + '">Add More Items</a>';
+            html += '</div>';
+          html += '</div>';  
+        }
+        
         $.each(result.gallery_ids_images, function (key, val) {
           html += '<div class="hdrItems-list">';
             html += '<div class="hdrItems-list__inner">';
