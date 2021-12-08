@@ -102,80 +102,14 @@
     </div>
   </div>
 
-  <div class="hdrItems-list">
-    <div class="hdrItems-list__inner">
-      <img src="/images/test-1.jpg">
-    </div>
-  </div>
-  <div class="hdrItems-list">
-    <div class="hdrItems-list__inner">
-      <img src="/images/test-2.jpg">
-    </div>
-  </div>
-  <div class="hdrItems-list">
-    <div class="hdrItems-list__inner">
-      <img src="/images/test-3.jpg">
-    </div>
-  </div>
-  <div class="hdrItems-list">
-    <div class="hdrItems-list__inner">
-      <img src="/images/test-4.jpg">
-    </div>
-  </div>
-  <div class="hdrItems-list">
-    <div class="hdrItems-list__inner">
-      <img src="/images/test-5.jpg">
-    </div>
-  </div>
-  <div class="hdrItems-list">
-    <div class="hdrItems-list__inner">
-      <img src="/images/test-6.jpg">
-    </div>
-  </div>
-  <div class="hdrItems-list">
-    <div class="hdrItems-list__inner">
-      <img src="/images/test-7.jpg">
-    </div>
-  </div>
-  <div class="hdrItems-list">
-    <div class="hdrItems-list__inner">
-      <img src="/images/test-8.jpg">
-    </div>
-  </div>
-  <div class="hdrItems-list">
-    <div class="hdrItems-list__inner">
-      <img src="/images/test-9.jpg">
-    </div>
-  </div>
-  <div class="hdrItems-list">
-    <div class="hdrItems-list__inner">
-      <img src="/images/test-10.jpg">
-    </div>
-  </div>
-  <div class="hdrItems-list">
-    <div class="hdrItems-list__inner">
-      <img src="/images/test-11.jpg">
-    </div>
-  </div>
-  <div class="hdrItems-list">
-    <div class="hdrItems-list__inner">
-      <img src="/images/test-12.jpg">
-    </div>
-  </div>
-  <div class="hdrItems-list">
-    <div class="hdrItems-list__inner">
-      <img src="/images/test-13.jpg">
-    </div>
-  </div>
-  <div class="hdrItems-list">
-    <div class="hdrItems-list__inner">
-      <img src="/images/test-14.jpg">
-    </div>
-  </div>
-  <div class="hdrItems-list">
-    <div class="hdrItems-list__inner">
-      <img src="/images/test-15.jpg">
-    </div>
-  </div>
+  @if (isset($gallerys))
+    @foreach ($gallerys as $gallery)
+      <div class="hdrItems-list">
+        <div class="hdrItems-list__inner">
+          <img src="/images/{{ $gallery->image }}">
+        </div>
+      </div>
+    @endforeach
+  @endif
 </div>
 @endsection

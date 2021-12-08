@@ -25,6 +25,8 @@ Route::get('/', function () {
     return view('front/pages/home');
 });
 
+Route::resource('gallery', 'front\GallerysController');
+
 // Admin
 // Route::get('/admin', function () {
 //     return view('admin/gallerys/index');
