@@ -38,12 +38,17 @@
     <div class="ad-gallerys__lists flex">
       <div class="ad-gallerys-sidebar">
         <label>Collection</label>
+        
         <div class="boxCtnt">
           @if (isset($collections))
+            <label class="chkBox2">
+              <input type="checkbox" class="checkbox-all-colls" name="" value="check_all_colls" data-id="" checked="checked">Check All
+              <div class="chkBox2_box"></div>
+            </label>
             @foreach ($collections as $collection)
               <label class="chkBox2">
                 <!-- <input type="checkbox" class="" name="f_p" value="" tabindex="-1"  @if (session('success') && (session('success') == $collection->coll_name))  checked="checked" @endif >{{ $collection->coll_name }} -->
-                <input type="checkbox" class="" name="f_p" value="{{ $collection->coll_name }}" data-id="{{ $collection->id }}" tabindex="-1">{{ $collection->coll_name }}
+                <input type="checkbox" class="checkbox-coll" name="f_p" value="{{ $collection->coll_name }}" data-id="{{ $collection->id }}" tabindex="-1" checked="checked">{{ $collection->coll_name }}
                 <div class="chkBox2_box"></div>
               </label>
             @endforeach

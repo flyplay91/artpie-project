@@ -36,9 +36,10 @@ class AdminGallerysController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {   
         $request->validate([
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'coll_id'  => 'required',
         ]);
 
         $gallerys = new AdminGallerys($request->input()) ;
@@ -52,7 +53,6 @@ class AdminGallerysController extends Controller
             $gallerys->image = $fileName ;
         }
 
-        
         if ($gallerys->save()) {
             $id = $gallerys->id;
         }

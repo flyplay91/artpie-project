@@ -15,6 +15,7 @@ class CreateAdminGallerysTable extends Migration
     {
         Schema::create('admin_gallerys', function (Blueprint $table) {
             $table->id();
+            $table->string('coll_id');
             $table->string('image');
             $table->string('title');
             $table->string('size');

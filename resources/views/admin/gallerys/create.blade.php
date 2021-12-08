@@ -5,6 +5,12 @@
       aaa
     </div>
     <form  action="{{ route('admin-gallery.store') }}" method="POST" enctype="multipart/form-data">
+      <?php 
+        $current_url =  "//{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
+        $param = explode ("?", $current_url)[1]; 
+      ?>
+      <input type="hidden" value="<?php echo $param ?>" name="coll_id">
+      
       @csrf
       <div class="row">
         <div class="col-md-12">
