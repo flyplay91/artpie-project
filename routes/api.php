@@ -19,3 +19,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::post('api-select-collections', 'ApiSelectCollectionsController@index');
+Route::post('api-categories', 'ApiCategoriesController@index');
+Route::post('api-artists', 'ApiArtistsController@index');

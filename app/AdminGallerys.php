@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class AdminGallerys extends Model
 {
     protected $fillable = [
-        'coll_id', 'image', 'title', 'size', 'price', 'category', 'artist_id', 'pieces_number', 'paint_date', 'registered_date', 'updated_date', 'frame', 'description', 'keywords', 'original', 'signed'
+        'coll_id', 'image', 'title', 'sign', 'frame', 'width', 'height', 'unit', 'actual_price', 'retail_price', 'check_enable_pieces', 'piece_count', 'materials', 'description', 'keywords', 'safe_children', 'category_id', 'artist_id', 'paint_date', 'registered_date', 'updated_date',  'original'
     ];
 }

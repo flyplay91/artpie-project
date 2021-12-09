@@ -18,19 +18,26 @@ class CreateAdminGallerysTable extends Migration
             $table->string('coll_id');
             $table->string('image');
             $table->string('title');
-            $table->string('size');
-            $table->string('price');
-            $table->string('category');
+            $table->string('sign');
+            $table->string('frame');
+            $table->string('width');
+            $table->string('height');
+            $table->string('unit');
+            $table->string('actual_price');
+            $table->string('retail_price');
+            $table->string('check_enable_pieces');
+            $table->string('piece_count');
+            $table->string('materials');
+            $table->string('description');
+            $table->string('keywords');
+            $table->string('safe_children');
+            $table->string('category_id');
             $table->string('artist_id');
-            $table->string('pieces_number');
             $table->string('paint_date');
             $table->string('registered_date');
             $table->string('updated_date');
-            $table->string('frame');
-            $table->string('description');
-            $table->string('keywords');
             $table->string('original');
-            $table->string('signed');
+            
             $table->timestamps();
         });
     }

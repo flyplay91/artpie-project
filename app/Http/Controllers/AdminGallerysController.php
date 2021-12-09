@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\AdminGallerys;
 use App\AdminCollections;
+use App\AdminCategories;
+use App\AdminArtists;
+
 
 class AdminGallerysController extends Controller
 {
@@ -83,7 +86,10 @@ class AdminGallerysController extends Controller
     public function edit($id)
     {
         $gallery = AdminGallerys::find($id);
-        return view('admin.gallerys.edit', compact('gallery'));
+        $categories = AdminCategories::all();
+        $artists = AdminArtists::all();
+        
+        return view('admin.gallerys.edit', compact('gallery', 'categories', 'artists'));
     }
 
     /**
@@ -94,24 +100,30 @@ class AdminGallerysController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
+    {   
         $request->validate([
+            
             'title' => 'required',
-            'size'  => 'required',
-            'price' => 'required',
-            'category'  => 'required',
-            'artist_id' => 'required',
-            'pieces_number' => 'required',
-            'paint_date' => 'required',
-            'registered_date'   =>  'required',
+            'sign'  => 'required',
+            'frame'  => 'required',
+            'width'  => 'required',
+            'height'  => 'required',
+            'unit'  => 'required',
+            'actual_price' => 'required',
+            'retail_price'  => 'required',
+            'check_enable_pieces'  => 'required',
+            'materials'  => 'required',
+            'safe_children' => 'required',
+            'category_id' => 'required',
+            'artist_id'   =>  'required',
+            'paint_date'   =>  'required',
+            'registered_date' => 'required',
             'updated_date'  =>  'required',
-            'frame' => 'required',
-            'description'   =>  'required',
-            'keywords'  => 'required',
-            'original'  => 'required',
-            'signed'    =>  'required'
+            'description'  => 'required',
+            'keywords' => 'required',
+            'original'   =>  'required',
         ]);
-
+        
         $data = $request->all();
 
         if($file = $request->hasFile('image')) {
@@ -138,6 +150,12 @@ class AdminGallerysController extends Controller
      */
     public function destroy($id)
     {
-        //
+        
+        $gallery = AdminGallerys::find($id);
+        
+        $gallery->delete();
+  
+        return redirect()->route('admin-gallery.index')
+                        ->with('success','Product deleted successfully');
     }
 }

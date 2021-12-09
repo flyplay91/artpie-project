@@ -63,6 +63,9 @@ $breakpoints: (
 .jcs {
   justify-content: flex-start;
 }
+.jca {
+  justify-content: space-around;
+}
 .jcc {
   justify-content: center;
 }
@@ -208,6 +211,27 @@ img {
   border-radius: 4px;
   border: solid 1px #bdbdbd;
   background-color: #f0f0f0;
+}
+.w-45 {
+  width: 45%;
+}
+.w-30 {
+  width: 30%;
+}
+.w-20 {
+  width: 20%;
+}
+.w-10 {
+  width: 10%;
+}
+.w-5 {
+  width: 5%;
+}
+.position-relative {
+  position: relative;
+}
+.position-absolute {
+  position: absolute;
 }
 
 /*============================================================================
@@ -483,8 +507,153 @@ img {
 }
 
 /*============================================================================
+                              Gallery create page
+==============================================================================*/
+.create-gallery {
+  margin-top: 50px;
+  box-shadow: 0px 2px 7px 6px rgb(0 0 0 / 43%);
+  border-radius: 5px;
+  padding: 20px 15px;
+}
+/*============================================================================
                               Gallery edit page
 ==============================================================================*/
-.td-img {
-  max-width: 500px;
+.edit-gallery {
+  margin-top: 50px;
+  box-shadow: 0px 2px 7px 6px rgba(0,0,0,0.43);
+  border-radius: 5px;
+  padding: 20px 15px;
+
+  .block-change-image-des {
+    max-width: 800px;
+    box-shadow: 0px 2px 7px 6px rgb(0 0 0 / 10%);
+    margin: 20px auto;
+    padding: 15px;
+    border-radius: 10px;
+
+    .td-img img {
+      height: 500px;
+      object-fit: contain;
+    }
+
+    .block-change-image {
+      opacity: 0;
+    }
+
+    .btns-change-add-images {
+      p {
+        width: 56%;
+      }
+
+      a {
+        border-radius: 4px;
+        border: solid 1px #bdbdbd;
+        background-color: #f0f0f0;
+        color: #434343;
+        padding: 10px;
+        &:hover {
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}
+
+
+.p-title {
+  font-size: 22px;
+  margin-bottom: 20px;
+}
+.p-img-subtitle-des h4 {
+  font-size: 16px;
+  font-weight: bold;
+}
+.p-img-subtitle-des img {
+  max-width: 20px;
+  margin-right: 10px;
+}
+
+.block-change-gallery-data {
+  background-color: #f0f0f0;
+  padding: 50px 10px;
+}
+
+.change-gallery-data__inner {
+  max-width: 850px;
+
+  .form-group {
+    margin: 0;
+
+    label {
+      display: block;
+      font-weight: 600;
+
+      &.form-check-label {
+        margin-left: 20px;
+        font-weight: 500;
+      }
+    }
+  }
+}
+
+.btn-add-category,
+.btn-add-artist {
+  border-radius: 4px;
+  border: solid 1px #bdbdbd;
+  background-color: #f0f0f0;
+  color: #434343;
+  padding: 6px 10px;
+  display: inline-block;
+  margin-bottom: 5px;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+.insert-category,
+.insert-artist {
+  bottom: -40px;
+  width: 100%;
+
+  input {
+    width: 80%;
+    margin-right: 10px;
+  }
+
+  a {
+    border-radius: 4px;
+    border: solid 1px #bdbdbd;
+    background-color: #f0f0f0;
+    color: #434343;
+    padding: 6px 10px;
+    display: inline-block;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
+
+.form-save-gallery .btn-grey,
+.form-delete-gallery .btn-grey {
+  opacity: 0;
+  visibility: hidden;
+  width: 0;
+  height: 0;
+}
+
+.insert-category,
+.insert-artist {
+  display: none;
+
+  &.active {
+    display: flex;
+  }
+}
+.piece-count {
+  display: none;
+
+  &.active {
+    display: block;
+  }
 }

@@ -15,6 +15,10 @@ $(document).ready(function() {
       }
     });
   }
+
+  // Date Picker
+  $('.date-picker').datepicker({
+  });
   
   
   $('body').on('click', '.btn-add-coll', function() {
@@ -23,6 +27,8 @@ $(document).ready(function() {
 
   // Collection list event when page loads
   if ($(".ad-gallerys-sidebar .chkBox2 input.checkbox-coll:checked").length == 1) {
+    var selected_coll_id = $(".ad-gallerys-sidebar .chkBox2 input.checkbox-coll:checked").data('id');
+    $('.btn-gallery-create').attr('href', baseUrl + 'admin-gallery/create?' + selected_coll_id);
     $('.coll-btns').addClass('active');
     $('.hdrItems-list--addmore').addClass('active');
     if ($('#adGallerysItems').length > 0) {
@@ -115,7 +121,7 @@ $(document).ready(function() {
         if (coll_count == 1) {
           html += '<div class="hdrItems-list active hdrItems-list--addmore">';
             html += '<div class="hdrItems-list__inner flex aic jcc" style="height: 200px">';
-              html += '<a class="btn-gallery-create" href="'+ baseUrl +'/admin-gallery/create?'+ result.collection_ids + '">Add More Items</a>';
+              html += '<a class="btn-gallery-create" href="'+ baseUrl +'admin-gallery/create?'+ result.collection_ids + '">Add More Items</a>';
             html += '</div>';
           html += '</div>';  
         }
@@ -131,7 +137,7 @@ $(document).ready(function() {
           html += '</div>';
         });
         
-        $("#adGallerysItems").append(html);
+        $('#adGallerysItems').append(html);
         if ($('#adGallerysItems').length > 0) {
           macyInstance.reInit();
         }
@@ -140,5 +146,92 @@ $(document).ready(function() {
 
   });
   
+  // Update gallery page click change image button
+  $('body').on('click', '.btn-change-image', function() {
+    $('.block-change-image input').trigger('click');
+  });
+
+  // Add Category 
+  $('body').on('click', '.btn-insert-category', function() {
+    var $cat_name = $('.insert-cat-name').val();
+    if ($cat_name != '') {
+      $.ajax({
+        url: "/api/api-categories",
+        method: "post",
+         beforeSend: function(){
+           $(".selectbox-categories").empty();
+         },
+        data: {
+          cat_name: $cat_name,
+        },
+        success: function(result) {
+          console.log(result);
+          var html = '';
+          
+         
+          $.each(result.categories, function (key, val) {
+            html += '<option value="' + key + '">'+ val +'</option>';
+          });
+          
+          $('.selectbox-categories').append(html);
+          
+        }
+      });
+    }
+  });
+
+  // Add Artist 
+  $('body').on('click', '.btn-insert-artist', function() {
+    var $art_name = $('.insert-artist-name').val();
+    if ($art_name != '') {
+      $.ajax({
+        url: "/api/api-artists",
+        method: "post",
+         beforeSend: function(){
+           $(".selectbox-artists").empty();
+         },
+        data: {
+          artist_name: $art_name,
+        },
+        success: function(result) {
+          console.log(result);
+          var html = '';
+          
+         
+          $.each(result.artists, function (key, val) {
+            html += '<option value="' + key + '">'+ val +'</option>';
+          });
+          
+          $('.selectbox-artists').append(html);
+          
+        }
+      });
+    }
+  });
+
+
+  // Update page save & delete
+  $('body').on('click', '.btn-save-gallery-trigger', function() {
+    $('.btn-save-gallery').trigger('click');
+  });
+  $('body').on('click', '.btn-delete-gallery-trigger', function() {
+    $('.btn-delete-gallery').trigger('click');
+  });
+
+  $('body').on('click', '.btn-add-category', function() {
+    $('.insert-category').toggleClass('active');
+  });
+  $('body').on('click', '.btn-add-artist', function() {
+    $('.insert-artist').toggleClass('active');
+  });
+
+  $('.checkbox-enable-pieces').change(function() {
+    if ($(this).prop('checked')) {
+      $('.piece-count').addClass('active');
+    } else {
+      $('.piece-count').removeClass('active');
+    }
+  });
+
   
 });

@@ -2,14 +2,19 @@
 @section('content')
   <div class="create-gallery">
     <div class="create-gallery__image-desc">
-      aaa
+      그림을 올릴때 다음의 사항에 주의해주십시오.
     </div>
     <form  action="{{ route('admin-gallery.store') }}" method="POST" enctype="multipart/form-data">
       <?php 
         $current_url =  "//{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
-        $param = explode ("?", $current_url)[1]; 
+        if (isset($_SERVER['QUERY_STRING'])) {
+          $param = explode ("?", $current_url)[1]; ?>
+          <input type="hidden" value="<?php echo $param ?>" name="coll_id">
+        <?php
+        }
+        
       ?>
-      <input type="hidden" value="<?php echo $param ?>" name="coll_id">
+      
       
       @csrf
       <div class="row">
@@ -22,7 +27,7 @@
           </div>
         </div>
         <div class="col-md-8">
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-grey">Submit</button>
         </div>
       </div>
     </form>

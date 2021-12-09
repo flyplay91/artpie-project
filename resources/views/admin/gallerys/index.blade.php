@@ -56,7 +56,7 @@
       <div id="adGallerysItems">
         <div class="hdrItems-list hdrItems-list--addmore">
           <div class="hdrItems-list__inner flex aic jcc" style="height: 200px">
-            <a class="btn-gallery-create" href="{{ route('admin-gallery.create') }}">Add More Items</a>
+            <a class="btn-gallery-create" href="">Add More Items</a>
           </div>
         </div>
 
