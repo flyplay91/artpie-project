@@ -46,6 +46,10 @@
   align-items: flex-end;
 }
 
+.flex-column {
+  flex-direction: column;
+}
+
 .flex--wrap {
   flex-wrap: wrap;
 }
@@ -236,6 +240,40 @@ img {
 
 .w-20 {
   width: 20%;
+}
+
+.position-relative {
+  position: relative;
+}
+
+.position-absolute {
+  position: absolute;
+}
+
+#mainWrapper.active {
+  position: fixed;
+  width: 100%;
+}
+
+.bg-overlay {
+  display: none;
+  background-color: rgba(0, 0, 0, 0.7);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 111;
+}
+.bg-overlay label {
+  position: absolute;
+  right: 30px;
+  top: 26px;
+  font-size: 25px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+.bg-overlay.active {
+  display: block;
 }
 
 /*============================================================================
@@ -475,4 +513,96 @@ img {
 
 .hdrItem--category li a {
   color: var(--black);
+}
+
+/*============================================================================
+                              Gallery popup
+==============================================================================*/
+.popup-gallery-data {
+  width: 1000px;
+  top: -70%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 111;
+  background-color: var(--white);
+  border-radius: 10px;
+  display: none;
+}
+.popup-gallery-data.active {
+  display: block;
+}
+.popup-gallery-data .popup-gallery-data__inner .gallery-data-image {
+  width: 60%;
+  padding: 30px 30px 0 30px;
+}
+.popup-gallery-data .popup-gallery-data__inner .gallery-data-info {
+  width: 30%;
+  background-color: #f5f5f5;
+  border-radius: 10px;
+}
+.popup-gallery-data .popup-gallery-data__inner .gallery-data-info h2 {
+  padding: 20px 0 10px 10px;
+  line-height: 1;
+  font-size: 26px;
+}
+.popup-gallery-data .popup-gallery-data__inner .gallery-data-info .gallery-data-items {
+  border-bottom: solid 1px #ddd;
+  border-top: solid 1px #ddd;
+  padding: 20px 0 10px 10px;
+}
+.popup-gallery-data .popup-gallery-data__inner .gallery-data-info .gallery-data-items .gallery-data-content__item {
+  margin: 10px 0;
+  overflow: hidden;
+}
+.popup-gallery-data .popup-gallery-data__inner .gallery-data-info .gallery-data-items .gallery-data-content__item label {
+  color: #3c5a99;
+  cursor: pointer;
+}
+.popup-gallery-data .popup-gallery-data__inner .gallery-data-info .gallery-data-items .gallery-data-content__item label img {
+  max-width: 17px;
+  margin-left: 10px;
+}
+.popup-gallery-data .popup-gallery-data__inner .gallery-data-info .gallery-data-items .gallery-data-content__item label img.icon-down-arrow {
+  display: none;
+}
+.popup-gallery-data .popup-gallery-data__inner .gallery-data-info .gallery-data-items .gallery-data-content__item > div {
+  display: none;
+}
+.popup-gallery-data .popup-gallery-data__inner .gallery-data-info .gallery-data-items .gallery-data-content__item.active label img.icon-down-arrow {
+  display: block;
+}
+.popup-gallery-data .popup-gallery-data__inner .gallery-data-info .gallery-data-items .gallery-data-content__item.active label img.icon-up-arrow {
+  display: none;
+}
+.popup-gallery-data .popup-gallery-data__inner .gallery-data-info .gallery-entire-buy {
+  border-bottom: solid 1px #ddd;
+  padding: 20px 10px 10px 10px;
+}
+.popup-gallery-data .popup-gallery-data__inner .gallery-data-info .gallery-entire-buy .gallery-entire-buy-btn {
+  text-align: right;
+}
+.popup-gallery-data .popup-gallery-data__inner .gallery-data-info .gallery-entire-buy .gallery-entire-buy-btn a {
+  border-radius: 4px;
+  border: solid 1px #3c5a99;
+  padding: 8px 20px;
+  display: inline-block;
+  color: white;
+  background-color: #3c5a99;
+}
+.popup-gallery-data .popup-gallery-data__inner .gallery-data-info .gallery-pieces-buy {
+  padding: 20px 10px 10px 10px;
+}
+.popup-gallery-data .popup-gallery-data__inner .gallery-data-info .gallery-pieces-buy .gallery-pieces-buy-info {
+  margin-bottom: 10px;
+}
+.popup-gallery-data .popup-gallery-data__inner .gallery-data-info .gallery-pieces-buy .gallery-pieces-buy-btn {
+  text-align: right;
+}
+.popup-gallery-data .popup-gallery-data__inner .gallery-data-info .gallery-pieces-buy .gallery-pieces-buy-btn a {
+  border-radius: 4px;
+  border: solid 1px #3c5a99;
+  padding: 8px 20px;
+  display: inline-block;
+  color: white;
+  background-color: #3c5a99;
 }

@@ -20,6 +20,7 @@
 
 <body>
     <div id="mainWrapper">
+        <div class="bg-overlay"><label>X</label></div>
         <div class="header">
             <div class="wrapper header-logo-nav flex aic jcb">
                 <div class="header__logo flex aic">

@@ -18,7 +18,7 @@
   </div>
 </div>
 
-<div class="hdrItems flex jcb">
+<div class="hdrItems flex jcb position-relative">
   <div class="hdrItems-sidebar W-20">
     <div class="hdrItems-sidebar__inner">
       <div class="filterItems hdrItem--category boxCtnt">
@@ -90,7 +90,7 @@
       @foreach ($gallerys as $gallery)
         <div class="hdrItems-list">
           <div class="hdrItems-list__inner">
-            <a href="javascript:void(0)">
+            <a class="image-gallery" href="javascript:void(0)" data-id="{{ $gallery->id }}">
               <div class="hdrItems-list__inner-overlay"></div>
               <img src="/images/{{ $gallery->image }}">
             </a>
@@ -98,6 +98,16 @@
         </div>
       @endforeach
     @endif
+  </div>
+
+  <div class="popup-gallery-data position-absolute">
+    <div class="popup-gallery-data__inner flex jcb">
+      
+    </div>
+
+    <div class="gallery-data-image-zoom flex aic">
+aaa
+    </div>
   </div>
 </div>
 

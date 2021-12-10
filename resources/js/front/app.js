@@ -73,7 +73,7 @@ $(document).ready(function() {
         $.each(result.gallery_ids_images, function (key, val) {
           html += '<div class="hdrItems-list">';
             html += '<div class="hdrItems-list__inner">';
-              html += '<a href="' + baseUrl + 'admin-gallery/'+ key +'/edit">';
+              html += '<a class="image-gallery" href="javascript:void(0)" data-id="'+ key +'">';
                 html += '<div class="hdrItems-list__inner-overlay"></div>';
                 html += '<img src="/images/'+ val +'">';
               html += '</a>';
@@ -87,8 +87,114 @@ $(document).ready(function() {
         }
       }
     });
+  });
 
+  // Update gallery popup
+  $('body').on('click', '.gallery-data-content__item', function() {
+    $(this).siblings().removeClass('active');
+    $(this).toggleClass('active');
+    $('.gallery-data-content__item > div').stop().slideUp();
+    $('.gallery-data-content__item.active > div').stop().slideDown();
+    return false;
+  });
 
+  // Open gallery popup & get data
+  $('body').on('click', '.image-gallery', function() {
+    var gallery_id = $(this).data('id');
+    getGalleryAjax(gallery_id);
+  });
+
+  $('body').on('click', '.bg-overlay label', function() {
+    $('#mainWrapper').removeClass('active');
+    $('.bg-overlay').removeClass('active');
+    $('.popup-gallery-data').removeClass('active');
   });
 
 });
+
+function getGalleryAjax($id) {
+  $.ajax({
+    url: "/api/api-get-gallery",
+    method: "post",
+      beforeSend: function(){
+        $(".popup-gallery-data__inner").empty();
+      },
+    data: {
+      gallery_id: $id,
+    },
+    success: function(result) {
+      $('#mainWrapper').addClass('active');
+      $('.bg-overlay').addClass('active');
+      $('.popup-gallery-data').addClass('active');
+      console.log(result);
+      var html = '';
+      
+      $.each(result.gallery_Obj, function (key, val) {
+        html += '<div class="gallery-data-image" data-id"'+ key +'">';
+          html += '<img src="/images/'+ val.g_image +'">';
+        html += '</div>';
+        html += '<div class="gallery-data-info flex flex-column">';
+          html += '<h2>' + val.g_title + '</h2>';
+          html += '<div class="gallery-data-items">';
+            html += '<div class="gallery-data-content__item">';
+              html += '<label class="flex aic">작품소개';
+                html += '<img class="icon-up-arrow" src="/images/up-arrow.png">';
+                html += '<img class="icon-down-arrow" src="/images/down-arrow.png">';
+              html += '</label>';
+              html += '<div>' + val.g_description + '</div>';
+            html += '</div>';
+            html += '<div class="gallery-data-content__item">';
+              html += '<label class="flex aic">화가소개';
+                html += '<img class="icon-up-arrow" src="/images/up-arrow.png">';
+                html += '<img class="icon-down-arrow" src="/images/down-arrow.png">';
+              html += '</label>';
+              html += '<div>'+ val.g_artistname +'</div>';
+            html += '</div>';
+            html += '<div class="gallery-data-content__item">';
+              html += '<label class="flex aic">화가의 다른 작품들';
+                html += '<img class="icon-up-arrow" src="/images/up-arrow.png">';
+                html += '<img class="icon-down-arrow" src="/images/down-arrow.png">';
+              html += '</label>';
+              html += '<div>ccc</div>';
+            html += '</div>';
+            html += '<div class="gallery-data-content__item">';
+              html += '<label class="flex aic">가격정책';
+                html += '<img class="icon-up-arrow" src="/images/up-arrow.png">';
+                html += '<img class="icon-down-arrow" src="/images/down-arrow.png">';
+              html += '</label>';
+              html += '<div>ddd</div>';
+            html += '</div>';
+          html += '</div>';
+
+          html += '<div class="gallery-entire-buy">';
+            html += '<div class="gallery-entire-buy-info flex aic">';
+              html += '<label>가격: </label>';
+              html += '<span>'+ val.g_price +'RMB</span>';
+            html += '</div>';
+            html += '<div class="gallery-entire-buy-btn">';
+              html += '<a href="#">실물구매</a>';
+            html += '</div>';
+          html += '</div>';
+
+          html += '<div class="gallery-pieces-buy">';
+            html += '<div class="gallery-pieces-buy-info flex aic">';
+              html += '<label>수량: </label>';
+              html += '<input type="number" value="">';
+              html += '<span> /' + val.g_pieces + ' </span>';
+            html += '</div>';
+            html += '<div class="gallery-pieces-buy-price flex aic">';
+              html += '<label>금액: </label>';
+              html += '<span>' + val.g_price + ' RMB</span>';
+            html += '</div>';
+            html += '<div class="gallery-pieces-buy-btn">';
+              html += '<a href="#">쪼각구매</a>';
+            html += '</div>';
+          html += '</div>';
+        html += '</div>';
+      });
+      
+      $('.popup-gallery-data__inner').append(html);
+      
+    }
+  });
+}
