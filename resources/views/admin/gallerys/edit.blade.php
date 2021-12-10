@@ -81,12 +81,13 @@
                     <label>Height</label>
                     <input type="text" value="{{ $gallery->height }}" name="height" class="form-control" required>
                   </div>
+                  
                   <div class="form-group w-10">
                     <label for="usr">Unit</label>
                     <select class="browser-default custom-select" name="unit" required>
                       <option selected value="{{ $gallery->unit }}">{{ $gallery->unit }}</option>
                       <option value="cm">Cm</option>
-                      <option value="m">Inch</option>
+                      <option value="inch">Inch</option>
                     </select>
                   </div>
                 </div>
@@ -103,13 +104,13 @@
 
                   <div class="boxCtnt">
                     <label class="chkBox2">
-                      <input type="checkbox" class="checkbox-enable-pieces" name="check_enable_pieces" value="yes" checked="checked">Enable pieces
+                      <input type="checkbox" class="checkbox-enable-pieces" name="check_enable_pieces" value="no" checked="checked">Enable pieces
                       <div class="chkBox2_box"></div>
                     </label>
                   </div>
                   <div class="form-group w-20 piece-count active">
                     <label>Piece Count</label>
-                    <input type="text" value="{{ $gallery->piece_coount }}" name="piece_count" class="form-control">
+                    <input type="text" value="{{ $gallery->piece_count }}" name="piece_count" class="form-control">
                   </div>
                 </div>
 
@@ -144,7 +145,7 @@
                     <select class="browser-default custom-select selectbox-categories" name="category_id" required>
                       @if (isset($categories))
                         @foreach ($categories as $category)
-                        <option selected value="{{ $category->id }}">{{ $category->cat_name }}</option>
+                        <option @if ($gallery->category_id == $category->id) selected @endif value="{{ $category->id }}">{{ $category->cat_name }}</option>
                         @endforeach
                       @endif
                     </select>

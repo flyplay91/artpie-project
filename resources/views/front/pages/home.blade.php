@@ -18,98 +18,87 @@
   </div>
 </div>
 
-<div class="hdrItems" id="hdrItems">
-  <div class="hdrItems-sidebar">
+<div class="hdrItems flex jcb">
+  <div class="hdrItems-sidebar W-20">
     <div class="hdrItems-sidebar__inner">
-      <div class="hdrItem hdrItem--category">
-        <ul class="boxCtnt">
-          <li><a href="#">수채화</a></li>
-          <li><a href="#">유화</a></li>
-          <li><a href="#">펜화 & 연필화</a></li>
-          <li><a href="#">기타</a></li>
-        </ul>
+      <div class="filterItems hdrItem--category boxCtnt">
+        @if (isset($categories))
+          <span class="fTtl">종류</span>
+          <label class="chkBox2">
+            <input type="checkbox" class="checkbox-filter checkbox-any-filter" value="any" checked="checked"> Any
+            <div class="chkBox2_box"></div>
+          </label>
+          @foreach ($categories as $category)
+            <label class="chkBox2">
+              <input type="checkbox" class="checkbox-filter checkbox-some-filter" value="{{ $category->id }}">{{ $category->cat_name }}
+              <div class="chkBox2_box"></div>
+            </label>
+          @endforeach
+        @endif
       </div>
 
-      <div class="hdrItem hdrItem--price-size">
-        <div class="hdrItem--price boxCtnt">
+      <div class="hdrItem--price-size">
+        <div class="filterItems hdrItem--price boxCtnt">
           <span class="fTtl">가격</span>
           <label class="chkBox2">
-            <input type="checkbox" name="f_p" value="" tabindex="-1" checked="checked"> Any
+            <input type="checkbox" class="checkbox-filter checkbox-any-filter" value="any" checked="checked"> Any
             <div class="chkBox2_box"></div>
           </label>
           <label class="chkBox2">
-            <input type="checkbox" name="f_p" value="1" tabindex="-1"> $0 to $25
+            <input type="checkbox" class="checkbox-filter checkbox-some-filter" value="1000_5000">1000 ~ 5000
             <div class="chkBox2_box"></div>
           </label>
           <label class="chkBox2">
-            <input type="checkbox" name="f_p" value="2" tabindex="-1"> $25 to $50
+            <input type="checkbox" class="checkbox-filter checkbox-some-filter" value="5001_10000">5001 ~ 10000
             <div class="chkBox2_box"></div>
           </label>
           <label class="chkBox2">
-            <input type="checkbox" name="f_p" value="3" tabindex="-1"> $50 to $100
+            <input type="checkbox" class="checkbox-filter checkbox-some-filter" value="10001_50000">10001 ~ 50000
             <div class="chkBox2_box"></div>
           </label>
           <label class="chkBox2">
-            <input type="checkbox" name="f_p" value="4" tabindex="-1"> $100 to $200
-            <div class="chkBox2_box"></div>
-          </label>
-          <label class="chkBox2">
-            <input type="checkbox" name="f_p" value="5" tabindex="-1"> $200 to $500
-            <div class="chkBox2_box"></div>
-          </label>
-          <label class="chkBox2">
-            <input type="checkbox" name="f_p" value="6" tabindex="-1"> $500+
+            <input type="checkbox" class="checkbox-filter checkbox-some-filter" value="50001_max">50001 ~
             <div class="chkBox2_box"></div>
           </label>
         </div>
-        <div class="hdrItem--size boxCtnt">
+        <div class="filterItems hdrItem--size boxCtnt">
           <span class="fTtl">크기</span>
           <label class="chkBox2">
-            <input type="checkbox" name="f_p" value="" tabindex="-1" checked="checked"> Any
+            <input type="checkbox" class="checkbox-filter checkbox-any-filter" value="any" checked="checked"> Any
             <div class="chkBox2_box"></div>
           </label>
           <label class="chkBox2">
-            <input type="checkbox" name="f_p" value="1" tabindex="-1"> $0 to $25
+            <input type="checkbox" class="checkbox-filter checkbox-some-filter" value="1_15">Small(up to 15")
             <div class="chkBox2_box"></div>
           </label>
           <label class="chkBox2">
-            <input type="checkbox" name="f_p" value="2" tabindex="-1"> $25 to $50
+            <input type="checkbox" class="checkbox-filter checkbox-some-filter" value="16_30">Medium(up to 30")
             <div class="chkBox2_box"></div>
           </label>
           <label class="chkBox2">
-            <input type="checkbox" name="f_p" value="3" tabindex="-1"> $50 to $100
-            <div class="chkBox2_box"></div>
-          </label>
-          <label class="chkBox2">
-            <input type="checkbox" name="f_p" value="4" tabindex="-1"> $100 to $200
-            <div class="chkBox2_box"></div>
-          </label>
-          <label class="chkBox2">
-            <input type="checkbox" name="f_p" value="5" tabindex="-1"> $200 to $500
-            <div class="chkBox2_box"></div>
-          </label>
-          <label class="chkBox2">
-            <input type="checkbox" name="f_p" value="6" tabindex="-1"> $500+
+            <input type="checkbox" class="checkbox-filter checkbox-some-filter" value="31_max">Large(more than 31")
             <div class="chkBox2_box"></div>
           </label>
         </div>
       </div>
 
-      <div class="boxBut flex aic jcc">
-        <input id="SubmitFilter" type="submit" value="Apply" class="button padmore">
-        <a href="#" class="button2sm">Reset</a>
-      </div>
     </div>
   </div>
 
-  @if (isset($gallerys))
-    @foreach ($gallerys as $gallery)
-      <div class="hdrItems-list">
-        <div class="hdrItems-list__inner">
-          <img src="/images/{{ $gallery->image }}">
+  <div id="hdrItems" class="w-75">
+    @if (isset($gallerys))
+      @foreach ($gallerys as $gallery)
+        <div class="hdrItems-list">
+          <div class="hdrItems-list__inner">
+            <a href="javascript:void(0)">
+              <div class="hdrItems-list__inner-overlay"></div>
+              <img src="/images/{{ $gallery->image }}">
+            </a>
+          </div>
         </div>
-      </div>
-    @endforeach
-  @endif
+      @endforeach
+    @endif
+  </div>
 </div>
+
 @endsection

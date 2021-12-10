@@ -100,7 +100,6 @@ $(document).ready(function() {
         var selected_coll_id = $(this).find('.checkbox-coll:checked').data('id');
         selected_coll_ids.push(selected_coll_id);
       }
-      
     });
     
     $.ajax({
@@ -145,6 +144,8 @@ $(document).ready(function() {
     });
 
   });
+
+  
   
   // Update gallery page click change image button
   $('body').on('click', '.btn-change-image', function() {

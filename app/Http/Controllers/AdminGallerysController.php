@@ -123,6 +123,10 @@ class AdminGallerysController extends Controller
             'keywords' => 'required',
             'original'   =>  'required',
         ]);
+
+        $width = intval($request->width);
+        $height = intval($request->height);
+        $size = intval(sqrt(pow($width, 2) + pow($height, 2)));
         
         $data = $request->all();
 
@@ -135,6 +139,7 @@ class AdminGallerysController extends Controller
 
             $data['image'] = $fileName;
         }
+        $data['size'] = $size;
         $gallery = AdminGallerys::find($id);
         $gallery->update($data);
   
