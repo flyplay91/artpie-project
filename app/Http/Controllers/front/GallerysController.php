@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\AdminGallerys;
 use App\AdminCategories;
+use App\AdminHeaderData;
 
 class GallerysController extends Controller
 {
@@ -18,7 +19,8 @@ class GallerysController extends Controller
     {
         $gallerys = AdminGallerys::all();
         $categories = AdminCategories::all();
-        return view('front.pages.home',compact('gallerys', 'categories'));
+        $headerdata = AdminHeaderData::latest('id')->first();
+        return view('front.pages.home',compact('gallerys', 'categories', 'headerdata'));
     }
 
     /**

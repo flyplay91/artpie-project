@@ -1,12 +1,12 @@
 @extends('front.layouts.app')
 
 @section('content')
-<div class="hdrBg" style="background-image: url(/images/hero-bg.jpg)">
+<div class="hdrBg" style="background-image: url(/images/<?php echo $headerdata->image ?>)">
   <div class="hdrBgTint"></div>
   <div class="bHdr">
     <div class="bHdrTxt">
-      <h1>이름있는 화가들의 그림, 더는 부자들만의것이 아닙니다.</h1>
-      <span>그림도 소장하고 돈도 버십시오.</span>
+      <h1>{{ $headerdata->title }}</h1>
+      <span>{{ $headerdata->sub_title }}</span>
     </div>
 
     <div class="sBoxW">

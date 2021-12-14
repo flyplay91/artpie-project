@@ -338,6 +338,10 @@ img {
   right: 50px;
   padding: 6px 12px;
   color: var(--black);
+  display: none;
+}
+.hdrBg .btn-edit-header.active {
+  display: block;
 }
 .hdrBg .btn-edit-header:hover {
   text-decoration: none;
@@ -348,6 +352,10 @@ img {
   right: 120px;
   padding: 6px 12px;
   color: var(--black);
+  display: none;
+}
+.hdrBg .btn-add-header.active {
+  display: block;
 }
 .hdrBg .btn-add-header:hover {
   text-decoration: none;

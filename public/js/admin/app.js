@@ -272,6 +272,14 @@ $(document).ready(function () {
       }
     });
   });
+
+  if ($('.ad-header .bHdrTxt h1').text() == '') {
+    $('.btn-add-header').addClass('active');
+    $('.btn-edit-header').removeClass('active');
+  } else {
+    $('.btn-add-header').removeClass('active');
+    $('.btn-edit-header').addClass('active');
+  }
 });
 /******/ })()
 ;
