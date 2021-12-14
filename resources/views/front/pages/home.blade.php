@@ -88,14 +88,16 @@
   <div id="hdrItems" class="w-75">
     @if (isset($gallerys))
       @foreach ($gallerys as $gallery)
-        <div class="hdrItems-list">
-          <div class="hdrItems-list__inner">
-            <a class="image-gallery" href="javascript:void(0)" data-id="{{ $gallery->id }}">
-              <div class="hdrItems-list__inner-overlay"></div>
-              <img src="/images/{{ $gallery->image }}">
-            </a>
+        @if ($gallery->all_checked == 'true')
+          <div class="hdrItems-list">
+            <div class="hdrItems-list__inner">
+              <a class="image-gallery" href="javascript:void(0)" data-id="{{ $gallery->id }}">
+                <div class="hdrItems-list__inner-overlay"></div>
+                <img src="/images/{{ $gallery->image }}">
+              </a>
+            </div>
           </div>
-        </div>
+        @endif
       @endforeach
     @endif
   </div>
