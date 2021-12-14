@@ -477,11 +477,30 @@ img {
   border-radius: 5px;
   padding: 20px 15px;
 }
+.create-gallery .create-gallery__image-desc {
+  border: 1px solid #ced4da;
+  padding: 30px 30px 30px 60px;
+  margin-bottom: 50px;
+}
+.create-gallery .create-gallery__image-desc h2 {
+  font-weight: bold;
+}
+.create-gallery .create-gallery__image-desc ul {
+  margin-top: 30px;
+}
+.create-gallery .create-gallery__image-desc ul li {
+  list-style-type: disc;
+  margin-bottom: 15px;
+}
+.create-gallery .create-gallery__image-desc ul li:last-child {
+  margin-bottom: 0;
+}
 
 /*============================================================================
                               Gallery edit page
 ==============================================================================*/
 .edit-gallery {
+  margin-bottom: 50px;
   margin-top: 50px;
   box-shadow: 0px 2px 7px 6px rgba(0, 0, 0, 0.43);
   border-radius: 5px;
@@ -513,6 +532,14 @@ img {
   padding: 10px;
 }
 .edit-gallery .block-change-image-des .btns-change-add-images a:hover {
+  text-decoration: none;
+}
+
+.btn-gallery-update-delete a {
+  padding: 6px 12px;
+  color: var(--black);
+}
+.btn-gallery-update-delete a:hover {
   text-decoration: none;
 }
 

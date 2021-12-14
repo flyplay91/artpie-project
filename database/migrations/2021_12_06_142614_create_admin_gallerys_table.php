@@ -34,10 +34,11 @@ class CreateAdminGallerysTable extends Migration
             $table->string('safe_children');
             $table->int('category_id');
             $table->int('artist_id');
-            $table->timestamps('paint_date');
-            $table->timestamps('registered_date');
-            $table->timestamps('updated_date');
+            $table->string('paint_date');
+            $table->string('registered_date');
+            $table->string('updated_date');
             $table->string('original');
+            $table->string('all_checked');
             
             $table->timestamps();
         });

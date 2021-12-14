@@ -578,7 +578,7 @@ img {
         padding: 20px 0 10px 10px;
 
         .gallery-data-content__item {
-          margin: 10px 0;
+          margin-bottom: 25px;
           overflow: hidden;
           label {
             color: #3c5a99;
@@ -613,6 +613,10 @@ img {
         border-bottom: solid 1px #ddd;
         padding: 20px 10px 10px 10px;
 
+        label, span {
+          color: #3c5a99;
+        }
+
         .gallery-entire-buy-btn {
           text-align: right;
 
@@ -630,8 +634,19 @@ img {
       .gallery-pieces-buy {
         padding: 20px 10px 10px 10px;
 
+        label, span {
+          color: #3c5a99;
+        }
+
         .gallery-pieces-buy-info {
           margin-bottom: 10px;
+
+          input {
+            width: 80px;
+            margin-right: 5px;
+            height: 30px;
+            margin-left: 5px;
+          }
         }
 
         .gallery-pieces-buy-btn {

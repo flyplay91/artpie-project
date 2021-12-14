@@ -56,13 +56,15 @@ class AdminGallerysController extends Controller
             $gallerys->image = $fileName ;
         }
 
+        $gallerys->all_checked = 'false';
+
         if ($gallerys->save()) {
             $id = $gallerys->id;
         }
    
         // Product::create($request->all());
    
-        return redirect()->route('admin-gallery.edit', $id)
+        return redirect()->route('admin-gallery.index')
                         ->with('success','Product created successfully.');
     }
 
@@ -140,9 +142,11 @@ class AdminGallerysController extends Controller
             $data['image'] = $fileName;
         }
         $data['size'] = $size;
+        $data['all_checked'] = 'true';
         $gallery = AdminGallerys::find($id);
         $gallery->update($data);
-  
+        
+        
         return redirect()->route('admin-gallery.index')
                         ->with('success','Product updated successfully');
     }

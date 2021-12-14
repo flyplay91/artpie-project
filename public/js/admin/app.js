@@ -130,8 +130,12 @@ $(document).ready(function () {
           html += '<div class="hdrItems-list">';
           html += '<div class="hdrItems-list__inner">';
           html += '<a href="' + baseUrl + 'admin-gallery/' + key + '/edit">';
-          html += '<div class="hdrItems-list__inner-overlay"><label>Edit required</label></div>';
-          html += '<img src="/images/' + val + '">';
+
+          if (val.g_all_checked == 'false') {
+            html += '<div class="hdrItems-list__inner-overlay"><label>Edit required</label></div>';
+          }
+
+          html += '<img src="/images/' + val.g_image + '">';
           html += '</a>';
           html += '</div>';
           html += '</div>';

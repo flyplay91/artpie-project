@@ -65,7 +65,9 @@
             <div class="hdrItems-list">
               <div class="hdrItems-list__inner">
                 <a href="{{ route('admin-gallery.edit',$gallery->id) }}">
-                  <div class="hdrItems-list__inner-overlay"><label>Edit required</label></div>
+                  @if ($gallery->all_checked == 'false')
+                    <div class="hdrItems-list__inner-overlay"><label>Edit required</label></div>
+                  @endif
                   <img src="/images/{{ $gallery->image }}">
                 </a>
               </div>

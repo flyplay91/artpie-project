@@ -33,7 +33,7 @@
                 <img src="/images/{{ $gallery->image }}">
               </div>
 
-              <div class="input-group btns-change-add-images mb-3 flex aic jcb">
+              <div class="input-group btns-change-add-images mt-3 mb-3 flex aic jcb">
                 <p>Incorrect image? Use the "Change Image" button to the right, or the "Delete Item" button at the bottom of the form.</p>
                 <a href="javascript:void(0)" class="btn-change-image">Change Image</a>
                 <a href="javascript:void(0)" class="btn-additional-images">Upload Additional Image</a>
@@ -99,12 +99,12 @@
                   </div>
                   <div class="form-group w-30">
                     <label>Retail Price</label>
-                    <input type="text" value="{{ $gallery->retail_price }}" name="retail_price" class="form-control">
+                    <input type="text" value="{{ $gallery->retail_price }}" name="retail_price" class="form-control" required>
                   </div>
 
                   <div class="boxCtnt">
                     <label class="chkBox2">
-                      <input type="checkbox" class="checkbox-enable-pieces" name="check_enable_pieces" value="no" checked="checked">Enable pieces
+                      <input type="checkbox" class="checkbox-enable-pieces" name="check_enable_pieces" value="no" checked="checked" required>Enable pieces
                       <div class="chkBox2_box"></div>
                     </label>
                   </div>
@@ -143,6 +143,7 @@
                   <div class="form-group w-45">
                     <label>Category</label>
                     <select class="browser-default custom-select selectbox-categories" name="category_id" required>
+                      <option>Select Category</option>
                       @if (isset($categories))
                         @foreach ($categories as $category)
                         <option @if ($gallery->category_id == $category->id) selected @endif value="{{ $category->id }}">{{ $category->cat_name }}</option>
@@ -163,6 +164,7 @@
                   <div class="form-group w-45">
                     <label>Artist</label>
                     <select class="browser-default custom-select selectbox-artists" name="artist_id" required>
+                      <option>Select Artist</option>
                       @if (isset($artists))
                         @foreach ($artists as $artist)
                         <option selected value="{{ $artist->id }}">{{ $artist->art_name }}</option>
@@ -221,7 +223,8 @@
 
       <div class="btn-gallery-update-delete flex aic jca">
         <button type="submit" class="btn btn-grey btn-save-gallery-trigger">Save Changes</button>
-        <button type="submit" class="btn btn-grey btn-delete-gallery-trigger">Delete item</button>
+        <button type="submit" class="btn btn-grey btn-delete-gallery-trigger">Delete Item</button>
+        <a href="/admin-gallery" class="btn-grey">Cancel</a>
       </div>
     </div>
   </div>
