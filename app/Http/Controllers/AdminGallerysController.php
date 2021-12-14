@@ -6,6 +6,7 @@ use App\AdminGallerys;
 use App\AdminCollections;
 use App\AdminCategories;
 use App\AdminArtists;
+use App\AdminHeaderData;
 
 
 class AdminGallerysController extends Controller
@@ -19,7 +20,8 @@ class AdminGallerysController extends Controller
     {
         $gallerys = AdminGallerys::all();
         $collections = AdminCollections::all();
-        return view('admin.gallerys.index',compact('gallerys', 'collections'));
+        $headerData = AdminHeaderData::latest('id')->first();
+        return view('admin.gallerys.index',compact('gallerys', 'collections', 'headerData'));
     }
 
     /**

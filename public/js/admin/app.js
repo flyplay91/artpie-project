@@ -221,6 +221,42 @@ $(document).ready(function () {
     } else {
       $('.piece-count').removeClass('active');
     }
+  }); // Admin Update header data
+
+  $('body').on('click', '.btn-change-header-image', function () {
+    $('.block-header-image input').trigger('click');
+  });
+  $('body').on('click', '.btn-update-cancel', function () {
+    $('.bg-overlay, .popup-header').removeClass('active');
+  });
+  $('body').on('click', '.btn-add-header', function () {
+    $('.bg-overlay').addClass('active');
+    $('.popup-header').addClass('active');
+  });
+  $('body').on('click', '.btn-edit-header', function () {
+    $.ajax({
+      url: "/api/api-select-header-data",
+      method: "post",
+      beforeSend: function beforeSend() {
+        $('.popup-header').empty();
+      },
+      success: function success(result) {
+        $('.bg-overlay').addClass('active');
+        $('.popup-header').addClass('active');
+        var html = ''; // $.each(result.gallery_ids_images, function (key, val) {
+        //   html += '<div class="hdrItems-list">';
+        //     html += '<div class="hdrItems-list__inner">';
+        //       html += '<a class="image-gallery" href="javascript:void(0)" data-id="'+ key +'">';
+        //         html += '<div class="hdrItems-list__inner-overlay"></div>';
+        //         html += '<img src="/images/'+ val +'">';
+        //       html += '</a>';
+        //     html += '</div>';
+        //   html += '</div>';
+        // });
+
+        $('.popup-header').append(html);
+      }
+    });
   });
 });
 /******/ })()

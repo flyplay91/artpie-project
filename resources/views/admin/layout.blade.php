@@ -23,33 +23,68 @@
 </head>
 
 <body>
-  <div id="adWrapper">
-    @if (Route::currentRouteName() == 'admin-gallery.index')
+  <div id="adWrapper" class="position-relative">
+    <div class="bg-overlay position-absolute"></div>
     <div class="ad-header">
-      <div class="hdrBg" style="background-image: url(/images/hero-bg.jpg)">
-        <div class="hdrBgTint"></div>
-        <div class="bHdr">
-          <div class="bHdrTxt">
-            <h1>이름있는 화가들의 그림, 더는 부자들만의것이 아닙니다.</h1>
-            <span>그림도 소장하고 돈도 버십시오.</span>
-          </div>
-        </div>
-      </div>
-      <div class="wrapper header-logo-nav flex aic">
-        <div class="header__logo flex aic">
-          <a href="/admin-gallerys" class="active">Gallery</a>
-          <a href="" class="">Users</a>
-          <a href="" class="">Payments</a>
-          <a href="" class="">Tickets</a>
-          <a href="" class="">Manage</a>
-          <a href="" class="">Settings</a>
-        </div>
-      </div>
+      @yield('main-header')
     </div>
-    @endif
 
     <div class="ad-body wrapper">
       @yield('content')
+    </div>
+
+    <div class="ad-footer">
+      <div class="popup-header position-absolute">
+        
+          <form action="{{ route('admin-header-data.store') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <div class="col-md-12">
+              <div class="input-group mb-3">
+                <div class="custom-file">
+                  <input type="file" name="image" class="custom-file-input form-control" id="headerImage" required>
+                  <label class="custom-file-label" for="headerImage">Choose file</label>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Product Title</span>
+                </div>
+                <input type="text" name="title" class="input-header-title form-control" required>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Product Sub Title</span>
+                </div>
+                <input type="text" name="sub_title" class="input-header-subtitle form-control" required>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <button type="submit" class="btn btn-grey">Add</button>
+              <a href="javascript:void(0)" class="btn-grey btn-update-cancel">Cancel</a>
+            </div>
+          </form>
+          
+        
+
+        <!-- <div class="popup-header-image text-center">
+          <img src="/images/apple-logo.jpg">
+          <div class="block-header-image">
+            <input type="file" name="image" multiple class="custom-file-input form-control" id="customFile">
+            <label class="custom-file-label" for="customFile">Select Images</label>
+          </div>
+        </div>
+        <input type="text" value="이름있는 화가들의 그림, 더는 부자들만의것이 아닙니다." class="input-header-title">
+        <input type="text" value="그림도 소장하고 돈도 버십시오." class="input-header-subtitle">
+        <div class="flex aic jcb">
+          <a href="javascript:void(0)" class="btn-grey btn-change-header-image">Change Image</a>
+          <a href="javascript:void(0)" class="btn-grey btn-update-header">Update</a>
+          <a href="javascript:void(0)" class="btn-grey btn-update-cancel">Cancel</a>
+        </div> -->
+      </div>
     </div>
   </div>
 </body>

@@ -227,13 +227,17 @@ img {
 .w-5 {
   width: 5%;
 }
-.position-relative {
-  position: relative;
-}
-.position-absolute {
-  position: absolute;
-}
+.bg-overlay {
+  display: none;
+  background-color: rgba(0, 0, 0, 0.7);
+  width: 100%;
+  height: 100%;
+  z-index: 111;
 
+  &.active {
+    display: block;
+  }
+}
 /*============================================================================
                               Header styles
 ==============================================================================*/
@@ -279,6 +283,52 @@ img {
 }
 
 /*============================================================================
+                              Footer style
+==============================================================================*/
+.popup-header {
+  display: none;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 111;
+  background-color: var(--white);
+  border-radius: 10px;
+  width: 1000px;
+  top: 15%;
+  padding: 20px;
+
+  &.active {
+    display: block;
+  }
+
+  .popup-header-image {
+    img {
+      border-radius: 10px;
+      max-width: 700px;
+    }
+
+    .block-header-image {
+      opacity: 0;
+      height: 0;
+      width: 0;
+    }
+  }
+
+  input {
+    display: block;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    margin-bottom: 10px;
+  }
+
+  a {
+    padding: 7px 12px;
+    color: var(--black);
+    display: inline-block;
+  }
+}
+
+/*============================================================================
                               Gallery page
 ==============================================================================*/
 .hdrBg {
@@ -290,6 +340,30 @@ img {
   
   @include media-query($medium-up) {
     box-shadow: 0 -15px 40px 15px rgb(0 0 0 / 70%);
+  }
+
+  .btn-edit-header {
+    background-color: #c1c1c1;
+    bottom: 30px;
+    right: 50px;
+    padding: 6px 12px;
+    color: var(--black);
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  .btn-add-header {
+    background-color: #c1c1c1;
+    bottom: 30px;
+    right: 120px;
+    padding: 6px 12px;
+    color: var(--black);
+
+    &:hover {
+      text-decoration: none;
+    }
   }
 }
 .hdrBgTint {
@@ -303,6 +377,7 @@ img {
 .bHdr {
   text-align: center;
   background-image: linear-gradient(to bottom,transparent 0%,rgba(0,0,0,.2) 100%);
+  padding-bottom: 30px;
 }
 .bHdrTxt {
   color: #fff;

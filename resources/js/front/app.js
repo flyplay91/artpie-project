@@ -67,7 +67,6 @@ $(document).ready(function() {
       },
       
       success: function(result) {
-        console.log(result);
         var html = '';
 
         $.each(result.gallery_ids_images, function (key, val) {

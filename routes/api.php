@@ -21,6 +21,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('api-select-gallerys', 'ApiSelectGallerysController@index');
 Route::post('api-get-gallery', 'ApiGetGalleryController@index');
 
+
+Route::post('api-select-header-data', 'ApiChangeHeaderDataController@index');
 Route::post('api-select-collections', 'ApiSelectCollectionsController@index');
 Route::post('api-categories', 'ApiCategoriesController@index');
 Route::post('api-artists', 'ApiArtistsController@index');

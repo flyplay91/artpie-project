@@ -2125,7 +2125,6 @@ $(document).ready(function () {
         selected_size: size_arr
       },
       success: function success(result) {
-        console.log(result);
         var html = '';
         $.each(result.gallery_ids_images, function (key, val) {
           html += '<div class="hdrItems-list">';

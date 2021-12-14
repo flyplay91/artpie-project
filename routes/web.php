@@ -34,5 +34,7 @@ Route::resource('gallery', 'front\GallerysController');
 //     return view('admin/gallerys/index');
 // });
 
+Route::resource('admin-header-data', 'AdminHeaderDataController');
+
 Route::resource('admin-gallery', 'AdminGallerysController');
 Route::resource('admin-collection', 'AdminCollectionsController');

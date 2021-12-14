@@ -1,4 +1,34 @@
 @extends('admin.layout')
+@section('main-header')
+<div class="hdrBg position-relative" style="background-image: url(/images/<?php echo $headerData->image ?>)">
+
+  <div class="hdrBgTint"></div>
+  <div class="bHdr">
+    <div class="bHdrTxt">
+      <h1>{{ $headerData->title }}</h1>
+      <span>{{ $headerData->sub_title }}</span>
+    </div>
+  </div>
+  
+  <a href="javascript:void(0)" class="btn-grey btn-add-header position-absolute">Add</a>
+  <a href="javascript:void(0)" class="btn-grey btn-edit-header position-absolute">Edit</a>
+</div>
+
+<div class="wrapper header-logo-nav flex aic">
+  <div class="header__logo flex aic">
+    <a href="/admin-gallerys" class="active">Gallery</a>
+    <a href="" class="">Users</a>
+    <a href="" class="">Payments</a>
+    <a href="" class="">Tickets</a>
+    <a href="" class="">Manage</a>
+    <a href="" class="">Settings</a>
+  </div>
+</div>
+
+@endsection
+
+
+
 @section('content')
 
 <div class="ad-gallerys ">

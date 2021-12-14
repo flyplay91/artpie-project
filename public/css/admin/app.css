@@ -224,12 +224,15 @@ img {
   width: 5%;
 }
 
-.position-relative {
-  position: relative;
+.bg-overlay {
+  display: none;
+  background-color: rgba(0, 0, 0, 0.7);
+  width: 100%;
+  height: 100%;
+  z-index: 111;
 }
-
-.position-absolute {
-  position: absolute;
+.bg-overlay.active {
+  display: block;
 }
 
 /*============================================================================
@@ -271,6 +274,45 @@ img {
 }
 
 /*============================================================================
+                              Footer style
+==============================================================================*/
+.popup-header {
+  display: none;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 111;
+  background-color: var(--white);
+  border-radius: 10px;
+  width: 1000px;
+  top: 15%;
+  padding: 20px;
+}
+.popup-header.active {
+  display: block;
+}
+.popup-header .popup-header-image img {
+  border-radius: 10px;
+  max-width: 700px;
+}
+.popup-header .popup-header-image .block-header-image {
+  opacity: 0;
+  height: 0;
+  width: 0;
+}
+.popup-header input {
+  display: block;
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  margin-bottom: 10px;
+}
+.popup-header a {
+  padding: 7px 12px;
+  color: var(--black);
+  display: inline-block;
+}
+
+/*============================================================================
                               Gallery page
 ==============================================================================*/
 .hdrBg {
@@ -285,6 +327,26 @@ img {
     box-shadow: 0 -15px 40px 15px rgba(0, 0, 0, 0.7);
   }
 }
+.hdrBg .btn-edit-header {
+  background-color: #c1c1c1;
+  bottom: 30px;
+  right: 50px;
+  padding: 6px 12px;
+  color: var(--black);
+}
+.hdrBg .btn-edit-header:hover {
+  text-decoration: none;
+}
+.hdrBg .btn-add-header {
+  background-color: #c1c1c1;
+  bottom: 30px;
+  right: 120px;
+  padding: 6px 12px;
+  color: var(--black);
+}
+.hdrBg .btn-add-header:hover {
+  text-decoration: none;
+}
 
 .hdrBgTint {
   background-color: rgba(0, 0, 0, 0.05);
@@ -298,6 +360,7 @@ img {
 .bHdr {
   text-align: center;
   background-image: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.2) 100%);
+  padding-bottom: 30px;
 }
 
 .bHdrTxt {
