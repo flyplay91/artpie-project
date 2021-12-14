@@ -76,7 +76,7 @@ class AdminHeaderDataController extends Controller
      */
     public function edit($id)
     {
-        //
+        
     }
 
     /**
@@ -87,8 +87,29 @@ class AdminHeaderDataController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        //
+    {   
+        $request->validate([
+            
+            'title'  => 'required',
+            'sub_title'  => 'required',
+        ]);
+        $data = $request->all();
+
+        if($file = $request->hasFile('image')) {
+            
+            $file = $request->file('image');
+            $fileName = $file->getClientOriginalName();
+            $destinationPath = public_path().'/images/';
+            $file->move($destinationPath,$fileName);
+
+            $data['image'] = $fileName;
+        }
+        
+        $headerData = AdminHeaderData::find($id);
+        $headerData->update($data);
+
+        return redirect()->route('admin-gallery.index')
+                        ->with('success','Header is updated successfully');
     }
 
     /**

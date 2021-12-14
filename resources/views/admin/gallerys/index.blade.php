@@ -1,6 +1,8 @@
 @extends('admin.layout')
 @section('main-header')
-<div class="hdrBg position-relative" style="background-image: url(/images/<?php echo $headerData->image ?>)">
+
+
+<div class="hdrBg position-relative" data-id="{{ $headerData->id }}" style="background-image: url(/images/<?php echo $headerData->image ?>)">
 
   <div class="hdrBgTint"></div>
   <div class="bHdr">

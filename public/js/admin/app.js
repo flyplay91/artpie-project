@@ -234,26 +234,40 @@ $(document).ready(function () {
     $('.popup-header').addClass('active');
   });
   $('body').on('click', '.btn-edit-header', function () {
+    var header_id = $('.ad-header > .hdrBg').data('id');
     $.ajax({
       url: "/api/api-select-header-data",
       method: "post",
       beforeSend: function beforeSend() {
         $('.popup-header').empty();
       },
+      data: {
+        headerId: header_id
+      },
       success: function success(result) {
         $('.bg-overlay').addClass('active');
         $('.popup-header').addClass('active');
-        var html = ''; // $.each(result.gallery_ids_images, function (key, val) {
-        //   html += '<div class="hdrItems-list">';
-        //     html += '<div class="hdrItems-list__inner">';
-        //       html += '<a class="image-gallery" href="javascript:void(0)" data-id="'+ key +'">';
-        //         html += '<div class="hdrItems-list__inner-overlay"></div>';
-        //         html += '<img src="/images/'+ val +'">';
-        //       html += '</a>';
-        //     html += '</div>';
-        //   html += '</div>';
-        // });
-
+        var html = '';
+        $.each(result.categories, function (key, val) {
+          html += '<div class="popup-header-image text-center" data-id="' + key + '">';
+          html += '<form action="' + baseUrl + 'admin-header-data/' + key + '" method="POST" enctype="multipart/form-data">';
+          html += '<input type="hidden" name="_token" value="' + $('meta[name="csrf-token"]').attr('content') + '">';
+          html += '<input type="hidden" name="_method" value="PUT">';
+          html += '<img src="/images/' + val.h_image + '">';
+          html += '<div class="block-header-image">';
+          html += '<input type="file" name="image" multiple class="custom-file-input form-control" id="customFile">';
+          html += '<label class="custom-file-label" for="customFile">Select Images</label>';
+          html += '</div>';
+          html += '<input type="text" value="' + val.h_title + '" name="title" class="input-header-title">';
+          html += '<input type="text" value="' + val.h_subtitle + '" name="sub_title" class="input-header-subtitle">';
+          html += '<div class="flex aic jcb">';
+          html += '<a href="javascript:void(0)" class="btn-grey btn-change-header-image">Change Image</a>';
+          html += '<button type="submit" class="btn-grey btn-update-header">Update</button>';
+          html += '<a href="javascript:void(0)" class="btn-grey btn-update-cancel">Cancel</a>';
+          html += '</div>';
+          html += '</form>';
+          html += '</div>';
+        });
         $('.popup-header').append(html);
       }
     });

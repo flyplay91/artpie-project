@@ -290,9 +290,14 @@ img {
 .popup-header.active {
   display: block;
 }
+.popup-header .btn-update-header {
+  padding: 7px 12px;
+  cursor: pointer;
+}
 .popup-header .popup-header-image img {
   border-radius: 10px;
   max-width: 700px;
+  margin-bottom: 30px;
 }
 .popup-header .popup-header-image .block-header-image {
   opacity: 0;

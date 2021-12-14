@@ -34,6 +34,7 @@
     </div>
 
     <div class="ad-footer">
+      <meta name="_token" content="{{ csrf_token() }}">
       <div class="popup-header position-absolute">
         
           <form action="{{ route('admin-header-data.store') }}" method="POST" enctype="multipart/form-data">
@@ -68,22 +69,6 @@
             </div>
           </form>
           
-        
-
-        <!-- <div class="popup-header-image text-center">
-          <img src="/images/apple-logo.jpg">
-          <div class="block-header-image">
-            <input type="file" name="image" multiple class="custom-file-input form-control" id="customFile">
-            <label class="custom-file-label" for="customFile">Select Images</label>
-          </div>
-        </div>
-        <input type="text" value="이름있는 화가들의 그림, 더는 부자들만의것이 아닙니다." class="input-header-title">
-        <input type="text" value="그림도 소장하고 돈도 버십시오." class="input-header-subtitle">
-        <div class="flex aic jcb">
-          <a href="javascript:void(0)" class="btn-grey btn-change-header-image">Change Image</a>
-          <a href="javascript:void(0)" class="btn-grey btn-update-header">Update</a>
-          <a href="javascript:void(0)" class="btn-grey btn-update-cancel">Cancel</a>
-        </div> -->
       </div>
     </div>
   </div>
