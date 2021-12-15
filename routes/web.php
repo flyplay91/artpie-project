@@ -23,6 +23,8 @@ Route::post('/login', 'Auth\AuthController@authenticate');
 Route::get('logout', 'Auth\AuthController@logout')->name('logout');
 
 Route::resource('gallery', 'front\GallerysController')->middleware('auth');
+Route::resource('setting', 'front\SettingController')->middleware('auth');
+Route::resource('update-user-info', 'front\UpdateUserInfoController')->middleware('auth');
 
 
 // Admin

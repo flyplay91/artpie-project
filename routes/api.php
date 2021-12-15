@@ -22,6 +22,8 @@ Route::post('api-select-gallerys', 'ApiSelectGallerysController@index');
 Route::post('api-get-gallery', 'ApiGetGalleryController@index');
 
 
+
+
 Route::post('api-select-header-data', 'ApiChangeHeaderDataController@index');
 Route::post('api-select-collections', 'ApiSelectCollectionsController@index');
 Route::post('api-categories', 'ApiCategoriesController@index');

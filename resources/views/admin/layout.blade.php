@@ -47,7 +47,7 @@
       </div>
     </div>
 
-    <div class="ad-body <?php if(Route::currentRouteName() == 'admin-gallery.index') { echo 'wrapper'; } else { echo 'mt-3'; } ?>">
+    <div class="ad-body <?php if((Route::currentRouteName() == 'admin-gallery.index') || (Route::currentRouteName() == 'admin-gallery.edit') || Route::currentRouteName() == 'admin-gallery.create') { echo 'wrapper'; } else { echo 'mt-3'; } ?>">
       @yield('content')
     </div>
 

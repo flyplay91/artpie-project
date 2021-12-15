@@ -106,7 +106,6 @@ class AdminGallerysController extends Controller
     public function update(Request $request, $id)
     {   
         $request->validate([
-            
             'title' => 'required',
             'sign'  => 'required',
             'frame'  => 'required',

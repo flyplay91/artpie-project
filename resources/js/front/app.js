@@ -364,8 +364,29 @@ $(document).ready(function() {
   $('body').on('click', '.bg-overlay label', function() {
     $('#mainWrapper').removeClass('active');
     $('.bg-overlay').removeClass('active');
+    $('.popup-user').removeClass('active');
     $('.popup-gallery-data').removeClass('active');
   });
+
+  // Account page popup events
+  $('body').on('click', '.btn-user-info', function() {
+    $('.popup-user--info').addClass('active');
+    $('.bg-overlay').addClass('active');
+  });
+
+  var click_count = 1;
+  $('body').on('click', '.circle-plus', function() {
+    click_count += 1;
+    if (click_count < 6 ) {
+      var address_template = '<div class="update-user-address--'+ click_count +' input-group mb-3"><div class="input-group-prepend"><span class="input-group-text">Address '+ click_count +'</span></div><input type="text" name="address_'+click_count+'" value="" class="form-control"></div>';
+
+      $('.circle-plus').before(address_template);
+    } else {
+      $('.circle-plus').hide();
+    }
+  });
+
+  
 
 });
 
@@ -454,7 +475,6 @@ function getGalleryAjax($id) {
 
       $('.popup-gallery-data__inner').append(html);
       $('.pan').pan();
-      
     }
   });
 }
