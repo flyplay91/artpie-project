@@ -2413,7 +2413,20 @@ $(document).ready(function () {
     $('.popup-user--info').addClass('active');
     $('.bg-overlay').addClass('active');
   });
-  var click_count = 1;
+  var address_field_count = $('.update-user-address').length;
+
+  if (address_field_count == 1) {
+    var click_count = 1;
+  } else if (address_field_count == 2) {
+    var click_count = 2;
+  } else if (address_field_count == 3) {
+    var click_count = 3;
+  } else if (address_field_count == 4) {
+    var click_count = 4;
+  } else if (address_field_count == 5) {
+    var click_count = 5;
+  }
+
   $('body').on('click', '.circle-plus', function () {
     click_count += 1;
 

@@ -742,8 +742,8 @@ img {
 .setting-page .user-info {
   padding: 50px 50px 10px 50px;
 }
-.setting-page .user-info > div {
-  padding: 5px 0;
+.setting-page .user-info .update-user-info-password {
+  margin-top: 50px;
 }
 .setting-page .user-info label {
   font-size: 18px;
