@@ -21,19 +21,11 @@ Route::post('/register', 'Auth\AuthController@storeUser');
 Route::get('/login', 'Auth\AuthController@login')->name('login');
 Route::post('/login', 'Auth\AuthController@authenticate');
 Route::get('logout', 'Auth\AuthController@logout')->name('logout');
-Route::get('/', function () {
-    return view('front/pages/home');
-});
 
-
-Route::resource('gallery', 'front\GallerysController');
+Route::resource('gallery', 'front\GallerysController')->middleware('auth');
 
 
 // Admin
-// Route::get('/admin', function () {
-//     return view('admin/gallerys/index');
-// });
-
 Route::resource('admin-header-data', 'AdminHeaderDataController');
 
 Route::resource('admin-gallery', 'AdminGallerysController');

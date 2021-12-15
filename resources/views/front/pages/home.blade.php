@@ -1,6 +1,7 @@
 @extends('front.layouts.app')
 
 @section('content')
+@if (isset($headerdata))
 <div class="hdrBg" style="background-image: url(/images/<?php echo $headerdata->image ?>)">
   <div class="hdrBgTint"></div>
   <div class="bHdr">
@@ -17,6 +18,7 @@
     </div>
   </div>
 </div>
+@endif
 
 <div class="hdrItems flex jcb position-relative">
   <div class="hdrItems-sidebar W-20">
