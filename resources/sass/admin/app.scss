@@ -248,39 +248,55 @@ img {
   background-color: #f0f0f0;
 }
 .header-logo-nav {
-  a {
-    color: var(--black);
-    font-size: 15px;
-    padding: 0 25px;
-    height: 68px;
-    line-height: 68px;
-    border-bottom: solid 2px transparent;
-    font-weight: 500;
-
-    &.active {
-      font-weight: 700;
-    }
-  }
-
   .header__nav {
-    ul {
+    & > a {
+      color: var(--black);
+      font-size: 15px;
       padding: 0 25px;
-      li {
-        display: none;
-        color: var(--white);
-        cursor: pointer;
-        font-size: 15px;
+      height: 68px;
+      line-height: 68px;
+      border-bottom: solid 2px transparent;
+      font-weight: 500;
+  
+      &.active {
         font-weight: 700;
-        height: 68px;
-        line-height: 68px;
+      }
+    }
+    .sub-menu {
+      margin: 0;
+      cursor: pointer;
+      font-size: 15px;
+      padding: 0 25px;
+      position: relative;
 
-        &.active {
-          display: block;
+      &:hover {
+        text-decoration: underline;
+      }
+
+      &:hover ul {
+        display: block;
+      }
+
+      ul {
+        position: absolute;
+        background-color: #f0f0f0;
+        width: 120px;
+        padding: 10px;
+        left: 15px;
+        display: none;
+        li {
+          a {
+            color: var(--black);
+            font-size: 15px;
+            padding: 5px 0;
+            display: inline-block;
+          }
         }
       }
     }
   }
 }
+
 
 /*============================================================================
                               Footer style
@@ -634,7 +650,6 @@ img {
 ==============================================================================*/
 .edit-gallery {
   margin-bottom: 50px;
-  margin-top: 50px;
   box-shadow: 0px 2px 7px 6px rgba(0,0,0,0.43);
   border-radius: 5px;
   padding: 20px 15px;

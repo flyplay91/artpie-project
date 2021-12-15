@@ -27,9 +27,27 @@
     <div class="bg-overlay position-absolute"></div>
     <div class="ad-header">
       @yield('main-header')
+
+      <div class="wrapper header-logo-nav flex aic">
+        <div class="header__nav flex aic">
+          <a href="/admin-gallery" class="active">Gallery</a>
+          <a href="/admin-user" class="">Users</a>
+          <label class="sub-menu">
+            Payments
+            <ul>
+              <li><a href="/admin-deposit">Deposit</a></li>
+              <li><a href="/admin-widraw">Widraw</a></li>
+              <li><a href="/admin-transaction">Transaction</a></li>
+            </ul>
+          </label>
+          <a href="" class="">Tickets</a>
+          <a href="" class="">Manage</a>
+          <a href="" class="">Settings</a>
+        </div>
+      </div>
     </div>
 
-    <div class="ad-body wrapper">
+    <div class="ad-body <?php if(Route::currentRouteName() == 'admin-gallery.index') { echo 'wrapper'; } else { echo 'mt-3'; } ?>">
       @yield('content')
     </div>
 

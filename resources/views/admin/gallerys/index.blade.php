@@ -16,20 +16,7 @@
   <a href="javascript:void(0)" class="btn-grey btn-edit-header position-absolute">Edit</a>
 </div>
 
-<div class="wrapper header-logo-nav flex aic">
-  <div class="header__logo flex aic">
-    <a href="/admin-gallerys" class="active">Gallery</a>
-    <a href="" class="">Users</a>
-    <a href="" class="">Payments</a>
-    <a href="" class="">Tickets</a>
-    <a href="" class="">Manage</a>
-    <a href="" class="">Settings</a>
-  </div>
-</div>
-
 @endsection
-
-
 
 @section('content')
 
