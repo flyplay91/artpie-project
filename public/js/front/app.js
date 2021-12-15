@@ -2437,6 +2437,10 @@ $(document).ready(function () {
       $('.circle-plus').hide();
     }
   });
+  $('body').on('click', '.btn-close-account', function () {
+    $('.popup-user--close').addClass('active');
+    $('.bg-overlay').addClass('active');
+  });
 });
 
 function getGalleryAjax($id) {

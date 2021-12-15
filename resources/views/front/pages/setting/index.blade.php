@@ -133,5 +133,14 @@
 
   <div class="popup-user popup-user--password"></div>
 
+  <div class="popup-user popup-user--close">
+    <form action="{{ route('update-user-info.destroy',Auth::id()) }}" method="POST" enctype="multipart/form-data">
+      @method('DELETE')
+      @csrf
+      <p>Are you sure?</p>
+      <button type="submit" class="btn-grey btn-delete-user">Delete</button>
+    </form>
+  </div>
+
 </div>
 @endsection

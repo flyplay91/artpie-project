@@ -290,6 +290,7 @@ img {
   background-color: #f0f0f0;
   color: #434343;
   padding: 10px;
+  cursor: pointer;
 
   &:hover {
     color: #434343;
@@ -830,6 +831,11 @@ img {
   
   &.active {
     display: block;
+  }
+
+  &.popup-user--close p {
+    margin-bottom: 20px;
+    font-size: 20px;
   }
 
 

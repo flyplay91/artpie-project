@@ -286,6 +286,7 @@ img {
   background-color: #f0f0f0;
   color: #434343;
   padding: 10px;
+  cursor: pointer;
 }
 .btn-grey:hover {
   color: #434343;
@@ -769,6 +770,10 @@ img {
 }
 .popup-user.active {
   display: block;
+}
+.popup-user.popup-user--close p {
+  margin-bottom: 20px;
+  font-size: 20px;
 }
 .popup-user .circle-plus {
   text-align: right;

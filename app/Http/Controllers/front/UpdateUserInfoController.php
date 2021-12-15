@@ -92,6 +92,11 @@ class UpdateUserInfoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id);
+        
+        $user->delete();
+  
+        return redirect()->route('gallery.index')
+                        ->with('success','User is deleted successfully');
     }
 }
