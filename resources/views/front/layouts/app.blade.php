@@ -33,8 +33,16 @@
                         <li>Chinese</li>
                         <li>English</li>
                     </ul>
-                    <a href="#">로그인</a>
-                    <a href="#">새로 등록</a>
+                    @guest
+                    <a href="{{ route('login') }}">{{ __('Login') }}</a>
+                        @if (Route::has('register'))
+                            <a href="{{ route('register') }}">{{ __('Register') }}</a>
+                        @endif
+                    @else
+                        <a href="{{ route('logout') }}">
+                            {{ __('Logout') }}
+                        </a>
+                    @endguest
                 </div>
             </div>
         </div>

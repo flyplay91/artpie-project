@@ -105,13 +105,7 @@
   </div>
 
   <div class="popup-gallery-data position-absolute">
-    <div class="popup-gallery-data__inner flex jcb">
-      
-    </div>
-
-    <div class="gallery-data-image-zoom flex aic">
-aaa
-    </div>
+    <div class="popup-gallery-data__inner flex jcb"></div>
   </div>
 </div>
 
