@@ -2,7 +2,7 @@
 
 <div class="container register-page mt-3">
   <div class="card">
-    <div class="card-header">{{ __('Register') }}</div>
+    <div class="card-header"><a href="{{ route('login') }}">{{ __('Login') }}</a></div>
 
     <div class="card-body">
       <form method="POST" action="{{ route('register') }}">

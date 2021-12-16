@@ -401,7 +401,12 @@ $(document).ready(function() {
   $('body').on('click', '.btn-close-account', function() {
     $('.popup-user--close').addClass('active');
     $('.bg-overlay').addClass('active');
-  })
+  });
+
+  $('body').on('click', '.btn-update-password', function() {
+    $('.popup-user--password').addClass('active');
+    $('.bg-overlay').addClass('active');
+  });
 
 });
 

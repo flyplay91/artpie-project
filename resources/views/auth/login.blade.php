@@ -2,7 +2,7 @@
 
 <div class="container login-page mt-3">
   <div class="card">
-    <div class="card-header">{{ __('Login') }}</div>
+    <div class="card-header"><a href="{{ route('register') }}">{{ __('Register') }}</a></div>
     @if(session()->has('error'))
         <div class="alert alert-danger">
             {{ session()->get('error') }}

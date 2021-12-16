@@ -131,7 +131,13 @@
     </form>
   </div>
 
-  <div class="popup-user popup-user--password"></div>
+  <div class="popup-user popup-user--password">
+    @if (Route::has('password.request'))
+      <a class="btn btn-link" href="{{ route('password.request') }}">
+        {{ __('Forgot Your Password?') }}
+      </a>
+    @endif
+  </div>
 
   <div class="popup-user popup-user--close">
     <form action="{{ route('update-user-info.destroy',Auth::id()) }}" method="POST" enctype="multipart/form-data">
