@@ -5,8 +5,11 @@ namespace App\Http\Controllers\front;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\User;
+use Auth;
+use Session;
+use App\AdminGallerys;
 
-class UpdateUserInfoController extends Controller
+class CheckoutController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +18,24 @@ class UpdateUserInfoController extends Controller
      */
     public function index()
     {
-        //
+        $galleryId = $_GET['g_id'];
+        $userId = auth()->user()->id;
+        
+        $cart = [];
+
+        if (!empty(Session::get('cart'))) {
+            $cart = explode(',', Session::get('cart'));
+        }
+
+        $cart[] = $galleryId;
+        $cart = array_unique($cart);
+        Session::put('cart', implode(',', $cart));
+        Session::save();
+
+        $gallerys = AdminGallerys::whereIn('id', $cart)->get();
+        
+        $user = User::find($userId);
+        return view('front.pages.checkout.index',compact('gallerys', 'user'));
     }
 
     /**
@@ -70,19 +90,7 @@ class UpdateUserInfoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
-        $request->validate([
-            'name' => 'required',
-            'email'  => 'required',
-            'address_1'  => 'required',
-        ]);
-
-        $data = $request->all();
-        $user = User::find($id);
-        $user->update($data);
-
-        return redirect()->route('setting.index')
-                        ->with('success','User is updated successfully');
+        //
     }
 
     /**
@@ -93,11 +101,6 @@ class UpdateUserInfoController extends Controller
      */
     public function destroy($id)
     {
-        $user = User::find($id);
-        
-        $user->delete();
-  
-        return redirect()->route('gallery.index')
-                        ->with('success','User is deleted successfully');
+        //
     }
 }

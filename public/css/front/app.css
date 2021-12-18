@@ -461,6 +461,7 @@ img {
 .bHdr {
   text-align: center;
   background-image: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.2) 100%);
+  padding-bottom: 30px;
 }
 
 .bHdrTxt {
@@ -639,7 +640,7 @@ img {
 }
 .popup-gallery-data .popup-gallery-data__inner .gallery-data-image {
   width: 60%;
-  padding: 30px 30px 0 30px;
+  padding: 30px;
 }
 .popup-gallery-data .popup-gallery-data__inner .gallery-data-info {
   width: 30%;
@@ -686,6 +687,7 @@ img {
 }
 .popup-gallery-data .popup-gallery-data__inner .gallery-data-info .gallery-entire-buy label, .popup-gallery-data .popup-gallery-data__inner .gallery-data-info .gallery-entire-buy span {
   color: #3c5a99;
+  margin: 0;
 }
 .popup-gallery-data .popup-gallery-data__inner .gallery-data-info .gallery-entire-buy .gallery-entire-buy-btn {
   text-align: right;
@@ -781,4 +783,52 @@ img {
 .popup-user .circle-plus img {
   width: 30px;
   cursor: pointer;
+}
+
+/*============================================================================
+                              Checkout page styles
+==============================================================================*/
+.checkout-page {
+  margin-top: 100px;
+  box-shadow: 0px 2px 7px 6px rgba(0, 0, 0, 0.43);
+  border-radius: 5px;
+  padding: 20px 15px;
+  position: relative;
+}
+.checkout-page .circle-plus {
+  text-align: right;
+}
+.checkout-page .circle-plus img {
+  width: 30px;
+  cursor: pointer;
+}
+.checkout-page .checkout-gallery-info {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  padding: 0 100px;
+}
+.checkout-page .checkout-gallery-info .checkout-gallery-item {
+  border-bottom: 1px solid #ced4da;
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+.checkout-page .checkout-gallery-info .checkout-gallery-item:last-child {
+  border: none;
+}
+.checkout-page .checkout-gallery-info .checkout-gallery-item .checkout-gallery-image img {
+  max-width: 100px;
+}
+.checkout-page .checkout-gallery-info .checkout-gallery-item .checkout-gallery-price label {
+  margin: 0;
+}
+.checkout-page .checkout-gallery-info .checkout-gallery-item .checkout-gallery-qty span {
+  cursor: pointer;
+}
+.checkout-page .checkout-gallery-info .checkout-gallery-item .checkout-gallery-qty span img {
+  max-width: 15px;
+}
+.checkout-page .checkout-gallery-info .checkout-gallery-item .checkout-gallery-qty input {
+  width: 50px;
+  margin: 0 5px;
+  border: solid 1px #ced4da;
 }

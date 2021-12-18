@@ -104,7 +104,7 @@
     @endif
   </div>
 
-  <div class="popup-gallery-data position-absolute">
+  <div class="popup-gallery-data position-absolute" data-user-id="{{ Auth::id() }}">
     <div class="popup-gallery-data__inner flex jcb"></div>
   </div>
 </div>

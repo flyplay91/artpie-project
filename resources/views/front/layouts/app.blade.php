@@ -26,7 +26,7 @@
       <div class="wrapper header-logo-nav flex aic jcb">
         <div class="header__logo flex aic">
           <a href="/gallery" class="flex aic jcc"><img src="/images/artpal.png"></a>
-          <a href="#" class="active">그림구입</a>
+          <a href="/gallery" class="active">그림구입</a>
         </div>
         <div class="header__nav flex aic">
           <div class="header-nav-dropdown language">
@@ -63,7 +63,7 @@
         @yield('content')
     </div>
 
-    <div class="footer <?php if(Route::currentRouteName() == 'setting.index') { echo 'fixed-footer'; } ?>">
+    <div class="footer <?php if((Route::currentRouteName() == 'setting.index') || (Route::currentRouteName() == 'checkout.index')) { echo 'fixed-footer'; } ?>">
       <div class="footer__inner wrapper flex aic jcb">
         <div class="footer-nav">
           <ul class="flex aic">

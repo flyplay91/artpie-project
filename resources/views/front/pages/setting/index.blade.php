@@ -63,6 +63,7 @@
   </div>
 
   <div class="popup-user popup-user--info">
+    
     <form action="{{ route('update-user-info.update',Auth::id()) }}" method="POST" enctype="multipart/form-data">
       @csrf
       @method('PUT')
@@ -129,6 +130,7 @@
 
       <button type="submit" class="btn-grey btn-update-user">Save Changes</button>
     </form>
+    
   </div>
 
   <div class="popup-user popup-user--password">

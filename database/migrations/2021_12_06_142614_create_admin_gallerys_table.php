@@ -15,25 +15,25 @@ class CreateAdminGallerysTable extends Migration
     {
         Schema::create('admin_gallerys', function (Blueprint $table) {
             $table->id();
-            $table->string('coll_id');
+            $table->integer('coll_id');
             $table->string('image');
             $table->string('title');
             $table->string('sign');
             $table->string('frame');
-            $table->int('width');
-            $table->int('height');
-            $table->int('size');
+            $table->integer('width');
+            $table->integer('height');
+            $table->integer('size');
             $table->string('unit');
             $table->float('actual_price');
             $table->float('retail_price');
             $table->string('check_enable_pieces');
-            $table->int('piece_count');
+            $table->integer('piece_count');
             $table->string('materials');
             $table->string('description');
             $table->string('keywords');
             $table->string('safe_children');
-            $table->int('category_id');
-            $table->int('artist_id');
+            $table->integer('category_id');
+            $table->integer('artist_id');
             $table->string('paint_date');
             $table->string('registered_date');
             $table->string('updated_date');

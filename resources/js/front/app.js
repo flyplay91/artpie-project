@@ -408,6 +408,32 @@ $(document).ready(function() {
     $('.bg-overlay').addClass('active');
   });
 
+  // Checkout page qty minus/plus events
+  
+  $('body').on('click', '.checkout-gallery-qty .btn-plus-qty', function() {
+    var current_qty = parseInt($(this).closest('.checkout-gallery-qty').find('input').val());
+    var current_price = parseFloat($(this).closest('.checkout-gallery-item').find('.checkout-gallery-price label').text());
+    current_qty = current_qty+1;
+    $(this).closest('.checkout-gallery-qty').find('input').val(current_qty);
+    var total_price = current_qty*current_price;
+    $(this).closest('.checkout-gallery-item').find('.checkout-gallery-subtotal-price label').text(total_price);
+  });
+
+  $('body').on('click', '.checkout-gallery-qty .btn-minus-qty', function() {
+    var current_qty = parseInt($(this).closest('.checkout-gallery-qty').find('input').val());
+    if (current_qty == 1) {
+      $(this).addClass('disabled');
+    } else {
+      $(this).removeClass('disabled');
+      var current_price = parseFloat($(this).closest('.checkout-gallery-item').find('.checkout-gallery-price label').text());
+      current_qty = current_qty-1;
+      $(this).closest('.checkout-gallery-qty').find('input').val(current_qty);
+      var total_price = current_qty*current_price;
+      $(this).closest('.checkout-gallery-item').find('.checkout-gallery-subtotal-price label').text(total_price);
+    }
+    
+  });
+
 });
 
 function getGalleryAjax($id) {
@@ -424,11 +450,12 @@ function getGalleryAjax($id) {
       $('#mainWrapper').addClass('active');
       $('.bg-overlay').addClass('active');
       $('.popup-gallery-data').addClass('active');
+      var user_id = $('.popup-gallery-data').data('user-id');
       
       var html = '';
       
       $.each(result.gallery_Obj, function (key, val) {
-        html += '<div class="gallery-data-image" data-id"'+ key +'">';
+        html += '<div class="gallery-data-image" data-id="'+ key +'">';
           html += '<a class="pan" data-big="/images/' + val.g_image + '" href="">';
             html += '<img src="/images/'+ val.g_image +'">';
           html += '</a>';
@@ -472,7 +499,7 @@ function getGalleryAjax($id) {
               html += '<span>'+ val.g_price +' RMB</span>';
             html += '</div>';
             html += '<div class="gallery-entire-buy-btn">';
-              html += '<a href="#">실물구매</a>';
+              html += '<a href="/checkout?g_id='+ key +'">실물구매</a>';
             html += '</div>';
           html += '</div>';
 

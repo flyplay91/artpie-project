@@ -4,9 +4,8 @@ namespace App\Http\Controllers\front;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\User;
 
-class UpdateUserInfoController extends Controller
+class OrderInfoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -36,7 +35,20 @@ class UpdateUserInfoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'user_id'   => 'required',
+            'gallery_id' => 'required',
+            'address_1' => 'required',
+            'qty'   => 'required',
+            'price' => 'required',
+        ]);
+        
+        $collection = new AdminCollections($request->input()) ;
+        $collection->save();
+        $coll_name = $collection->coll_name;
+        
+        return redirect()->route('admin-gallery.index')
+                        ->with('success', $coll_name);
     }
 
     /**
@@ -70,19 +82,7 @@ class UpdateUserInfoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
-        $request->validate([
-            'name' => 'required',
-            'email'  => 'required',
-            'address_1'  => 'required',
-        ]);
-
-        $data = $request->all();
-        $user = User::find($id);
-        $user->update($data);
-
-        return redirect()->route('setting.index')
-                        ->with('success','User is updated successfully');
+        //
     }
 
     /**
@@ -93,11 +93,6 @@ class UpdateUserInfoController extends Controller
      */
     public function destroy($id)
     {
-        $user = User::find($id);
-        
-        $user->delete();
-  
-        return redirect()->route('gallery.index')
-                        ->with('success','User is deleted successfully');
+        //
     }
 }
