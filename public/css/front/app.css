@@ -818,8 +818,11 @@ img {
 .checkout-page .checkout-gallery-info .checkout-gallery-item .checkout-gallery-image img {
   max-width: 100px;
 }
-.checkout-page .checkout-gallery-info .checkout-gallery-item .checkout-gallery-price label {
+.checkout-page .checkout-gallery-info .checkout-gallery-item .checkout-gallery-title label {
   margin: 0;
+}
+.checkout-page .checkout-gallery-info .checkout-gallery-item .checkout-gallery-price label {
+  margin: 0 5px 0 0;
 }
 .checkout-page .checkout-gallery-info .checkout-gallery-item .checkout-gallery-qty span {
   cursor: pointer;
@@ -831,4 +834,13 @@ img {
   width: 50px;
   margin: 0 5px;
   border: solid 1px #ced4da;
+}
+.checkout-page .checkout-gallery-info .checkout-gallery-item .checkout-gallery-subtotal-price label {
+  margin: 0 5px 0 0;
+}
+.checkout-page .checkout-gallery-total-price span {
+  margin-left: 5px;
+}
+.checkout-page .checkout-gallery-total-price label {
+  margin: 0;
 }

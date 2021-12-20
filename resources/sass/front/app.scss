@@ -889,9 +889,15 @@ img {
         }
       }
 
-      .checkout-gallery-price {
+      .checkout-gallery-title {
         label {
           margin: 0;
+        }
+      }
+
+      .checkout-gallery-price {
+        label {
+          margin: 0 5px 0 0;
         }
       }
 
@@ -908,6 +914,21 @@ img {
           border: solid 1px #ced4da;
         }
       }
+
+      .checkout-gallery-subtotal-price {
+        label {
+          margin: 0 5px 0 0;
+        }
+      }
+    }
+  }
+
+  .checkout-gallery-total-price {
+    span {
+      margin-left: 5px;
+    }
+    label {
+      margin: 0;
     }
   }
 }

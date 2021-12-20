@@ -15,7 +15,7 @@ class CreateAdminCollectionsTable extends Migration
     {
         Schema::create('admin_collections', function (Blueprint $table) {
             $table->id();
-            $table->string('coll_name');
+            $table->string('coll_name')->nullable();
             $table->timestamps();
         });
     }

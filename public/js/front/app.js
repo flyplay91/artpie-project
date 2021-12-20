@@ -2451,8 +2451,9 @@ $(document).ready(function () {
     var current_price = parseFloat($(this).closest('.checkout-gallery-item').find('.checkout-gallery-price label').text());
     current_qty = current_qty + 1;
     $(this).closest('.checkout-gallery-qty').find('input').val(current_qty);
-    var total_price = current_qty * current_price;
+    var total_price = (current_qty * current_price).toFixed(2);
     $(this).closest('.checkout-gallery-item').find('.checkout-gallery-subtotal-price label').text(total_price);
+    cal_total();
   });
   $('body').on('click', '.checkout-gallery-qty .btn-minus-qty', function () {
     var current_qty = parseInt($(this).closest('.checkout-gallery-qty').find('input').val());
@@ -2464,11 +2465,23 @@ $(document).ready(function () {
       var current_price = parseFloat($(this).closest('.checkout-gallery-item').find('.checkout-gallery-price label').text());
       current_qty = current_qty - 1;
       $(this).closest('.checkout-gallery-qty').find('input').val(current_qty);
-      var total_price = current_qty * current_price;
+      var total_price = (current_qty * current_price).toFixed(2);
       $(this).closest('.checkout-gallery-item').find('.checkout-gallery-subtotal-price label').text(total_price);
+      cal_total();
     }
   });
+  cal_total();
 });
+
+function cal_total() {
+  t_price = 0;
+  $('.checkout-gallery-info__inner .checkout-gallery-item').each(function () {
+    var s_price = parseFloat($(this).find('.checkout-gallery-subtotal-price label').text());
+    t_price += s_price;
+  });
+  $('.checkout-gallery-total-price label').text(t_price.toFixed(2));
+  $('.total-price-value').val(t_price.toFixed(2));
+}
 
 function getGalleryAjax($id) {
   $.ajax({

@@ -15,7 +15,7 @@ class CreateAdminArtistsTable extends Migration
     {
         Schema::create('admin_artists', function (Blueprint $table) {
             $table->id();
-            $table->string('art_name');
+            $table->string('art_name')->nullable();
             $table->timestamps();
         });
     }

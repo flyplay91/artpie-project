@@ -1,5 +1,14 @@
 @extends('front.layouts.app')
 
+@if ($errors->any())
+  <div class="alert alert-danger">
+    <ul>
+      @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+      @endforeach
+    </ul>
+  </div>
+@endif
 @section('content')
 
 <div class="checkout-page">
@@ -57,30 +66,50 @@
       </div>
 
       <div class="checkout-gallery-info">
-        @if (isset($gallerys))
-          @foreach ($gallerys as $gallery)
-            <input type="hidden" name="gallery_id" value="{{ $gallery->id }}">
-            <div class="checkout-gallery-item flex aic jcb">
-              <div class="checkout-gallery-image">
-                <img src="/images/{{ $gallery->image }}">
+        <div class="checkout-gallery-info__inner">
+          @if (isset($gallerys))
+            @foreach ($gallerys as $gallery)
+              <div class="checkout-gallery-item flex aic jcb">
+                <input type="hidden" name="gallery_id[]" value="{{ $gallery->id }}">
+                <input type="hidden" name="image[]" value="{{ $gallery->image }}">
+                <input type="hidden" name="title[]" value="{{ $gallery->title }}">
+                <input type="hidden" name="price[]" value="{{ number_format($gallery->actual_price, 2) }}">
+                
+
+                <div class="checkout-gallery-image">
+                  <img src="/images/{{ $gallery->image }}">
+                </div>
+                <div class="checkout-gallery-title w-20">
+                  <label>{{ $gallery->title }}</label>
+                </div>
+                <div class="checkout-gallery-price flex aic">
+                  <span>¥</span><label>{{ number_format($gallery->actual_price, 2) }}</label>
+                </div>
+                <div class="checkout-gallery-qty flex aic">
+                  <span class="btn-minus-qty"><img src="/images/minus-icon.png"></span>
+                  <input type="text" name="qty[]" value="1">
+                  <span class="btn-plus-qty"><img src="/images/plus-icon.png"></span>
+                </div>
+                <div class="checkout-gallery-subtotal-price flex aic">
+                  <span>¥</span><label>{{ number_format($gallery->actual_price, 2) }}</label>
+                </div>
               </div>
-              <div class="checkout-gallery-price">
-                <label>{{ $gallery->actual_price }}</label>
-              </div>
-              <div class="checkout-gallery-qty flex aic">
-                <span class="btn-minus-qty"><img src="/images/minus-icon.png"></span>
-                <input type="text" value="1">
-                <span class="btn-plus-qty"><img src="/images/plus-icon.png"></span>
-              </div>
-              <div class="checkout-gallery-subtotal-price">
-                <label>{{ $gallery->actual_price }}</label>
-              </div>
-            </div>
-          @endforeach
-        @endif
+            @endforeach
+          @endif
+        </div>
+        <input type="hidden" name="total_price" value="" class="total-price-value">
+
+        <div class="checkout-gallery-total-price flex aic jce">
+          <strong>Total: </strong>
+          <span> ¥</span>
+          <label></label>
+        </div>
+        
       </div>
 
-      <button type="submit" class="btn-grey btn-update-user">Checkout</button>
+      <div class="checkout-btn text-right">
+        <button type="submit" class="btn-grey btn-update-user">Checkout</button>
+      </div>
     </form>
   </div>
 </div>

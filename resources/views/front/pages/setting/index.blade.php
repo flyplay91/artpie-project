@@ -2,7 +2,7 @@
 
 @section('content')
 
-@if ($errors->any())
+<!-- @if ($errors->any())
   <div class="alert alert-danger">
     <ul>
       @foreach ($errors->all() as $error)
@@ -10,7 +10,7 @@
       @endforeach
     </ul>
   </div>
-@endif
+@endif -->
 <div class="setting-page" data-user-id="{{Auth::id()}}">
   <h2 class="user-name">My Account - {{ $user->name }}</h2>
   <div class="user-info">

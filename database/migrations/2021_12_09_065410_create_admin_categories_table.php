@@ -15,7 +15,7 @@ class CreateAdminCategoriesTable extends Migration
     {
         Schema::create('admin_categories', function (Blueprint $table) {
             $table->id();
-            $table->string('cat_name');
+            $table->string('cat_name')->nullable();
             $table->timestamps();
         });
     }

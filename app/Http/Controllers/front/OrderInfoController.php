@@ -4,6 +4,9 @@ namespace App\Http\Controllers\front;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Orders;
+use App\OrderLineItems;
+use Session;
 
 class OrderInfoController extends Controller
 {
@@ -35,20 +38,57 @@ class OrderInfoController extends Controller
      */
     public function store(Request $request)
     {
+
         $request->validate([
             'user_id'   => 'required',
-            'gallery_id' => 'required',
             'address_1' => 'required',
-            'qty'   => 'required',
-            'price' => 'required',
         ]);
         
-        $collection = new AdminCollections($request->input()) ;
-        $collection->save();
-        $coll_name = $collection->coll_name;
+        $requestOrderData = $request->input();
         
-        return redirect()->route('admin-gallery.index')
-                        ->with('success', $coll_name);
+        $orderData = [
+            'user_id'   => $requestOrderData['user_id'],
+            'address_1'   => $requestOrderData['address_1'],
+            'total_price' => $requestOrderData['total_price'],
+            'status' => 'pending',
+        ];
+
+        if (!empty($requestOrderData['address_2'])) {
+            $orderData['address_2'] = $requestOrderData['address_2'];
+        }
+        if (!empty($requestOrderData['address_3'])) {
+            $orderData['address_3'] = $requestOrderData['address_3'];
+        }
+        if (!empty($requestOrderData['address_4'])) {
+            $orderData['address_4'] = $requestOrderData['address_4'];
+        }
+        if (!empty($requestOrderData['address_5'])) {
+            $orderData['address_5'] = $requestOrderData['address_5'];
+        }
+        
+        $order = new Orders($orderData);
+        $order->save();
+        
+        // Line Item
+        foreach($requestOrderData['gallery_id'] as $index => $galleryId) {
+            $gallery = [
+                'order_id'   => $order->id,
+                'gallery_id' => $galleryId,
+                'image' => $requestOrderData['image'][$index],
+                'title' => $requestOrderData['title'][$index],
+                'qty'   => $requestOrderData['qty'][$index],
+                'price' => $requestOrderData['price'][$index],
+            ];
+            
+
+            $lineItem = new OrderLineItems($gallery);
+            $lineItem->save();
+        }
+
+        Session::forget('cart');
+        Session::save();
+        return redirect()->route('gallery.index')
+                        ->with('success', 'Order is made successfully');
     }
 
     /**

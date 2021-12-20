@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAdminHeaderDataTable extends Migration
+class CreateOrderLineItemsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,15 @@ class CreateAdminHeaderDataTable extends Migration
      */
     public function up()
     {
-        Schema::create('admin_header_data', function (Blueprint $table) {
+        Schema::create('order_line_items', function (Blueprint $table) {
             $table->id();
+            $table->integer('order_id');
+            $table->integer('gallery_id');
             $table->string('image')->nullable();
             $table->string('title')->nullable();
-            $table->string('sub_title')->nullable();
+            $table->string('qty')->nullable();
+            $table->string('price')->nullable();
+            
             $table->timestamps();
         });
     }
@@ -29,6 +33,6 @@ class CreateAdminHeaderDataTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('admin_header_data');
+        Schema::dropIfExists('order_line_items');
     }
 }
