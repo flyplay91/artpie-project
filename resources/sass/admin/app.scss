@@ -212,7 +212,6 @@ img {
   border: solid 1px #bdbdbd;
   background-color: #f0f0f0;
   color: #434343;
-  padding: 10px;
 
   &:hover {
     text-decoration: none;
@@ -355,6 +354,7 @@ img {
     padding: 7px 12px;
     color: var(--black);
     display: inline-block;
+    margin-left: 10px;
   }
 }
 
