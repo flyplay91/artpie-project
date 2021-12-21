@@ -2470,7 +2470,19 @@ $(document).ready(function () {
       cal_total();
     }
   });
-  cal_total();
+  cal_total(); // Click pay button on the checkout page
+
+  $('body').on('click', '.btn-pay-popup', function () {
+    $('.bg-overlay').addClass('active');
+    $('.popup-pay').addClass('active');
+  });
+  $('body').on('click', '.bg-overlay label, .btn-cancel-pay', function () {
+    $('.bg-overlay').removeClass('active');
+    $('.popup-pay').removeClass('active');
+  });
+  $('body').on('click', '.btn-make-pay', function () {
+    $('.btn-update-user').trigger('click');
+  });
 });
 
 function cal_total() {

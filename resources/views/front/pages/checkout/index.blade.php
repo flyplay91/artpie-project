@@ -108,9 +108,18 @@
       </div>
 
       <div class="checkout-btn text-right">
+        <a class="btn-pay-popup btn-grey" href="javascript:void(0)">Checkout</a>
         <button type="submit" class="btn-grey btn-update-user">Checkout</button>
       </div>
     </form>
+
+    <div class="popup-pay position-absolute">
+      <img src="/images/wechat-icon.png">
+      <div class="popup-pay-btns flex jcb">
+        <a href="javascript:void(0)" class="btn-cancel-pay btn-grey">Cancel</a>
+        <a href="javascript:void(0)" class="btn-make-pay btn-grey">Done</a>
+      </div>
+    </div>
   </div>
 </div>
 @endsection

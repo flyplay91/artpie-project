@@ -26,6 +26,7 @@ Route::resource('gallery', 'front\GallerysController')->middleware('auth');
 Route::resource('setting', 'front\SettingController')->middleware('auth');
 Route::resource('update-user-info', 'front\UpdateUserInfoController')->middleware('auth');
 Route::resource('checkout', 'front\CheckoutController')->middleware('auth');
+Route::resource('pay', 'front\PayController')->middleware('auth');
 Route::resource('order', 'front\OrderInfoController')->middleware('auth');
 
 

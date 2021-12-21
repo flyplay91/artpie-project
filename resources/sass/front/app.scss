@@ -923,6 +923,16 @@ img {
     }
   }
 
+  .checkout-btn {
+    button {
+      width: 0;
+      height: 0;
+      overflow: hidden;
+      opacity: 0;
+      padding: 0;
+    }
+  }
+
   .checkout-gallery-total-price {
     span {
       margin-left: 5px;
@@ -930,5 +940,21 @@ img {
     label {
       margin: 0;
     }
+  }
+}
+
+.popup-pay {
+  display: none;
+  width: 500px;
+  top: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 111;
+  background-color: var(--white);
+  border-radius: 10px;
+  padding: 20px;
+
+  &.active {
+    display: block;
   }
 }
