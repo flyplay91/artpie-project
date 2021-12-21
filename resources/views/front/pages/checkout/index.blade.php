@@ -73,7 +73,7 @@
                 <input type="hidden" name="gallery_id[]" value="{{ $gallery->id }}">
                 <input type="hidden" name="image[]" value="{{ $gallery->image }}">
                 <input type="hidden" name="title[]" value="{{ $gallery->title }}">
-                <input type="hidden" name="price[]" value="{{ number_format($gallery->actual_price, 2) }}">
+                <input type="hidden" name="price[]" value="{{ number_format($gallery->retail_price, 2, '.', '') }}">
                 
 
                 <div class="checkout-gallery-image">
@@ -83,7 +83,7 @@
                   <label>{{ $gallery->title }}</label>
                 </div>
                 <div class="checkout-gallery-price flex aic">
-                  <span>¥</span><label>{{ number_format($gallery->actual_price, 2) }}</label>
+                  <span>¥</span><label>{{ number_format($gallery->retail_price, 2, '.', '') }}</label>
                 </div>
                 <div class="checkout-gallery-qty flex aic">
                   <span class="btn-minus-qty"><img src="/images/minus-icon.png"></span>
@@ -91,7 +91,7 @@
                   <span class="btn-plus-qty"><img src="/images/plus-icon.png"></span>
                 </div>
                 <div class="checkout-gallery-subtotal-price flex aic">
-                  <span>¥</span><label>{{ number_format($gallery->actual_price, 2) }}</label>
+                  <span>¥</span><label>{{ number_format($gallery->retail_price, 2, '.', '') }}</label>
                 </div>
               </div>
             @endforeach

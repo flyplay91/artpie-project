@@ -2475,12 +2475,19 @@ $(document).ready(function () {
 
 function cal_total() {
   t_price = 0;
-  $('.checkout-gallery-info__inner .checkout-gallery-item').each(function () {
-    var s_price = parseFloat($(this).find('.checkout-gallery-subtotal-price label').text());
-    t_price += s_price;
-  });
-  $('.checkout-gallery-total-price label').text(t_price.toFixed(2));
-  $('.total-price-value').val(t_price.toFixed(2));
+
+  if ($('.checkout-gallery-info__inner .checkout-gallery-item').length > 1) {
+    $('.checkout-gallery-info__inner .checkout-gallery-item').each(function () {
+      var s_price = parseFloat($(this).find('.checkout-gallery-subtotal-price label').text());
+      t_price += s_price;
+    });
+    $('.checkout-gallery-total-price label').text(t_price.toFixed(2));
+    $('.total-price-value').val(t_price.toFixed(2));
+  } else {
+    var s_price = parseFloat($('.checkout-gallery-subtotal-price label').text());
+    $('.checkout-gallery-total-price label').text(s_price.toFixed(2));
+    $('.total-price-value').val(s_price.toFixed(2));
+  }
 }
 
 function getGalleryAjax($id) {
