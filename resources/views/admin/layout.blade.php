@@ -30,9 +30,9 @@
 
       <div class="wrapper header-logo-nav flex aic">
         <div class="header__nav flex aic">
-          <a href="/admin-gallery" class="active">Gallery</a>
-          <a href="/admin-user" class="">Users</a>
-          <a href="/admin-order" class="">Orders</a>
+          <a href="/admin-gallery" class="@if(Route::currentRouteName() == 'admin-gallery.index')active @endif">Gallery</a>
+          <a href="/admin-user" class="@if(Route::currentRouteName() == 'admin-user.index')active @endif">Users</a>
+          <a href="/admin-order" class="@if(Route::currentRouteName() == 'admin-order.index')active @endif">Orders</a>
           <!-- <label class="sub-menu">
             Payments
             <ul>

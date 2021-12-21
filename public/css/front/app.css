@@ -639,7 +639,7 @@ img {
   display: block;
 }
 .popup-gallery-data .popup-gallery-data__inner .gallery-data-image {
-  width: 60%;
+  width: 70%;
   padding: 30px;
 }
 .popup-gallery-data .popup-gallery-data__inner .gallery-data-info {
@@ -705,6 +705,7 @@ img {
 }
 .popup-gallery-data .popup-gallery-data__inner .gallery-data-info .gallery-pieces-buy label, .popup-gallery-data .popup-gallery-data__inner .gallery-data-info .gallery-pieces-buy span {
   color: #3c5a99;
+  margin: 0;
 }
 .popup-gallery-data .popup-gallery-data__inner .gallery-data-info .gallery-pieces-buy .gallery-pieces-buy-info {
   margin-bottom: 10px;
