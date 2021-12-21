@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Route::get('/', function () {
+//   return view('welcome');
+// });
 
 // Front
 Route::get('/register', 'Auth\AuthController@register')->name('register');
@@ -22,7 +25,9 @@ Route::get('/login', 'Auth\AuthController@login')->name('login');
 Route::post('/login', 'Auth\AuthController@authenticate');
 Route::get('logout', 'Auth\AuthController@logout')->name('logout');
 
-Route::resource('gallery', 'front\GallerysController');
+
+Route::resource('', 'front\GallerysController');
+
 Route::resource('setting', 'front\SettingController')->middleware('auth');
 Route::resource('update-user-info', 'front\UpdateUserInfoController')->middleware('auth');
 Route::resource('checkout', 'front\CheckoutController')->middleware('auth');

@@ -97,7 +97,7 @@ class UpdateUserInfoController extends Controller
         
         $user->delete();
   
-        return redirect()->route('gallery.index')
+        return redirect()->action('front\GallerysController@index')
                         ->with('success','User is deleted successfully');
     }
 }

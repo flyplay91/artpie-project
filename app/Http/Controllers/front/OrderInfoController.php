@@ -89,7 +89,8 @@ class OrderInfoController extends Controller
 
         Session::forget('cart');
         Session::save();
-        return redirect()->route('gallery.index')
+        
+        return redirect()->action('front\GallerysController@index')
                         ->with('success', 'Order is made successfully');
     }
 
