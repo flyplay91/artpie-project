@@ -16,6 +16,8 @@
     <form action="{{ route('order.store') }}" method="POST" enctype="multipart/form-data">
       @csrf
       <input type="hidden" name="user_id" value="{{ $user->id }}">
+      <input type="hidden" name="user_name" value="{{ $user->name }}">
+      <input type="hidden" name="user_email" value="{{ $user->email }}">
       
       
       <div class="update-user-address update-user-address--1 input-group mb-3">

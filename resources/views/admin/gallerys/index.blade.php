@@ -1,7 +1,6 @@
 @extends('admin.layout')
 @section('main-header')
 
-
 <div class="hdrBg position-relative" data-id="{{ $headerData->id }}" style="background-image: url(/images/<?php echo $headerData->image ?>)">
 
   <div class="hdrBgTint"></div>
@@ -82,7 +81,7 @@
         @if (isset($gallerys))
           @foreach ($gallerys as $gallery)
             <div class="hdrItems-list">
-              <div class="hdrItems-list__inner">
+              <div class="hdrItems-list__inner @if ($gallery->all_checked == 'false') required @endif">
                 <a href="{{ route('admin-gallery.edit',$gallery->id) }}">
                   @if ($gallery->all_checked == 'false')
                     <div class="hdrItems-list__inner-overlay"><label>Edit required</label></div>

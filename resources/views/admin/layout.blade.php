@@ -32,7 +32,8 @@
         <div class="header__nav flex aic">
           <a href="/admin-gallery" class="active">Gallery</a>
           <a href="/admin-user" class="">Users</a>
-          <label class="sub-menu">
+          <a href="/admin-order" class="">Orders</a>
+          <!-- <label class="sub-menu">
             Payments
             <ul>
               <li><a href="/admin-deposit">Deposit</a></li>
@@ -42,12 +43,12 @@
           </label>
           <a href="" class="">Tickets</a>
           <a href="" class="">Manage</a>
-          <a href="" class="">Settings</a>
+          <a href="" class="">Settings</a> -->
         </div>
       </div>
     </div>
 
-    <div class="ad-body <?php if((Route::currentRouteName() == 'admin-gallery.index') || (Route::currentRouteName() == 'admin-gallery.edit') || Route::currentRouteName() == 'admin-gallery.create') { echo 'wrapper'; } else { echo 'mt-3'; } ?>">
+    <div class="ad-body <?php if((Route::currentRouteName() == 'admin-gallery.index') || (Route::currentRouteName() == 'admin-gallery.edit') || Route::currentRouteName() == 'admin-gallery.create' || Route::currentRouteName() == 'admin-order.index' || Route::currentRouteName() == 'admin-user.index') { echo 'wrapper'; } else { echo 'mt-3'; } ?>">
       @yield('content')
     </div>
 

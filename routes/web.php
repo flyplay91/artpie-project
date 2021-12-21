@@ -34,6 +34,7 @@ Route::resource('order', 'front\OrderInfoController')->middleware('auth');
 // Admin
 Route::resource('admin-header-data', 'AdminHeaderDataController');
 Route::resource('admin-user', 'AdminUsersController');
+Route::resource('admin-order', 'AdminOrdersController');
 Route::resource('admin-deposit', 'AdminDepositsController');
 Route::resource('admin-widraw', 'AdminWidrawsController');
 Route::resource('admin-transaction', 'AdminTransactionsController');

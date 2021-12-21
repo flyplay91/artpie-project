@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="block-admin-users">
+<div class="block-admin-users mt-3">
   <h2>Users</h2>
 
   <table class="table table-bordered">

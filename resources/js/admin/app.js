@@ -127,7 +127,11 @@ $(document).ready(function() {
         
         $.each(result.gallery_ids_images, function (key, val) {
           html += '<div class="hdrItems-list">';
-            html += '<div class="hdrItems-list__inner">';
+            if (val.g_all_checked == 'false') {
+              html += '<div class="hdrItems-list__inner required">';  
+            } else {
+              html += '<div class="hdrItems-list__inner">';
+            }
               html += '<a href="' + baseUrl + 'admin-gallery/'+ key +'/edit">';
                 if (val.g_all_checked == 'false') {
                   html += '<div class="hdrItems-list__inner-overlay"><label>Edit required</label></div>';
@@ -306,5 +310,22 @@ $(document).ready(function() {
     $('.btn-edit-header').addClass('active');
   }
 
+  // Order items
+  $('body').on('click', '.btn-view-items', function() {
+    $('.popup-order-items').empty()
+    var item_html = $(this).closest('tr').find('.td-order-item').html();
+    $('.bg-overlay').addClass('active');
+    $('.popup-order-items').show();
+    $('.popup-order-items').append(item_html);
+  });
+
+  $('body').on('click', '.btn-cancel-popup', function() {
+    $('.bg-overlay').removeClass('active');
+    $('.popup-order-items').hide();
+  });
+
+  $('body').on('click', '.btn-update-popup', function() {
+    $('.btn-update-status').trigger('click');
+  });
   
 });

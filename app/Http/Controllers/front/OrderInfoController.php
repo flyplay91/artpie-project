@@ -48,6 +48,8 @@ class OrderInfoController extends Controller
         
         $orderData = [
             'user_id'   => $requestOrderData['user_id'],
+            'user_name'   => $requestOrderData['user_name'],
+            'user_email'   => $requestOrderData['user_email'],
             'address_1'   => $requestOrderData['address_1'],
             'total_price' => $requestOrderData['total_price'],
             'status' => 'pending',
