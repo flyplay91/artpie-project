@@ -1,20 +1,21 @@
 @extends('admin.layout')
 @section('main-header')
 
-@if (isset($headerData))
-  <div class="hdrBg position-relative" data-id="{{ $headerData->id }}" style="background-image: url(/images/<?php echo $headerData->image ?>)">
+
+  <div class="hdrBg position-relative" data-id="<?php if(!empty($headerData)) { echo $headerData->id;} ?>" style="background-image: url(/images/<?php if(!empty($headerData)) { echo $headerData->image; } ?>)">
     <div class="hdrBgTint"></div>
     <div class="bHdr">
       <div class="bHdrTxt">
+        @if (!empty($headerData))
         <h1>{{ $headerData->title }}</h1>
         <span>{{ $headerData->sub_title }}</span>
+        @endif
       </div>
     </div>
     
     <a href="javascript:void(0)" class="btn-grey btn-add-header position-absolute">Add</a>
     <a href="javascript:void(0)" class="btn-grey btn-edit-header position-absolute">Edit</a>
   </div>
-@endif
 
 @endsection
 
