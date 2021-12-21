@@ -8,56 +8,41 @@
   <table class="table table-bordered">
     <thead>
       <tr>
-        <th scope="col">No</th>
-        <th scope="col">메일/번호</th>
-        <th scope="col">주소</th>
-        <th scope="col">총금액</th>
-        <th scope="col">투자금액</th>
-        <th scope="col">상태</th>
-        <th scope="col">보기</th>
-        <th scope="col"> Activate</th>
-        <th scope="col">Delete</th>
-        <th scope="col">Suspend</th>
+        <th scope="col">User ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email/Phone</th>
+        <th scope="col">Email Verified</th>
+        <th scope="col">Address 1</th>
+        <th scope="col">Address 2</th>
+        <th scope="col">Address 3</th>
+        <th scope="col">Address 4</th>
+        <th scope="col">Address 5</th>
+        <th scope="col">Total Price</th>
+        <th scope="col">Invest Price</th>
+        <th scope="col">View</th>
+        <th scope="col">Button</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-      </tr>
-      
+      @if (isset($users))
+        @foreach($users as $user)
+          <tr>
+            <th scope="row">{{ $user->id }}</th>
+            <td>{{ $user->name }}</td>
+            <td>{{ $user->email }}</td>
+            <td>{{ $user->email_veficied_at }}</td>
+            <td>{{ $user->address_1 }}</td>
+            <td>{{ $user->address_2 }}</td>
+            <td>{{ $user->address_3 }}</td>
+            <td>{{ $user->address_4 }}</td>
+            <td>{{ $user->address_5 }}</td>
+            <td></td>
+            <td></td>
+            <td><a href="" class="btn-view-profile btn-grey">View</a></td>
+            <td><a href="" class="btn-status btn-grey">Activate</a></td>
+          </tr>
+        @endforeach
+      @endif
     </tbody>
   </table>
 
