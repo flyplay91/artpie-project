@@ -187,7 +187,7 @@ body {
 }
 .wrapper {
   padding: 0 5px;
-  max-width: 1440px;
+  max-width: 1550px;
   min-width: 240px;
   margin: 0 auto;
 }
@@ -656,6 +656,12 @@ img {
     }
   }
 }
+.btn-upload-image {
+  width: 0;
+  height: 0;
+  visibility: hidden;
+  opacity: 0;
+}
 /*============================================================================
                               Gallery edit page
 ==============================================================================*/
@@ -852,4 +858,10 @@ img {
 .btn-view-profile,
 .btn-status {
   padding: 8px 10px;
+}
+
+.block-admin-users {
+  .chkBox2 {
+    margin: 0;
+  }
 }

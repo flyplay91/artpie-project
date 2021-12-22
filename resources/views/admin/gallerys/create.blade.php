@@ -31,13 +31,13 @@
         <div class="col-md-12">
           <div class="input-group mb-3">
             <div class="custom-file">
-              <input type="file" name="image" multiple class="custom-file-input form-control" id="customFile" required>
-              <label class="custom-file-label" for="customFile">Select Images</label>
+              <input type="file" name="image" multiple class="custom-file-input form-control" id="uploadImage" required>
+              <label class="custom-file-label" for="uploadImage">Select Images</label>
             </div>
           </div>
         </div>
         <div class="col-md-8">
-            <button type="submit" class="btn btn-grey">Submit</button>
+            <button type="submit" class="btn btn-upload-image btn-grey">Submit</button>
         </div>
       </div>
     </form>

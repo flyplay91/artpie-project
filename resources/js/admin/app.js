@@ -327,5 +327,17 @@ $(document).ready(function() {
   $('body').on('click', '.btn-update-popup', function() {
     $('.btn-update-status').trigger('click');
   });
+
+  // Admin user check investor user
+  $('.investor-user input').change(function() {
+    var user_id = $(this).data('user-id');
+    console.log(user_id);
+    // if ($(this).checked)
+  });
+
+  // image upload change event
+  $('#uploadImage').change(function(){
+    $('.btn-upload-image').trigger('click');
+  });
   
 });
