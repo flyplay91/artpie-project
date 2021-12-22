@@ -41,7 +41,7 @@
             <td></td>
             <td class="investor-user">
             <label class="chkBox2">
-              <input type="checkbox" data-user-id="{{ $user->id }}">
+              <input type="checkbox" data-user-id="{{ $user->id }}" @if ($user->investor_user == '1') checked="checked" @endif>
               <div class="chkBox2_box"></div>
             </label>
             </td>

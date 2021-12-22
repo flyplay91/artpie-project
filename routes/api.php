@@ -20,6 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('api-select-gallerys', 'ApiSelectGallerysController@index');
 Route::post('api-get-gallery', 'ApiGetGalleryController@index');
+Route::post('api-investor-user', 'ApiInvestorUserController@index');
 
 
 

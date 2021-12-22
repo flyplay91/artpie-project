@@ -331,8 +331,30 @@ $(document).ready(function() {
   // Admin user check investor user
   $('.investor-user input').change(function() {
     var user_id = $(this).data('user-id');
-    console.log(user_id);
-    // if ($(this).checked)
+    if ($(this).is(':checked')) {
+      $.ajax({
+        url: "/api/api-investor-user",
+        method: "post",
+        data: {
+          user_id: user_id,
+          checked: 'true',
+        },
+        success: function(result) {
+          console.log(result);
+        }
+      });
+    } else {
+      $.ajax({
+        url: "/api/api-investor-user",
+        method: "post",
+        data: {
+          user_id: user_id,
+          checked: 'false',
+        },
+        success: function(result) {
+        }
+      });
+    }
   });
 
   // image upload change event
