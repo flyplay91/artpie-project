@@ -1,5 +1,15 @@
 @extends('admin.layout')
 @section('content')
+
+@if ($errors->any())
+  <div class="alert alert-danger">
+    <ul>
+      @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+      @endforeach
+    </ul>
+  </div>
+@endif
   <div class="create-gallery">
     <h2 class="p-title">Upload Images</h2>
     <div class="create-gallery__image-desc">
