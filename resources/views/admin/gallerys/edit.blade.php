@@ -201,7 +201,7 @@
                 <div class="form-group mb-3">
                   <label for="usr">Original</label>
                   <select class="browser-default custom-select" name="original">
-                    <option selected value="{{ $gallery->original }}">{{ $gallery->original }}</option>
+                    <option selected value="{{ $gallery->original ? $gallery->original : 'yes' }}">{{ $gallery->original ? $gallery->original : 'Yes' }}</option>
                     <option value="yes">Yes</option>
                     <option value="no">No</option>
                   </select>
