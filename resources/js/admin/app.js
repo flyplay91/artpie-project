@@ -43,11 +43,12 @@ $(document).ready(function() {
   }
 
   $('.checkbox-all-colls').change(function() {
+    $('.coll-btns').removeClass('active');
     if ($(this).is(':checked')) {
       $('.checkbox-coll').prop('checked', false);
-      $('.coll-btns').removeClass('active');
     } else {
       $('.checkbox-coll').prop('checked', true);
+      
     }
   });
 
@@ -112,19 +113,26 @@ $(document).ready(function() {
         selected_collection_ids: selected_coll_ids,
       },
       success: function(result) {
+        var hide_add_more = false;
+        if (result.collection_ids[0] == 'any') {
+          hide_add_more = true;
+        }
         if (typeof result.collection_ids != 'undefined') {
           var coll_count = result.collection_ids.length;
         }
         
         var html = '';
         
-        if (coll_count == 1) {
-          html += '<div class="hdrItems-list active hdrItems-list--addmore">';
-            html += '<div class="hdrItems-list__inner flex aic jcc" style="height: 200px">';
-              html += '<a class="btn-gallery-create" href="'+ baseUrl +'admin-gallery/create?'+ result.collection_ids + '">Add More Items</a>';
-            html += '</div>';
-          html += '</div>';  
+        if (hide_add_more != true) {
+          if (coll_count == 1) {
+            html += '<div class="hdrItems-list active hdrItems-list--addmore">';
+              html += '<div class="hdrItems-list__inner flex aic jcc" style="height: 200px">';
+                html += '<a class="btn-gallery-create" href="'+ baseUrl +'admin-gallery/create?'+ result.collection_ids + '">Add More Items</a>';
+              html += '</div>';
+            html += '</div>';  
+          }
         }
+        
         
         $.each(result.gallery_ids_images, function (key, val) {
           html += '<div class="hdrItems-list">';
