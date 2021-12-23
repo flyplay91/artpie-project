@@ -75,8 +75,7 @@
                     <input type="text" value="{{ $gallery->width }}" name="width" class="form-control">
                   </div>
                   <div class="form-group w-5">
-                    <label></label>
-                    X
+                    <label>X</label>
                   </div>
                   <div class="form-group w-10">
                     <label>Height</label>
@@ -170,7 +169,7 @@
                       <option value="0">Select Artist</option>
                       @if (isset($artists))
                         @foreach ($artists as $artist)
-                        <option selected value="{{ $artist->id }}">{{ $artist->art_name }}</option>
+                        <option @if ($gallery->artist_id == $artist->id) selected @endif value="{{ $artist->id }}">{{ $artist->art_name }}</option>
                         @endforeach
                       @endif
                     </select>

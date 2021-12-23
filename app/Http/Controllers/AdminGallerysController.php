@@ -128,7 +128,6 @@ class AdminGallerysController extends Controller
         
         $data = $request->all();
         
-        
         $allChecked = "true";
 
         foreach($data as $key => $value) {
@@ -153,8 +152,6 @@ class AdminGallerysController extends Controller
         $data['size'] = $size;
         $data['all_checked'] = $allChecked;
 
-        
-        
         $gallery = AdminGallerys::find($id);
         if (isset($request->check_enable_pieces)) {
             $gallery['check_enable_pieces'] = 'yes';
@@ -163,7 +160,6 @@ class AdminGallerysController extends Controller
 
         }
         $gallery->update($data);
-        
         
         return redirect()->route('admin-gallery.index')
                         ->with('success','Product updated successfully');
