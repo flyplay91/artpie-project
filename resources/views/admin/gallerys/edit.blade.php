@@ -87,7 +87,7 @@
                   <div class="form-group w-10">
                     <label for="usr">Unit</label>
                     <select class="browser-default custom-select" name="unit">
-                      <option selected value="{{ $gallery->unit }}">{{ $gallery->unit }}</option>
+                      <option selected value="{{ $gallery->unit ? $gallery->unit : 'cm' }}">{{ $gallery->unit ? $gallery->unit : 'Cm' }}</option>
                       <option value="cm">Cm</option>
                       <option value="inch">Inch</option>
                     </select>

@@ -20,9 +20,18 @@ class ApiSelectCollectionsController extends Controller
         if (!$selectedCollIds) {
             return;
         }
-        $galleryObjs = DB::table('admin_gallerys')
-                    ->whereIn('coll_id',$selectedCollIds)
-                    ->get();
+        $galleryObjs = DB::table('admin_gallerys');
+        // $galleryObjs = DB::table('admin_gallerys')
+        //             ->whereIn('coll_id',$selectedCollIds)
+        //             ->get();
+
+        if (!empty($selectedCollIds)) {
+            if (!in_array('any', $selectedCollIds)) {
+                $galleryObjs = $galleryObjs->whereIn('coll_id',$selectedCollIds);
+            }
+        }
+
+        $galleryObjs = $galleryObjs->get();
 
         $galleryIdImageArr = [];
         

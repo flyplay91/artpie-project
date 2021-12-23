@@ -42,17 +42,25 @@ $(document).ready(function () {
     if ($('#adGallerysItems').length > 0) {
       macyInstance.reInit();
     }
-  } // Select collection list events on click collection
+  }
 
+  $('.checkbox-all-colls').change(function () {
+    if ($(this).is(':checked')) {
+      $('.checkbox-coll').prop('checked', false);
+      $('.coll-btns').removeClass('active');
+    } else {
+      $('.checkbox-coll').prop('checked', true);
+    }
+  }); // Select collection list events on click collection
 
   $('.ad-gallerys-sidebar .chkBox2 input.checkbox-coll').change(function () {
-    var total_coll_count = $('.checkbox-coll').length;
+    // var total_coll_count = $('.checkbox-coll').length;
     var selected_coll_count = $('.checkbox-coll:checked').length;
 
-    if (total_coll_count == selected_coll_count) {
-      $('.checkbox-all-colls').prop('checked', true);
-    } else {
+    if (selected_coll_count > 0) {
       $('.checkbox-all-colls').prop('checked', false);
+    } else {
+      $('.checkbox-all-colls').prop('checked', true);
     }
 
     if ($('.ad-gallerys-sidebar .chkBox2 input.checkbox-coll:checked').length == 1) {
@@ -85,20 +93,12 @@ $(document).ready(function () {
 
   $('body').on('click', '.btn-edit-del-coll', function () {
     $('.coll-btns .block-coll__edit form').toggleClass('active');
-  }); // Check/Uncheck all collection checkbox
-
-  $('.checkbox-all-colls').change(function () {
-    if ($(this).prop('checked')) {
-      $('.ad-gallerys-sidebar .chkBox2 input').prop('checked', true);
-    } else {
-      $('.ad-gallerys-sidebar .chkBox2 input').prop('checked', false);
-    }
   });
-  $('.checkbox-coll, .checkbox-all-colls').change(function () {
+  $('.checkbox-filter-coll').change(function () {
     var selected_coll_ids = [];
     $('.ad-gallerys-sidebar .chkBox2').each(function () {
-      if ($(this).find('.checkbox-coll:checked').length > 0) {
-        var selected_coll_id = $(this).find('.checkbox-coll:checked').data('id');
+      if ($(this).find('.checkbox-filter-coll:checked').length > 0) {
+        var selected_coll_id = $(this).find('.checkbox-filter-coll:checked').data('id');
         selected_coll_ids.push(selected_coll_id);
       }
     });
