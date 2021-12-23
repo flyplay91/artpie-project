@@ -13,6 +13,7 @@
 
 <div class="edit-gallery">
     <h2 class="p-title">Edit Item</h2>
+    @if ($gallery->all_checked == 'false')
     <div class="p-img-subtitle-des flex ais">
       <img src="/images/warnning-icon.png">
       <div class="p-subtitle-des">
@@ -20,6 +21,7 @@
         <p class="p-short-desc">This item is ready to be completed. It will appear on Artpie when this form is complete.</p>
       </div>
     </div>
+    @endif
     
 
     <div class="edit-image-form">
@@ -189,7 +191,7 @@
 
                 <div class="form-group">
                   <label for="inputDate">Registered Date</label>
-                  <input type="input" class="form-control date-picker" value="{{ $gallery->registered_date }}" name="registered_date">
+                  <input type="input" class="form-control date-picker" value="{{ $gallery->registered_date ? $gallery->registered_date : (Carbon\Carbon::now()->format('m/d/Y')) }}" name="registered_date">
                 </div>
 
                 <div class="form-group">
