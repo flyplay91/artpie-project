@@ -121,12 +121,14 @@ class AdminGallerysController extends Controller
             // 'updated_date'  =>  'required',
             // 'original'   =>  'required',
         ]);
-
+        
         $width = intval($request->width);
         $height = intval($request->height);
         $size = intval(sqrt(pow($width, 2) + pow($height, 2)));
         
         $data = $request->all();
+        
+        
         $allChecked = "true";
 
         foreach($data as $key => $value) {
@@ -150,7 +152,16 @@ class AdminGallerysController extends Controller
         }
         $data['size'] = $size;
         $data['all_checked'] = $allChecked;
+
+        
+        
         $gallery = AdminGallerys::find($id);
+        if (isset($request->check_enable_pieces)) {
+            $gallery['check_enable_pieces'] = 'yes';
+        } else {
+            $gallery['check_enable_pieces'] = 'no';
+
+        }
         $gallery->update($data);
         
         

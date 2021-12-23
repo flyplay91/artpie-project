@@ -90,6 +90,13 @@ $(document).ready(function () {
         macyInstance.reInit();
       }
     }
+  });
+  $('.checkbox-enable-pieces').change(function () {
+    if ($(this).is(':checked')) {
+      $(this).val('yes');
+    } else {
+      $(this).val('no');
+    }
   }); // Toggle edit collection form
 
   $('body').on('click', '.btn-edit-del-coll', function () {

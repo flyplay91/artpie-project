@@ -36,7 +36,6 @@
               </div>
 
               <div class="input-group btns-change-add-images mt-3 mb-3 flex aic jcb">
-                <p>Incorrect image? Use the "Change Image" button to the right, or the "Delete Item" button at the bottom of the form.</p>
                 <a href="javascript:void(0)" class="btn-change-image">Change Image</a>
                 <a href="javascript:void(0)" class="btn-additional-images">Upload Additional Image</a>
               </div> 
@@ -106,14 +105,16 @@
 
                   <div class="boxCtnt">
                     <label class="chkBox2">
-                      <input type="checkbox" class="checkbox-enable-pieces" name="check_enable_pieces" value="no">Enable pieces
+                      <input type="checkbox" class="checkbox-enable-pieces" name="check_enable_pieces" value="{{ $gallery->check_enable_pieces ? $gallery->check_enable_pieces : 'no' }}" @if ($gallery->check_enable_pieces == 'yes') checked="checked" @endif>Enable pieces
                       <div class="chkBox2_box"></div>
                     </label>
                   </div>
-                  <div class="form-group w-20 piece-count active">
+                  
+                  <div class="form-group w-20 piece-count @if ($gallery->check_enable_pieces == 'yes') active @endif">
                     <label>Piece Count</label>
                     <input type="text" value="{{ $gallery->piece_count }}" name="piece_count" class="form-control">
                   </div>
+                  
                 </div>
 
                 <div class="form-group mb-3">

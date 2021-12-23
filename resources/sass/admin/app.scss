@@ -586,7 +586,7 @@ img {
       }
       .hdrItems-list__inner {
         padding: 18px;
-        border: 1px solid #ddd;
+        border: 3px solid #ddd;
         position: relative;
 
         &:hover .hdrItems-list__inner-overlay {
@@ -594,7 +594,7 @@ img {
         }
 
         &.required {
-          border-color: #ad3636;
+          border-color: #ff2525;
         }
 
         .btn-gallery-create {
@@ -810,10 +810,12 @@ img {
   }
 }
 .piece-count {
-  display: none;
+  opacity: 0;
+  visibility: hidden;
 
   &.active {
-    display: block;
+    opacity: 1;
+    visibility: visible;
   }
 }
 

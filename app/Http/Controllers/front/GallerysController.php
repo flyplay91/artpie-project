@@ -17,7 +17,7 @@ class GallerysController extends Controller
      */
     public function index()
     {
-        $gallerys = AdminGallerys::all();
+        $gallerys = AdminGallerys::orderBy('updated_at', 'desc')->get();
         $categories = AdminCategories::all();
         $headerdata = AdminHeaderData::latest('id')->first();
         return view('front.pages.home',compact('gallerys', 'categories', 'headerdata'));

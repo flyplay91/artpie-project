@@ -89,6 +89,14 @@ $(document).ready(function() {
     }
   });
 
+  $('.checkbox-enable-pieces').change(function() {
+    if ($(this).is(':checked')) {
+      $(this).val('yes');
+    } else {
+      $(this).val('no');
+    }
+  });
+
   // Toggle edit collection form
   $('body').on('click', '.btn-edit-del-coll', function() {
     $('.coll-btns .block-coll__edit form').toggleClass('active');
