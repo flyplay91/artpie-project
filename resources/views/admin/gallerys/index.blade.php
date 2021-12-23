@@ -13,8 +13,8 @@
       </div>
     </div>
     
-    <a href="javascript:void(0)" class="btn-grey btn-add-header position-absolute">Add</a>
-    <a href="javascript:void(0)" class="btn-grey btn-edit-header position-absolute">Edit</a>
+    <a href="javascript:void(0)" class="btn-grey btn-add-header position-absolute">추가</a>
+    <a href="javascript:void(0)" class="btn-grey btn-edit-header position-absolute">변경</a>
   </div>
 
 @endsection
@@ -26,12 +26,12 @@
     <div class="ad-gallerys-sidebar">
 
       <div class="block-add-coll">
-        <button type="button" class="btn btn-grey btn-add-coll">Add Collection</button>
+        <button type="button" class="btn btn-grey btn-add-coll">종류추가</button>
         
         <form class="flex aic" action="{{ route('admin-collection.store') }}" method="POST" enctype="multipart/form-data">
           @csrf
           <input type="text" value="" name="coll_name" class="form-control" required>
-          <button type="submit" class="btn btn-grey">Add</button>
+          <button type="submit" class="btn btn-grey">추가</button>
         </form>
       </div>
 
@@ -55,7 +55,7 @@
       <div class="coll-btns flex aic">
         <label class="selected-coll-name"></label>
         <div class="block-coll__edit">
-          <button type="button" class="btn btn-grey btn-edit-del-coll">Edit</button>
+          <button type="button" class="btn btn-grey btn-edit-del-coll">변경</button>
           <form class="flex aic" action="" method="POST" enctype="multipart/form-data">
             @method('PUT')
             @csrf
@@ -67,7 +67,7 @@
           <form class="flex aic" action="" method="POST" enctype="multipart/form-data">
             @method('DELETE')
             @csrf
-            <button type="submit" class="btn btn-grey btn-edit-del-coll">Delete</button>
+            <button type="submit" class="btn btn-grey btn-edit-del-coll">삭제</button>
           </form>
         </div>
       </div>
@@ -75,7 +75,7 @@
       <div id="adGallerysItems">
         <div class="hdrItems-list hdrItems-list--addmore">
           <div class="hdrItems-list__inner flex aic jcc" style="height: 200px">
-            <a class="btn-gallery-create" href="">Add More Items</a>
+            <a class="btn-gallery-create" href="">그림추가</a>
           </div>
         </div>
 
@@ -85,7 +85,7 @@
               <div class="hdrItems-list__inner @if ($gallery->all_checked == 'false') required @endif">
                 <a href="{{ route('admin-gallery.edit',$gallery->id) }}">
                   @if ($gallery->all_checked == 'false')
-                    <div class="hdrItems-list__inner-overlay"><label>Edit required</label></div>
+                    <div class="hdrItems-list__inner-overlay"><label>편집요청</label></div>
                   @endif
                   <img src="/images/{{ $gallery->image }}">
                 </a>

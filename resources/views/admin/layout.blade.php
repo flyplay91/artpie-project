@@ -30,9 +30,9 @@
 
       <div class="wrapper header-logo-nav flex aic">
         <div class="header__nav flex aic">
-          <a href="/admin-gallery" class="@if(Route::currentRouteName() == 'admin-gallery.index')active @endif">Gallery</a>
-          <a href="/admin-user" class="@if(Route::currentRouteName() == 'admin-user.index')active @endif">Users</a>
-          <a href="/admin-order" class="@if(Route::currentRouteName() == 'admin-order.index')active @endif">Orders</a>
+          <a href="/admin-gallery" class="@if(Route::currentRouteName() == 'admin-gallery.index')active @endif">그림</a>
+          <a href="/admin-user" class="@if(Route::currentRouteName() == 'admin-user.index')active @endif">사용자</a>
+          <a href="/admin-order" class="@if(Route::currentRouteName() == 'admin-order.index')active @endif">주문</a>
           <!-- <label class="sub-menu">
             Payments
             <ul>
