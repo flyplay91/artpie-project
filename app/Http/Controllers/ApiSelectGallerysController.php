@@ -57,8 +57,8 @@ class ApiSelectGallerysController extends Controller
                 }
             }
         }
-
-        $galleryObjs = $galleryObjs->get();
+        
+        $galleryObjs = $galleryObjs->where('all_checked', 'true')->get();
 
         $galleryIdImageArr = [];
         

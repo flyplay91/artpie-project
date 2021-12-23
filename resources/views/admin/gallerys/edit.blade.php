@@ -222,7 +222,7 @@
         <button type="submit" class="btn btn-grey btn-delete-gallery">Delete</button>
       </form>
 
-      <div class="btn-gallery-update-delete flex aic jca">
+      <div class="btn-gallery-update-delete flex aic jce">
         <button type="submit" class="btn btn-grey btn-save-gallery-trigger">Save Changes</button>
         <button type="submit" class="btn btn-grey btn-delete-gallery-trigger">Delete Item</button>
         <a href="/admin-gallery" class="btn-grey">Cancel</a>

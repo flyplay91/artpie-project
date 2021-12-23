@@ -710,8 +710,13 @@ img {
   }
 }
 
+.btn-delete-gallery-trigger {
+  margin-left: 10px;
+}
+
 .btn-gallery-update-delete {
   a {
+    margin-left: 10px;
     padding: 6px 12px;
     color: var(--black);
 
