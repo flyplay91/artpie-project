@@ -18,7 +18,8 @@ class AdminGallerysController extends Controller
      */
     public function index()
     {
-        $gallerys = AdminGallerys::all();
+        // $gallerys = AdminGallerys::latest()->first();
+        $gallerys = AdminGallerys::orderBy('updated_at', 'desc')->get();
         $collections = AdminCollections::all();
         $headerData = AdminHeaderData::latest('id')->first();
         return view('admin.gallerys.index',compact('gallerys', 'collections', 'headerData'));
@@ -63,8 +64,6 @@ class AdminGallerysController extends Controller
         if ($gallerys->save()) {
             $id = $gallerys->id;
         }
-   
-        // Product::create($request->all());
    
         return redirect()->route('admin-gallery.index')
                         ->with('success','Product created successfully.');
@@ -128,6 +127,17 @@ class AdminGallerysController extends Controller
         $size = intval(sqrt(pow($width, 2) + pow($height, 2)));
         
         $data = $request->all();
+        $allChecked = "true";
+
+        foreach($data as $key => $value) {
+            if ($key != 'description' && $key != 'keywords' && $key != 'materials' 
+                && $key != 'paint_date' && $key != 'piece_count' 
+                && $key != 'category_name' && $key !='art_name') {
+                if (empty($value)) {
+                    $allChecked = "false";
+                }
+            }
+        }
 
         if($file = $request->hasFile('image')) {
             
@@ -139,7 +149,7 @@ class AdminGallerysController extends Controller
             $data['image'] = $fileName;
         }
         $data['size'] = $size;
-        $data['all_checked'] = 'true';
+        $data['all_checked'] = $allChecked;
         $gallery = AdminGallerys::find($id);
         $gallery->update($data);
         

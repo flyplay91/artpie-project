@@ -193,7 +193,7 @@
 
                 <div class="form-group">
                   <label for="inputDate">Updated Date</label>
-                  <input type="input" class="form-control date-picker" value="{{ $gallery->updated_date }}" name="updated_date">
+                  <input type="input" class="form-control date-picker" value="{{ $gallery->updated_date ? $gallery->updated_date : (Carbon\Carbon::now()->format('m/d/Y')) }}" name="updated_date">
                 </div>
 
 
