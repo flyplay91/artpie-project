@@ -218,7 +218,7 @@
       <form class="form-delete-gallery" action="{{ route('admin-gallery.destroy',$gallery->id) }}" method="POST" enctype="multipart/form-data">
         @method('DELETE')
         @csrf
-        <button type="submit" class="btn btn-grey btn-edit-del-coll">Delete</button>
+        <button type="submit" class="btn btn-grey btn-delete-gallery">Delete</button>
       </form>
 
       <div class="btn-gallery-update-delete flex aic jca">
