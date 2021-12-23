@@ -106,7 +106,7 @@
 
                   <div class="boxCtnt">
                     <label class="chkBox2">
-                      <input type="checkbox" class="checkbox-enable-pieces" name="check_enable_pieces" value="no" checked="checked">Enable pieces
+                      <input type="checkbox" class="checkbox-enable-pieces" name="check_enable_pieces" value="no">Enable pieces
                       <div class="chkBox2_box"></div>
                     </label>
                   </div>
@@ -176,10 +176,7 @@
                   </div>
                   <div class="form-group w-45 position-relative">
                     <a href="javascript:void(0)" class="btn-add-artist">Add New...</a>
-                    <div class="flex aic insert-artist position-absolute">
-                      <input type="text" value="" name="art_name" class="form-control insert-artist-name">
-                      <a href="javascript:void(0)" class="btn-insert-artist">Add</a>
-                    </div>
+                    
                   </div>
                 </div>
                 
@@ -229,6 +226,28 @@
         <button type="submit" class="btn btn-grey btn-delete-gallery-trigger">Delete Item</button>
         <a href="/admin-gallery" class="btn-grey">Cancel</a>
       </div>
+
+    </div>
+
+    <div class="popup-insert-artist flex flex--wrap ais jcb insert-artist position-absolute">
+        <div class="input-group insert-artist-input">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Artist Name</span>
+          </div>
+          <input type="text" value="" name="art_name" class="form-control insert-artist-name">
+        </div>
+
+        <div class="input-group insert-artist-textarea">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Artist Name</span>
+          </div>
+          <textarea name="art_description" value="" class="form-control insert-artist-description"></textarea>
+        </div>
+        <div class="btns-insert-cancel-artist flex aic jcb">
+          <a href="javascript:void(0)" class="btn-grey btn-insert-artist">Add</a>
+          <a href="javascript:void(0)" class="btn-grey btn-cancel-artist">Cancel</a>
+        </div>
+        
     </div>
   </div>
 

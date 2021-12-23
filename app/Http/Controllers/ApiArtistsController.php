@@ -16,6 +16,8 @@ class ApiArtistsController extends Controller
     public function index(Request $request)
     {
         $artistName = $request->artist_name;
+        $artistDescription = $request->artist_description;
+        
          
         if (!$artistName) {
             return;
@@ -23,7 +25,7 @@ class ApiArtistsController extends Controller
 
         $artistIdNameArr = [];
 
-        $artistObjs = array('art_name' => $artistName, 'created_at' =>  \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now());
+        $artistObjs = array('art_name' => $artistName, 'art_description' => $artistDescription , 'created_at' =>  \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now());
         DB::table('admin_artists')->insert($artistObjs);
         
         $artistDatas = DB::select('SELECT * FROM admin_artists');

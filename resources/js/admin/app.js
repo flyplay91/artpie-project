@@ -190,6 +190,7 @@ $(document).ready(function() {
   // Add Artist 
   $('body').on('click', '.btn-insert-artist', function() {
     var $art_name = $('.insert-artist-name').val();
+    var $art_description = $('.insert-artist-description').val();
     if ($art_name != '') {
       $.ajax({
         url: "/api/api-artists",
@@ -199,12 +200,13 @@ $(document).ready(function() {
          },
         data: {
           artist_name: $art_name,
+          artist_description: $art_description,
         },
         success: function(result) {
-          console.log(result);
+          $('.bg-overlay').removeClass('active');
+          $('.popup-insert-artist').removeClass('active');
+
           var html = '';
-          
-         
           $.each(result.artists, function (key, val) {
             html += '<option value="' + key + '">'+ val +'</option>';
           });
@@ -228,8 +230,15 @@ $(document).ready(function() {
   $('body').on('click', '.btn-add-category', function() {
     $('.insert-category').toggleClass('active');
   });
+
   $('body').on('click', '.btn-add-artist', function() {
-    $('.insert-artist').toggleClass('active');
+    $('.bg-overlay').addClass('active');
+    $('.popup-insert-artist').addClass('active');
+  });
+
+  $('body').on('click', '.btn-cancel-artist', function() {
+    $('.bg-overlay').removeClass('active');
+    $('.popup-insert-artist').removeClass('active');
   });
 
   $('.checkbox-enable-pieces').change(function() {
