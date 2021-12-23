@@ -183,7 +183,8 @@
                 
                 <div class="form-group">
                   <label for="inputDate">Paint Date</label>
-                  <input type="input" class="form-control date-picker" value="{{ $gallery->paint_date }}" name="paint_date">
+                  <input type="text" class="form-control" value="{{ $gallery->paint_date }}" name="paint_date">
+                  <!-- <input type="input" class="form-control date-picker" value="{{ $gallery->paint_date }}" name="paint_date"> -->
                 </div>
 
                 <div class="form-group">
