@@ -49,13 +49,13 @@
               <div class="change-gallery-data__inner m-auto">
                 <div class="form-group mb-3">
                   <label>Artwork Title</label>
-                  <input type="text" value="{{ $gallery->title }}" name="title" class="form-control" required>
+                  <input type="text" value="{{ $gallery->title }}" name="title" class="form-control">
                 </div>
 
                 <div class="flex aic jcb mb-3">
                   <div class="form-group w-30">
                     <label>Signed?</label>
-                    <select class="browser-default custom-select" name="sign" required>
+                    <select class="browser-default custom-select" name="sign">
                       <option selected value="{{ $gallery->sign }}">{{ $gallery->sign }}</option>
                       <option value="signed">Signed</option>
                       <option value="unsigned">Unsigned</option>
@@ -63,7 +63,7 @@
                   </div>
                   <div class="form-group w-30">
                     <label>Framing</label>
-                    <select class="browser-default custom-select" name="frame" required>
+                    <select class="browser-default custom-select" name="frame">
                       <option selected value="{{ $gallery->frame }}">{{ $gallery->frame }}</option>
                       <option value="framed">Framed</option>
                       <option value="unframed">Unframed</option>
@@ -71,7 +71,7 @@
                   </div>
                   <div class="form-group w-10">
                     <label>Width</label>
-                    <input type="text" value="{{ $gallery->width }}" name="width" class="form-control" required>
+                    <input type="text" value="{{ $gallery->width }}" name="width" class="form-control">
                   </div>
                   <div class="form-group w-5">
                     <label></label>
@@ -79,12 +79,12 @@
                   </div>
                   <div class="form-group w-10">
                     <label>Height</label>
-                    <input type="text" value="{{ $gallery->height }}" name="height" class="form-control" required>
+                    <input type="text" value="{{ $gallery->height }}" name="height" class="form-control">
                   </div>
                   
                   <div class="form-group w-10">
                     <label for="usr">Unit</label>
-                    <select class="browser-default custom-select" name="unit" required>
+                    <select class="browser-default custom-select" name="unit">
                       <option selected value="{{ $gallery->unit }}">{{ $gallery->unit }}</option>
                       <option value="cm">Cm</option>
                       <option value="inch">Inch</option>
@@ -95,16 +95,16 @@
                 <div class="flex aic jcb mb-3">
                   <div class="form-group w-30">
                     <label>Actual Price</label>
-                    <input type="text" value="{{ $gallery->actual_price }}" name="actual_price" class="form-control" required>
+                    <input type="text" value="{{ $gallery->actual_price }}" name="actual_price" class="form-control">
                   </div>
                   <div class="form-group w-30">
                     <label>Retail Price</label>
-                    <input type="text" value="{{ $gallery->retail_price }}" name="retail_price" class="form-control" required>
+                    <input type="text" value="{{ $gallery->retail_price }}" name="retail_price" class="form-control">
                   </div>
 
                   <div class="boxCtnt">
                     <label class="chkBox2">
-                      <input type="checkbox" class="checkbox-enable-pieces" name="check_enable_pieces" value="no" checked="checked" required>Enable pieces
+                      <input type="checkbox" class="checkbox-enable-pieces" name="check_enable_pieces" value="no" checked="checked">Enable pieces
                       <div class="chkBox2_box"></div>
                     </label>
                   </div>
@@ -121,12 +121,12 @@
 
                 <div class="form-group mb-3">
                   <label>Description</label>
-                  <textarea name="description" rows="7" class="form-control" required>{{ $gallery->description }}</textarea>
+                  <textarea name="description" rows="7" class="form-control">{{ $gallery->description }}</textarea>
                 </div>
 
                 <div class="form-group mb-3">
                   <label>Keywords</label>
-                  <textarea name="keywords" rows="5" class="form-control" required>{{ $gallery->keywords }}</textarea>
+                  <textarea name="keywords" rows="5" class="form-control">{{ $gallery->keywords }}</textarea>
                 </div>
 
                 <div class="form-group mb-3">
@@ -142,7 +142,7 @@
                 <div class="flex jcb aie mb-5">
                   <div class="form-group w-45">
                     <label>Category</label>
-                    <select class="browser-default custom-select selectbox-categories" name="category_id" required>
+                    <select class="browser-default custom-select selectbox-categories" name="category_id">
                       <option>Select Category</option>
                       @if (isset($categories))
                         @foreach ($categories as $category)
@@ -163,7 +163,7 @@
                 <div class="flex jcb aie mb-5">
                   <div class="form-group w-45">
                     <label>Artist</label>
-                    <select class="browser-default custom-select selectbox-artists" name="artist_id" required>
+                    <select class="browser-default custom-select selectbox-artists" name="artist_id">
                       <option>Select Artist</option>
                       @if (isset($artists))
                         @foreach ($artists as $artist)
@@ -183,17 +183,17 @@
                 
                 <div class="form-group">
                   <label for="inputDate">Paint Date</label>
-                  <input type="input" class="form-control date-picker" value="{{ $gallery->paint_date }}" name="paint_date" required>
+                  <input type="input" class="form-control date-picker" value="{{ $gallery->paint_date }}" name="paint_date">
                 </div>
 
                 <div class="form-group">
                   <label for="inputDate">Registered Date</label>
-                  <input type="input" class="form-control date-picker" value="{{ $gallery->registered_date }}" name="registered_date" required>
+                  <input type="input" class="form-control date-picker" value="{{ $gallery->registered_date }}" name="registered_date">
                 </div>
 
                 <div class="form-group">
                   <label for="inputDate">Updated Date</label>
-                  <input type="input" class="form-control date-picker" value="{{ $gallery->updated_date }}" name="updated_date" required>
+                  <input type="input" class="form-control date-picker" value="{{ $gallery->updated_date }}" name="updated_date">
                 </div>
 
 
