@@ -145,7 +145,7 @@
                   <div class="form-group w-45">
                     <label>Category</label>
                     <select class="browser-default custom-select selectbox-categories" name="category_id">
-                      <option>Select Category</option>
+                      <option value="0">Select Category</option>
                       @if (isset($categories))
                         @foreach ($categories as $category)
                         <option @if ($gallery->category_id == $category->id) selected @endif value="{{ $category->id }}">{{ $category->cat_name }}</option>
@@ -166,7 +166,7 @@
                   <div class="form-group w-45">
                     <label>Artist</label>
                     <select class="browser-default custom-select selectbox-artists" name="artist_id">
-                      <option>Select Artist</option>
+                      <option value="0">Select Artist</option>
                       @if (isset($artists))
                         @foreach ($artists as $artist)
                         <option selected value="{{ $artist->id }}">{{ $artist->art_name }}</option>
@@ -229,7 +229,7 @@
 
     </div>
 
-    <div class="popup-insert-artist flex flex--wrap ais jcb insert-artist position-absolute">
+    <div class="popup-insert-artist flex flex-column insert-artist position-absolute">
         <div class="input-group insert-artist-input">
           <div class="input-group-prepend">
             <span class="input-group-text">Artist Name</span>
@@ -239,11 +239,11 @@
 
         <div class="input-group insert-artist-textarea">
           <div class="input-group-prepend">
-            <span class="input-group-text">Artist Name</span>
+            <span class="input-group-text">Artist Description</span>
           </div>
           <textarea name="art_description" value="" class="form-control insert-artist-description"></textarea>
         </div>
-        <div class="btns-insert-cancel-artist flex aic jcb">
+        <div class="btns-insert-cancel-artist flex aic jce">
           <a href="javascript:void(0)" class="btn-grey btn-insert-artist">Add</a>
           <a href="javascript:void(0)" class="btn-grey btn-cancel-artist">Cancel</a>
         </div>

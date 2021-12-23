@@ -671,6 +671,7 @@ img {
   box-shadow: 0px 2px 7px 6px rgba(0,0,0,0.43);
   border-radius: 5px;
   padding: 20px 15px;
+  position: relative;
 
   .block-change-image-des {
     max-width: 800px;
@@ -818,8 +819,8 @@ img {
 
 .popup-insert-artist {
   display: none;
-  width: 1000px;
-  top: 40%;
+  width: 700px;
+  top: 60%;
   left: 50%;
   transform: translateX(-50%);
   z-index: 111;
@@ -832,17 +833,19 @@ img {
   }
 
   .insert-artist-input {
-    width: 30%;
+    width: 100%;
+    margin-bottom: 10px;
   }
 
   .insert-artist-textarea {
-    width: 65%;
+    width: 100%;
     height: 200px;
+    margin-bottom: 10px;
   }
 
   a {
     padding: 8px 12px;
-    margin-right: 10px;
+    margin-left: 10px;
   }
 }
 
