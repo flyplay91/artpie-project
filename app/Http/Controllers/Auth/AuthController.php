@@ -32,7 +32,7 @@ class AuthController extends Controller
             'password' => Hash::make($request->password),
         ]);
         
-        return redirect('gallery');
+        return redirect('/');
     }
 
     public function login()
@@ -50,7 +50,7 @@ class AuthController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
-            return redirect()->intended('gallery');
+            return redirect()->intended('/');
         }
 
         return redirect('login')->with('error', 'Oppes! You have entered invalid credentials');

@@ -29,6 +29,11 @@
         <div class="header__logo flex aic">
           <a href="/" class="flex aic jcc"><img src="/images/artpal.png"></a>
           <a href="/" class="active">그림구입</a>
+          @auth
+            @if (auth()->user()->isSuperAdmin())
+              <a href="/admin-gallery">Admin Dashboard</a>
+            @endif
+          @endauth
         </div>
         <div class="header__nav">
           <div class="header__navInner flex aic">
