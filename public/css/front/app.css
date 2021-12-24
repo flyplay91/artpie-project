@@ -378,7 +378,7 @@ img {
   height: 68px;
   line-height: 68px;
 }
-.header-logo-nav .header__nav > a {
+.header-logo-nav .header__navInner > a {
   padding: 0 25px;
   color: var(--white);
   font-size: 15px;
@@ -386,13 +386,13 @@ img {
   height: 68px;
   line-height: 68px;
 }
-.header-logo-nav .header__nav .header-nav-dropdown {
+.header-logo-nav .header__navInner .header-nav-dropdown {
   position: relative;
 }
-.header-logo-nav .header__nav .header-nav-dropdown:hover ul {
+.header-logo-nav .header__navInner .header-nav-dropdown:hover ul {
   display: block;
 }
-.header-logo-nav .header__nav .header-nav-dropdown label {
+.header-logo-nav .header__navInner .header-nav-dropdown label {
   color: var(--white);
   font-size: 15px;
   font-weight: 700;
@@ -402,14 +402,14 @@ img {
   padding: 0 25px;
   margin: 0;
 }
-.header-logo-nav .header__nav .header-nav-dropdown ul {
+.header-logo-nav .header__navInner .header-nav-dropdown ul {
   background-color: var(--header-bg);
   padding: 0 0 10px 25px;
   display: none;
   position: absolute;
   width: 150px;
 }
-.header-logo-nav .header__nav .header-nav-dropdown ul li a {
+.header-logo-nav .header__navInner .header-nav-dropdown ul li a {
   color: var(--white);
   font-size: 15px;
   font-weight: 700;
@@ -442,6 +442,7 @@ img {
   background-size: cover;
   position: relative;
   margin: -70px auto 0;
+  min-height: 400px;
 }
 @media only screen and (min-width: 1025px) {
   .hdrBg {
@@ -891,4 +892,47 @@ img {
 }
 .popup-pay.active {
   display: block;
+}
+
+/* Don't add any styles below this line*/
+/* Custom styles should be added in custom.scss */
+/* Homepage */
+@media screen and (max-width: 768px) {
+  .header {
+    display: none;
+  }
+
+  .bHdr {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .bHdrTxt {
+    display: none;
+  }
+
+  .hdrItems-sidebar {
+    display: none;
+  }
+
+  #hdrItems {
+    width: 100% !important;
+  }
+
+  .popup-gallery-data {
+    top: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 90%;
+    max-height: 90vh;
+    overflow: auto;
+  }
+  .popup-gallery-data .popup-gallery-data__inner {
+    flex-direction: column;
+  }
+  .popup-gallery-data .popup-gallery-data__inner .gallery-data-image {
+    width: 100%;
+  }
+  .popup-gallery-data .popup-gallery-data__inner .gallery-data-info {
+    width: 100%;
+  }
 }

@@ -388,7 +388,7 @@ img {
       line-height: 68px;
     }
   }
-  .header__nav {
+  .header__navInner {
     & > a {
       padding: 0 25px;
       color: var(--white);
@@ -461,6 +461,7 @@ img {
   background-size: cover;
   position: relative;
   margin: -70px auto 0;
+  min-height: 400px;
   
   @include media-query($medium-up) {
     box-shadow: 0 -15px 40px 15px rgb(0 0 0 / 70%);
@@ -994,3 +995,9 @@ img {
     display: block;
   }
 }
+
+
+
+/* Don't add any styles below this line*/
+/* Custom styles should be added in custom.scss */
+@import 'custom';
