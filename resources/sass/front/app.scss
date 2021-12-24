@@ -659,7 +659,7 @@ img {
                               Gallery popup
 ==============================================================================*/
 .popup-gallery-data {
-  width: 1000px;
+  width: 1200px;
   top: -70%;
   left: 50%;
   transform: translateX(-50%);
@@ -677,6 +677,9 @@ img {
     .gallery-data-image {
       width: 70%;
       padding: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .gallery-data-info {
