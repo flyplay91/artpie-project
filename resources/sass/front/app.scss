@@ -1012,3 +1012,81 @@ img {
     display: block;
   }
 }
+
+/*============================================================================
+                              Get gallery page styles
+==============================================================================*/
+.get-gallery {
+  box-shadow: 0px 2px 7px 6px rgb(0 0 0 / 43%);
+  max-width: 700px;
+  margin: 100px auto 0;
+  padding: 20px 30px;
+  border-radius: 5px;
+
+  > h3 {
+    padding-bottom: 10px;
+    text-align: center;
+    border-bottom: solid 1px #ced4da;
+  }
+
+  .get-gallery__inner {
+    border-radius: 5px;
+    position: relative;
+    margin-top: 20px;
+
+    .get-gallery-image-info {
+      border-bottom: solid 1px #ced4da;
+      padding-bottom: 20px;
+
+      .get-gallery-image {
+        width: 180px;
+        height: 180px;
+    
+        img {
+          height: 100%;
+          object-fit: contain;
+        }
+      }
+    
+      .get-gallery-info {
+        margin-left: 20px;
+        width: calc(100% - 200px);
+    
+        .gallery-number {
+          margin-bottom: 0;
+          display: inline;
+        }
+    
+        h2 {
+          padding: 10px 0 20px;
+          line-height: 1;
+          font-size: 26px;
+    
+          span {
+            font-size: 18px;
+            margin-left: 5px;
+          }
+        }
+      }
+    }
+  
+    .get-gallery-contact {
+      .input-group-text {
+        width: 120px;
+        display: inline-block;
+        text-align: center;
+      }
+
+      .agree-check-btns {
+        .chkBox2 {
+          margin-top: 0;
+        }
+
+        .btn-cancel {
+          padding: 12px;
+          margin-left: 10px;
+        }
+      }
+    }
+  }
+}

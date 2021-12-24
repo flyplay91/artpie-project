@@ -2601,7 +2601,7 @@ function getGalleryAjax($id, $artist_id) {
         html += '</div>';
         html += '</div>';
         html += '<div class="gallery-data-info__bottom">';
-        html += '<div class="link-get-gallery text-right"><a href=""><i>이 그림을 구입하려면</i></a></div>';
+        html += '<div class="link-get-gallery text-right"><a href="/contact-gallery?g_id=' + key + '"><i>이 그림을 구입하려면</i></a></div>';
         html += '<div class="gallery-entire-buy">';
         html += '<div class="gallery-entire-buy-info flex aic">';
         html += '<label>가격: </label>';
