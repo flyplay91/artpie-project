@@ -525,7 +525,7 @@ function getGalleryAjax($id, $artist_id) {
           html += '<div class="gallery-data-info__top">';
             html += '<label class="gallery-number">No. ' + ("0000000" + val.g_id).slice(-7) + '</label>';
 
-            html += '<h2>' + val.g_title + '</h2>';
+            html += '<h2>' + val.g_title + '<span>(' + val.g_category_name + ')</span></h2>';
             html += '<div class="gallery-data-items">';
               html += '<div class="gallery-data-content">';
                 html += '<label class="flex aic">크기: '; 
@@ -583,6 +583,8 @@ function getGalleryAjax($id, $artist_id) {
           html += '</div>';
 
           html += '<div class="gallery-data-info__bottom">';
+            html += '<div class="link-get-gallery text-right"><a href=""><i>이 그림을 구입하려면</i></a></div>';
+
             html += '<div class="gallery-entire-buy">';
               html += '<div class="gallery-entire-buy-info flex aic">';
                 html += '<label>가격: </label>';

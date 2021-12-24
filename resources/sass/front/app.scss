@@ -679,22 +679,34 @@ img {
       width: 30%;
       background-color: #f5f5f5;
       border-radius: 10px;
+      padding: 30px;
+
+      .gallery-data-info__bottom {
+        .gallery-entire-buy,
+        .gallery-pieces-buy {
+          display: none;
+        }
+      }
 
       .gallery-number {
-        padding: 30px 10px 10px 10px;
         margin: 0;
       }
 
       h2 {
-        padding: 0 0 10px 10px;
+        padding: 10px 0 10px;
         line-height: 1;
         font-size: 26px;
+
+        span {
+          font-size: 18px;
+          margin-left: 5px;
+        }
       }
 
       .gallery-data-items {
         border-bottom: solid 1px #ddd;
         border-top: solid 1px #ddd;
-        padding: 20px 0 10px 10px;
+        padding: 20px 0 10px 0;
 
         .gallery-data-content {
           margin-bottom: 25px;
@@ -732,18 +744,22 @@ img {
             padding-right: 10px;
           }
 
-          &.active label img {
-            &.icon-down-arrow {
-              display: none;
-            }
-            &.icon-up-arrow {
+          &.active {
+            label img {
+              &.icon-down-arrow {
+                display: none;
+              }
+              &.icon-up-arrow {
+                display: block;
+              }
+            } 
+
+            > div {
               display: block;
             }
           }
 
-          > div {
-            display: block;
-          }
+          
 
           .thumb-images {
             margin-top: 20px;

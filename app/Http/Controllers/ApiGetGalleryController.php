@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\AdminGallerys;
 use App\AdminArtists;
+use App\AdminCategories;
 use DB;
 
 class ApiGetGalleryController extends Controller
@@ -33,6 +34,8 @@ class ApiGetGalleryController extends Controller
             $galleryPieces = 0;
         }
 
+        $catName = DB::table('admin_categories')->where('id', $galleryObj->category_id)->pluck('cat_name');
+
         $artDesc = '';
         $artId = $galleryObj->artist_id;
         $artistObj = AdminArtists::find($artId);
@@ -57,6 +60,7 @@ class ApiGetGalleryController extends Controller
             'g_height'  => $galleryObj->height,
             'g_unit'  => $galleryObj->unit,
             'same_artist_count' => $sameArtistCount,
+            'g_category_name' => $catName,
         );
 
         if (count($sameArtistsImageObj) > 0) {
