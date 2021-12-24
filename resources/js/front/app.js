@@ -275,6 +275,7 @@ $(document).ready(function() {
     });
   }
 
+  
   // Select filter options
   $('.checkbox-some-filter').change(function() {
     if ($(this).closest('.filterItems').find('.checkbox-some-filter:checked').length > 0) {
@@ -356,7 +357,7 @@ $(document).ready(function() {
 
   // Update gallery popup
   $('body').on('click', '.gallery-data-content__item', function() {
-    $(this).siblings().removeClass('active');
+    // $(this).siblings().removeClass('active');
     $(this).toggleClass('active');
     $('.gallery-data-content__item > div').stop().slideUp();
     $('.gallery-data-content__item.active > div').stop().slideDown();
@@ -366,7 +367,8 @@ $(document).ready(function() {
   // Open gallery popup & get data
   $('body').on('click', '.image-gallery', function() {
     var gallery_id = $(this).data('id');
-    getGalleryAjax(gallery_id);
+    var artist_id = $(this).data('artist-id');
+    getGalleryAjax(gallery_id, artist_id);
   });
 
   $('body').on('click', '.bg-overlay label', function() {
@@ -463,6 +465,17 @@ $(document).ready(function() {
     $('.btn-update-user').trigger('click');
   })
 
+  // Gallery popup click event 
+  $('body').on('click', function(evt) {
+    if ($(evt.target).hasClass('popup-gallery-data') ||
+      $(evt.target).closest('.popup-gallery-data').length > 0) {
+        return;
+    }
+
+    $('#mainWrapper').removeClass('active');
+    $('.bg-overlay').removeClass('active');
+    $('.popup-gallery-data').removeClass('active');
+  })
 });
 
 function cal_total() {
@@ -482,7 +495,7 @@ function cal_total() {
   }
 }
 
-function getGalleryAjax($id) {
+function getGalleryAjax($id, $artist_id) {
   $.ajax({
     url: "/api/api-get-gallery",
     method: "post",
@@ -490,6 +503,7 @@ function getGalleryAjax($id) {
         $(".popup-gallery-data__inner").empty();
       },
     data: {
+      artist_id: $artist_id,
       gallery_id: $id,
     },
     success: function(result) {
@@ -499,9 +513,8 @@ function getGalleryAjax($id) {
       var user_id = $('.popup-gallery-data').data('user-id');
       
       var html = '';
-      var i = 'first';
+      
       $.each(result.gallery_Obj, function (key, val) {
-        
         
         html += '<div class="gallery-data-image" data-id="'+ key +'">';
           html += '<a class="pan" data-big="/images/' + val.g_image + '" href="">';
@@ -511,37 +524,61 @@ function getGalleryAjax($id) {
         html += '<div class="gallery-data-info flex flex-column jcb">';
           html += '<div class="gallery-data-info__top">';
             html += '<label class="gallery-number">No. ' + ("0000000" + val.g_id).slice(-7) + '</label>';
-            
+
             html += '<h2>' + val.g_title + '</h2>';
             html += '<div class="gallery-data-items">';
-              html += '<div class="gallery-data-content__item gallery-data-content__item--'+ i +'">';
-                html += '<label class="flex aic">작품소개';
-                  html += '<img class="icon-up-arrow" src="/images/up-arrow.png">';
-                  html += '<img class="icon-down-arrow" src="/images/down-arrow.png">';
+              html += '<div class="gallery-data-content">';
+                html += '<label class="flex aic">크기: '; 
+                  html += val.g_width +' * ' + val.g_height + ' ' + val.g_unit;
                 html += '</label>';
-                html += '<div>' + val.g_description + '</div>';
               html += '</div>';
-              html += '<div class="gallery-data-content__item">';
-                html += '<label class="flex aic">화가소개';
-                  html += '<img class="icon-up-arrow" src="/images/up-arrow.png">';
-                  html += '<img class="icon-down-arrow" src="/images/down-arrow.png">';
+
+              html += '<div class="gallery-data-content">';
+                html += '<label class="flex aic">가격: '; 
+                  html += parseFloat(val.g_price) + ' RMB';
                 html += '</label>';
-                html += '<div>'+ val.g_artistname +'</div>';
               html += '</div>';
-              html += '<div class="gallery-data-content__item">';
-                html += '<label class="flex aic">화가의 다른 작품들';
-                  html += '<img class="icon-up-arrow" src="/images/up-arrow.png">';
-                  html += '<img class="icon-down-arrow" src="/images/down-arrow.png">';
+
+              html += '<div class="gallery-data-content__item active">';
+                html += '<label class="flex aic">작가: ' + val.g_artistname ;
+                  if (val.g_artist_des != '') {
+                    html += '<img class="icon-up-arrow" src="/images/up-arrow.png">';
+                    html += '<img class="icon-down-arrow" src="/images/down-arrow.png">';
+                  }
+                  
                 html += '</label>';
-                html += '<div>ccc</div>';
+                html += '<div>'+ val.g_artist_des +'</div>';
               html += '</div>';
-              html += '<div class="gallery-data-content__item">';
-                html += '<label class="flex aic">가격정책';
-                  html += '<img class="icon-up-arrow" src="/images/up-arrow.png">';
-                  html += '<img class="icon-down-arrow" src="/images/down-arrow.png">';
-                html += '</label>';
-                html += '<div>ddd</div>';
-              html += '</div>';
+              
+              if (val.g_description != '') {
+                html += '<div class="gallery-data-content__item active">';
+                  html += '<label class="flex aic">작품소개';
+                    if (val.g_description != '') {
+                      html += '<img class="icon-up-arrow" src="/images/up-arrow.png">';
+                      html += '<img class="icon-down-arrow" src="/images/down-arrow.png">';
+                    }
+                    
+                  html += '</label>';
+                  html += '<div>' + val.g_description + '</div>';
+                html += '</div>';
+              }
+              
+              if (val.same_artist_count > 1) {
+                var thumb_images = val.same_artist_images.split(',');
+                
+                html += '<div class="gallery-data-content__item active">';
+                  html += '<label class="flex aic">화가의 다른 작품들';
+                    html += '<img class="icon-up-arrow" src="/images/up-arrow.png">';
+                    html += '<img class="icon-down-arrow" src="/images/down-arrow.png">';
+                  html += '</label>';
+                  html += '<div class="thumb-images" id="thumbImages">';
+                  thumb_images.forEach(function(item) {
+                    html += '<img src="/images/' + item + '">';
+                  });
+                  html += '</div>';
+                html += '</div>';
+              }
+
             html += '</div>';
           html += '</div>';
 

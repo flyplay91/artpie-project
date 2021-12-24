@@ -90,8 +90,7 @@
                     <label for="usr">단위</label>
                     <select class="browser-default custom-select" name="unit">
                       <option selected value="{{ $gallery->unit ? $gallery->unit : 'cm' }}">{{ $gallery->unit ? $gallery->unit : 'Cm' }}</option>
-                      <option value="cm">Cm</option>
-                      <option value="inch">Inch</option>
+                      
                     </select>
                   </div>
                 </div>

@@ -17,7 +17,13 @@ class ApiGetGalleryController extends Controller
     public function index(Request $request)
     {
         $galleryId = $request->gallery_id;
+        $artistId = $request->artist_id;
         
+        $sameArtistObj = DB::table('admin_gallerys')->where('artist_id', $artistId)->get();
+        $sameArtistCount = count($sameArtistObj);
+
+        $sameArtistsImageObj = DB::select("SELECT GROUP_CONCAT(image) as images FROM `admin_gallerys` WHERE `artist_id` = '".$artistId."' AND `id` != $galleryId  GROUP BY `artist_id`");
+
         $galleryObj = AdminGallerys::find($galleryId);
 
         $artistName = DB::table('admin_artists')->where('id', $galleryObj->artist_id)->pluck('art_name')->first();
@@ -26,18 +32,37 @@ class ApiGetGalleryController extends Controller
         } else {
             $galleryPieces = 0;
         }
+
+        $artDesc = '';
+        $artId = $galleryObj->artist_id;
+        $artistObj = AdminArtists::find($artId);
+        if (isset($artistObj->art_description)) {
+            $artDesc = $artistObj->art_description;
+            $artDesc = nl2br($artDesc);
+        }
+        
+        
         $galleryObjArr = [];
 
         $galleryObjArr[$galleryObj->id] = array(
             'g_id'  => $galleryObj->id,
+            'g_artist_des'  => $artDesc,
             'g_image' => $galleryObj->image,
             'g_title' => $galleryObj->title,
-            'g_description' => $galleryObj->description,
+            'g_description' => nl2br($galleryObj->description),
             'g_artistname' => $artistName,
             'g_price' => $galleryObj->retail_price,
             'g_pieces' => $galleryPieces,
-            
+            'g_width'   => $galleryObj->width,
+            'g_height'  => $galleryObj->height,
+            'g_unit'  => $galleryObj->unit,
+            'same_artist_count' => $sameArtistCount,
         );
+
+        if (count($sameArtistsImageObj) > 0) {
+            $sameArtistsImage = $sameArtistsImageObj[0]->images;
+            $galleryObjArr[$galleryObj->id]['same_artist_images'] = $sameArtistsImage;
+        }
         try {
 			return response()->json([
                 'gallery_Obj' => $galleryObjArr,

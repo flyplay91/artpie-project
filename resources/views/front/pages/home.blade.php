@@ -20,7 +20,7 @@
 </div>
 @endif
 
-<div class="hdrItems flex jcb position-relative">
+<div class="hdrItems flex jcb">
   <div class="hdrItems-sidebar W-20">
     <div class="hdrItems-sidebar__inner">
       <div class="filterItems hdrItem--category boxCtnt">
@@ -93,7 +93,7 @@
         @if ($gallery->all_checked == 'true')
           <div class="hdrItems-list">
             <div class="hdrItems-list__inner">
-              <a class="image-gallery" href="javascript:void(0)" data-id="{{ $gallery->id }}">
+              <a class="image-gallery" href="javascript:void(0)" data-id="{{ $gallery->id }}" data-artist-id="{{ $gallery->artist_id }}">
                 <div class="hdrItems-list__inner-overlay"></div>
                 <img src="/images/{{ $gallery->image }}">
               </a>
