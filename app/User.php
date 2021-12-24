@@ -36,4 +36,21 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * checks if the user belongs to a particular group
+     * @param string|array $role
+     * @return bool
+     */
+    public function role($role) {
+        return $this->role == $role;
+    }
+
+    /**
+     * checks if the user is super admin
+     * @return bool
+     */
+    public function isSuperAdmin() {
+        return $this->role == 1;
+    }
 }
