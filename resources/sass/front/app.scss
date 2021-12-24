@@ -381,7 +381,7 @@ img {
       line-height: 68px;
     }
   }
-  .header__nav {
+  .header__navInner {
     & > a {
       padding: 0 25px;
       color: var(--white);
@@ -1090,3 +1090,4 @@ img {
     }
   }
 }
+@import 'custom';

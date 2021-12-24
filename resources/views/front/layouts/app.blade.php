@@ -28,33 +28,35 @@
           <a href="/" class="flex aic jcc"><img src="/images/artpal.png"></a>
           <a href="/" class="active">그림구입</a>
         </div>
-        <div class="header__nav flex aic">
-          <div class="header-nav-dropdown language">
-            <label>Korean</label>
-            <ul>
-              <li><a href="">Korean</a></li>
-              <li><a href="">Chinese</a></li>
-              <li><a href="">English</a></li>
-            </ul>
+        <div class="header__nav">
+          <div class="header__navInner flex aic">
+            <div class="header-nav-dropdown language">
+              <label>Korean</label>
+              <ul>
+                <li><a href="">Korean</a></li>
+                <li><a href="">Chinese</a></li>
+                <li><a href="">English</a></li>
+              </ul>
+            </div>
+            <div class="header-nav-dropdown my-profile">
+              <label>Profile</label>
+              <ul>
+                <li><a href="">나의 갤러리</a></li>
+                <li><a href="/setting">설정</a></li>
+              </ul>
+            </div>
+            
+            @guest
+            <a href="{{ route('login') }}">{{ __('Login') }}</a>
+              @if (Route::has('register'))
+                <a href="{{ route('register') }}">{{ __('Register') }}</a>
+              @endif
+            @else
+              <a href="{{ route('logout') }}">
+                {{ __('Logout') }}
+              </a>
+            @endguest
           </div>
-          <div class="header-nav-dropdown my-profile">
-            <label>Profile</label>
-            <ul>
-              <li><a href="">나의 갤러리</a></li>
-              <li><a href="/setting">설정</a></li>
-            </ul>
-          </div>
-          
-          @guest
-          <a href="{{ route('login') }}">{{ __('Login') }}</a>
-            @if (Route::has('register'))
-              <a href="{{ route('register') }}">{{ __('Register') }}</a>
-            @endif
-          @else
-            <a href="{{ route('logout') }}">
-              {{ __('Logout') }}
-            </a>
-          @endguest
         </div>
       </div>
     </div>

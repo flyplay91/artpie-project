@@ -1,0 +1,52 @@
+/* Homepage */
+@media screen and (max-width: 768px) {
+  .hdrBg {
+    padding-top: 5%;
+    margin: 0 auto 0;
+  }
+
+  .header {
+    display: none;
+  }
+
+  .footer {
+    display: none;
+  }
+
+  .bHdr {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  
+  .bHdrTxt {
+    display: none;
+  }
+  
+  .hdrItems-sidebar {
+    display: none;
+  }
+  
+  #hdrItems {
+    width: 100% !important;
+  }
+
+  .popup-gallery-data {
+    top: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 90%;
+    max-height: 90vh;
+    overflow: auto;
+
+    .popup-gallery-data__inner {
+      flex-direction: column;
+
+      .gallery-data-image {
+        width: 100%;
+      }
+
+      .gallery-data-info {
+        width: 100%;
+      }
+    }
+  }
+}

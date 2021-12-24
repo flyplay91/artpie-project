@@ -615,6 +615,7 @@ function getGalleryAjax($id, $artist_id) {
 
       $('.popup-gallery-data__inner').append(html);
       $('.pan').pan();
+
     }
   });
 }
