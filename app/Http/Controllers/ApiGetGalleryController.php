@@ -29,6 +29,7 @@ class ApiGetGalleryController extends Controller
         $galleryObjArr = [];
 
         $galleryObjArr[$galleryObj->id] = array(
+            'g_id'  => $galleryObj->id,
             'g_image' => $galleryObj->image,
             'g_title' => $galleryObj->title,
             'g_description' => $galleryObj->description,

@@ -49,6 +49,10 @@
             <div class="block-change-gallery-data">
               <div class="change-gallery-data__inner m-auto">
                 <div class="form-group mb-3">
+                  <label>No. {{ sprintf("%07d", $gallery->id) }}</label>
+                </div>
+
+                <div class="form-group mb-3">
                   <label>그림 제목</label>
                   <input type="text" value="{{ $gallery->title }}" name="title" class="form-control">
                 </div>

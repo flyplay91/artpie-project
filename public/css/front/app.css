@@ -650,8 +650,12 @@ img {
   background-color: #f5f5f5;
   border-radius: 10px;
 }
+.popup-gallery-data .popup-gallery-data__inner .gallery-data-info .gallery-number {
+  padding: 30px 10px 10px 10px;
+  margin: 0;
+}
 .popup-gallery-data .popup-gallery-data__inner .gallery-data-info h2 {
-  padding: 20px 0 10px 10px;
+  padding: 0 0 10px 10px;
   line-height: 1;
   font-size: 26px;
 }
@@ -664,6 +668,21 @@ img {
   margin-bottom: 25px;
   overflow: hidden;
 }
+.popup-gallery-data .popup-gallery-data__inner .gallery-data-info .gallery-data-items .gallery-data-content__item.gallery-data-content__item--first label img.icon-down-arrow {
+  display: none;
+}
+.popup-gallery-data .popup-gallery-data__inner .gallery-data-info .gallery-data-items .gallery-data-content__item.gallery-data-content__item--first label img.icon-up-arrow {
+  display: block;
+}
+.popup-gallery-data .popup-gallery-data__inner .gallery-data-info .gallery-data-items .gallery-data-content__item.gallery-data-content__item--first.active label img.icon-down-arrow {
+  display: block;
+}
+.popup-gallery-data .popup-gallery-data__inner .gallery-data-info .gallery-data-items .gallery-data-content__item.gallery-data-content__item--first.active label img.icon-up-arrow {
+  display: none;
+}
+.popup-gallery-data .popup-gallery-data__inner .gallery-data-info .gallery-data-items .gallery-data-content__item.gallery-data-content__item--first > div {
+  display: block;
+}
 .popup-gallery-data .popup-gallery-data__inner .gallery-data-info .gallery-data-items .gallery-data-content__item label {
   color: #3c5a99;
   cursor: pointer;
@@ -673,16 +692,19 @@ img {
   margin-left: 10px;
 }
 .popup-gallery-data .popup-gallery-data__inner .gallery-data-info .gallery-data-items .gallery-data-content__item label img.icon-down-arrow {
+  display: block;
+}
+.popup-gallery-data .popup-gallery-data__inner .gallery-data-info .gallery-data-items .gallery-data-content__item label img.icon-up-arrow {
   display: none;
 }
 .popup-gallery-data .popup-gallery-data__inner .gallery-data-info .gallery-data-items .gallery-data-content__item > div {
   display: none;
 }
 .popup-gallery-data .popup-gallery-data__inner .gallery-data-info .gallery-data-items .gallery-data-content__item.active label img.icon-down-arrow {
-  display: block;
+  display: none;
 }
 .popup-gallery-data .popup-gallery-data__inner .gallery-data-info .gallery-data-items .gallery-data-content__item.active label img.icon-up-arrow {
-  display: none;
+  display: block;
 }
 .popup-gallery-data .popup-gallery-data__inner .gallery-data-info .gallery-entire-buy {
   border-bottom: solid 1px #ddd;

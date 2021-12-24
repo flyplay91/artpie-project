@@ -499,8 +499,10 @@ function getGalleryAjax($id) {
       var user_id = $('.popup-gallery-data').data('user-id');
       
       var html = '';
-      
+      var i = 'first';
       $.each(result.gallery_Obj, function (key, val) {
+        
+        
         html += '<div class="gallery-data-image" data-id="'+ key +'">';
           html += '<a class="pan" data-big="/images/' + val.g_image + '" href="">';
             html += '<img src="/images/'+ val.g_image +'">';
@@ -508,9 +510,11 @@ function getGalleryAjax($id) {
         html += '</div>';
         html += '<div class="gallery-data-info flex flex-column jcb">';
           html += '<div class="gallery-data-info__top">';
+            html += '<label class="gallery-number">No. ' + ("0000000" + val.g_id).slice(-7) + '</label>';
+            
             html += '<h2>' + val.g_title + '</h2>';
             html += '<div class="gallery-data-items">';
-              html += '<div class="gallery-data-content__item">';
+              html += '<div class="gallery-data-content__item gallery-data-content__item--'+ i +'">';
                 html += '<label class="flex aic">작품소개';
                   html += '<img class="icon-up-arrow" src="/images/up-arrow.png">';
                   html += '<img class="icon-down-arrow" src="/images/down-arrow.png">';
