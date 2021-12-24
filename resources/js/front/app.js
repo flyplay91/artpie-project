@@ -269,8 +269,7 @@ $(document).ready(function() {
       },
       columns: 3,
       breakAt: {
-        520: 2,
-        400: 1
+        520: 1
       }
     });
   }
