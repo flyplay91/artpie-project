@@ -642,6 +642,9 @@ img {
   border-radius: 10px;
   padding: 30px;
 }
+.popup-gallery-data .popup-gallery-data__inner .gallery-data-info .gallery-data-info__bottom {
+  margin-top: 20px;
+}
 .popup-gallery-data .popup-gallery-data__inner .gallery-data-info .gallery-data-info__bottom .gallery-entire-buy,
 .popup-gallery-data .popup-gallery-data__inner .gallery-data-info .gallery-data-info__bottom .gallery-pieces-buy {
   display: none;
@@ -1005,6 +1008,7 @@ img {
     max-width: 90%;
     max-height: 90vh;
     overflow: auto;
+    margin-top: 3vh;
   }
   .popup-gallery-data .popup-gallery-data__inner {
     flex-direction: column;
