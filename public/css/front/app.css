@@ -442,7 +442,6 @@ img {
   background-size: cover;
   position: relative;
   margin: -70px auto 0;
-  min-height: 400px;
 }
 @media only screen and (min-width: 1025px) {
   .hdrBg {
@@ -898,7 +897,16 @@ img {
 /* Custom styles should be added in custom.scss */
 /* Homepage */
 @media screen and (max-width: 768px) {
+  .hdrBg {
+    padding-top: 5%;
+    margin: 0 auto 0;
+  }
+
   .header {
+    display: none;
+  }
+
+  .footer {
     display: none;
   }
 

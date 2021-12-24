@@ -1,6 +1,15 @@
 /* Homepage */
 @media screen and (max-width: 768px) {
+  .hdrBg {
+    padding-top: 5%;
+    margin: 0 auto 0;
+  }
+
   .header {
+    display: none;
+  }
+
+  .footer {
     display: none;
   }
 

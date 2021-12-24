@@ -461,7 +461,6 @@ img {
   background-size: cover;
   position: relative;
   margin: -70px auto 0;
-  min-height: 400px;
   
   @include media-query($medium-up) {
     box-shadow: 0 -15px 40px 15px rgb(0 0 0 / 70%);
