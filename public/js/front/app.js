@@ -2331,6 +2331,12 @@ $(document).ready(function () {
     }
   });
   $('.checkbox-any-filter').change(function () {
+    if ($(this).is(':checked')) {
+      $(this).closest('.filterItems').find('.checkbox-some-filter').prop('checked', false);
+    } else {
+      $(this).closest('.filterItems').find('.checkbox-some-filter').prop('checked', true);
+    }
+
     if ($(this).closest('.filterItems').find('.checkbox-any-filter:checked').length > 0) {
       $(this).closest('.filterItems').find('.checkbox-some-filter').prop('checked', false);
     }

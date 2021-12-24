@@ -189,7 +189,6 @@ $(document).ready(function () {
           cat_name: $cat_name
         },
         success: function success(result) {
-          console.log(result);
           var html = '';
           $.each(result.categories, function (key, val) {
             html += '<option value="' + key + '">' + val + '</option>';

@@ -283,6 +283,11 @@ $(document).ready(function() {
   });
 
   $('.checkbox-any-filter').change(function() {
+    if ($(this).is(':checked')) {
+      $(this).closest('.filterItems').find('.checkbox-some-filter').prop('checked', false);
+    } else {
+      $(this).closest('.filterItems').find('.checkbox-some-filter').prop('checked', true);
+    }
     if ($(this).closest('.filterItems').find('.checkbox-any-filter:checked').length > 0) {
       $(this).closest('.filterItems').find('.checkbox-some-filter').prop('checked', false);
     }
@@ -290,6 +295,8 @@ $(document).ready(function() {
 
   // Filter ajax
   $('.checkbox-filter').change(function() {
+    
+    
     var category_ids_arr = [];
     var price_arr = [];
     var size_arr = [];
