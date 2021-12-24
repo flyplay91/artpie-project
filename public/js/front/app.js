@@ -2585,7 +2585,7 @@ function getGalleryAjax($id, $artist_id) {
 
         if (val.same_artist_count > 1) {
           var thumb_images = val.same_artist_images.split(',');
-          html += '<div class="gallery-data-content__item active">';
+          html += '<div class="gallery-data-content__item">';
           html += '<label class="flex aic">화가의 다른 작품들';
           html += '<img class="icon-up-arrow" src="/images/up-arrow.png">';
           html += '<img class="icon-down-arrow" src="/images/down-arrow.png">';
