@@ -38,7 +38,7 @@ Route::resource('order', 'front\OrderInfoController')->middleware('auth');
 
 
 // Admin
-Route::group(['middleware' => 'checkSuperAdmin'], function () {
+Route::group(['middleware' => ['auth', 'checkSuperAdmin']], function () {
   Route::resource('admin-header-data', 'AdminHeaderDataController');
   Route::resource('admin-user', 'AdminUsersController');
   Route::resource('admin-order', 'AdminOrdersController');

@@ -22,12 +22,12 @@ class ApiInvestorUserController extends Controller
         if ($checkUser == 'true') {
             User::where('id', $userId)
             ->update([
-                'investor_user' => 1,
+                'role' => 'investor',
             ]);
         } else {
             User::where('id', $userId)
             ->update([
-                'investor_user' => 0,
+                'role' => 'buyer',
             ]);
         }
         

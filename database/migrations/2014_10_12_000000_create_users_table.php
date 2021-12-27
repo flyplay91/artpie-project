@@ -19,12 +19,13 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->enum('role', ['admin', 'investor', 'buyer'])->default('buyer');
+            $table->enum('status', ['active', 'pending', 'suspended', 'deleted'])->default('pending');
             $table->string('address_1')->nullable();
             $table->string('address_2')->nullable();
             $table->string('address_3')->nullable();
             $table->string('address_4')->nullable();
             $table->string('address_5')->nullable();
-            $table->string('investor_user')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
