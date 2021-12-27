@@ -298,7 +298,7 @@ function getGalleryAjax($id, $artist_id) {
       $.each(result.gallery_Obj, function (key, val) {
         
         html += '<div class="gallery-data-image" data-id="'+ key +'">';
-          html += `<a href="/images/${val.g_image}" class="MagicZoom" data-options="cssClass: mz-show-arrows; zoomPosition: inner;" >`;
+          html += `<a href="/images/${val.g_image}" class="MagicZoom" data-options="cssClass: mz-show-arrows; zoomPosition: inner; zoomMode:off;" >`;
             html += `<img src="/images/${val.g_image}" />`;
           html += '</a>';  
         html += '</div>';
