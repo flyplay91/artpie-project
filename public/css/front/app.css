@@ -2441,4 +2441,27 @@ img {
   .popup-gallery-data .popup-gallery-data__inner .gallery-data-info {
     width: 100%;
   }
+
+  .get-gallery {
+    box-shadow: none;
+    margin: 0 auto;
+  }
+  .get-gallery .get-gallery__inner .get-gallery-image-info {
+    flex-direction: column;
+  }
+  .get-gallery .get-gallery__inner .get-gallery-image-info .get-gallery-image {
+    width: 100%;
+    height: 300px;
+  }
+  .get-gallery .get-gallery__inner .get-gallery-image-info .get-gallery-info {
+    margin: 20px 0 0 0;
+    width: 100%;
+  }
+  .get-gallery .get-gallery__inner .agree-check-btns {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .get-gallery .get-gallery__inner .agree-check-btns .btns-save-cancel {
+    width: 100%;
+  }
 }
