@@ -145,17 +145,12 @@ $(document).ready(function() {
     getGalleryAjax(gallery_id, artist_id);
   });
 
-  
-
   $('body').on('click', '.bg-overlay label', function() {
     $('#mainWrapper').removeClass('active');
     $('.bg-overlay').removeClass('active');
     $('.popup-user').removeClass('active');
     $('.popup-gallery-data').removeClass('active');
   });
-
-  
-
   
   // Account page popup events
   $('body').on('click', '.btn-user-info', function() {
@@ -256,6 +251,49 @@ $(document).ready(function() {
     $('.popup-gallery-data').removeClass('active');
   });
 
+  $('body').on('click', '.gallery-search a', function() {
+    var category_ids_arr = [];
+    var price_arr = [];
+    var size_arr = [];
+    var search_val = $('.gallery-search input').val();
+    $('.hdrItem--category .chkBox2').each(function() {
+      if ($(this).find('.checkbox-filter:checked').length > 0) {
+        var selected_cat_id = $(this).find('.checkbox-filter:checked').val();
+        category_ids_arr.push(selected_cat_id);
+      }
+    });
+    $('.hdrItem--price .chkBox2').each(function() {
+      if ($(this).find('.checkbox-filter:checked').length > 0) {
+        var selected_price = $(this).find('.checkbox-filter:checked').val();
+        price_arr.push(selected_price);
+      }
+    });
+    $('.hdrItem--size .chkBox2').each(function() {
+      if ($(this).find('.checkbox-filter:checked').length > 0) {
+        var selected_size = $(this).find('.checkbox-filter:checked').val();
+        size_arr.push(selected_size);
+      }
+    });
+
+    if (search_val != '') {
+      $.ajax({
+        url: "/api/api-search-gallerys",
+        method: "post",
+         beforeSend: function(){
+           $("#hdrItems").empty();
+         },
+        data: {
+          selected_cat_ids: category_ids_arr,
+          selected_price: price_arr,
+          selected_size: size_arr,
+          selected_search_val: search_val,
+        },
+        success: function(result) {
+          console.log(result);
+        }
+      });
+    }
+  });
 
 });
 
