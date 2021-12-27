@@ -22,6 +22,7 @@ function resetVH() {
   document.documentElement.style.setProperty('--vh', `${vh}px`);
 }
 
+resetVH();
 window.addEventListener('resize', () => {
   resetVH();
 });

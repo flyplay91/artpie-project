@@ -2113,6 +2113,7 @@ function resetVH() {
   document.documentElement.style.setProperty('--vh', "".concat(vh, "px"));
 }
 
+resetVH();
 window.addEventListener('resize', function () {
   resetVH();
 });
