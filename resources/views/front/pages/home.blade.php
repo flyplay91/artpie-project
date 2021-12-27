@@ -11,9 +11,9 @@
     </div>
 
     <div class="sBoxW">
-      <div class="sBox">
+      <div class="sBox gallery-search">
         <input type="text" name="s" placeholder="그림제목/화가이름" class="s">
-        <img src="/images/search-icon.png">
+        <a href="javascript:void(0)"><img src="/images/search-icon.png"></a>
       </div>
     </div>
   </div>
