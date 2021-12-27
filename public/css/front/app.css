@@ -2421,9 +2421,9 @@ img {
     top: 50%;
     transform: translate(-50%, -50%);
     max-width: 90%;
-    max-height: 90vh;
+    max-height: calc(var(--vh, 1vh) * 85);
     overflow: auto;
-    margin-top: 10vh;
+    margin-top: calc(var(--vh, 1vh) * 2);
   }
   .popup-gallery-data .popup-gallery-data__inner {
     flex-direction: column;

@@ -14,6 +14,19 @@ eval(function(m,a,g,i,c,k){c=function(e){return(e<a?'':c(parseInt(e/a)))+((e=e%a
 
 var baseUrl = window.location.protocol + '//' + window.location.host + '/';
 
+/* Set vh on Safari */
+
+function resetVH() {
+  let vh = window.innerHeight * 0.01;
+  // Then we set the value in the --vh custom property to the root of the document
+  document.documentElement.style.setProperty('--vh', `${vh}px`);
+}
+
+window.addEventListener('resize', () => {
+  resetVH();
+});
+
+
 $(document).ready(function() {
   if ($('#hdrItems').length > 0) {
     var macyInstance = Macy({
