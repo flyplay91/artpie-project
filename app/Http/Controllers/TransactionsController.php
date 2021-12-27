@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\AdminTransactions;
+use App\Transactions;
 
-class AdminTransactionsController extends Controller
+class TransactionsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class AdminTransactionsController extends Controller
      */
     public function index()
     {
-        $transactions = AdminTransactions::all();
+        $transactions = Transactions::all();
         return view('admin.transactions.index',compact('transactions'));
     }
 

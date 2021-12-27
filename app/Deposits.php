@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class AdminTransactions extends Model
+class Deposits extends Model
 {
     //
 }

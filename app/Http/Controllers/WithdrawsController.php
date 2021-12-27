@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\AdminWidraws;
+use App\Withdraws;
 
-class AdminWidrawsController extends Controller
+class WithdrawsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class AdminWidrawsController extends Controller
      */
     public function index()
     {
-        $widraws = AdminWidraws::all();
+        $widraws = Withdraws::all();
         return view('admin.widraws.index',compact('widraws'));
     }
 
