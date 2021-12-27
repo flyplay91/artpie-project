@@ -2046,6 +2046,15 @@ img {
   border-radius: 10px;
   padding: 30px;
 }
+.popup-gallery-data .popup-gallery-data__inner .gallery-data-info .btn-cancel-gallery-popup {
+  right: 22px;
+  font-size: 20px;
+  top: 15px;
+  color: var(--black);
+}
+.popup-gallery-data .popup-gallery-data__inner .gallery-data-info .btn-cancel-gallery-popup:hover {
+  text-decoration: none;
+}
 .popup-gallery-data .popup-gallery-data__inner .gallery-data-info .gallery-data-info__bottom {
   margin-top: 20px;
 }
