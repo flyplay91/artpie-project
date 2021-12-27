@@ -26,6 +26,7 @@ class ApiArtistsController extends Controller
         $artistIdNameArr = [];
 
         $artistObjs = array('art_name' => $artistName, 'art_description' => $artistDescription , 'created_at' =>  \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now());
+        
         DB::table('admin_artists')->insert($artistObjs);
         
         $artistDatas = DB::select('SELECT * FROM admin_artists');

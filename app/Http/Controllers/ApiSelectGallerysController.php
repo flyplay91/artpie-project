@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\AdminGallerys;
-use App\AdminArtists;
 use DB;
 
 class ApiSelectGallerysController extends Controller
@@ -21,7 +20,6 @@ class ApiSelectGallerysController extends Controller
         $selectedSizes = $request->selected_size;
 
         $galleryObjs = DB::table('admin_gallerys');
-        $artists = AdminArtists::all();
         
         if (!empty($selectedCatIds)) {
             if (!in_array('any', $selectedCatIds)) {
@@ -68,13 +66,8 @@ class ApiSelectGallerysController extends Controller
             $galleryIdImageArr[$galleryObj->id] = array(
                 'g_image' => $galleryObj->image,
                 'g_title' => $galleryObj->title,
+                'g_artist_name' => $galleryObj->artist_name
             );
-
-            foreach($artists as $artist) {
-                if ($artist->id == $galleryObj->artist_id) {
-                    $galleryIdImageArr[$galleryObj->id]['g_artist_name'] = $artist->art_name;
-                }
-            }
         }
         
         try {

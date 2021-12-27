@@ -176,6 +176,7 @@
                         @endforeach
                       @endif
                     </select>
+                    <input type="hidden" name="artist_name" class="input-artist-name">
                   </div>
                   <div class="form-group w-45 position-relative">
                     <a href="javascript:void(0)" class="btn-add-artist">새 창작가 추가...</a>

@@ -61,7 +61,10 @@ class ApiSearchGallerysController extends Controller
             }
         }
         
-        $galleryObjs = $galleryObjs->where('all_checked', 'true')->get();
+        $galleryObjs = $galleryObjs->where('all_checked', 'true')
+                                    ->where('title', 'like', '%' . $selectedValue . '%')
+                                    ->orWhere('artist_name', 'like', '%' . $selectedValue . '%')
+                                    ->orWhere('keywords', 'like', '%' . $selectedValue . '%')->get();
 
         $galleryIdImageArr = [];
         
@@ -69,13 +72,8 @@ class ApiSearchGallerysController extends Controller
             $galleryIdImageArr[$galleryObj->id] = array(
                 'g_image' => $galleryObj->image,
                 'g_title' => $galleryObj->title,
+                'g_artist_name' => $galleryObj->artist_name
             );
-
-            foreach($artists as $artist) {
-                if ($artist->id == $galleryObj->artist_id) {
-                    $galleryIdImageArr[$galleryObj->id]['g_artist_name'] = $artist->art_name;
-                }
-            }
         }
         
         try {

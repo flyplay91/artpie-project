@@ -206,6 +206,7 @@ $(document).ready(function() {
   $('body').on('click', '.btn-insert-artist', function() {
     var $art_name = $('.insert-artist-name').val();
     var $art_description = $('.insert-artist-description').val();
+    
     if ($art_name != '') {
       $.ajax({
         url: "/api/api-artists",
@@ -220,6 +221,7 @@ $(document).ready(function() {
         success: function(result) {
           $('.bg-overlay').removeClass('active');
           $('.popup-insert-artist').removeClass('active');
+          
 
           var html = '';
           $.each(result.artists, function (key, val) {
@@ -236,6 +238,7 @@ $(document).ready(function() {
 
   // Update page save & delete
   $('body').on('click', '.btn-save-gallery-trigger', function() {
+    $('.input-artist-name').val($('.selectbox-artists').find(":selected").text());
     $('.btn-save-gallery').trigger('click');
   });
   $('body').on('click', '.btn-delete-gallery-trigger', function() {

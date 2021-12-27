@@ -228,6 +228,7 @@ $(document).ready(function () {
   }); // Update page save & delete
 
   $('body').on('click', '.btn-save-gallery-trigger', function () {
+    $('.input-artist-name').val($('.selectbox-artists').find(":selected").text());
     $('.btn-save-gallery').trigger('click');
   });
   $('body').on('click', '.btn-delete-gallery-trigger', function () {
