@@ -38,13 +38,13 @@ Route::resource('order', 'front\OrderInfoController')->middleware('auth');
 
 
 // Admin
-Route::group(['middleware' => 'checkSuperAdmin'], function () {
+Route::group(['middleware' => ['auth', 'checkSuperAdmin']], function () {
   Route::resource('admin-header-data', 'AdminHeaderDataController');
   Route::resource('admin-user', 'AdminUsersController');
   Route::resource('admin-order', 'AdminOrdersController');
-  Route::resource('admin-deposit', 'AdminDepositsController');
-  Route::resource('admin-widraw', 'AdminWidrawsController');
-  Route::resource('admin-transaction', 'AdminTransactionsController');
+  Route::resource('admin-deposit', 'DepositsController');
+  Route::resource('admin-withdraw', 'WithdrawsController');
+  Route::resource('admin-transaction', 'TransactionsController');
 
   Route::resource('admin-gallery', 'AdminGallerysController');
   Route::resource('admin-collection', 'AdminCollectionsController');

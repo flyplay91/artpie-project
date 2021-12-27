@@ -34,6 +34,7 @@ class CreateAdminGallerysTable extends Migration
             $table->string('safe_children')->nullable();
             $table->integer('category_id')->nullable();
             $table->integer('artist_id')->nullable();
+            $table->integer('name')->nullable();
             $table->string('paint_date')->nullable();
             $table->string('registered_date')->nullable();
             $table->string('updated_date')->nullable();

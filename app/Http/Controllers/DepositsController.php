@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\AdminDeposits;
+use App\Deposits;
 
-class AdminDepositsController extends Controller
+class DepositsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class AdminDepositsController extends Controller
      */
     public function index()
     {
-        $deposits = AdminDeposits::all();
+        $deposits = Deposits::all();
         return view('admin.deposits.index',compact('deposits'));
     }
 

@@ -15,16 +15,14 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');
-            $table->string('user_name')->nullable();
-            $table->string('user_email')->nullable();
-            $table->string('address_1')->nullable();
-            $table->string('address_2')->nullable();
-            $table->string('address_3')->nullable();
-            $table->string('address_4')->nullable();
-            $table->string('address_5')->nullable();
-            $table->string('total_price')->nullable();
-            $table->string('status')->nullable();
+            $table->integer('user_id')->nullable();
+            $table->string('billing_email');
+            $table->string('billing_phone');
+            $table->string('billing_address');
+            $table->string('billing_name');
+            $table->text('comment')->nullable();
+            $table->float('total_price');
+            $table->enum('status', ['completed', 'pending'])->default('pending');
             $table->timestamps();
         });
     }

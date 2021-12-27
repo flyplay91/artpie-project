@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'address_1', 'address_2', 'address_3', 'address_4', 'address_5', 'investor_user',
+        'name', 'email', 'password', 'role', 'status', 'address_1', 'address_2', 'address_3', 'address_4', 'address_5'
     ];
 
     /**
@@ -38,19 +38,26 @@ class User extends Authenticatable
     ];
 
     /**
-     * checks if the user belongs to a particular group
-     * @param string|array $role
-     * @return bool
-     */
-    public function role($role) {
-        return $this->role == $role;
-    }
-
-    /**
      * checks if the user is super admin
      * @return bool
      */
     public function isSuperAdmin() {
-        return $this->role == 1;
+        return $this->role == 'admin';
+    }
+
+    /**
+     * checks if the user is investor
+     * @return bool
+     */
+    public function isInvestor() {
+        return $this->role == 'investor';
+    }
+
+    /**
+     * checks if the user is buyer
+     * @return bool
+     */
+    public function isBuyer() {
+        return $this->role == 'buyer';
     }
 }

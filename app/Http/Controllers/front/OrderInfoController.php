@@ -40,32 +40,26 @@ class OrderInfoController extends Controller
     {
 
         $request->validate([
-            'user_id'   => 'required',
-            'address_1' => 'required',
+            'billing_email' => 'required',
+            'billing_phone' => 'required',
+            'billing_address' => 'required',
+            'billing_name' => 'required',
         ]);
         
         $requestOrderData = $request->input();
         
         $orderData = [
             'user_id'   => $requestOrderData['user_id'],
-            'user_name'   => $requestOrderData['user_name'],
-            'user_email'   => $requestOrderData['user_email'],
-            'address_1'   => $requestOrderData['address_1'],
+            'billing_email' => $requestOrderData['billing_email'],
+            'billing_phone' => $requestOrderData['billing_phone'],
+            'billing_address' => $requestOrderData['billing_address'],
+            'billing_name' => $requestOrderData['billing_name'],
             'total_price' => $requestOrderData['total_price'],
             'status' => 'pending',
         ];
 
-        if (!empty($requestOrderData['address_2'])) {
-            $orderData['address_2'] = $requestOrderData['address_2'];
-        }
-        if (!empty($requestOrderData['address_3'])) {
-            $orderData['address_3'] = $requestOrderData['address_3'];
-        }
-        if (!empty($requestOrderData['address_4'])) {
-            $orderData['address_4'] = $requestOrderData['address_4'];
-        }
-        if (!empty($requestOrderData['address_5'])) {
-            $orderData['address_5'] = $requestOrderData['address_5'];
+        if (!empty($requestOrderData['user_id'])) {
+            $orderData['user_id'] = $requestOrderData['user_id'];
         }
         
         $order = new Orders($orderData);

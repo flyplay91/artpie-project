@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class ArtDescription extends Migration
+class CreateWithdrawsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class ArtDescription extends Migration
      */
     public function up()
     {
-        Schema::table('admin_artists', function (Blueprint $table) {
-            $table->string('art_description')->nullable();
+        Schema::create('withdraws', function (Blueprint $table) {
+            $table->id();
+            $table->timestamps();
         });
     }
 
@@ -25,8 +26,6 @@ class ArtDescription extends Migration
      */
     public function down()
     {
-        Schema::table('admin_artists', function (Blueprint $table) {
-            $table->dropColumn('art_description');
-        });
+        Schema::dropIfExists('withdraws');
     }
 }
