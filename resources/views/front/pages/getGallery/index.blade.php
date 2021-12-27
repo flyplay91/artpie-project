@@ -27,12 +27,15 @@
 
       <div class="get-gallery-contact mt-3">
         <form>
+          @auth
+            <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+          @endauth
           <div class="form-group mb-3">
             <div class="input-group">
               <div class="input-group-prepend">
                 <span class="input-group-text">전자우편*</span>
               </div>
-              <input type="text" value="" name="user_email" class="form-control" required>
+              <input type="text" value="" name="billing_email" class="form-control" required>
             </div>
           </div>
 
@@ -41,7 +44,7 @@
               <div class="input-group-prepend">
                 <span class="input-group-text">전화번호*</span>
               </div>
-              <input type="text" value="" name="phone_number" class="form-control" required>
+              <input type="text" value="" name="billing_phone" class="form-control" required>
             </div>
           </div>
 
@@ -50,7 +53,7 @@
               <div class="input-group-prepend">
                 <span class="input-group-text">주소*</span>
               </div>
-              <input type="text" value="" name="address_1" class="form-control" required>
+              <input type="text" value="" name="billing_address" class="form-control" required>
             </div>
           </div>
 
@@ -59,13 +62,13 @@
               <div class="input-group-prepend">
                 <span class="input-group-text">수하인 이름*</span>
               </div>
-              <input type="text" value="" name="user_name" class="form-control" required>
+              <input type="text" value="" name="billing_name" class="form-control" required>
             </div>
           </div>
 
           <div class="form-group mb-3">
             <label>설명(지불방법, 배송, 기타 요구사항을 기입하십시오.)</label>
-            <textarea name="descriptoin" rows="7" class="form-control"></textarea>
+            <textarea name="comment" rows="7" class="form-control"></textarea>
           </div>
 
           <div class="agree-check-btns flex aic jcb">
