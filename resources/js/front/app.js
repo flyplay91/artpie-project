@@ -143,12 +143,16 @@ $(document).ready(function() {
     getGalleryAjax(gallery_id, artist_id);
   });
 
+  
+
   $('body').on('click', '.bg-overlay label', function() {
     $('#mainWrapper').removeClass('active');
     $('.bg-overlay').removeClass('active');
     $('.popup-user').removeClass('active');
     $('.popup-gallery-data').removeClass('active');
   });
+
+  
 
   
   // Account page popup events
@@ -248,7 +252,9 @@ $(document).ready(function() {
     $('#mainWrapper').removeClass('active');
     $('.bg-overlay').removeClass('active');
     $('.popup-gallery-data').removeClass('active');
-  })
+  });
+
+
 });
 
 function cal_total() {
@@ -358,39 +364,41 @@ function getGalleryAjax($id, $artist_id) {
           html += '</div>';
 
           html += '<div class="gallery-data-info__bottom">';
-            html += '<div class="link-get-gallery text-right"><a href="/contact-gallery?g_id='+ key +'"><i>이 그림을 구입하려면</i></a></div>';
-
-            html += '<div class="gallery-entire-buy">';
-              html += '<div class="gallery-entire-buy-info flex aic">';
-                html += '<label>가격: </label>';
-                html += '<span>'+ parseFloat(val.g_price).toFixed(2) +' RMB</span>';
-              html += '</div>';
-              html += '<div class="gallery-entire-buy-btn">';
-                html += '<a href="/checkout?g_id='+ key +'">실물구매</a>';
-              html += '</div>';
-            html += '</div>';
-
-            html += '<div class="gallery-pieces-buy">';
-              html += '<div class="gallery-pieces-buy-info flex aic">';
-                html += '<label>수량: </label>';
-                html += '<input type="number" value="">';
-                html += '<span> /' + parseInt(val.g_pieces) + ' </span>';
-              html += '</div>';
-              html += '<div class="gallery-pieces-buy-price flex aic">';
-                html += '<label>금액: </label>';
-                html += '<span>' + parseFloat(val.g_price).toFixed(2) + ' RMB</span>';
+          if (val.g_check_pieces == 'yes') {
+            html += '<div class="gallery-pieces-buy flex aie jcb ">';
+              html += '<div class="gallery-pieces-buy-info__inner">';
+                html += '<div class="gallery-pieces-buy-info flex aic">';
+                  html += '<label>수량: </label>';
+                  html += '<input type="number" value="1" min="1" max="'+ parseInt(val.g_pieces) +'">';
+                  html += '<span> /' + parseInt(val.g_pieces) + ' </span>';
+                html += '</div>';
+                html += '<div class="gallery-pieces-buy-price flex aic">';
+                  html += '<label>금액: </label>';
+                  html += '<span><b>' + parseFloat(val.g_price / parseInt(val.g_pieces)).toFixed(2) + '</b> RMB</span>';
+                html += '</div>';
               html += '</div>';
               html += '<div class="gallery-pieces-buy-btn">';
-                html += '<a href="#">쪼각구매</a>';
+                html += '<a href="#" class="btn-grey">쪼각구매</a>';
               html += '</div>';
             html += '</div>';
+          }
+            
+
+            html += '<div class="link-get-gallery text-right"><a href="/contact-gallery?g_id='+ key +'"><i>이 그림을 구입하려면</i></a></div>';
           html += '</div>';
         html += '</div>';
       });
 
       $('.popup-gallery-data__inner').append(html);
       
-      MagicZoom.start()
+      MagicZoom.start();
+
+      var r_price = parseFloat($('.gallery-pieces-buy-price span b').text());
+      $('.gallery-pieces-buy-info input').bind('change', function (e) {
+        var qty = $('.gallery-pieces-buy-info input').val();
+        var changed_price = (qty*r_price).toFixed(2);
+        $('.gallery-pieces-buy-price span b').text(changed_price);
+      });
     }
   });
 }
