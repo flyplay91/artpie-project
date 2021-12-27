@@ -61,6 +61,7 @@ class ApiGetGalleryController extends Controller
             'g_unit'  => $galleryObj->unit,
             'same_artist_count' => $sameArtistCount,
             'g_category_name' => $catName,
+            'g_check_pieces' => $galleryObj->check_enable_pieces,
         );
 
         if (count($sameArtistsImageObj) > 0) {

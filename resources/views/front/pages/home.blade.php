@@ -92,7 +92,17 @@
       @foreach ($gallerys as $gallery)
         @if ($gallery->all_checked == 'true')
           <div class="hdrItems-list">
-            <div class="hdrItems-list__inner">
+            <div class="hdrItems-list__inner position-relative">
+              <div class="hdrItems-list__tooltip position-absolute">
+                <label>{{ $gallery->title }}</label>
+                @if (isset($artists))
+                  @foreach ($artists as $artist)
+                    @if ($artist->id == $gallery->artist_id)
+                      <span>{{ $artist->art_name }}</span>
+                    @endif
+                  @endforeach
+                @endif
+              </div>
               <a class="image-gallery" href="javascript:void(0)" data-id="{{ $gallery->id }}" data-artist-id="{{ $gallery->artist_id }}">
                 <div class="hdrItems-list__inner-overlay"></div>
                 <img src="/images/{{ $gallery->image }}">

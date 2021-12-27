@@ -2032,6 +2032,13 @@ img {
   }
 }
 
+#hdrItems {
+  opacity: 0;
+
+  &.initialized {
+    opacity: 1;
+  }
+}
 .hdrItems {
   margin-top: 50px;
 }
@@ -2042,6 +2049,25 @@ img {
 
   &:hover .hdrItems-list__inner-overlay {
     display: block;
+  }
+
+  &:hover .hdrItems-list__tooltip {
+    display: block;
+  }
+
+  .hdrItems-list__tooltip {
+    display: none;
+    background: #444;
+    border-radius: 8px;
+    bottom: 0;
+    color: white;
+    z-index: 1;
+    padding: 10px;
+
+    label {
+      margin: 0;
+      display: block;
+    }
   }
 
   .hdrItems-list__inner-overlay {
@@ -2096,11 +2122,6 @@ img {
 
       .gallery-data-info__bottom {
         margin-top: 20px;
-        
-        .gallery-entire-buy,
-        .gallery-pieces-buy {
-          display: none;
-        }
       }
 
       .gallery-number {
@@ -2218,15 +2239,16 @@ img {
       }
 
       .gallery-pieces-buy {
-        padding: 20px 10px 10px 10px;
+        margin-bottom: 100px;
+        border-bottom: solid 1px #ddd;
+        padding-bottom: 15px;
 
         label, span {
-          color: #3c5a99;
           margin: 0;
         }
 
         .gallery-pieces-buy-info {
-          margin-bottom: 10px;
+          margin-bottom: 20px;
 
           input {
             width: 80px;
@@ -2240,12 +2262,7 @@ img {
           text-align: right;
 
           a {
-            border-radius: 4px;
-            border: solid 1px #3c5a99;
-            padding: 8px 20px;
             display: inline-block;
-            color: white;
-            background-color: #3c5a99;
           }
         }
       }

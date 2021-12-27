@@ -14,6 +14,20 @@ eval(function(m,a,g,i,c,k){c=function(e){return(e<a?'':c(parseInt(e/a)))+((e=e%a
 
 var baseUrl = window.location.protocol + '//' + window.location.host + '/';
 
+/* Set vh on Safari */
+
+function resetVH() {
+  let vh = window.innerHeight * 0.01;
+  // Then we set the value in the --vh custom property to the root of the document
+  document.documentElement.style.setProperty('--vh', `${vh}px`);
+}
+
+resetVH();
+window.addEventListener('resize', () => {
+  resetVH();
+});
+
+
 $(document).ready(function() {
   if ($('#hdrItems').length > 0) {
     var macyInstance = Macy({
@@ -27,6 +41,10 @@ $(document).ready(function() {
         520: 1
       }
     });
+
+    macyInstance.on(macyInstance.constants.EVENT_IMAGE_COMPLETE, function (ctx) {
+      $('#hdrItems').addClass('initialized');
+    });
   }
 
   
@@ -34,6 +52,8 @@ $(document).ready(function() {
   $('.checkbox-some-filter').change(function() {
     if ($(this).closest('.filterItems').find('.checkbox-some-filter:checked').length > 0) {
       $(this).closest('.filterItems').find('.checkbox-any-filter').prop('checked', false);
+    } else {
+      $(this).closest('.filterItems').find('.checkbox-any-filter').prop('checked', true);
     }
   });
 
@@ -50,7 +70,6 @@ $(document).ready(function() {
 
   // Filter ajax
   $('.checkbox-filter').change(function() {
-    
     
     var category_ids_arr = [];
     var price_arr = [];
@@ -92,10 +111,11 @@ $(document).ready(function() {
 
         $.each(result.gallery_ids_images, function (key, val) {
           html += '<div class="hdrItems-list">';
-            html += '<div class="hdrItems-list__inner">';
+            html += '<div class="hdrItems-list__inner position-relative">';
+              html += '<div class="hdrItems-list__tooltip position-absolute"><label>'+ val.g_title +'</label><span>' + val.g_artist_name + '</span></div>';
               html += '<a class="image-gallery" href="javascript:void(0)" data-id="'+ key +'">';
                 html += '<div class="hdrItems-list__inner-overlay"></div>';
-                html += '<img src="/images/'+ val +'">';
+                html += '<img src="/images/'+ val.g_image +'">';
               html += '</a>';
             html += '</div>';
           html += '</div>';
@@ -125,6 +145,8 @@ $(document).ready(function() {
     getGalleryAjax(gallery_id, artist_id);
   });
 
+  
+
   $('body').on('click', '.bg-overlay label', function() {
     $('#mainWrapper').removeClass('active');
     $('.bg-overlay').removeClass('active');
@@ -132,6 +154,9 @@ $(document).ready(function() {
     $('.popup-gallery-data').removeClass('active');
   });
 
+  
+
+  
   // Account page popup events
   $('body').on('click', '.btn-user-info', function() {
     $('.popup-user--info').addClass('active');
@@ -229,7 +254,9 @@ $(document).ready(function() {
     $('#mainWrapper').removeClass('active');
     $('.bg-overlay').removeClass('active');
     $('.popup-gallery-data').removeClass('active');
-  })
+  });
+
+
 });
 
 function cal_total() {
@@ -273,7 +300,7 @@ function getGalleryAjax($id, $artist_id) {
       $.each(result.gallery_Obj, function (key, val) {
         
         html += '<div class="gallery-data-image" data-id="'+ key +'">';
-          html += `<a href="/images/${val.g_image}" class="MagicZoom" data-options="cssClass: mz-show-arrows; zoomPosition: inner;" >`;
+          html += `<a href="/images/${val.g_image}" class="MagicZoom" data-options="cssClass: mz-show-arrows; zoomPosition: inner; zoomMode:off;" >`;
             html += `<img src="/images/${val.g_image}" />`;
           html += '</a>';  
         html += '</div>';
@@ -339,39 +366,41 @@ function getGalleryAjax($id, $artist_id) {
           html += '</div>';
 
           html += '<div class="gallery-data-info__bottom">';
-            html += '<div class="link-get-gallery text-right"><a href="/contact-gallery?g_id='+ key +'"><i>이 그림을 구입하려면</i></a></div>';
-
-            html += '<div class="gallery-entire-buy">';
-              html += '<div class="gallery-entire-buy-info flex aic">';
-                html += '<label>가격: </label>';
-                html += '<span>'+ parseFloat(val.g_price).toFixed(2) +' RMB</span>';
-              html += '</div>';
-              html += '<div class="gallery-entire-buy-btn">';
-                html += '<a href="/checkout?g_id='+ key +'">실물구매</a>';
-              html += '</div>';
-            html += '</div>';
-
-            html += '<div class="gallery-pieces-buy">';
-              html += '<div class="gallery-pieces-buy-info flex aic">';
-                html += '<label>수량: </label>';
-                html += '<input type="number" value="">';
-                html += '<span> /' + parseInt(val.g_pieces) + ' </span>';
-              html += '</div>';
-              html += '<div class="gallery-pieces-buy-price flex aic">';
-                html += '<label>금액: </label>';
-                html += '<span>' + parseFloat(val.g_price).toFixed(2) + ' RMB</span>';
+          if (val.g_check_pieces == 'yes') {
+            html += '<div class="gallery-pieces-buy flex aie jcb ">';
+              html += '<div class="gallery-pieces-buy-info__inner">';
+                html += '<div class="gallery-pieces-buy-info flex aic">';
+                  html += '<label>수량: </label>';
+                  html += '<input type="number" value="1" min="1" max="'+ parseInt(val.g_pieces) +'">';
+                  html += '<span> /' + parseInt(val.g_pieces) + ' </span>';
+                html += '</div>';
+                html += '<div class="gallery-pieces-buy-price flex aic">';
+                  html += '<label>금액: </label>';
+                  html += '<span><b>' + parseFloat(val.g_price / parseInt(val.g_pieces)).toFixed(2) + '</b> RMB</span>';
+                html += '</div>';
               html += '</div>';
               html += '<div class="gallery-pieces-buy-btn">';
-                html += '<a href="#">쪼각구매</a>';
+                html += '<a href="#" class="btn-grey">쪼각구매</a>';
               html += '</div>';
             html += '</div>';
+          }
+            
+
+            html += '<div class="link-get-gallery text-right"><a href="/contact-gallery?g_id='+ key +'"><i>이 그림을 구입하려면</i></a></div>';
           html += '</div>';
         html += '</div>';
       });
 
       $('.popup-gallery-data__inner').append(html);
       
-      MagicZoom.start()
+      MagicZoom.start();
+
+      var r_price = parseFloat($('.gallery-pieces-buy-price span b').text());
+      $('.gallery-pieces-buy-info input').bind('change', function (e) {
+        var qty = $('.gallery-pieces-buy-info input').val();
+        var changed_price = (qty*r_price).toFixed(2);
+        $('.gallery-pieces-buy-price span b').text(changed_price);
+      });
     }
   });
 }
