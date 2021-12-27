@@ -125,7 +125,7 @@ $(document).ready(function() {
     getGalleryAjax(gallery_id, artist_id);
   });
 
-  $('body').on('click', '.bg-overlay label, .btn-cancel-gallery-popup', function() {
+  $('body').on('click', '.bg-overlay label', function() {
     $('#mainWrapper').removeClass('active');
     $('.bg-overlay').removeClass('active');
     $('.popup-user').removeClass('active');
@@ -278,8 +278,7 @@ function getGalleryAjax($id, $artist_id) {
             html += `<img src="/images/${val.g_image}" />`;
           html += '</a>';  
         html += '</div>';
-        html += '<div class="gallery-data-info flex flex-column jcb position-relative">';
-          html += '<a href="javascript:void(0)" class="btn-cancel-gallery-popup position-absolute">X</a>';
+        html += '<div class="gallery-data-info flex flex-column jcb">';
           html += '<div class="gallery-data-info__top">';
             html += '<label class="gallery-number">No. ' + ("0000000" + val.g_id).slice(-7) + '</label>';
 
