@@ -2,7 +2,7 @@
 @section('main-header')
 
 
-  <div class="hdrBg position-relative" data-id="<?php if(!empty($headerData)) { echo $headerData->id;} ?>" style="background-image: url(/images/<?php if(!empty($headerData)) { echo $headerData->image; } ?>)">
+  <div class="hdrBg position-relative" data-id="<?php if(!empty($headerData)) { echo $headerData->id;} ?>" style="background-image: url(<?php if(!empty($headerData)) { echo '/images/' . $headerData->image; } ?>)">
     <div class="hdrBgTint"></div>
     <div class="bHdr">
       <div class="bHdrTxt">
