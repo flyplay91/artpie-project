@@ -2130,6 +2130,9 @@ $(document).ready(function () {
         520: 1
       }
     });
+    macyInstance.on(macyInstance.constants.EVENT_IMAGE_COMPLETE, function (ctx) {
+      $('#hdrItems').addClass('initialized');
+    });
   } // Select filter options
 
 

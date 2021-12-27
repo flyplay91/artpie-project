@@ -2032,6 +2032,13 @@ img {
   }
 }
 
+#hdrItems {
+  opacity: 0;
+
+  &.initialized {
+    opacity: 1;
+  }
+}
 .hdrItems {
   margin-top: 50px;
 }

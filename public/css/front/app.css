@@ -1992,6 +1992,13 @@ img {
   border-radius: 4px;
 }
 
+#hdrItems {
+  opacity: 0;
+}
+#hdrItems.initialized {
+  opacity: 1;
+}
+
 .hdrItems {
   margin-top: 50px;
 }
