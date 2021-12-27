@@ -2445,6 +2445,7 @@ img {
   .get-gallery {
     box-shadow: none;
     margin: 0 auto;
+    padding: 20px 15px;
   }
   .get-gallery .get-gallery__inner .get-gallery-image-info {
     flex-direction: column;
@@ -2457,11 +2458,17 @@ img {
     margin: 20px 0 0 0;
     width: 100%;
   }
-  .get-gallery .get-gallery__inner .agree-check-btns {
+  .get-gallery .get-gallery__inner .get-gallery-image-info .get-gallery-info label {
+    font-size: 14px;
+  }
+  .get-gallery .get-gallery__inner .get-gallery-contact label {
+    font-size: 14px;
+  }
+  .get-gallery .get-gallery__inner .get-gallery-contact .agree-check-btns {
     flex-direction: column;
     align-items: flex-start;
   }
-  .get-gallery .get-gallery__inner .agree-check-btns .btns-save-cancel {
+  .get-gallery .get-gallery__inner .get-gallery-contact .agree-check-btns .btns-save-cancel {
     width: 100%;
   }
 }

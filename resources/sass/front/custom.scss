@@ -54,6 +54,7 @@
   .get-gallery {
     box-shadow: none;
     margin: 0 auto;
+    padding: 20px 15px;
 
     .get-gallery__inner {
       .get-gallery-image-info {
@@ -67,15 +68,25 @@
         .get-gallery-info {
           margin: 20px 0 0 0;
           width: 100%;
+
+          label {
+            font-size: 14px;
+          }
         }
       }
 
-      .agree-check-btns {
-        flex-direction: column;
-        align-items: flex-start;
+      .get-gallery-contact {
+        label {
+          font-size: 14px;
+        }
 
-        .btns-save-cancel {
-          width: 100%;
+        .agree-check-btns {
+          flex-direction: column;
+          align-items: flex-start;
+  
+          .btns-save-cancel {
+            width: 100%;
+          }
         }
       }
     }
