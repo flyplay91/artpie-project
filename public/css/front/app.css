@@ -2011,6 +2011,22 @@ img {
 .hdrItems-list__inner:hover .hdrItems-list__inner-overlay {
   display: block;
 }
+.hdrItems-list__inner:hover .hdrItems-list__tooltip {
+  display: block;
+}
+.hdrItems-list__inner .hdrItems-list__tooltip {
+  display: none;
+  background: #444;
+  border-radius: 8px;
+  bottom: 0;
+  color: white;
+  z-index: 1;
+  padding: 10px;
+}
+.hdrItems-list__inner .hdrItems-list__tooltip label {
+  margin: 0;
+  display: block;
+}
 .hdrItems-list__inner .hdrItems-list__inner-overlay {
   display: none;
   position: absolute;

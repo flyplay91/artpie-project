@@ -52,6 +52,8 @@ $(document).ready(function() {
   $('.checkbox-some-filter').change(function() {
     if ($(this).closest('.filterItems').find('.checkbox-some-filter:checked').length > 0) {
       $(this).closest('.filterItems').find('.checkbox-any-filter').prop('checked', false);
+    } else {
+      $(this).closest('.filterItems').find('.checkbox-any-filter').prop('checked', true);
     }
   });
 
@@ -68,7 +70,6 @@ $(document).ready(function() {
 
   // Filter ajax
   $('.checkbox-filter').change(function() {
-    
     
     var category_ids_arr = [];
     var price_arr = [];
@@ -110,10 +111,11 @@ $(document).ready(function() {
 
         $.each(result.gallery_ids_images, function (key, val) {
           html += '<div class="hdrItems-list">';
-            html += '<div class="hdrItems-list__inner">';
+            html += '<div class="hdrItems-list__inner position-relative">';
+              html += '<div class="hdrItems-list__tooltip position-absolute"><label>'+ val.g_title +'</label><span>' + val.g_artist_name + '</span></div>';
               html += '<a class="image-gallery" href="javascript:void(0)" data-id="'+ key +'">';
                 html += '<div class="hdrItems-list__inner-overlay"></div>';
-                html += '<img src="/images/'+ val +'">';
+                html += '<img src="/images/'+ val.g_image +'">';
               html += '</a>';
             html += '</div>';
           html += '</div>';
