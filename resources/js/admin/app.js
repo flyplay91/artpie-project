@@ -125,7 +125,9 @@ $(document).ready(function() {
     },
     success: function(result) {
       var hide_add_more = false;
-      
+      if ((result != '') && (result.collection_ids[0] == 'any')) {
+        hide_add_more = true;
+      }
       if (typeof result.collection_ids != 'undefined') {
         var coll_count = result.collection_ids.length;
       }
