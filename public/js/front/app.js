@@ -2187,7 +2187,7 @@ $(document).ready(function () {
           html += '<div class="hdrItems-list">';
           html += '<div class="hdrItems-list__inner position-relative">';
           html += '<div class="hdrItems-list__tooltip position-absolute"><label>' + val.g_title + '</label><span>' + val.g_artist_name + '</span></div>';
-          html += '<a class="image-gallery" href="javascript:void(0)" data-id="' + key + '">';
+          html += '<a class="image-gallery" href="javascript:void(0)" data-id="' + key + '" data-artist-id="' + val.g_artist_id + '">';
           html += '<div class="hdrItems-list__inner-overlay"></div>';
           html += '<img src="/images/' + val.g_image + '">';
           html += '</a>';
