@@ -27,6 +27,7 @@ window.addEventListener('resize', () => {
   resetVH();
 });
 
+var galleryAjax = {};
 
 $(document).ready(function() {
   if ($('#hdrItems').length > 0) {
@@ -135,6 +136,9 @@ $(document).ready(function() {
     var gallery_id = $(this).data('id');
     var artist_id = $(this).data('artist-id');
     getGalleryAjax(gallery_id, artist_id);
+  }).on('dblclick', '.image-gallery', function(e) {
+    e.preventDefault();
+    return false;
   });
 
   $('body').on('click', '.bg-overlay label', function() {
@@ -354,16 +358,20 @@ function cal_total() {
   }
 }
 
-function getGalleryAjax($id, $artist_id) {
-  $.ajax({
+function getGalleryAjax(id, artist_id) {
+  if (galleryAjax[id]) {
+    return;
+  }
+
+  galleryAjax = $.ajax({
     url: "/api/api-get-gallery",
     method: "post",
       beforeSend: function(){
         $(".popup-gallery-data__inner").empty();
       },
     data: {
-      artist_id: $artist_id,
-      gallery_id: $id,
+      artist_id: artist_id,
+      gallery_id: id
     },
     success: function(result) {
       $('#mainWrapper').addClass('active');
@@ -479,6 +487,11 @@ function getGalleryAjax($id, $artist_id) {
         var changed_price = (qty*r_price).toFixed(2);
         $('.gallery-pieces-buy-price span b').text(changed_price);
       });
+    },
+    complete: function() {
+      if (galleryAjax[id]) {
+        delete galleryAjax[id];
+      }
     }
   });
 }

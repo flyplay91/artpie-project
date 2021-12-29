@@ -40,7 +40,7 @@ class ApiSelectGallerysController extends Controller
                         $galleryObjs = $galleryObjs->whereBetween('retail_price',[$minPrice, $maxPrice]);        
                     }
                 }
-                var_dump($minPrice .'=>'. $maxPrice);exit;
+                var_dump($minPrice .'=>'. $maxPrice);
             }
         }
         
