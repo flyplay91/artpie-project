@@ -526,6 +526,12 @@ img {
   position: relative;
   padding-top: 10px;
 }
+.ad-gallerys__lists .ad-gallerys-items #adGallerysItems {
+  opacity: 0;
+}
+.ad-gallerys__lists .ad-gallerys-items #adGallerysItems.initialized {
+  opacity: 1;
+}
 .ad-gallerys__lists .ad-gallerys-items .hdrItems-list.hdrItems-list--addmore {
   display: none;
 }

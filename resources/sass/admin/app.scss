@@ -576,6 +576,13 @@ img {
     position: relative;
     padding-top: 10px;
 
+    #adGallerysItems {
+      opacity: 0;
+      &.initialized {
+        opacity: 1;
+      }
+    }
+
     .hdrItems-list {
       &.hdrItems-list--addmore {
         display: none;

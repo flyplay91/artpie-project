@@ -18,6 +18,9 @@ $(document).ready(function () {
         400: 1
       }
     });
+    macyInstance.on(macyInstance.constants.EVENT_IMAGE_COMPLETE, function (ctx) {
+      $('#adGallerysItems').addClass('initialized');
+    });
   } // Date Picker
 
 
