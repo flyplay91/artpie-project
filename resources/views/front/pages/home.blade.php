@@ -68,13 +68,13 @@
     </div>
   </div>
 
-  <div id="hdrItems" class="w-75">
-    @auth
+  @auth
     <input type="hidden" class="logged-user" value="1">
-    @else
+  @else
     <input type="hidden" class="logged-user" value="0">
-    @endauth
+  @endauth
 
+  <div id="hdrItems" class="w-75">
     
     @if (isset($gallerys))
       @foreach ($gallerys as $gallery)
