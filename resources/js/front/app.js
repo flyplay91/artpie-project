@@ -139,7 +139,8 @@ $(document).ready(function() {
   });
 
   // Open gallery popup & get data
-  $('body').on('click', '.image-gallery', function() {
+  $('body').on('click', '.image-gallery', function(evt) {
+    evt.preventDefault();
     var gallery_id = $(this).data('id');
     var artist_id = $(this).data('artist-id');
     getGalleryAjax(gallery_id, artist_id);
