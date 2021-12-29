@@ -14,6 +14,9 @@ class AddForeignKeyToGalleryFragments extends Migration
     public function up()
     {
         Schema::table('gallery_fragments', function (Blueprint $table) {
+            $table->unsignedBigInteger('user_id')->change();
+            $table->unsignedBigInteger('gallery_id')->change();
+            $table->unsignedInteger('piece_count')->change();
             $table->foreign('gallery_id')->references('id')->on('admin_gallerys');
         });
     }

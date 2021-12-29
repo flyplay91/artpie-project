@@ -15,9 +15,9 @@ class CreateGalleryFragmentsTable extends Migration
     {
         Schema::create('gallery_fragments', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('gallery_id');
-            $table->unsignedInteger('piece_count');
+            $table->integer('user_id');
+            $table->integer('gallery_id');
+            $table->integer('piece_count');
             $table->float('buy_price');
             $table->float('sell_price');
             $table->timestamps();
