@@ -61,35 +61,33 @@
                   <div class="form-group w-30">
                     <label>서명?</label>
                     <select class="browser-default custom-select" name="sign">
-                      <option selected value="{{ $gallery->sign }}">{{ $gallery->sign }}</option>
-                      <option value="signed">예</option>
-                      <option value="unsigned">아니</option>
+                      <option value="signed" @if ($gallery->sign == 'signed') selected @endif>예</option>
+                      <option value="unsigned" @if ($gallery->sign == 'unsigned') selected @endif>아니</option>
                     </select>
                   </div>
                   <div class="form-group w-30">
                     <label>액틀?</label>
                     <select class="browser-default custom-select" name="frame">
-                      <option selected value="{{ $gallery->frame }}">{{ $gallery->frame }}</option>
-                      <option value="framed">예</option>
-                      <option value="unframed">아니</option>
+                      <option value="framed" @if ($gallery->frame == 'framed') selected @endif>예</option>
+                      <option value="unframed" @if ($gallery->frame == 'unframed') selected @endif>아니</option>
                     </select>
                   </div>
                   <div class="form-group w-10">
-                    <label>길이</label>
+                    <label>너비</label>
                     <input type="text" value="{{ $gallery->width }}" name="width" class="form-control">
                   </div>
                   <div class="form-group w-5">
                     <label>X</label>
                   </div>
                   <div class="form-group w-10">
-                    <label>너비</label>
+                    <label>높이</label>
                     <input type="text" value="{{ $gallery->height }}" name="height" class="form-control">
                   </div>
                   
                   <div class="form-group w-10">
                     <label for="usr">단위</label>
                     <select class="browser-default custom-select" name="unit">
-                      <option selected value="{{ $gallery->unit ? $gallery->unit : 'cm' }}">{{ $gallery->unit ? $gallery->unit : 'Cm' }}</option>
+                      <option selected value="{{ $gallery->unit ? $gallery->unit : 'cm' }}">{{ $gallery->unit ? $gallery->unit : 'cm' }}</option>
                       
                     </select>
                   </div>
@@ -97,11 +95,11 @@
 
                 <div class="flex aic jcb mb-3">
                   <div class="form-group w-30">
-                    <label>실지 가격</label>
+                    <label>구입가격</label>
                     <input type="text" value="{{ $gallery->actual_price }}" name="actual_price" class="form-control">
                   </div>
                   <div class="form-group w-30">
-                    <label>초기 가격</label>
+                    <label>판매가격</label>
                     <input type="text" value="{{ $gallery->retail_price }}" name="retail_price" class="form-control">
                   </div>
 

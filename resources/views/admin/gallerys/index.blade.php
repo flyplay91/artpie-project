@@ -38,7 +38,16 @@
       <div class="boxCtnt">
         @if (isset($collections))
           <label class="chkBox2">
-            <input type="checkbox" class="checkbox-filter-coll checkbox-all-colls" data-id="any"  @if (!session('success'))checked="checked" @endif>Any
+            @if (!session('success'))
+            <input type="checkbox" class="checkbox-filter-coll checkbox-all-colls" data-id="any" checked="checked">Any
+            @else
+              @if ((session('success') == 'any'))
+              <input type="checkbox" class="checkbox-filter-coll checkbox-all-colls" data-id="any" checked="checked">Any
+              @else
+              <input type="checkbox" class="checkbox-filter-coll checkbox-all-colls" data-id="any">Any
+              @endif
+            @endif
+
             <div class="chkBox2_box"></div>
           </label>
           @foreach ($collections as $collection)

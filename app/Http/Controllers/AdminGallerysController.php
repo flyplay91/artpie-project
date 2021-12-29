@@ -163,7 +163,7 @@ class AdminGallerysController extends Controller
         $gallery->update($data);
         
         return redirect()->route('admin-gallery.index')
-                        ->with('success','Product updated successfully');
+                        ->with('success','any');
     }
 
     /**
