@@ -29,18 +29,23 @@ class ApiSearchGallerysController extends Controller
             }
         }
         
+        $minPrice = '';
+        $maxPrice = '';
         if (!empty($selectedPrices)) {
             if (!in_array('any', $selectedPrices)) {
-                foreach($selectedPrices as $selectedPrice) {
-                    $splitedPrice = explode('_', $selectedPrice);
-                    $minPrice = $splitedPrice[0];
-                    $maxPrice = $splitedPrice[1];
-                    if ($maxPrice == 'max') {
-                        $galleryObjs = $galleryObjs->where('retail_price', '>=', $minPrice);        
-                    } else {
-                        $galleryObjs = $galleryObjs->whereBetween('retail_price',[$minPrice, $maxPrice]);        
+                $galleryObjs = $galleryObjs->where(function($query) use ($galleryObjs, $selectedPrices) {
+                    foreach($selectedPrices as $selectedPrice) {
+                        $splitedPrice = explode('_', $selectedPrice);
+                        $minPrice = $splitedPrice[0];
+                        $maxPrice = $splitedPrice[1];
+
+                        if ($maxPrice == 'max') {
+                            $galleryObjs = $galleryObjs->orWhere('retail_price', '>=', $minPrice);        
+                        } else {
+                            $galleryObjs = $galleryObjs->orWhereBetween('retail_price',[$minPrice, $maxPrice]);        
+                        }
                     }
-                }
+                });
             }
         }
 
