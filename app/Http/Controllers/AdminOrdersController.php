@@ -16,8 +16,7 @@ class AdminOrdersController extends Controller
     public function index()
     {
         $orders = Orders::all();
-        $orderLineItems = OrderLineItems::all();
-        return view('admin.orders.index', compact('orders', 'orderLineItems'));
+        return view('admin.orders.index', compact('orders'));
     }
 
     /**

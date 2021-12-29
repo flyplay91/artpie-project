@@ -478,6 +478,15 @@ function getGalleryAjax(id, artist_id) {
       });
 
       $('.popup-gallery-data__inner').append(html);
+
+      var popup_gallery_width = $('.popup-gallery-data').width();
+      var popup_gallery_height = $('.popup-gallery-data').height();
+      var gallery_image_width = $('.gallery-data-image').width();
+      var gallery_image_height = $('.gallery-data-image').height();
+
+      if (gallery_image_height > popup_gallery_height) {
+        $('.gallery-data-image img').height(popup_gallery_height - 60);
+      }
       
       MagicZoom.start();
 
