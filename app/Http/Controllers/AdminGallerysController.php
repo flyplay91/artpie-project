@@ -47,6 +47,7 @@ class AdminGallerysController extends Controller
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
             'coll_id'  => 'required',
         ]);
+        $collId = $request->coll_id;
 
         $gallerys = new AdminGallerys($request->input()) ;
 
@@ -66,7 +67,7 @@ class AdminGallerysController extends Controller
         }
    
         return redirect()->route('admin-gallery.index')
-                        ->with('success','Product created successfully.');
+                        ->with('success',$collId);
     }
 
     /**
