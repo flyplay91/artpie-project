@@ -69,6 +69,13 @@
   </div>
 
   <div id="hdrItems" class="w-75">
+    @auth
+    <input type="hidden" class="logged-user" value="1">
+    @else
+    <input type="hidden" class="logged-user" value="0">
+    @endauth
+
+    
     @if (isset($gallerys))
       @foreach ($gallerys as $gallery)
         @if ($gallery->all_checked == 'true')

@@ -444,7 +444,7 @@ function getGalleryAjax($id, $artist_id) {
           html += '</div>';
 
           html += '<div class="gallery-data-info__bottom">';
-          if (val.g_check_pieces == 'yes') {
+          if ((val.g_check_pieces == 'yes') && ($('.logged-user').val() == 1)) {
             html += '<div class="gallery-pieces-buy flex aie jcb ">';
               html += '<div class="gallery-pieces-buy-info__inner">';
                 html += '<div class="gallery-pieces-buy-info flex aic">';
