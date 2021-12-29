@@ -7,6 +7,7 @@ use App\AdminGallerys;
 use App\AdminArtists;
 use App\AdminCategories;
 use DB;
+use App\User;
 
 class ApiGetGalleryController extends Controller
 {

@@ -38,12 +38,21 @@
       <div class="boxCtnt">
         @if (isset($collections))
           <label class="chkBox2">
+            @if (!session('success'))
             <input type="checkbox" class="checkbox-filter-coll checkbox-all-colls" data-id="any" checked="checked">Any
+            @else
+              @if ((session('success') == 'any'))
+              <input type="checkbox" class="checkbox-filter-coll checkbox-all-colls" data-id="any" checked="checked">Any
+              @else
+              <input type="checkbox" class="checkbox-filter-coll checkbox-all-colls" data-id="any">Any
+              @endif
+            @endif
+
             <div class="chkBox2_box"></div>
           </label>
           @foreach ($collections as $collection)
             <label class="chkBox2">
-              <input type="checkbox" class="checkbox-filter-coll checkbox-coll" value="{{ $collection->coll_name }}" data-id="{{ $collection->id }}" tabindex="-1">{{ $collection->coll_name }}
+              <input type="checkbox" class="checkbox-filter-coll checkbox-coll" value="{{ $collection->coll_name }}" data-id="{{ $collection->id }}" tabindex="-1" @if (session('success') && (session('success') == $collection->id))  checked="checked" @endif>{{ $collection->coll_name }}
               <div class="chkBox2_box"></div>
             </label>
           @endforeach

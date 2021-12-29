@@ -1,29 +1,44 @@
 <?php
 
-namespace App\Http\Controllers\front;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\AdminGallerys;
-use App\AdminCategories;
-use App\AdminHeaderData;
-use App\AdminArtists;
+use App\Orders;
+use DB;
 
-class GallerysController extends Controller
+class ApiBillingController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $gallerys = AdminGallerys::orderBy('updated_at', 'desc')->get();
-        $categories = AdminCategories::all();
-        $artists = AdminArtists::all();
-        $headerdata = AdminHeaderData::latest('id')->first();
+        $userId = $request->user_id;
+        $totalPrice = $request->total_price;
+        $billingEmail = $request->billing_email;
+        $billingPhone = $request->billing_phone;
+        $billingAddress = $request->billing_address;
+        $billingName = $request->billing_name;
+        $billingComment = $request->billing_comment;
+
+        $billingObjs = array('user_id' => $userId, 'billing_email' => $billingEmail, 'billing_phone' => $billingPhone, 'billing_address' => $billingAddress, 'billing_name' => $billingName, 'total_price' => $totalPrice, 'total_price' => $totalPrice, 'status' => 'pending', 'created_at' =>  \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now());
         
-        return view('front.pages.home',compact('gallerys', 'categories', 'headerdata', 'artists'));
+        DB::table('orders')->insert($billingObjs);
+
+        try {
+			return response()->json([
+			    'success' => 'ok',
+			]);
+		} catch (Exception $e) {
+		    echo 'Caught exception: '. $e->getMessage() ."\n";
+
+		    return response()->json([
+			    'failed' => '1',
+			    'error_message' => $e->getMessage(),
+			]);
+		}
     }
 
     /**

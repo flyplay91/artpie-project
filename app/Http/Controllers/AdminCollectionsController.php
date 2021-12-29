@@ -42,10 +42,10 @@ class AdminCollectionsController extends Controller
         
         $collection = new AdminCollections($request->input()) ;
         $collection->save();
-        $coll_name = $collection->coll_name;
+        $collId = $collection->id;
         
         return redirect()->route('admin-gallery.index')
-                        ->with('success', $coll_name);
+                        ->with('success', $collId);
     }
 
     /**

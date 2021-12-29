@@ -31,12 +31,6 @@
   }
 
   .popup-gallery-data {
-    top: 50%;
-    transform: translate(-50%, -50%);
-    max-width: 90%;
-    max-height: calc(var(--vh, 1vh) * 85);
-    overflow: auto;
-    margin-top: calc(var(--vh, 1vh) * 2);
 
     .popup-gallery-data__inner {
       flex-direction: column;

@@ -17,7 +17,6 @@ class ApiSelectGallerysController extends Controller
     {
         $selectedCatIds = $request->selected_cat_ids;
         $selectedPrices = $request->selected_price;
-        $selectedSizes = $request->selected_size;
 
         $galleryObjs = DB::table('admin_gallerys');
         
@@ -26,35 +25,25 @@ class ApiSelectGallerysController extends Controller
                 $galleryObjs = $galleryObjs->whereIn('category_id',$selectedCatIds);
             }
         }
+
+        $minPrice = '';
+        $maxPrice = '';
         
         if (!empty($selectedPrices)) {
             if (!in_array('any', $selectedPrices)) {
-                foreach($selectedPrices as $selectedPrice) {
-                    $splitedPrice = explode('_', $selectedPrice);
-                    $minPrice = $splitedPrice[0];
-                    $maxPrice = $splitedPrice[1];
-                    if ($maxPrice == 'max') {
-                        $galleryObjs = $galleryObjs->where('retail_price', '>=', $minPrice);        
-                    } else {
-                        $galleryObjs = $galleryObjs->whereBetween('retail_price',[$minPrice, $maxPrice]);        
-                    }
-                }
-            }
-        }
+                $galleryObjs = $galleryObjs->where(function($query) use ($galleryObjs, $selectedPrices) {
+                    foreach($selectedPrices as $selectedPrice) {
+                        $splitedPrice = explode('_', $selectedPrice);
+                        $minPrice = $splitedPrice[0];
+                        $maxPrice = $splitedPrice[1];
 
-        if (!empty($selectedSizes)) {
-            if (!in_array('any', $selectedSizes)) {
-                foreach($selectedSizes as $selectedSize) {
-                    $splitedSize = explode('_', $selectedSize);
-                    $minSize = $splitedSize[0];
-                    $maxSize = $splitedSize[1];
-                    
-                    if ($maxSize == 'max') {
-                        $galleryObjs = $galleryObjs->where('size', '>=', $minSize);        
-                    } else {
-                        $galleryObjs = $galleryObjs->whereBetween('size',[$minSize, $maxSize]);        
+                        if ($maxPrice == 'max') {
+                            $galleryObjs = $galleryObjs->orWhere('retail_price', '>=', $minPrice);        
+                        } else {
+                            $galleryObjs = $galleryObjs->orWhereBetween('retail_price',[$minPrice, $maxPrice]);        
+                        }
                     }
-                }
+                });
             }
         }
         

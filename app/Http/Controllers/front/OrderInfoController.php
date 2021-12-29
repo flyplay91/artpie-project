@@ -38,7 +38,6 @@ class OrderInfoController extends Controller
      */
     public function store(Request $request)
     {
-
         $request->validate([
             'billing_email' => 'required',
             'billing_phone' => 'required',
@@ -81,8 +80,8 @@ class OrderInfoController extends Controller
             $lineItem->save();
         }
 
-        Session::forget('cart');
-        Session::save();
+        // Session::forget('cart');
+        // Session::save();
         
         return redirect()->action('front\GallerysController@index')
                         ->with('success', 'Order is made successfully');

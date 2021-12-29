@@ -26,16 +26,17 @@
       </div>
 
       <div class="get-gallery-contact mt-3">
-        <form>
+        
           @auth
-            <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+            <input type="hidden" name="user_id" class="user-id" value="{{ Auth::user()->id }}">
           @endauth
+          <input type="hidden" name="total_price" class="total-price" value="{{ $gallery->retail_price }}">
           <div class="form-group mb-3">
             <div class="input-group">
               <div class="input-group-prepend">
                 <span class="input-group-text">전자우편*</span>
               </div>
-              <input type="text" value="" name="billing_email" class="form-control" required>
+              <input type="text" value="" name="billing_email" class="form-control billing-email" required>
             </div>
           </div>
 
@@ -44,7 +45,7 @@
               <div class="input-group-prepend">
                 <span class="input-group-text">전화번호*</span>
               </div>
-              <input type="text" value="" name="billing_phone" class="form-control" required>
+              <input type="text" value="" name="billing_phone" class="form-control billing-phone" required>
             </div>
           </div>
 
@@ -53,7 +54,7 @@
               <div class="input-group-prepend">
                 <span class="input-group-text">주소*</span>
               </div>
-              <input type="text" value="" name="billing_address" class="form-control" required>
+              <input type="text" value="" name="billing_address" class="form-control billing-address" required>
             </div>
           </div>
 
@@ -62,29 +63,29 @@
               <div class="input-group-prepend">
                 <span class="input-group-text">수하인 이름*</span>
               </div>
-              <input type="text" value="" name="billing_name" class="form-control" required>
+              <input type="text" value="" name="billing_name" class="form-control billing-name" required>
             </div>
           </div>
 
           <div class="form-group mb-3">
             <label>설명(지불방법, 배송, 기타 요구사항을 기입하십시오.)</label>
-            <textarea name="comment" rows="7" class="form-control"></textarea>
+            <textarea name="comment" rows="7" class="form-control billing-comment"></textarea>
           </div>
 
           <div class="agree-check-btns flex aic jcb">
             <div class="boxCtnt">
               <label class="chkBox2">
-                <input type="checkbox" class="" value=""><a href="/contract"><i>사용계약(환불정책)</i></a>에 동의합니다.
+                <input type="checkbox" class="check-billing-info" name="check_billing_info"><a href="/contract"><i>사용계약(환불정책)</i></a>에 동의합니다.
                 <div class="chkBox2_box"></div>
               </label>
             </div>
 
             <div class="btns-save-cancel text-right">
-              <button type="submit" class="btn-grey btn-save">구입요청 보내기</button>
-              <a href="" class="btn-grey btn-cancel">취소</a>
+              <a href="javascript:void(0)" class="btn-grey btn-save">구입요청 보내기</a>
+              <a href="javascript:void(0)" class="btn-grey btn-cancel">취소</a>
             </div>
           </div>
-        </form>
+        
       </div>
     </div>
   </div>

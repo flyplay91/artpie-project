@@ -27,6 +27,7 @@ window.addEventListener('resize', () => {
   resetVH();
 });
 
+var galleryAjax = {};
 
 $(document).ready(function() {
   if ($('#hdrItems').length > 0) {
@@ -70,10 +71,8 @@ $(document).ready(function() {
 
   // Filter ajax
   $('.checkbox-filter').change(function() {
-    
     var category_ids_arr = [];
     var price_arr = [];
-    var size_arr = [];
 
     $('.hdrItem--category .chkBox2').each(function() {
       if ($(this).find('.checkbox-filter:checked').length > 0) {
@@ -87,12 +86,6 @@ $(document).ready(function() {
         price_arr.push(selected_price);
       }
     });
-    $('.hdrItem--size .chkBox2').each(function() {
-      if ($(this).find('.checkbox-filter:checked').length > 0) {
-        var selected_size = $(this).find('.checkbox-filter:checked').val();
-        size_arr.push(selected_size);
-      }
-    });
 
     $.ajax({
       url: "/api/api-select-gallerys",
@@ -103,7 +96,6 @@ $(document).ready(function() {
       data: {
         selected_cat_ids: category_ids_arr,
         selected_price: price_arr,
-        selected_size: size_arr,
       },
       
       success: function(result) {
@@ -139,10 +131,14 @@ $(document).ready(function() {
   });
 
   // Open gallery popup & get data
-  $('body').on('click', '.image-gallery', function() {
+  $('body').on('click', '.image-gallery', function(evt) {
+    evt.preventDefault();
     var gallery_id = $(this).data('id');
     var artist_id = $(this).data('artist-id');
     getGalleryAjax(gallery_id, artist_id);
+  }).on('dblclick', '.image-gallery', function(e) {
+    e.preventDefault();
+    return false;
   });
 
   $('body').on('click', '.bg-overlay label', function() {
@@ -241,8 +237,7 @@ $(document).ready(function() {
 
   // Gallery popup click event 
   $('body').on('click', function(evt) {
-    if ($(evt.target).hasClass('popup-gallery-data') ||
-      $(evt.target).closest('.popup-gallery-data').length > 0) {
+    if ($(evt.target).hasClass('popup-gallery-data') || $(evt.target).closest('.popup-gallery-data').length > 0 || $(evt.target).hasClass('mz-expand') || $(evt.target).closest('.mz-expand').length > 0) {
         return;
     }
 
@@ -254,8 +249,8 @@ $(document).ready(function() {
   $('body').on('click', '.gallery-search a', function() {
     var category_ids_arr = [];
     var price_arr = [];
-    var size_arr = [];
     var search_val = $('.gallery-search input').val();
+
     $('.hdrItem--category .chkBox2').each(function() {
       if ($(this).find('.checkbox-filter:checked').length > 0) {
         var selected_cat_id = $(this).find('.checkbox-filter:checked').val();
@@ -268,13 +263,7 @@ $(document).ready(function() {
         price_arr.push(selected_price);
       }
     });
-    $('.hdrItem--size .chkBox2').each(function() {
-      if ($(this).find('.checkbox-filter:checked').length > 0) {
-        var selected_size = $(this).find('.checkbox-filter:checked').val();
-        size_arr.push(selected_size);
-      }
-    });
-
+    
     if (search_val != '') {
       $.ajax({
         url: "/api/api-search-gallerys",
@@ -285,7 +274,6 @@ $(document).ready(function() {
         data: {
           selected_cat_ids: category_ids_arr,
           selected_price: price_arr,
-          selected_size: size_arr,
           selected_search_val: search_val,
         },
         success: function(result) {
@@ -312,6 +300,45 @@ $(document).ready(function() {
     }
   });
 
+  // Contact gallery page
+  $('body').on('click', '.get-gallery-contact .btn-save', function() {
+    var user_id = $('.user-id').val();
+    var total_price = $('.total-price').val();
+    var billing_email = $('.billing-email').val();
+    var billing_phone = $('.billing-phone').val();
+    var billing_address = $('.billing-address').val();
+    var billing_name = $('.billing-name').val();
+    var billing_comment = $('.billing-comment').val();
+
+    if (billing_email == '' || billing_phone == '' || billing_address == '' || billing_name == '') {
+      alert('아래의 정보들을 입력하십시오.');
+    }
+
+    if ($('.check-billing-info').is(':checked')) {
+      $.ajax({
+        url: "/api/api-billing",
+        method: "post",
+        data: {
+          user_id: user_id,
+          total_price: total_price,
+          billing_email: billing_email,
+          billing_phone: billing_phone,
+          billing_address: billing_address,
+          billing_name: billing_name,
+          billing_comment: billing_comment,
+        },
+        success: function(result) {
+          if (result.success == 'ok') {
+            $('.get-gallery').empty();
+            $('.get-gallery').append('<h3>감사합니다. 인차 련락하겠습니다.</h3>')
+          }
+        }
+      });
+    } else {
+      alert('사용계약에 동의하십시오.');
+    }
+  });
+
 });
 
 function cal_total() {
@@ -331,16 +358,20 @@ function cal_total() {
   }
 }
 
-function getGalleryAjax($id, $artist_id) {
-  $.ajax({
+function getGalleryAjax(id, artist_id) {
+  if (galleryAjax[id]) {
+    return;
+  }
+
+  galleryAjax[id] = $.ajax({
     url: "/api/api-get-gallery",
     method: "post",
       beforeSend: function(){
         $(".popup-gallery-data__inner").empty();
       },
     data: {
-      artist_id: $artist_id,
-      gallery_id: $id,
+      artist_id: artist_id,
+      gallery_id: id
     },
     success: function(result) {
       $('#mainWrapper').addClass('active');
@@ -421,7 +452,7 @@ function getGalleryAjax($id, $artist_id) {
           html += '</div>';
 
           html += '<div class="gallery-data-info__bottom">';
-          if (val.g_check_pieces == 'yes') {
+          if ((val.g_check_pieces == 'yes') && ($('.logged-user').val() == 1)) {
             html += '<div class="gallery-pieces-buy flex aie jcb ">';
               html += '<div class="gallery-pieces-buy-info__inner">';
                 html += '<div class="gallery-pieces-buy-info flex aic">';
@@ -456,6 +487,11 @@ function getGalleryAjax($id, $artist_id) {
         var changed_price = (qty*r_price).toFixed(2);
         $('.gallery-pieces-buy-price span b').text(changed_price);
       });
+    },
+    complete: function() {
+      if (galleryAjax[id]) {
+        delete galleryAjax[id];
+      }
     }
   });
 }

@@ -63,31 +63,19 @@
             <div class="chkBox2_box"></div>
           </label>
         </div>
-        <div class="filterItems hdrItem--size boxCtnt">
-          <span class="fTtl">크기</span>
-          <label class="chkBox2">
-            <input type="checkbox" class="checkbox-filter checkbox-any-filter" value="any" checked="checked"> Any
-            <div class="chkBox2_box"></div>
-          </label>
-          <label class="chkBox2">
-            <input type="checkbox" class="checkbox-filter checkbox-some-filter" value="1_15">Small(up to 15")
-            <div class="chkBox2_box"></div>
-          </label>
-          <label class="chkBox2">
-            <input type="checkbox" class="checkbox-filter checkbox-some-filter" value="16_30">Medium(up to 30")
-            <div class="chkBox2_box"></div>
-          </label>
-          <label class="chkBox2">
-            <input type="checkbox" class="checkbox-filter checkbox-some-filter" value="31_max">Large(more than 31")
-            <div class="chkBox2_box"></div>
-          </label>
-        </div>
       </div>
 
     </div>
   </div>
 
   <div id="hdrItems" class="w-75">
+    @auth
+    <input type="hidden" class="logged-user" value="1">
+    @else
+    <input type="hidden" class="logged-user" value="0">
+    @endauth
+
+    
     @if (isset($gallerys))
       @foreach ($gallerys as $gallery)
         @if ($gallery->all_checked == 'true')
