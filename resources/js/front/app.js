@@ -70,10 +70,8 @@ $(document).ready(function() {
 
   // Filter ajax
   $('.checkbox-filter').change(function() {
-    
     var category_ids_arr = [];
     var price_arr = [];
-    var size_arr = [];
 
     $('.hdrItem--category .chkBox2').each(function() {
       if ($(this).find('.checkbox-filter:checked').length > 0) {
@@ -87,12 +85,6 @@ $(document).ready(function() {
         price_arr.push(selected_price);
       }
     });
-    $('.hdrItem--size .chkBox2').each(function() {
-      if ($(this).find('.checkbox-filter:checked').length > 0) {
-        var selected_size = $(this).find('.checkbox-filter:checked').val();
-        size_arr.push(selected_size);
-      }
-    });
 
     $.ajax({
       url: "/api/api-select-gallerys",
@@ -103,7 +95,6 @@ $(document).ready(function() {
       data: {
         selected_cat_ids: category_ids_arr,
         selected_price: price_arr,
-        selected_size: size_arr,
       },
       
       success: function(result) {
@@ -254,8 +245,8 @@ $(document).ready(function() {
   $('body').on('click', '.gallery-search a', function() {
     var category_ids_arr = [];
     var price_arr = [];
-    var size_arr = [];
     var search_val = $('.gallery-search input').val();
+    
     $('.hdrItem--category .chkBox2').each(function() {
       if ($(this).find('.checkbox-filter:checked').length > 0) {
         var selected_cat_id = $(this).find('.checkbox-filter:checked').val();
@@ -268,13 +259,7 @@ $(document).ready(function() {
         price_arr.push(selected_price);
       }
     });
-    $('.hdrItem--size .chkBox2').each(function() {
-      if ($(this).find('.checkbox-filter:checked').length > 0) {
-        var selected_size = $(this).find('.checkbox-filter:checked').val();
-        size_arr.push(selected_size);
-      }
-    });
-
+    
     if (search_val != '') {
       $.ajax({
         url: "/api/api-search-gallerys",
@@ -285,7 +270,6 @@ $(document).ready(function() {
         data: {
           selected_cat_ids: category_ids_arr,
           selected_price: price_arr,
-          selected_size: size_arr,
           selected_search_val: search_val,
         },
         success: function(result) {

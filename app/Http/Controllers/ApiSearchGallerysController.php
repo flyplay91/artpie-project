@@ -18,7 +18,6 @@ class ApiSearchGallerysController extends Controller
     {
         $selectedCatIds = $request->selected_cat_ids;
         $selectedPrices = $request->selected_price;
-        $selectedSizes = $request->selected_size;
         $selectedValue = $request->selected_search_val;
 
         $galleryObjs = DB::table('admin_gallerys');
@@ -45,22 +44,6 @@ class ApiSearchGallerysController extends Controller
             }
         }
 
-        if (!empty($selectedSizes)) {
-            if (!in_array('any', $selectedSizes)) {
-                foreach($selectedSizes as $selectedSize) {
-                    $splitedSize = explode('_', $selectedSize);
-                    $minSize = $splitedSize[0];
-                    $maxSize = $splitedSize[1];
-                    
-                    if ($maxSize == 'max') {
-                        $galleryObjs = $galleryObjs->where('size', '>=', $minSize);        
-                    } else {
-                        $galleryObjs = $galleryObjs->whereBetween('size',[$minSize, $maxSize]);        
-                    }
-                }
-            }
-        }
-        
         $galleryObjs = $galleryObjs->where('all_checked', 'true')
                                     ->where('title', 'like', '%' . $selectedValue . '%')
                                     ->orWhere('artist_name', 'like', '%' . $selectedValue . '%')

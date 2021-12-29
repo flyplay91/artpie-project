@@ -106,68 +106,68 @@ $(document).ready(function() {
     $('.coll-btns .block-coll__edit form').toggleClass('active');
   });
 
-  var selected_coll_ids = [];
-  $('.ad-gallerys-sidebar .chkBox2').each(function() {
-    if ($(this).find('.checkbox-filter-coll:checked').length > 0) {
-      var selected_coll_id = $(this).find('.checkbox-filter-coll:checked').data('id');
-      selected_coll_ids.push(selected_coll_id);
-    }
-  });
+  // var selected_coll_ids = [];
+  // $('.ad-gallerys-sidebar .chkBox2').each(function() {
+  //   if ($(this).find('.checkbox-filter-coll:checked').length > 0) {
+  //     var selected_coll_id = $(this).find('.checkbox-filter-coll:checked').data('id');
+  //     selected_coll_ids.push(selected_coll_id);
+  //   }
+  // });
   
-  $.ajax({
-    url: "/api/api-select-collections",
-    method: "post",
-      beforeSend: function(){
-        $("#adGallerysItems").empty();
-      },
-    data: {
-      selected_collection_ids: selected_coll_ids,
-    },
-    success: function(result) {
-      var hide_add_more = false;
-      if ((result != '') && (result.collection_ids[0] == 'any')) {
-        hide_add_more = true;
-      }
-      if (typeof result.collection_ids != 'undefined') {
-        var coll_count = result.collection_ids.length;
-      }
+  // $.ajax({
+  //   url: "/api/api-select-collections",
+  //   method: "post",
+  //     beforeSend: function(){
+  //       $("#adGallerysItems").empty();
+  //     },
+  //   data: {
+  //     selected_collection_ids: selected_coll_ids,
+  //   },
+  //   success: function(result) {
+  //     var hide_add_more = false;
+  //     if ((result != '') && (result.collection_ids[0] == 'any')) {
+  //       hide_add_more = true;
+  //     }
+  //     if (typeof result.collection_ids != 'undefined') {
+  //       var coll_count = result.collection_ids.length;
+  //     }
       
-      var html = '';
+  //     var html = '';
       
-      if (hide_add_more != true) {
-        if (coll_count == 1) {
-          html += '<div class="hdrItems-list active hdrItems-list--addmore">';
-            html += '<div class="hdrItems-list__inner flex aic jcc" style="height: 200px">';
-              html += '<a class="btn-gallery-create" href="'+ baseUrl +'admin-gallery/create?'+ result.collection_ids + '">Add More Items</a>';
-            html += '</div>';
-          html += '</div>';  
-        }
-      }
+  //     if (hide_add_more != true) {
+  //       if (coll_count == 1) {
+  //         html += '<div class="hdrItems-list active hdrItems-list--addmore">';
+  //           html += '<div class="hdrItems-list__inner flex aic jcc" style="height: 200px">';
+  //             html += '<a class="btn-gallery-create" href="'+ baseUrl +'admin-gallery/create?'+ result.collection_ids + '">Add More Items</a>';
+  //           html += '</div>';
+  //         html += '</div>';  
+  //       }
+  //     }
       
       
-      $.each(result.gallery_ids_images, function (key, val) {
-        html += '<div class="hdrItems-list">';
-          if (val.g_all_checked == 'false') {
-            html += '<div class="hdrItems-list__inner required">';  
-          } else {
-            html += '<div class="hdrItems-list__inner">';
-          }
-            html += '<a href="' + baseUrl + 'admin-gallery/'+ key +'/edit">';
-              if (val.g_all_checked == 'false') {
-                html += '<div class="hdrItems-list__inner-overlay"><label>Edit required</label></div>';
-              }
-              html += '<img src="/images/'+ val.g_image +'">';
-            html += '</a>';
-          html += '</div>';
-        html += '</div>';
-      });
+  //     $.each(result.gallery_ids_images, function (key, val) {
+  //       html += '<div class="hdrItems-list">';
+  //         if (val.g_all_checked == 'false') {
+  //           html += '<div class="hdrItems-list__inner required">';  
+  //         } else {
+  //           html += '<div class="hdrItems-list__inner">';
+  //         }
+  //           html += '<a href="' + baseUrl + 'admin-gallery/'+ key +'/edit">';
+  //             if (val.g_all_checked == 'false') {
+  //               html += '<div class="hdrItems-list__inner-overlay"><label>Edit required</label></div>';
+  //             }
+  //             html += '<img src="/images/'+ val.g_image +'">';
+  //           html += '</a>';
+  //         html += '</div>';
+  //       html += '</div>';
+  //     });
       
-      $('#adGallerysItems').append(html);
-      if ($('#adGallerysItems').length > 0) {
-        macyInstance.reInit();
-      }
-    }
-  });
+  //     $('#adGallerysItems').append(html);
+  //     if ($('#adGallerysItems').length > 0) {
+  //       macyInstance.reInit();
+  //     }
+  //   }
+  // });
   
   $('.checkbox-filter-coll').change(function() {
     var selected_coll_ids = [];

@@ -17,7 +17,6 @@ class ApiSelectGallerysController extends Controller
     {
         $selectedCatIds = $request->selected_cat_ids;
         $selectedPrices = $request->selected_price;
-        $selectedSizes = $request->selected_size;
 
         $galleryObjs = DB::table('admin_gallerys');
         
@@ -37,22 +36,6 @@ class ApiSelectGallerysController extends Controller
                         $galleryObjs = $galleryObjs->where('retail_price', '>=', $minPrice);        
                     } else {
                         $galleryObjs = $galleryObjs->whereBetween('retail_price',[$minPrice, $maxPrice]);        
-                    }
-                }
-            }
-        }
-
-        if (!empty($selectedSizes)) {
-            if (!in_array('any', $selectedSizes)) {
-                foreach($selectedSizes as $selectedSize) {
-                    $splitedSize = explode('_', $selectedSize);
-                    $minSize = $splitedSize[0];
-                    $maxSize = $splitedSize[1];
-                    
-                    if ($maxSize == 'max') {
-                        $galleryObjs = $galleryObjs->where('size', '>=', $minSize);        
-                    } else {
-                        $galleryObjs = $galleryObjs->whereBetween('size',[$minSize, $maxSize]);        
                     }
                 }
             }

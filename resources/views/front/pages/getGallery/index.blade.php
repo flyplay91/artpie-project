@@ -26,10 +26,11 @@
       </div>
 
       <div class="get-gallery-contact mt-3">
-        <form>
+        <form action="{{ route('order.store') }}">
           @auth
             <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
           @endauth
+          <input type="hidden" name="total_price" value="{{ $gallery->retail_price }}">
           <div class="form-group mb-3">
             <div class="input-group">
               <div class="input-group-prepend">
