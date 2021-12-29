@@ -1660,7 +1660,7 @@ img {
   width: 20%;
 }
 #mainWrapper.active {
-  position: fixed;
+  // position: fixed;
   width: 100%;
 }
 .bg-overlay {
@@ -2109,15 +2109,19 @@ img {
   .popup-gallery-data__inner {
     .gallery-data-image {
       position: relative;
-      width: 70%;
+      width: 65%;
       padding: 30px;
       display: flex;
       align-items: center;
       justify-content: center;
+
+      img {
+        object-fit: contain;
+      }
     }
 
     .gallery-data-info {
-      width: 30%;
+      width: 35%;
       background-color: #f5f5f5;
       border-radius: 10px;
       padding: 30px;

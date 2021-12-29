@@ -1645,7 +1645,6 @@ img {
 }
 
 #mainWrapper.active {
-  position: fixed;
   width: 100%;
 }
 
@@ -2057,14 +2056,18 @@ img {
 }
 .popup-gallery-data .popup-gallery-data__inner .gallery-data-image {
   position: relative;
-  width: 70%;
+  width: 65%;
   padding: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
+.popup-gallery-data .popup-gallery-data__inner .gallery-data-image img {
+  -o-object-fit: contain;
+     object-fit: contain;
+}
 .popup-gallery-data .popup-gallery-data__inner .gallery-data-info {
-  width: 30%;
+  width: 35%;
   background-color: #f5f5f5;
   border-radius: 10px;
   padding: 30px;

@@ -486,6 +486,8 @@ function getGalleryAjax(id, artist_id) {
 
       if (gallery_image_height > popup_gallery_height) {
         $('.gallery-data-image img').height(popup_gallery_height - 60);
+      } else {
+        $('.gallery-data-image img').height(gallery_image_height - 60);
       }
       
       MagicZoom.start();
