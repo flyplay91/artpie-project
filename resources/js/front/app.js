@@ -363,7 +363,7 @@ function getGalleryAjax(id, artist_id) {
     return;
   }
 
-  galleryAjax = $.ajax({
+  galleryAjax[id] = $.ajax({
     url: "/api/api-get-gallery",
     method: "post",
       beforeSend: function(){
