@@ -25,19 +25,22 @@ class ApiSelectGallerysController extends Controller
                 $galleryObjs = $galleryObjs->whereIn('category_id',$selectedCatIds);
             }
         }
-        
+        $minPrice = '';
+        $maxPrice = '';
         if (!empty($selectedPrices)) {
             if (!in_array('any', $selectedPrices)) {
                 foreach($selectedPrices as $selectedPrice) {
                     $splitedPrice = explode('_', $selectedPrice);
                     $minPrice = $splitedPrice[0];
                     $maxPrice = $splitedPrice[1];
+
                     if ($maxPrice == 'max') {
                         $galleryObjs = $galleryObjs->where('retail_price', '>=', $minPrice);        
                     } else {
                         $galleryObjs = $galleryObjs->whereBetween('retail_price',[$minPrice, $maxPrice]);        
                     }
                 }
+                var_dump($minPrice .'=>'. $maxPrice);exit;
             }
         }
         

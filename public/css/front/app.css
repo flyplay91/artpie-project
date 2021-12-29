@@ -2395,6 +2395,9 @@ img {
 .get-gallery .get-gallery__inner .get-gallery-contact .agree-check-btns .chkBox2 {
   margin-top: 0;
 }
+.get-gallery .get-gallery__inner .get-gallery-contact .agree-check-btns .btn-save {
+  padding: 12px;
+}
 .get-gallery .get-gallery__inner .get-gallery-contact .agree-check-btns .btn-cancel {
   padding: 12px;
   margin-left: 10px;

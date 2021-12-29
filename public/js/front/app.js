@@ -2357,6 +2357,44 @@ $(document).ready(function () {
         }
       });
     }
+  }); // Contact gallery page
+
+  $('body').on('click', '.get-gallery-contact .btn-save', function () {
+    var user_id = $('.user-id').val();
+    var total_price = $('.total-price').val();
+    var billing_email = $('.billing-email').val();
+    var billing_phone = $('.billing-phone').val();
+    var billing_address = $('.billing-address').val();
+    var billing_name = $('.billing-name').val();
+    var billing_comment = $('.billing-comment').val();
+
+    if (billing_email == '' || billing_phone == '' || billing_address == '' || billing_name == '') {
+      alert('아래의 정보들을 입력하십시오.');
+    }
+
+    if ($('.check-billing-info').is(':checked')) {
+      $.ajax({
+        url: "/api/api-billing",
+        method: "post",
+        data: {
+          user_id: user_id,
+          total_price: total_price,
+          billing_email: billing_email,
+          billing_phone: billing_phone,
+          billing_address: billing_address,
+          billing_name: billing_name,
+          billing_comment: billing_comment
+        },
+        success: function success(result) {
+          if (result.success == 'ok') {
+            $('.get-gallery').empty();
+            $('.get-gallery').append('<h3>감사합니다. 인차 련락하겠습니다.</h3>');
+          }
+        }
+      });
+    } else {
+      alert('사용계약에 동의하십시오.');
+    }
   });
 });
 
