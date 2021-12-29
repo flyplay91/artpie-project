@@ -9,6 +9,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.2.5|^8.0",
+        "doctrine/dbal": "^3.2",
         "f9webltd/laravel-redirect-response-macros": "^1.1",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
@@ -26,7 +27,10 @@
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "composer/package-versions-deprecated": true
+        }
     },
     "extra": {
         "laravel": {
