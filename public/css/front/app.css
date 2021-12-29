@@ -1645,6 +1645,7 @@ img {
 }
 
 #mainWrapper.active {
+  position: relative;
   width: 100%;
 }
 
