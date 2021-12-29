@@ -241,8 +241,7 @@ $(document).ready(function() {
 
   // Gallery popup click event 
   $('body').on('click', function(evt) {
-    if ($(evt.target).hasClass('popup-gallery-data') ||
-      $(evt.target).closest('.popup-gallery-data').length > 0) {
+    if ($(evt.target).hasClass('popup-gallery-data') || $(evt.target).closest('.popup-gallery-data').length > 0 || $(evt.target).hasClass('mz-expand') || $(evt.target).closest('.mz-expand').length > 0) {
         return;
     }
 
