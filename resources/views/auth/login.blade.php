@@ -1,4 +1,5 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link href="{{ asset('css/admin/app.css') }}" rel="stylesheet">
 
 <div class="container login-page mt-3">
   <div class="card">
@@ -54,7 +55,7 @@
 
         <div class="form-group row mb-0">
           <div class="col-md-8 offset-md-4">
-            <button type="submit" class="btn btn-primary">
+            <button type="submit" class="btn btn-grey">
               {{ __('Login') }}
             </button>
 
