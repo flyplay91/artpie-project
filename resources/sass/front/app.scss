@@ -1409,9 +1409,47 @@
      filter: alpha(opacity = 20);
  }
  
+
+ 
 /*============================================================================
                               General layout styles
 ==============================================================================*/
+/*================ Login & Signup ================*/
+.login-signup-form {
+  box-shadow: 0px 2px 7px 6px rgb(0 0 0 / 43%);
+  max-width: 600px;
+  padding: 50px 30px;
+  border-radius: 5px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+
+  .input-group-text {
+    width: 100px;
+    justify-content: center;
+  }
+
+  h2 {
+    margin-bottom: 20px;
+  }
+
+  .login-form__save-forget {
+    .boxCtnt .chkBox2 {
+      margin: 0;
+    }
+  }
+
+  .register-form__submit,
+  .login-form__submit {
+    button {
+      width: 100%;
+    }
+  }
+}
+
+
 /*================ Color ================*/
 :root {
   --regular-font: arial, helvetica, sans-serif;
