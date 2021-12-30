@@ -50,12 +50,12 @@
       <a href="">암호를 잊었습니까?</a>
     </div>
   
-    <div class="login-form__submit">
+    <div class="login-form__submit mt-4 mb-3">
       <button type="submit" class="btn btn-grey">
         로그인
       </button>
     </div>
   </form>
 
-  <p class="text-center mt-5">아직 계정이 없습니까? <a href="{{ route('register') }}">새로 등록</a></p>
+  <p class="text-center">아직 계정이 없습니까? <a href="{{ route('register') }}">새로 등록</a></p>
 </div>

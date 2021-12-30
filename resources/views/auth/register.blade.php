@@ -62,7 +62,7 @@
       </div>
     </div>
 
-    <div class="register-form__submit">
+    <div class="register-form__submit mt-4">
       <button type="submit" class="btn btn-grey">
         등록
       </button>
