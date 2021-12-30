@@ -8,6 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>KoldArt Dashboard</title>
+    <link rel="icon" type="image/x-icon" href="/images/favicon.png">
 
     <!-- Styles -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -23,7 +24,7 @@
 </head>
 
 <body>
-  <div id="adWrapper" class="position-relative">
+  <div id="adWrapper" class="position-relative @if (Route::currentRouteName() == 'admin-order.index') long-height @endif">
     <div class="bg-overlay position-absolute"></div>
     <div class="ad-header">
       @yield('main-header')

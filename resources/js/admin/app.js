@@ -406,16 +406,16 @@ $(document).ready(function() {
 
   // Order items
   $('body').on('click', '.btn-view-items', function() {
-    $('.popup-order-items').empty()
-    var item_html = $(this).closest('tr').find('.td-order-item').html();
+    $('.popup-order-items').empty();
     $('.bg-overlay').addClass('active');
-    $('.popup-order-items').show();
-    $('.popup-order-items').append(item_html);
+    var order_info = $(this).closest('tr').find('.order-item-info').html();
+    $('.popup-order-items').append(order_info);
+    $('.popup-order-items').addClass('active');
   });
 
-  $('body').on('click', '.btn-cancel-popup', function() {
+  $('body').on('click', '.btn-cancel-status', function() {
     $('.bg-overlay').removeClass('active');
-    $('.popup-order-items').hide();
+    $('.popup-order-items').removeClass('active');
   });
 
   $('body').on('click', '.btn-update-popup', function() {

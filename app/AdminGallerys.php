@@ -11,21 +11,11 @@ class AdminGallerys extends Model
     ];
 
     /**
-     * Default values for attributes
-     * @var  array an array with attribute as key and default as value
-     */
-    protected $attributes = [
-        'piece_count' => 0,
-        'buy_price' => 0.00,
-        'sell_price' => 0.00,
-    ];
-
-    /**
      * Get all of the gallery's fragments.
      */
     public function fragments()
     {
-        return $this->hasMany(GalleryFragments::class);
+        return $this->hasMany(GalleryFragments::class, 'gallery_id');
     }
 
     /**
@@ -33,17 +23,25 @@ class AdminGallerys extends Model
      */
     public function availableFragments($userId)
     {
-        return $this->hasMany(GalleryFragments::class)
+        return $this->hasMany(GalleryFragments::class, 'gallery_id')
             ->where('user_id', '<>', $userId)
             ->orderBy('sell_price')->orderBy('created_at', 'DESC');
     }
 
+    /*
+     * Get all of the gallery's orders.
+     */
+    public function orders()
+    {
+        return $this->hasMany(Orders::class);
+    }
+
     public function remainingPieces() {
-        $fragments = $this->fragments();
+        $fragments = $this->fragments()->get();
         $pieces = $this->piece_count;
 
         foreach($fragments as $fragment) {
-            $pieces -= $fragment->piece_count;    
+            $pieces -= $fragment->piece_count;
         }
 
         return $pieces;

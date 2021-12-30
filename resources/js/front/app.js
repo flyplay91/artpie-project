@@ -237,7 +237,7 @@ $(document).ready(function() {
 
   // Gallery popup click event 
   $('body').on('click', function(evt) {
-    if ($(evt.target).hasClass('popup-gallery-data') || $(evt.target).closest('.popup-gallery-data').length > 0 || $(evt.target).hasClass('mz-expand') || $(evt.target).closest('.mz-expand').length > 0) {
+    if ($(evt.target).hasClass('popup-gallery-data') || $(evt.target).closest('.popup-gallery-data').length > 0 || $(evt.target).hasClass('mz-expand') || $(evt.target).closest('.mz-expand').length > 0 || $(evt.target).hasClass('setting-page') || $(evt.target).closest('.setting-page').length > 0) {
         return;
     }
 
@@ -302,6 +302,7 @@ $(document).ready(function() {
 
   // Contact gallery page
   $('body').on('click', '.get-gallery-contact .btn-save', function() {
+    var gallery_id = $('.gallery-id').val();
     var user_id = $('.user-id').val();
     var total_price = $('.total-price').val();
     var billing_email = $('.billing-email').val();
@@ -309,6 +310,15 @@ $(document).ready(function() {
     var billing_address = $('.billing-address').val();
     var billing_name = $('.billing-name').val();
     var billing_comment = $('.billing-comment').val();
+    if(IsEmail(billing_email)==false){
+      alert('Wrong email format!')
+      return false;
+    }
+
+    if(getValidNumber(billing_phone)==false){
+      alert('Wrong number format!')
+      return false;
+    }
 
     if (billing_email == '' || billing_phone == '' || billing_address == '' || billing_name == '') {
       alert('아래의 정보들을 입력하십시오.');
@@ -319,6 +329,7 @@ $(document).ready(function() {
         url: "/api/api-billing",
         method: "post",
         data: {
+          gallery_id: gallery_id,
           user_id: user_id,
           total_price: total_price,
           billing_email: billing_email,
@@ -339,7 +350,49 @@ $(document).ready(function() {
     }
   });
 
+  $(document).on('click', '.btn-purchase-fragments', function() {
+    let galleryId = $(this).attr('data-gallery-id');
+    let pieceCount = $(this).closest('.gallery-pieces-buy').find('.gallery-pieces-count').val();
+    let userId = $(this).closest('.popup-gallery-data').data('user-id');
+
+    $.ajax({
+      url: "/api/purchase-fragments",
+      method: "post",
+      data: {
+        gallery_id: galleryId,
+        piece_count: pieceCount,
+        user_id: userId
+      },
+      success: function(result) {
+        console.log(result);
+      }
+    });
+  })
 });
+
+// Email validation
+function IsEmail(email) {
+  var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+  if(!regex.test(email)) {
+     return false;
+  }else{
+     return true;
+  }
+}
+
+// Phone number validation
+function getValidNumber(value)
+{
+  value = $.trim(value).replace(/\D/g, '');
+  
+  if (value.substring(0, 1) == '1') {
+    value = value.substring(1);
+  }
+  if (value.length == 10) {
+    return value;
+  }
+  return false;
+}
 
 function cal_total() {
   t_price = 0;
@@ -411,8 +464,8 @@ function getGalleryAjax(id, artist_id) {
               html += '<div class="gallery-data-content__item active">';
                 html += '<label class="flex aic">작가: ' + val.g_artistname ;
                   if (val.g_artist_des != '') {
-                    html += '<img class="icon-up-arrow" src="/images/up-arrow.png">';
-                    html += '<img class="icon-down-arrow" src="/images/down-arrow.png">';
+                    html += '<img class="icon-up-arrow" src="/images/up-arrow-icon.png">';
+                    html += '<img class="icon-down-arrow" src="/images/down-arrow-icon.png">';
                   }
                   
                 html += '</label>';
@@ -423,8 +476,8 @@ function getGalleryAjax(id, artist_id) {
                 html += '<div class="gallery-data-content__item active">';
                   html += '<label class="flex aic">작품소개';
                     if (val.g_description != '') {
-                      html += '<img class="icon-up-arrow" src="/images/up-arrow.png">';
-                      html += '<img class="icon-down-arrow" src="/images/down-arrow.png">';
+                      html += '<img class="icon-up-arrow" src="/images/up-arrow-icon.png">';
+                      html += '<img class="icon-down-arrow" src="/images/down-arrow-icon.png">';
                     }
                     
                   html += '</label>';
@@ -437,8 +490,8 @@ function getGalleryAjax(id, artist_id) {
                 
                 html += '<div class="gallery-data-content__item">';
                   html += '<label class="flex aic">화가의 다른 작품들';
-                    html += '<img class="icon-up-arrow" src="/images/up-arrow.png">';
-                    html += '<img class="icon-down-arrow" src="/images/down-arrow.png">';
+                    html += '<img class="icon-up-arrow" src="/images/up-arrow-icon.png">';
+                    html += '<img class="icon-down-arrow" src="/images/down-arrow-icon.png">';
                   html += '</label>';
                   html += '<div class="thumb-images" id="thumbImages">';
                   thumb_images.forEach(function(item) {
@@ -457,7 +510,7 @@ function getGalleryAjax(id, artist_id) {
               html += '<div class="gallery-pieces-buy-info__inner">';
                 html += '<div class="gallery-pieces-buy-info flex aic">';
                   html += '<label>수량: </label>';
-                  html += '<input type="number" value="1" min="1" max="'+ parseInt(val.g_pieces) +'">';
+                  html += '<input class="gallery-pieces-count" type="number" value="1" min="1" max="'+ parseInt(val.g_pieces) +'">';
                   html += '<span> /' + parseInt(val.g_pieces) + ' </span>';
                 html += '</div>';
                 html += '<div class="gallery-pieces-buy-price flex aic">';
@@ -466,7 +519,7 @@ function getGalleryAjax(id, artist_id) {
                 html += '</div>';
               html += '</div>';
               html += '<div class="gallery-pieces-buy-btn">';
-                html += '<a href="#" class="btn-grey">쪼각구매</a>';
+                html += '<a href="#" class="btn-grey btn-purchase-fragments" data-gallery-id="'+ key +'">쪼각구매</a>';
               html += '</div>';
             html += '</div>';
           }

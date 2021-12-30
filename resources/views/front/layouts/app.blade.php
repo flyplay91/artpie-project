@@ -8,6 +8,7 @@
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
   <title>KoldArt</title>
+  <link rel="icon" type="image/x-icon" href="/images/favicon.png">
 
   <!-- Styles -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -27,7 +28,7 @@
     <div class="header">
       <div class="wrapper header-logo-nav flex aic jcb">
         <div class="header__logo flex aic">
-          <a href="/" class="flex aic jcc"><img src="/images/artpal.png"></a>
+          <a href="/" class="flex aic jcc"><img src="/images/logo.png"></a>
           <a href="/" class="active">그림구입</a>
           @auth
             @if (auth()->user()->isSuperAdmin())

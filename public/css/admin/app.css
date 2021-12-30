@@ -785,6 +785,10 @@ img {
 /*============================================================================
                               Order page
 ==============================================================================*/
+.long-height {
+  height: 100vh;
+}
+
 .td-order-item {
   display: none;
 }
@@ -795,26 +799,55 @@ img {
 
 .popup-order-items {
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-50%, -50%);
   z-index: 111;
   background-color: var(--white);
   border-radius: 10px;
   width: 700px;
   top: 50%;
+  display: none;
+  padding: 20px 30px;
 }
-.popup-order-items .order-items {
-  padding: 20px;
+.popup-order-items.active {
+  display: block;
 }
-.popup-order-items .order-items .order-item {
-  padding: 10px 0;
-  border-bottom: 1px solid #ced4da;
+.popup-order-items .order-items-image-info {
+  border-bottom: solid 1px #ced4da;
+  padding-bottom: 20px;
 }
-.popup-order-items .order-items .order-item:last-child {
-  border: none;
+.popup-order-items .order-items-image-info .order-items-image {
+  width: 180px;
+  height: 180px;
+}
+.popup-order-items .order-items-image-info .order-items-image img {
+  -o-object-fit: contain;
+     object-fit: contain;
+  height: 100%;
+}
+.popup-order-items .order-items-image-info .order-items-info {
+  margin-left: 20px;
+  width: calc(100% - 200px);
+}
+.popup-order-items .order-items-image-info .order-items-info .order-items-gallery-number {
+  margin-bottom: 0;
+  display: inline;
+}
+.popup-order-items .order-items-image-info .order-items-info h2 {
+  padding: 10px 0 20px;
+  line-height: 1;
+  font-size: 26px;
 }
 
-.btn-update-status {
-  display: none;
+.btns-order-status {
+  margin-top: 20px;
+}
+.btns-order-status button {
+  padding: 7px 12px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+.btns-order-status a {
+  padding: 10px 12px;
 }
 
 /*============================================================================

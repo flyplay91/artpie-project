@@ -9,6 +9,7 @@ use App\AdminArtists;
 use App\AdminCategories;
 use DB;
 use App\User;
+use App\Setting;
 
 class ApiGalleryController extends Controller
 {
@@ -92,8 +93,9 @@ class ApiGalleryController extends Controller
      */
     public function purchaseFragments(Request $request)
     {
-        $gallery = AdminGallery::find($request->gallery_id);
+        $gallery = AdminGallerys::find($request->gallery_id);
         $requestedPieceCount = $request->piece_count;
+        $userId = $request->user_id;
         
         if ($gallery->check_enable_pieces != 'yes') {
             return response()->json([
@@ -102,11 +104,25 @@ class ApiGalleryController extends Controller
 			]);
         }
 
-        $requestedPieceCount = $gallery->piece_count > $requestedPieceCount ? $requestedPieceCount : $gallery->piece_count;
         $fragmentPrice = 0;
-        $fragment = GalleryFragments::firstOrCreate(
-            ['user_id' => Auth::user()->id, 'gallery_id' => $gallery->id]
-        );
+        $fragment = GalleryFragments::where(
+            ['user_id' => $userId, 'gallery_id' => $gallery->id]
+        )->first();
+
+        if (empty($fragment)) {
+            $fragment = GalleryFragments::create(
+                [
+                    'user_id' => $userId,
+                    'gallery_id' => $gallery->id,
+                    'piece_count' => 0,
+                    'buy_price' => 0.00,
+                    'sell_price' => 0.00
+                ]
+            );
+        }
+
+        $availablePieceCount = $gallery->piece_count - $fragment->piece_count;
+        $requestedPieceCount = $availablePieceCount > $requestedPieceCount ? $requestedPieceCount : $availablePieceCount;
         $fragmentPrice = $fragment->piece_count * $fragment->buy_price;
         $fragmentPieces = $fragment->piece_count;
 
@@ -117,14 +133,14 @@ class ApiGalleryController extends Controller
             $fragmentPrice += $gallery->retail_price / $gallery->piece_count * $gallery->remainingPieces();
             $fragmentPieces += $gallery->remainingPieces();
             $requestedPieceCount -= $gallery->remainingPieces();
-            $fragments = $gallery->availableFragments(Auth::user()->id);
+            $fragments = $gallery->availableFragments($userId)->get();
 
             foreach($fragments as $frag) {
                 if ($requestedPieceCount < $frag->piece_count) {
                     $fragmentPrice += $frag->sell_price * $requestedPieceCount;
-                    $fragmentPieces += $frag->piece_count;
+                    $fragmentPieces += $requestedPieceCount;
                     $frag->piece_count -= $requestedPieceCount;
-                    $frag->update();
+                    $frag->save();
                     break;
                 } else {
                     $fragmentPrice += $frag->sell_price * $frag->piece_count;
@@ -137,11 +153,15 @@ class ApiGalleryController extends Controller
                     break;
                 }
             }
-
-            $fragment->buy_price = $fragmentPrice / $fragmentPieces;
-            $fragment->piece_count = $fragmentPieces;
-            $fragment->update();
         }
+
+        $fragment->buy_price = $fragmentPrice / $fragmentPieces;
+        $fragment->piece_count = $fragmentPieces;
+
+        if ($fragment->sell_price <= 0) {
+            $fragment->sell_price = $fragment->buy_price * 1.2;
+        }
+        $fragment->save();
 
         return response()->json([
             'success' => true,
