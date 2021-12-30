@@ -2503,8 +2503,8 @@ function getGalleryAjax(id, artist_id) {
         html += '<label class="flex aic">작가: ' + val.g_artistname;
 
         if (val.g_artist_des != '') {
-          html += '<img class="icon-up-arrow" src="/images/up-arrow.png">';
-          html += '<img class="icon-down-arrow" src="/images/down-arrow.png">';
+          html += '<img class="icon-up-arrow" src="/images/up-arrow-icon.png">';
+          html += '<img class="icon-down-arrow" src="/images/down-arrow-icon.png">';
         }
 
         html += '</label>';
@@ -2516,8 +2516,8 @@ function getGalleryAjax(id, artist_id) {
           html += '<label class="flex aic">작품소개';
 
           if (val.g_description != '') {
-            html += '<img class="icon-up-arrow" src="/images/up-arrow.png">';
-            html += '<img class="icon-down-arrow" src="/images/down-arrow.png">';
+            html += '<img class="icon-up-arrow" src="/images/up-arrow-icon.png">';
+            html += '<img class="icon-down-arrow" src="/images/down-arrow-icon.png">';
           }
 
           html += '</label>';
@@ -2529,8 +2529,8 @@ function getGalleryAjax(id, artist_id) {
           var thumb_images = val.same_artist_images.split(',');
           html += '<div class="gallery-data-content__item">';
           html += '<label class="flex aic">화가의 다른 작품들';
-          html += '<img class="icon-up-arrow" src="/images/up-arrow.png">';
-          html += '<img class="icon-down-arrow" src="/images/down-arrow.png">';
+          html += '<img class="icon-up-arrow" src="/images/up-arrow-icon.png">';
+          html += '<img class="icon-down-arrow" src="/images/down-arrow-icon.png">';
           html += '</label>';
           html += '<div class="thumb-images" id="thumbImages">';
           thumb_images.forEach(function (item) {
