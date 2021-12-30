@@ -10,7 +10,7 @@ use App\AdminCategories;
 use DB;
 use App\User;
 
-class ApiGetGalleryController extends Controller
+class ApiGalleryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -92,8 +92,60 @@ class ApiGetGalleryController extends Controller
      */
     public function purchaseFragments(Request $request)
     {
-        $galleryId = $request->gallery_id;
-        $pieceCount = $request->piece_count;
+        $gallery = AdminGallery::find($request->gallery_id);
+        $requestedPieceCount = $request->piece_count;
         
+        if ($gallery->check_enable_pieces != 'yes') {
+            return response()->json([
+			    'success' => false,
+			    'data' => "This gallery can't be purchased by pieces"
+			]);
+        }
+
+        $requestedPieceCount = $gallery->piece_count > $requestedPieceCount ? $requestedPieceCount : $gallery->piece_count;
+        $fragmentPrice = 0;
+        $fragment = GalleryFragments::firstOrCreate(
+            ['user_id' => Auth::user()->id, 'gallery_id' => $gallery->id]
+        );
+        $fragmentPrice = $fragment->piece_count * $fragment->buy_price;
+        $fragmentPieces = $fragment->piece_count;
+
+        if ($requestedPieceCount < $gallery->remainingPieces()) {
+            $fragmentPrice += $gallery->retail_price / $gallery->piece_count * $requestedPieceCount;
+            $fragmentPieces += $requestedPieceCount;
+        } else {
+            $fragmentPrice += $gallery->retail_price / $gallery->piece_count * $gallery->remainingPieces();
+            $fragmentPieces += $gallery->remainingPieces();
+            $requestedPieceCount -= $gallery->remainingPieces();
+            $fragments = $gallery->availableFragments(Auth::user()->id);
+
+            foreach($fragments as $frag) {
+                if ($requestedPieceCount < $frag->piece_count) {
+                    $fragmentPrice += $frag->sell_price * $requestedPieceCount;
+                    $fragmentPieces += $frag->piece_count;
+                    $frag->piece_count -= $requestedPieceCount;
+                    $frag->update();
+                    break;
+                } else {
+                    $fragmentPrice += $frag->sell_price * $frag->piece_count;
+                    $fragmentPieces += $frag->piece_count;
+                    $requestedPieceCount -= $frag->piece_count;
+                    $frag->delete();
+                }
+
+                if ($requestedPieceCount <= 0) {
+                    break;
+                }
+            }
+
+            $fragment->buy_price = $fragmentPrice / $fragmentPieces;
+            $fragment->piece_count = $fragmentPieces;
+            $fragment->update();
+        }
+
+        return response()->json([
+            'success' => true,
+            'data' => "Pieces are successfully purchased"
+        ]);
     }
 }

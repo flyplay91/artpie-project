@@ -10,6 +10,14 @@ class GalleryFragments extends Model
       'user_id', 'gallery_id', 'piece_count', 'buy_price', 'sell_price'
   	];
 
+    /**
+     * Get the user.
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
 	/**
      * Get the parent gallery.
      */

@@ -38,6 +38,14 @@ class User extends Authenticatable
     ];
 
     /**
+     * Get all of the users's fragments.
+     */
+    public function fragments()
+    {
+        return $this->hasMany(GalleryFragments::class);
+    }
+
+    /**
      * checks if the user is super admin
      * @return bool
      */
