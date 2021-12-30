@@ -310,6 +310,15 @@ $(document).ready(function() {
     var billing_address = $('.billing-address').val();
     var billing_name = $('.billing-name').val();
     var billing_comment = $('.billing-comment').val();
+    if(IsEmail(billing_email)==false){
+      alert('Wrong email format!')
+      return false;
+    }
+
+    if(getValidNumber(billing_phone)==false){
+      alert('Wrong number format!')
+      return false;
+    }
 
     if (billing_email == '' || billing_phone == '' || billing_address == '' || billing_name == '') {
       alert('아래의 정보들을 입력하십시오.');
@@ -342,6 +351,30 @@ $(document).ready(function() {
   });
 
 });
+
+// Email validation
+function IsEmail(email) {
+  var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+  if(!regex.test(email)) {
+     return false;
+  }else{
+     return true;
+  }
+}
+
+// Phone number validation
+function getValidNumber(value)
+{
+  value = $.trim(value).replace(/\D/g, '');
+  
+  if (value.substring(0, 1) == '1') {
+    value = value.substring(1);
+  }
+  if (value.length == 10) {
+    return value;
+  }
+  return false;
+}
 
 function cal_total() {
   t_price = 0;

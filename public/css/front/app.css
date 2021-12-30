@@ -1768,6 +1768,9 @@ img {
   height: 68px;
   line-height: 68px;
 }
+.header-logo-nav .header__logo a img {
+  max-width: 120px;
+}
 .header-logo-nav .header__navInner > a {
   padding: 0 25px;
   color: var(--white);
