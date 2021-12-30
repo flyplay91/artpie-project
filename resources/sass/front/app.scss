@@ -1415,7 +1415,7 @@
                               General layout styles
 ==============================================================================*/
 /*================ Login & Signup ================*/
-.login-signup-form {
+.auth-form {
   box-shadow: 0px 2px 7px 6px rgb(0 0 0 / 43%);
   max-width: 600px;
   padding: 50px 30px;
@@ -1442,6 +1442,7 @@
   }
 
   .register-form__submit,
+  .reset-password-form__submit,
   .login-form__submit {
     button {
       width: 100%;

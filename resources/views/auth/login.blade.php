@@ -1,11 +1,10 @@
-<link rel="icon" type="image/x-icon" href="/images/favicon.png">
+@extends('front.layouts.app')
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<link href="{{ asset('css/front/app.css') }}" rel="stylesheet">
-
+@section('content')
 
 
-<div class="login-signup-form login-form">
+
+<div class="auth-form login-form">
   <h2 class="text-center">로그인</h2>
   <form method="POST" action="{{ route('login') }}">
     @csrf
@@ -47,7 +46,7 @@
           <div class="chkBox2_box"></div>
         </label>
       </div>
-      <a href="">암호를 잊었습니까?</a>
+      <a href="/forget-password">암호를 잊었습니까?</a>
     </div>
   
     <div class="login-form__submit mt-4 mb-3">
@@ -59,3 +58,4 @@
 
   <p class="text-center">아직 계정이 없습니까? <a href="{{ route('register') }}">새로 등록</a></p>
 </div>
+@endsection

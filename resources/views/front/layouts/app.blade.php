@@ -73,7 +73,7 @@
         @yield('content')
     </div>
 
-    <div class="footer <?php if((Route::currentRouteName() == 'setting.index') || (Route::currentRouteName() == 'checkout.index') || (Route::currentRouteName() == 'contact-gallery.index')) { echo 'fixed-footer'; } ?>">
+    <div class="footer {{Request::path()}} <?php if((Request::path() == 'setting') || (Request::path() == 'contact-gallery') || (Request::path() == 'login') || (Request::path() == 'register') || (Request::path() == 'forget-password')) { echo 'fixed-footer'; } ?>">
       <div class="footer__inner wrapper flex aic jcb">
         <div class="footer-nav">
           <ul class="flex aic">

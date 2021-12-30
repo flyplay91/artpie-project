@@ -27,6 +27,9 @@ Route::get('logout', 'Auth\AuthController@logout')->name('logout');
 Route::get('change-password', 'ChangePasswordController@index');
 Route::post('change-password', 'ChangePasswordController@store')->name('change.password');
 
+Route::get('/forget-password', 'ForgotPasswordController@getEmail');
+Route::post('/forget-password', 'ForgotPasswordController@postEmail');
+
 
 Route::resource('', 'front\GallerysController');
 
