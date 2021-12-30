@@ -18,6 +18,14 @@ class AdminGallerys extends Model
         return $this->hasMany(GalleryFragments::class);
     }
 
+    /**
+     * Get all of the gallery's orders.
+     */
+    public function orders()
+    {
+        return $this->hasMany(Orders::class);
+    }
+
     public function remainingPieces() {
         return $this->role == 'admin';
     }

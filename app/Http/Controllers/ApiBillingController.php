@@ -15,6 +15,7 @@ class ApiBillingController extends Controller
      */
     public function index(Request $request)
     {
+        $galleryId = $request->gallery_id;
         $userId = $request->user_id;
         $totalPrice = $request->total_price;
         $billingEmail = $request->billing_email;
@@ -23,7 +24,7 @@ class ApiBillingController extends Controller
         $billingName = $request->billing_name;
         $billingComment = $request->billing_comment;
 
-        $billingObjs = array('user_id' => $userId, 'billing_email' => $billingEmail, 'billing_phone' => $billingPhone, 'billing_address' => $billingAddress, 'billing_name' => $billingName, 'total_price' => $totalPrice, 'total_price' => $totalPrice, 'status' => 'pending', 'created_at' =>  \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now());
+        $billingObjs = array('user_id' => $userId, 'gallery_id' => $galleryId, 'billing_email' => $billingEmail, 'billing_phone' => $billingPhone, 'billing_address' => $billingAddress, 'billing_name' => $billingName, 'total_price' => $totalPrice, 'total_price' => $totalPrice, 'status' => 'pending', 'created_at' =>  \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now());
         
         DB::table('orders')->insert($billingObjs);
 

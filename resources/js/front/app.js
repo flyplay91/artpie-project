@@ -302,6 +302,7 @@ $(document).ready(function() {
 
   // Contact gallery page
   $('body').on('click', '.get-gallery-contact .btn-save', function() {
+    var gallery_id = $('.gallery-id').val();
     var user_id = $('.user-id').val();
     var total_price = $('.total-price').val();
     var billing_email = $('.billing-email').val();
@@ -319,6 +320,7 @@ $(document).ready(function() {
         url: "/api/api-billing",
         method: "post",
         data: {
+          gallery_id: gallery_id,
           user_id: user_id,
           total_price: total_price,
           billing_email: billing_email,

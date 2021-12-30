@@ -866,6 +866,9 @@ img {
 /*============================================================================
                               Order page
 ==============================================================================*/
+.long-height {
+  height: 100vh;
+}
 .td-order-item {
  display: none;
 }
@@ -876,27 +879,62 @@ img {
 
 .popup-order-items {
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-50%, -50%);
   z-index: 111;
   background-color: var(--white);
   border-radius: 10px;
   width: 700px;
   top: 50%;
-  
-  .order-items {
-    padding: 20px;
-    .order-item {
-      padding: 10px 0;
-      border-bottom: 1px solid #ced4da;
+  display: none;
+  padding: 20px 30px;
 
-      &:last-child {
-        border: none;
+  &.active {
+    display: block;
+  }
+  
+  .order-items-image-info {
+    border-bottom: solid 1px #ced4da;
+    padding-bottom: 20px;
+
+    .order-items-image {
+      width: 180px;
+      height: 180px;
+
+      img {
+        object-fit: contain;
+        height: 100%;
+      }
+    }
+
+    .order-items-info {
+      margin-left: 20px;
+      width: calc(100% - 200px);
+
+      .order-items-gallery-number {
+        margin-bottom: 0;
+        display: inline;
+      }
+
+      h2 {
+        padding: 10px 0 20px;
+        line-height: 1;
+        font-size: 26px;
       }
     }
   }
 }
-.btn-update-status {
-  display: none;
+.btns-order-status {
+  margin-top: 20px;
+
+  button {
+    padding: 7px 12px;
+    margin-right: 10px;
+    cursor: pointer;
+  }
+
+  a {
+    padding: 10px 12px;
+  }
 }
 
 /*============================================================================

@@ -23,7 +23,7 @@
 </head>
 
 <body>
-  <div id="adWrapper" class="position-relative">
+  <div id="adWrapper" class="position-relative @if (Route::currentRouteName() == 'admin-order.index') long-height @endif">
     <div class="bg-overlay position-absolute"></div>
     <div class="ad-header">
       @yield('main-header')
