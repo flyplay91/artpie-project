@@ -2,7 +2,7 @@
 
 @section('content')
 @if (isset($headerdata))
-<div class="hdrBg" style="background-image: url(/images/<?php echo $headerdata->image ?>)">
+<div class="hdrBg" style="background-image: url('/images/<?php echo $headerdata->image ?>')">
   <div class="hdrBgTint"></div>
   <div class="bHdr">
     <div class="bHdrTxt">
