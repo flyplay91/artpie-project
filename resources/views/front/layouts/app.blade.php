@@ -46,6 +46,8 @@
                 <li><a href="">English</a></li>
               </ul>
             </div>
+
+            @auth
             <div class="header-nav-dropdown my-profile">
               <label>Profile</label>
               <ul>
@@ -53,6 +55,7 @@
                 <li><a href="/setting">설정</a></li>
               </ul>
             </div>
+            @endauth
             
             @guest
             <a href="{{ route('login') }}">{{ __('Login') }}</a>
