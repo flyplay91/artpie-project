@@ -390,6 +390,7 @@ $(document).ready(function () {
     var user_id = $(this).data('user-id');
 
     if ($(this).is(':checked')) {
+      $(this).closest('.boxCtnt').find('.admin-user input').prop('checked', false);
       $.ajax({
         url: "/api/api-investor-user",
         method: "post",
@@ -418,6 +419,7 @@ $(document).ready(function () {
     var user_id = $(this).data('user-id');
 
     if ($(this).is(':checked')) {
+      $(this).closest('.boxCtnt').find('.investor-user input').prop('checked', false);
       $.ajax({
         url: "/api/api-admin-user",
         method: "post",
