@@ -23,6 +23,7 @@ Route::post('api-search-gallerys', 'ApiSearchGallerysController@index');
 
 Route::post('api-get-gallery', 'ApiGetGalleryController@index');
 Route::post('api-investor-user', 'ApiInvestorUserController@index');
+Route::post('api-admin-user', 'ApiAdminUserController@index');
 Route::post('api-billing', 'ApiBillingController@index');
 
 

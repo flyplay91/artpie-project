@@ -412,6 +412,34 @@ $(document).ready(function () {
         success: function success(result) {}
       });
     }
+  }); // Make Super admin 
+
+  $('.admin-user input').change(function () {
+    var user_id = $(this).data('user-id');
+
+    if ($(this).is(':checked')) {
+      $.ajax({
+        url: "/api/api-admin-user",
+        method: "post",
+        data: {
+          user_id: user_id,
+          checked: 'true'
+        },
+        success: function success(result) {
+          console.log(result);
+        }
+      });
+    } else {
+      $.ajax({
+        url: "/api/api-admin-user",
+        method: "post",
+        data: {
+          user_id: user_id,
+          checked: 'false'
+        },
+        success: function success(result) {}
+      });
+    }
   }); // image upload change event
 
   $('#uploadImage').change(function () {
