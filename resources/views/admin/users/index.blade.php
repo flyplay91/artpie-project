@@ -20,8 +20,9 @@
         <th scope="col">Total Price</th>
         <th scope="col">Invest Price</th>
         <th scope="col">Investor</th>
+        <th scope="col">Admin</th>
         <th scope="col" style="width: 100px;">View</th>
-        <th scope="col" style="width: 120px;">Button</th>
+        <th scope="col" style="width: 120px;">Action</th>
       </tr>
     </thead>
     <tbody>
@@ -41,10 +42,18 @@
             <td></td>
             <td class="investor-user">
             <label class="chkBox2">
-              <input type="checkbox" data-user-id="{{ $user->id }}" @if ($user->investor_user == '1') checked="checked" @endif>
+              <input type="checkbox" data-user-id="{{ $user->id }}" @if ($user->role == 'buyer') checked="checked" @endif>
               <div class="chkBox2_box"></div>
             </label>
             </td>
+
+            <td class="admin-user">
+            <label class="chkBox2">
+              <input type="checkbox" data-user-id="{{ $user->id }}" @if ($user->role == 'admin') checked="checked" @endif>
+              <div class="chkBox2_box"></div>
+            </label>
+            </td>
+
             <td><a href="" class="btn-view-profile btn-grey">View</a></td>
             <td><a href="" class="btn-status btn-grey">Activate</a></td>
           </tr>
