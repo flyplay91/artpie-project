@@ -285,9 +285,9 @@ $(document).ready(function () {
   }); // Update page save & delete
 
   $('body').on('click', '.btn-save-gallery-trigger', function () {
-    $('.input-artist-name').val($('.selectbox-artists').find(":selected").text());
-    $('.input-artist-name-ch').val($('.update-artist .insert-artist-name-ch').val());
-    $('.input-artist-name-ko').val($('.update-artist .insert-artist-name-ko').val());
+    // $('.input-artist-name').val($('.selectbox-artists').find(":selected").text());
+    // $('.input-artist-name-ch').val($('.update-artist .insert-artist-name-ch').val());
+    // $('.input-artist-name-ko').val($('.update-artist .insert-artist-name-ko').val());
     $('.btn-save-gallery').trigger('click');
   });
   $('body').on('click', '.btn-delete-gallery-trigger', function () {
