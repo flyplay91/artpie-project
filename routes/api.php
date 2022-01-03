@@ -31,4 +31,8 @@ Route::post('api-billing', 'ApiBillingController@index');
 Route::post('api-select-header-data', 'ApiChangeHeaderDataController@index');
 Route::post('api-select-collections', 'ApiSelectCollectionsController@index');
 Route::post('api-categories', 'ApiCategoriesController@index');
+Route::post('api-categories-update', 'ApiUpdateCategoriesController@index');
+Route::post('api-categories-delete', 'ApiDeleteCategoriesController@index');
+Route::post('api-get-categories', 'ApiGetCategoriesController@index');
+
 Route::post('api-artists', 'ApiArtistsController@index');

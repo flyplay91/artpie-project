@@ -696,27 +696,42 @@ img {
 }
 
 .btn-add-category,
-.btn-add-artist {
+.btn-add-artist,
+.btn-edit-category,
+.btn-edit-artist,
+.btn-delete-category {
   border-radius: 4px;
   border: solid 1px #bdbdbd;
   background-color: #f0f0f0;
   color: #434343;
   padding: 6px 10px;
   display: inline-block;
-  margin-bottom: 5px;
 }
 .btn-add-category:hover,
-.btn-add-artist:hover {
+.btn-add-artist:hover,
+.btn-edit-category:hover,
+.btn-edit-artist:hover,
+.btn-delete-category:hover {
   text-decoration: none;
+  color: #434343;
 }
 
 .insert-category {
-  bottom: -40px;
-  width: 100%;
+  width: 500px;
+  z-index: 111;
+  padding: 10px;
+  display: none;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--white);
+  border-radius: 10px;
 }
-.insert-category input {
-  width: 80%;
-  margin-right: 10px;
+.insert-category.active {
+  display: flex;
+}
+.insert-category .btn-category-insert-cancel {
+  width: 100%;
 }
 .insert-category a {
   border-radius: 4px;
@@ -730,19 +745,45 @@ img {
   text-decoration: none;
 }
 
+.btn-category-insert-cancel,
+.btn-category-update-cancel {
+  width: 100%;
+}
+.btn-category-insert-cancel a,
+.btn-category-update-cancel a {
+  border-radius: 4px;
+  border: solid 1px #bdbdbd;
+  background-color: #f0f0f0;
+  color: #434343;
+  padding: 6px 10px;
+  display: inline-block;
+}
+.btn-category-insert-cancel a:hover,
+.btn-category-update-cancel a:hover {
+  text-decoration: none;
+}
+
+.popup-update-category-artist {
+  bottom: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+  width: 500px;
+  z-index: 111;
+  padding: 10px;
+  background-color: var(--white);
+  border-radius: 10px;
+}
+.popup-update-category-artist.active {
+  display: block;
+}
+
 .form-save-gallery .btn-grey,
 .form-delete-gallery .btn-grey {
   opacity: 0;
   visibility: hidden;
   width: 0;
   height: 0;
-}
-
-.insert-category {
-  display: none;
-}
-.insert-category.active {
-  display: flex;
 }
 
 .piece-count {
