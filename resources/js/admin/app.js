@@ -244,13 +244,16 @@ $(document).ready(function() {
 
 
   // Add Artist 
-  $('body').on('click', '.popup-insert-artist .btn-insert-artist', function() {
+  $('body').on('click', '.btns-insert-cancel-artist .btn-insert-artist', function() {
     var $art_name_en = $('.insert-artist .insert-artist-name').val();
     var $art_description_en = $('.insert-artist .insert-artist-description').val();
     var $art_name_ch = $('.insert-artist .insert-artist-name-ch').val();
     var $art_description_ch = $('.insert-artist .insert-artist-description-ch').val();
     var $art_name_ko = $('.insert-artist .insert-artist-name-ko').val();
     var $art_description_ko = $('.insert-artist .insert-artist-description-ko').val();
+    $('.input-artist-name').val($art_name_en);
+    $('.input-artist-name-ch').val($art_name_ch);
+    $('.input-artist-name-ko').val($art_name_ko);
     
     if ($art_name_en != '') {
       $.ajax({
@@ -297,6 +300,9 @@ $(document).ready(function() {
   // Update page save & delete
   $('body').on('click', '.btn-save-gallery-trigger', function() {
     $('.input-artist-name').val($('.selectbox-artists').find(":selected").text());
+    $('.input-artist-name-ch').val($('.update-artist .insert-artist-name-ch').val());
+    $('.input-artist-name-ko').val($('.update-artist .insert-artist-name-ko').val());
+    
     $('.btn-save-gallery').trigger('click');
   });
   $('body').on('click', '.btn-delete-gallery-trigger', function() {
@@ -555,6 +561,10 @@ $(document).ready(function() {
             var $art_description_ch = $('.update-artist .insert-artist-description-ch').val();
             var $art_name_ko = $('.update-artist .insert-artist-name-ko').val();
             var $art_description_ko = $('.update-artist .insert-artist-description-ko').val();
+
+            $('.input-artist-name').val($art_name_en);
+            $('.input-artist-name-ch').val($art_name_ch);
+            $('.input-artist-name-ko').val($art_name_ko);
             
             if (($art_name_en != '') && ($art_name_ch != '') && ($art_name_ko != '')) {
               $.ajax({

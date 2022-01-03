@@ -163,9 +163,9 @@
                     <a href="javascript:void(0)" class="btn-edit-category">분류 수정</a>
                     <a href="javascript:void(0)" class="btn-delete-category">분류 삭제</a>
                     <div class="flex aic flex-column insert-category position-absolute">
-                      <input type="text" value="" name="category_name" placeholder="분류(영어)" class="form-control insert-cat-name-en mb-2">
-                      <input type="text" value="" name="category_name_ch" placeholder="분류(중어)" class="form-control insert-cat-name-ch mb-2">
-                      <input type="text" value="" name="category_name_ko" placeholder="분류(조선어)" class="form-control insert-cat-name-ko mb-2">
+                      <input type="text" value="" placeholder="분류(영어)" class="form-control insert-cat-name-en mb-2">
+                      <input type="text" value="" placeholder="분류(중어)" class="form-control insert-cat-name-ch mb-2">
+                      <input type="text" value="" placeholder="분류(조선어)" class="form-control insert-cat-name-ko mb-2">
                       <div class="btn-category-insert-cancel flex aie jce">
                         <a href="javascript:void(0)" class="btn-insert-category mr-2">추가</a>
                         <a href="javascript:void(0)" class="btn-cancel-category">취소</a>
@@ -173,6 +173,8 @@
                     </div>
                   </div>
                 </div>
+
+                
 
                 <div class="flex jcb aie mb-5">
                   <div class="form-group w-45">
@@ -185,7 +187,16 @@
                         @endforeach
                       @endif
                     </select>
-                    <input type="hidden" name="artist_name" class="input-artist-name">
+
+                    @if (isset($artists))
+                      @foreach ($artists as $artist)
+                        @if ($gallery->artist_id == $artist->id) 
+                          <input type="hidden" name="artist_name" value="{{$gallery->artist_name}}" class="input-artist-name">
+                          <input type="hidden" name="artist_name_ch" value="{{$gallery->artist_name_ch}}" class="input-artist-name-ch">
+                          <input type="hidden" name="artist_name_ko" value="{{$gallery->artist_name_ko}}" class="input-artist-name-ko">
+                        @endif
+                      @endforeach
+                    @endif
                   </div>
                   <div class="form-group w-45 position-relative">
                     <a href="javascript:void(0)" class="btn-add-artist">창작가 추가</a>
