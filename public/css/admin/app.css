@@ -172,7 +172,7 @@ body {
 
 .wrapper {
   padding: 0 5px;
-  max-width: 1550px;
+  max-width: 1750px;
   min-width: 240px;
   margin: 0 auto;
 }
@@ -856,6 +856,7 @@ img {
 .btn-view-profile,
 .btn-status {
   padding: 8px 10px;
+  display: inline-block;
 }
 
 .block-admin-users .chkBox2 {

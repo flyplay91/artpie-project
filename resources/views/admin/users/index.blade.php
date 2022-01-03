@@ -54,8 +54,14 @@
             </label>
             </td>
 
-            <td><a href="" class="btn-view-profile btn-grey">View</a></td>
-            <td><a href="" class="btn-status btn-grey">Activate</a></td>
+            <td><a href="" class="btn-view-profile btn-grey">보기 </a></td>
+            <td>
+              <form class="" action="{{ route('admin-user.destroy',$user->id) }}" method="POST" enctype="multipart/form-data">
+                @method('DELETE')
+                @csrf
+                <button type="submit" class="btn btn-grey btn-delete-gallery">삭제</button>
+              </form>
+            </td>
           </tr>
         @endforeach
       @endif
