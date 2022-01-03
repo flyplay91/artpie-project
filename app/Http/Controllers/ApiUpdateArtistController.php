@@ -19,11 +19,25 @@ class ApiUpdateArtistController extends Controller
         $artistId = $request->artist_id;
         
         $artistNameEn = $request->artist_name_en;
-        $artistDescriptionEn = $request->artist_description_en;
+        if (empty($request->artist_description_en)) {
+            $artistDescriptionEn = '';
+        } else {
+            $artistDescriptionEn = $request->artist_description_en;
+        }
+        
         $artistNameCh = $request->artist_name_ch;
-        $artistDescriptionCh = $request->artist_description_ch;
+        if (empty($request->artist_description_ch)) {
+            $artistDescriptionCh = '';
+        } else {
+            $artistDescriptionCh = $request->artist_description_ch;
+        }
+
         $artistNameKo = $request->artist_name_ko;
-        $artistDescriptionKo = $request->artist_description_ko;
+        if (empty($request->artist_description_ko)) {
+            $artistDescriptionKo = '';
+        } else {
+            $artistDescriptionKo = $request->artist_description_ko;
+        }
         
         AdminArtists::where('id', $artistId)
                 ->update([

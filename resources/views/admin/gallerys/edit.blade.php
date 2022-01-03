@@ -54,9 +54,9 @@
 
                 <div class="form-group mb-3">
                   <label>그림 제목</label>
-                  <input type="text" value="{{ $gallery->title }}" placeholder="제목(영어)" name="title" class="form-control mb-2">
+                  <input type="text" value="{{ $gallery->title_ko }}" placeholder="제목(조선어)" name="title_ko" class="form-control mb-2">
                   <input type="text" value="{{ $gallery->title_ch }}" placeholder="제목(중어)" name="title_ch" class="form-control mb-2">
-                  <input type="text" value="{{ $gallery->title_ko }}" placeholder="제목(조선어)" name="title_ko" class="form-control">
+                  <input type="text" value="{{ $gallery->title }}" placeholder="제목(영어)" name="title" class="form-control">
                 </div>
 
                 <div class="flex aic jcb mb-3">
@@ -126,9 +126,9 @@
 
                 <div class="form-group mb-3">
                   <label>설명</label>
-                  <textarea name="description" rows="7" placeholder="설명(영어)" class="form-control mb-2">{{ $gallery->description }}</textarea>
+                  <textarea name="description_ko" rows="7" placeholder="설명(조선어)" class="form-control mb-2">{{ $gallery->description_ko }}</textarea>
                   <textarea name="description_ch" rows="7" placeholder="설명(중어)" class="form-control mb-2">{{ $gallery->description_ch }}</textarea>
-                  <textarea name="description_ko" rows="7" placeholder="설명(조선어)" class="form-control">{{ $gallery->description_ko }}</textarea>
+                  <textarea name="description" rows="7" placeholder="설명(영어)" class="form-control">{{ $gallery->description }}</textarea>
                 </div>
 
                 <div class="form-group mb-3">
@@ -153,7 +153,7 @@
                       <option value="0">분류 선택</option>
                       @if (isset($categories))
                         @foreach ($categories as $category)
-                        <option @if ($gallery->category_id == $category->id) selected @endif value="{{ $category->id }}">{{ $category->cat_name }}</option>
+                        <option @if ($gallery->category_id == $category->id) selected @endif value="{{ $category->id }}">{{ $category->cat_name_ko }}</option>
                         @endforeach
                       @endif
                     </select>
@@ -181,7 +181,7 @@
                       <option value="0">창작가 선택</option>
                       @if (isset($artists))
                         @foreach ($artists as $artist)
-                        <option @if ($gallery->artist_id == $artist->id) selected @endif value="{{ $artist->id }}">{{ $artist->art_name }}</option>
+                        <option @if ($gallery->artist_id == $artist->id) selected @endif value="{{ $artist->id }}">{{ $artist->art_name_ko }}</option>
                         @endforeach
                       @endif
                     </select>

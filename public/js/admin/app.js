@@ -424,9 +424,9 @@ $(document).ready(function () {
           var html = '';
           $.each(result.category, function (key, val) {
             html += '<div class="flex aic flex-column update-category" data-category-id="' + key + '">';
-            html += '<input type="text" value="' + val.category_en + '" name="category_name" placeholder="분류(영어)" class="form-control insert-cat-name-en mb-2">';
-            html += '<input type="text" value="' + val.category_ch + '" name="category_name_ch" placeholder="분류(중어)" class="form-control insert-cat-name-ch mb-2">';
             html += '<input type="text" value="' + val.category_ko + '" name="category_name_ko" placeholder="분류(조선어)" class="form-control insert-cat-name-ko mb-2">';
+            html += '<input type="text" value="' + val.category_ch + '" name="category_name_ch" placeholder="분류(중어)" class="form-control insert-cat-name-ch mb-2">';
+            html += '<input type="text" value="' + val.category_en + '" name="category_name" placeholder="분류(영어)" class="form-control insert-cat-name-en mb-2">';
             html += '<div class="btn-category-update-cancel flex aie jce">';
             html += '<a href="javascript:void(0)" class="btn-insert-category mr-2">변경</a>';
             html += '<a href="javascript:void(0)" class="btn-cancel-category">취소</a>';
@@ -495,16 +495,16 @@ $(document).ready(function () {
           $.each(result.artist, function (key, val) {
             html += '<div class="flex flex-column update-artist" data-artist-id="' + key + '">';
             html += '<div class="mb-3">';
-            html += '<input type="text" value="' + val.artist_name_en + '" placeholder="창작가 이름(영어)" name="art_name" class="form-control insert-artist-name mb-2">';
-            html += '<textarea name="art_description" rows="5" placeholder="창작가 경력(영어)" class="form-control insert-artist-description">' + val.artist_description_en + '</textarea>';
+            html += '<input type="text" value="' + val.artist_name_ko + '" placeholder="창작가 이름(조선어)" name="art_name_ko" class="form-control insert-artist-name-ko mb-2">';
+            html += '<textarea name="art_description_ko" rows="5" placeholder="창작가 경력(조선어)" class="form-control insert-artist-description-ko">' + val.artist_description_ko + '</textarea>';
             html += '</div>';
             html += '<div class="mb-3">';
             html += '<input type="text" value="' + val.artist_name_ch + '" placeholder="창작가 이름(중어)" name="art_name_ch" class="form-control insert-artist-name-ch mb-2">';
             html += '<textarea name="art_description_ch" rows="5" placeholder="창작가 경력(중어)" class="form-control insert-artist-description-ch">' + val.artist_description_ch + '</textarea>';
             html += '</div>';
             html += '<div class="mb-3">';
-            html += '<input type="text" value="' + val.artist_name_ko + '" placeholder="창작가 이름(조선어)" name="art_name_ko" class="form-control insert-artist-name-ko mb-2">';
-            html += '<textarea name="art_description_ko" rows="5" placeholder="창작가 경력(조선어)" class="form-control insert-artist-description-ko">' + val.artist_description_ko + '</textarea>';
+            html += '<input type="text" value="' + val.artist_name_en + '" placeholder="창작가 이름(영어)" name="art_name" class="form-control insert-artist-name mb-2">';
+            html += '<textarea name="art_description" rows="5" placeholder="창작가 경력(영어)" class="form-control insert-artist-description">' + val.artist_description_en + '</textarea>';
             html += '</div>';
             html += '<div class="btns-update-cancel-artist flex aic jce mt-3">';
             html += '<a href="javascript:void(0)" class="btn-grey btn-insert-artist mr-2">추가</a>';
