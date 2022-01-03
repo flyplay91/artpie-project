@@ -190,6 +190,7 @@
                   <div class="form-group w-45 position-relative">
                     <a href="javascript:void(0)" class="btn-add-artist">창작가 추가</a>
                     <a href="javascript:void(0)" class="btn-edit-artist">창작가 수정</a>
+                    <a href="javascript:void(0)" class="btn-delete-artist">창작가 삭제</a>
                   </div>
                 </div>
                 

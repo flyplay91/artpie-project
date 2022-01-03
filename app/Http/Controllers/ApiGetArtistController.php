@@ -4,9 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\AdminArtists;
-use DB;
 
-class ApiArtistsController extends Controller
+class ApiGetArtistController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,30 +14,32 @@ class ApiArtistsController extends Controller
      */
     public function index(Request $request)
     {
-        $artistNameEn = $request->artist_name_en;
-        $artistDescriptionEn = $request->artist_description_en;
-        $artistNameCh = $request->artist_name_ch;
-        $artistDescriptionCh = $request->artist_description_ch;
-        $artistNameKo = $request->artist_name_ko;
-        $artistDescriptionKo = $request->artist_description_ko;
-        
+        $selectedArtistId = $request->selected_artist_id;
+        $artist = AdminArtists::find($selectedArtistId);
 
         $artistIdNameArr = [];
+        
+        $artist_name_en = $artist->art_name;
+        $artist_description_en = $artist->art_description;
 
-        $artistObjs = array('art_name' => $artistNameEn, 'art_description' => $artistDescriptionEn, 'art_name_ch' => $artistNameCh, 'art_description_ch' => $artistDescriptionCh, 'art_name_ko' => $artistNameKo, 'art_description_ko' => $artistDescriptionKo, 'created_at' =>  \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now());
-        
-        DB::table('admin_artists')->insert($artistObjs);
-        
-        $artistDatas = DB::select('SELECT * FROM admin_artists');
+        $artist_name_ch = $artist->art_name_ch;
+        $artist_description_ch = $artist->art_description_ch;
 
-        foreach($artistDatas as $artistData) {
-            $artistIdNameArr[$artistData->id] = $artistData->art_name;
-        }
-        
+        $artist_name_ko = $artist->art_name_ko;
+        $artist_description_ko = $artist->art_description_ko;
+
+        $artistIdNameArr[$selectedArtistId] = array(
+            'artist_name_en' => $artist_name_en,
+            'artist_name_ch' => $artist_name_ch,
+            'artist_name_ko' => $artist_name_ko,
+            'artist_description_en' => $artist_description_en,
+            'artist_description_ch' => $artist_description_ch,
+            'artist_description_ko' => $artist_description_ko
+        );
 
         try {
 			return response()->json([
-			    'artists' => $artistIdNameArr,
+			    'artist' => $artistIdNameArr,
 			]);
 		} catch (Exception $e) {
 		    echo 'Caught exception: '. $e->getMessage() ."\n";

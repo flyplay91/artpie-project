@@ -244,15 +244,15 @@ $(document).ready(function() {
 
 
   // Add Artist 
-  $('body').on('click', '.btn-insert-artist', function() {
-    var $art_name_en = $('.insert-artist-name').val();
-    var $art_description_en = $('.insert-artist-description').val();
-    var $art_name_ch = $('.insert-artist-name-ch').val();
-    var $art_description_ch = $('.insert-artist-description-ch').val();
-    var $art_name_ko = $('.insert-artist-name-ko').val();
-    var $art_description_ko = $('.insert-artist-description-ko').val();
+  $('body').on('click', '.popup-insert-artist .btn-insert-artist', function() {
+    var $art_name_en = $('.insert-artist .insert-artist-name').val();
+    var $art_description_en = $('.insert-artist .insert-artist-description').val();
+    var $art_name_ch = $('.insert-artist .insert-artist-name-ch').val();
+    var $art_description_ch = $('.insert-artist .insert-artist-description-ch').val();
+    var $art_name_ko = $('.insert-artist .insert-artist-name-ko').val();
+    var $art_description_ko = $('.insert-artist .insert-artist-description-ko').val();
     
-    if ($art_name != '') {
+    if ($art_name_en != '') {
       $.ajax({
         url: "/api/api-artists",
         method: "post",
@@ -271,10 +271,19 @@ $(document).ready(function() {
           $('.bg-overlay').removeClass('active');
           $('.popup-insert-artist').removeClass('active');
           
-
           var html = '';
+
+          for(var key in result.artists){
+            if(result.artists.hasOwnProperty(key)){
+              lastKey = key;
+            }
+          }
           $.each(result.artists, function (key, val) {
-            html += '<option value="' + key + '">'+ val +'</option>';
+            if ( result.artists[lastKey] == val) {
+              html += '<option value="' + key + '" selected>'+ val +'</option>';
+            } else {
+              html += '<option value="' + key + '">'+ val +'</option>';
+            }
           });
           
           $('.selectbox-artists').append(html);
@@ -353,7 +362,7 @@ $(document).ready(function() {
     var selected_cat_id = $('.selectbox-categories option:selected').val();
     if (selected_cat_id != 0) {
       $.ajax({
-        url: "/api/api-categories-delete",
+        url: "/api/api-delete-categories",
         method: "post",
         beforeSend: function(){
           $('.selectbox-categories').empty();
@@ -378,6 +387,40 @@ $(document).ready(function() {
             }
           });
           $('.selectbox-categories').append(html);
+        }
+      })
+    }
+  })
+
+  $('body').on('click', '.btn-delete-artist', function() {
+    var selected_artist_id = $('.selectbox-artists option:selected').val();
+    if (selected_artist_id != 0) {
+      $.ajax({
+        url: "/api/api-delete-artist",
+        method: "post",
+        beforeSend: function(){
+          $('.selectbox-artists').empty();
+        },
+        data: {
+          selected_artist_id: selected_artist_id,
+        },
+        success: function(result) {
+          var html = '';
+          
+          for(var key in result.artists){
+            if(result.artists.hasOwnProperty(key)){
+              lastKey = key;
+            }
+          }
+    
+          $.each(result.artists, function (key, val) {
+            if ( result.artists[lastKey] == val) {
+              html += '<option value="' + key + '" selected>'+ val +'</option>';  
+            } else {
+              html += '<option value="' + key + '">'+ val +'</option>';
+            }
+          });
+          $('.selectbox-artists').append(html);
         }
       })
     }
@@ -422,7 +465,7 @@ $(document).ready(function() {
             
             if (($cat_name_en != '') && ($cat_name_ch != '') && ($cat_name_ko != '')) {
               $.ajax({
-                url: "/api/api-categories-update",
+                url: "/api/api-update-categories",
                 method: "post",
                   beforeSend: function(){
                     // $(".selectbox-categories").empty();
@@ -434,23 +477,6 @@ $(document).ready(function() {
                   cat_name_ko: $cat_name_ko,
                 },
                 success: function(result) {
-                  var html = '';
-                  
-                  for(var key in result.categories){
-                    if(result.categories.hasOwnProperty(key)){
-                      lastKey = key;
-                    }
-                  }
-            
-                  $.each(result.categories, function (key, val) {
-                    if ( result.categories[lastKey] == val) {
-                      html += '<option value="' + key + '" selected>'+ val +'</option>';  
-                    } else {
-                      html += '<option value="' + key + '">'+ val +'</option>';
-                    }
-                    
-                  });
-                  
                   $('.bg-overlay').removeClass('active');
                   $('.popup-update-category-artist').removeClass('active');
                   
@@ -475,7 +501,86 @@ $(document).ready(function() {
   $('body').on('click', '.btn-cancel-artist', function() {
     $('.bg-overlay').removeClass('active');
     $('.popup-insert-artist').removeClass('active');
+    $('.popup-update-category-artist').removeClass('active');
   });
+
+  $('body').on('click', '.btn-edit-artist', function() {
+    var selected_artist_id = $('.selectbox-artists option:selected').val();
+    if (selected_artist_id != 0) {
+      $.ajax({
+        url: "/api/api-get-artist",
+        method: "post",
+        beforeSend: function(){
+          $('.popup-update-category-artist').empty();
+        },
+        data: {
+          selected_artist_id: selected_artist_id,
+        },
+        success: function(result) {
+          $('.popup-update-category-artist').addClass('update-artist-popup');
+          html = '';
+          
+          $.each(result.artist, function (key, val) {
+            
+            html += '<div class="flex flex-column update-artist" data-artist-id="'+ key +'">';
+              html += '<div class="mb-3">';
+                html += '<input type="text" value="'+ val.artist_name_en +'" placeholder="창작가 이름(영어)" name="art_name" class="form-control insert-artist-name mb-2">';
+                html += '<textarea name="art_description" rows="5" placeholder="창작가 경력(영어)" class="form-control insert-artist-description">'+ val.artist_description_en +'</textarea>';
+              html += '</div>';
+              html += '<div class="mb-3">';
+                html += '<input type="text" value="'+ val.artist_name_ch +'" placeholder="창작가 이름(중어)" name="art_name_ch" class="form-control insert-artist-name-ch mb-2">';
+                html += '<textarea name="art_description_ch" rows="5" placeholder="창작가 경력(중어)" class="form-control insert-artist-description-ch">'+ val.artist_description_ch +'</textarea>';
+              html += '</div>';
+              html += '<div class="mb-3">';
+                html += '<input type="text" value="'+ val.artist_name_ko +'" placeholder="창작가 이름(조선어)" name="art_name_ko" class="form-control insert-artist-name-ko mb-2">';
+                html += '<textarea name="art_description_ko" rows="5" placeholder="창작가 경력(조선어)" class="form-control insert-artist-description-ko">'+ val.artist_description_ko +'</textarea>';
+              html += '</div>';
+              html += '<div class="btns-update-cancel-artist flex aic jce mt-3">';
+                html += '<a href="javascript:void(0)" class="btn-grey btn-insert-artist mr-2">추가</a>';
+                html += '<a href="javascript:void(0)" class="btn-grey btn-cancel-artist">취소</a>';
+              html += '</div>';
+            html += '</div>';
+          });
+          $('.popup-update-category-artist').append(html);
+
+          $('.bg-overlay').addClass('active');
+          $('.popup-update-category-artist').addClass('active');
+
+          $('body').on('click', '.btns-update-cancel-artist .btn-insert-artist', function() {
+            var $artist_id = $('.update-artist').data('artist-id');
+            var $art_name_en = $('.update-artist .insert-artist-name').val();
+            var $art_description_en = $('.update-artist .insert-artist-description').val();
+            var $art_name_ch = $('.update-artist .insert-artist-name-ch').val();
+            var $art_description_ch = $('.update-artist .insert-artist-description-ch').val();
+            var $art_name_ko = $('.update-artist .insert-artist-name-ko').val();
+            var $art_description_ko = $('.update-artist .insert-artist-description-ko').val();
+            
+            if (($art_name_en != '') && ($art_name_ch != '') && ($art_name_ko != '')) {
+              $.ajax({
+                url: "/api/api-update-artist",
+                method: "post",
+                data: {
+                  artist_id: $artist_id,
+                  artist_name_en: $art_name_en,
+                  artist_description_en: $art_description_en,
+                  artist_name_ch: $art_name_ch,
+                  artist_description_ch: $art_description_ch,
+                  artist_name_ko: $art_name_ko,
+                  artist_description_ko: $art_description_ko,
+                },
+                success: function(result) {
+                  $('.bg-overlay').removeClass('active');
+                  $('.popup-update-category-artist').removeClass('active');
+                }
+              });
+            } else {
+              alert('아래의 정보들을 입력하십시오.');
+            }
+          });
+        }
+      })
+    }
+  })
 
   $('.checkbox-enable-pieces').change(function() {
     if ($(this).prop('checked')) {

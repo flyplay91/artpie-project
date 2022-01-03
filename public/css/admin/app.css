@@ -699,7 +699,8 @@ img {
 .btn-add-artist,
 .btn-edit-category,
 .btn-edit-artist,
-.btn-delete-category {
+.btn-delete-category,
+.btn-delete-artist {
   border-radius: 4px;
   border: solid 1px #bdbdbd;
   background-color: #f0f0f0;
@@ -711,7 +712,8 @@ img {
 .btn-add-artist:hover,
 .btn-edit-category:hover,
 .btn-edit-artist:hover,
-.btn-delete-category:hover {
+.btn-delete-category:hover,
+.btn-delete-artist:hover {
   text-decoration: none;
   color: #434343;
 }
@@ -776,6 +778,14 @@ img {
 }
 .popup-update-category-artist.active {
   display: block;
+}
+.popup-update-category-artist.update-artist-popup {
+  bottom: 10%;
+}
+
+.btns-insert-cancel-artist a,
+.btns-update-cancel-artist a {
+  padding: 6px 10px;
 }
 
 .form-save-gallery .btn-grey,

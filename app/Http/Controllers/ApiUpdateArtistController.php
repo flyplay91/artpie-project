@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use App\AdminArtists;
 use DB;
 
-class ApiArtistsController extends Controller
+
+class ApiUpdateArtistController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,6 +16,8 @@ class ApiArtistsController extends Controller
      */
     public function index(Request $request)
     {
+        $artistId = $request->artist_id;
+        
         $artistNameEn = $request->artist_name_en;
         $artistDescriptionEn = $request->artist_description_en;
         $artistNameCh = $request->artist_name_ch;
@@ -22,32 +25,29 @@ class ApiArtistsController extends Controller
         $artistNameKo = $request->artist_name_ko;
         $artistDescriptionKo = $request->artist_description_ko;
         
+        AdminArtists::where('id', $artistId)
+                ->update([
+                    'art_name' => $artistNameEn,
+                    'art_name_ch' => $artistNameCh,
+                    'art_name_ko' => $artistNameKo,
+                    'art_description' => $artistDescriptionEn,
+                    'art_description_ch' => $artistDescriptionCh,
+                    'art_description_ko' => $artistDescriptionKo,
+                ]);
 
-        $artistIdNameArr = [];
-
-        $artistObjs = array('art_name' => $artistNameEn, 'art_description' => $artistDescriptionEn, 'art_name_ch' => $artistNameCh, 'art_description_ch' => $artistDescriptionCh, 'art_name_ko' => $artistNameKo, 'art_description_ko' => $artistDescriptionKo, 'created_at' =>  \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now());
         
-        DB::table('admin_artists')->insert($artistObjs);
-        
-        $artistDatas = DB::select('SELECT * FROM admin_artists');
-
-        foreach($artistDatas as $artistData) {
-            $artistIdNameArr[$artistData->id] = $artistData->art_name;
-        }
-        
-
         try {
-			return response()->json([
-			    'artists' => $artistIdNameArr,
-			]);
-		} catch (Exception $e) {
-		    echo 'Caught exception: '. $e->getMessage() ."\n";
+            return response()->json([
+                'success' => '1',
+            ]);
+        } catch (Exception $e) {
+            echo 'Caught exception: '. $e->getMessage() ."\n";
 
-		    return response()->json([
-			    'failed' => '1',
-			    'error_message' => $e->getMessage(),
-			]);
-		}
+            return response()->json([
+                'failed' => '1',
+                'error_message' => $e->getMessage(),
+            ]);
+        }
     }
 
     /**

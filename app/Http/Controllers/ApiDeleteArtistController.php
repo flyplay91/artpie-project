@@ -4,9 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\AdminArtists;
-use DB;
 
-class ApiArtistsController extends Controller
+class ApiDeleteArtistController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,23 +14,16 @@ class ApiArtistsController extends Controller
      */
     public function index(Request $request)
     {
-        $artistNameEn = $request->artist_name_en;
-        $artistDescriptionEn = $request->artist_description_en;
-        $artistNameCh = $request->artist_name_ch;
-        $artistDescriptionCh = $request->artist_description_ch;
-        $artistNameKo = $request->artist_name_ko;
-        $artistDescriptionKo = $request->artist_description_ko;
+        $artistId = $request->selected_artist_id;
+        $artist = AdminArtists::find($artistId);
         
+        $artist->delete();
+
+        $artists = AdminArtists::all();
 
         $artistIdNameArr = [];
 
-        $artistObjs = array('art_name' => $artistNameEn, 'art_description' => $artistDescriptionEn, 'art_name_ch' => $artistNameCh, 'art_description_ch' => $artistDescriptionCh, 'art_name_ko' => $artistNameKo, 'art_description_ko' => $artistDescriptionKo, 'created_at' =>  \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now());
-        
-        DB::table('admin_artists')->insert($artistObjs);
-        
-        $artistDatas = DB::select('SELECT * FROM admin_artists');
-
-        foreach($artistDatas as $artistData) {
+        foreach($artists as $artistData) {
             $artistIdNameArr[$artistData->id] = $artistData->art_name;
         }
         
