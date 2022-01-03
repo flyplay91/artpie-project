@@ -25,14 +25,23 @@
     <div class="hdrItems-sidebar__inner">
       <div class="filterItems hdrItem--category boxCtnt">
         @if (isset($categories))
-          <span class="fTtl">종류</span>
+          <span class="fTtl">{{ __('messages.filter_category') }}</span>
           <label class="chkBox2">
             <input type="checkbox" class="checkbox-filter checkbox-any-filter" value="any" checked="checked"> Any
             <div class="chkBox2_box"></div>
           </label>
           @foreach ($categories as $category)
             <label class="chkBox2">
-              <input type="checkbox" class="checkbox-filter checkbox-some-filter" value="{{ $category->id }}">{{ $category->cat_name }}
+              <input type="checkbox" class="checkbox-filter checkbox-some-filter" value="{{ $category->id }}">
+                @if ($category->cat_name == '펜화')
+                  {{ __('messages.filter_category_1') }}
+                @elseif ($category->cat_name == '유화')
+                  {{ __('messages.filter_category_2') }}
+                @elseif ($category->cat_name == '동양화')
+                  {{ __('messages.filter_category_3') }}
+                @elseif ($category->cat_name == '조선화')
+                  {{ __('messages.filter_category_4') }}
+                @endif
               <div class="chkBox2_box"></div>
             </label>
           @endforeach
@@ -41,7 +50,7 @@
 
       <div class="hdrItem--price-size">
         <div class="filterItems hdrItem--price boxCtnt">
-          <span class="fTtl">가격</span>
+          <span class="fTtl">{{ __('messages.filter_price') }}</span>
           <label class="chkBox2">
             <input type="checkbox" class="checkbox-filter checkbox-any-filter" value="any" checked="checked"> Any
             <div class="chkBox2_box"></div>

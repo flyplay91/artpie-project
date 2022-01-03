@@ -41,6 +41,9 @@ Route::resource('pay', 'front\PayController')->middleware('auth');
 Route::resource('order', 'front\OrderInfoController')->middleware('auth');
 
 
+// Multi Lang
+Route::get('lang/home', 'LangController@index');
+Route::get('lang/change', 'LangController@change')->name('changeLang');
 
 // Admin
 Route::group(['middleware' => ['auth', 'checkSuperAdmin']], function () {
