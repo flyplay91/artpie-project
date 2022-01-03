@@ -87,7 +87,7 @@
           </ul>
         </div>
         <div class="footer-copyright">
-          Copyright@ 2021 ArtPie LLC
+          Copyright@ 2021 KoldArt LLC
         </div>
       </div>
     </div>
