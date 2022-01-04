@@ -206,7 +206,7 @@
                 </div>
                 
                 <div class="form-group">
-                  <label for="inputDate">출판 날자</label>
+                  <label for="inputDate">창작 날자</label>
                   <input type="text" class="form-control" value="{{ $gallery->paint_date }}" name="paint_date">
                 </div>
 

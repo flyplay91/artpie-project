@@ -636,6 +636,7 @@ img {
   width: 100%;
 }
 .edit-gallery .block-change-image-des .btns-change-add-images a {
+  display: none;
   border-radius: 4px;
   border: solid 1px #bdbdbd;
   background-color: #f0f0f0;
