@@ -12,7 +12,7 @@
 
     <div class="sBoxW">
       <div class="sBox gallery-search">
-        <input type="text" name="s" placeholder="그림제목/화가이름" class="s">
+        <input type="text" name="s" placeholder="{{ __('messages.title_painter') }}" class="s">
         <a href="javascript:void(0)"><img src="/images/search-icon.png"></a>
       </div>
     </div>

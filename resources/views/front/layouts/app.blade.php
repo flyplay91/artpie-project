@@ -44,21 +44,15 @@
                 <option value="ch" {{ session()->get('locale') == 'ch' ? 'selected' : '' }}>Chinese</option>
                 <option value="ko" {{ session()->get('locale') == 'ko' ? 'selected' : '' }}>Korean</option>
               </select>
-              <!-- <label>Korean</label>
-              <ul>
-                <li><a href="">Korean</a></li>
-                <li><a href="">Chinese</a></li>
-                <li><a href="">English</a></li>
-              </ul> -->
             </div>
 
             @auth
             <div class="header-nav-dropdown my-profile">
-              <label>Profile</label>
+              <label>{{ __('messages.profile') }}</label>
               <ul>
-                <li><a href="">나의 갤러리</a></li>
-                <li><a href="/setting">설정</a></li>
-                <li><a href="/account/deposits">입금</a></li>
+                <li><a href="">{{ __('messages.my_gallery') }}</a></li>
+                <li><a href="/setting">{{ __('messages.setting') }}</a></li>
+                <li><a href="/account/deposits">{{ __('messages.deposit_funds') }}</a></li>
               </ul>
             </div>
             @endauth
@@ -70,7 +64,7 @@
               @endif
             @else
               <a href="{{ route('logout') }}">
-                {{ __('Logout') }}
+                {{ __('messages.logout') }}
               </a>
             @endguest
           </div>
