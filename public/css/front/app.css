@@ -2510,3 +2510,11 @@ img {
     width: 100%;
   }
 }
+/* Account Page */
+.account-deposits-page .deposit-form {
+  text-align: center;
+  margin: 100px 0;
+}
+.account-deposits-page .deposit-form img {
+  width: auto;
+}

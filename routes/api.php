@@ -37,6 +37,7 @@ Route::post('api-get-categories', 'ApiGetCategoriesController@index');
 
 Route::post('api-artists', 'ApiArtistsController@index');
 Route::post('purchase-fragments', 'ApiGalleryController@purchaseFragments');
+Route::post('confirm-deposit', 'ApiDepositController@confirmDeposit');
 Route::post('api-get-artist', 'ApiGetArtistController@index');
 Route::post('api-update-artist', 'ApiUpdateArtistController@index');
 Route::post('api-delete-artist', 'ApiDeleteArtistController@index');

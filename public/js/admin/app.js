@@ -701,6 +701,23 @@ $(document).ready(function () {
   $('#uploadImage').change(function () {
     $('.btn-upload-image').trigger('click');
   });
+  $(document).on('click', '.btn-confirm-deposit', function () {
+    var depositId = $(this).attr('data-deposit-id');
+    var parentRow = $(this).closest('tr');
+    $.ajax({
+      url: "/api/confirm-deposit",
+      method: "post",
+      data: {
+        deposit_id: depositId
+      },
+      success: function success(result) {
+        if (result.success) {
+          parentRow.find('.status').text('completed');
+          parentRow.find('.btn-confirm-deposit').remove();
+        }
+      }
+    });
+  });
 });
 /******/ })()
 ;

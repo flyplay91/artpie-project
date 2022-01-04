@@ -14,7 +14,7 @@ class DepositsController extends Controller
      */
     public function index()
     {
-        $deposits = Deposits::all();
+        $deposits = Deposits::orderByRaw("FIELD(status, \"pending\", \"completed\")")->get();
         return view('admin.deposits.index',compact('deposits'));
     }
 

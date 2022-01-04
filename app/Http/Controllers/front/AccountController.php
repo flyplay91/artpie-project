@@ -18,7 +18,31 @@ class AccountController extends Controller
      */
     public function deposits()
     {
-        $deposits = Auth::user()->deposits;
+        $deposits = Auth::user()->deposits();
+        $deposits = $deposits->orderByRaw("FIELD(status, \"pending\", \"completed\")")->get();
         return view('front.pages.account.deposits',compact('deposits'));
+    }
+
+    /**
+     * Process user's deposit.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function processDeposit(Request $request)
+    {
+        $request->validate([
+            'amount' => 'required'
+        ]);
+        
+        Deposits::create([
+            'user_id' => Auth::user()->id,
+            'amount' => $request->amount,
+            'status' => 'pending'
+        ]);
+
+        $deposits = Auth::user()->deposits();
+        $deposits = $deposits->orderByRaw("FIELD(status, \"pending\", \"completed\")")->get();
+        return view('front.pages.account.deposits',compact('deposits'))
+                ->with('success','Password is updated successfully');;
     }
 }

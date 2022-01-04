@@ -14,6 +14,7 @@
           <th scope="col">입금자이름</th>
           <th scope="col">액수</th>
           <th scope="col">상태</th>
+          <th scope="col"></th>
         </tr>
       </thead>
       <tbody>
@@ -24,7 +25,12 @@
             <td>{{ $deposit->user->id }}</td>
             <td>{{ $deposit->user->name }}</td>
             <td>{{ $deposit->amount }}</td>
-            <td>{{ $deposit->status }}</td>
+            <td class="status">{{ $deposit->status }}</td>
+            <td>
+              @if ($deposit->status == 'pending')
+                <button class="btn btn-warning btn-confirm-deposit" data-deposit-id="{{ $deposit->id }}">확인</button>
+              @endif
+            </td>
           </tr>
           @endforeach
         @endif

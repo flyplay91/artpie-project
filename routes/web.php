@@ -40,8 +40,9 @@ Route::resource('checkout', 'front\CheckoutController')->middleware('auth');
 Route::resource('pay', 'front\PayController')->middleware('auth');
 Route::resource('order', 'front\OrderInfoController')->middleware('auth');
 
-Route::group(['middleware' => ['auth']], function () {
+Route::prefix('account')->middleware(['auth'])->group(function () {
   Route::get('deposits', 'front\AccountController@deposits');
+  Route::post('process-deposit', 'front\AccountController@processDeposit')->name('process-deposit');
 });
 
 // Multi Lang
