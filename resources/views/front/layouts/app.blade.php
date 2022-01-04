@@ -24,6 +24,15 @@
 
 <body>
   <div id="mainWrapper">
+    @if (session()->get('locale') == 'en')
+      <input type="hidden" class="selected-lang" value="en">
+    @elseif (session()->get('locale') == 'ch')
+      <input type="hidden" class="selected-lang" value="ch">
+    @elseif (session()->get('locale') == 'ko')
+      <input type="hidden" class="selected-lang" value="ko">
+    @else 
+      <input type="hidden" class="selected-lang" value="en">
+    @endif
     <div class="bg-overlay"><label>X</label></div>
     <div class="header">
       <div class="wrapper header-logo-nav flex aic jcb">

@@ -14,6 +14,7 @@ eval(function(m,a,g,i,c,k){c=function(e){return(e<a?'':c(parseInt(e/a)))+((e=e%a
 
 var baseUrl = window.location.protocol + '//' + window.location.host + '/';
 
+
 /* Set vh on Safari */
 
 function resetVH() {
@@ -28,8 +29,11 @@ window.addEventListener('resize', () => {
 });
 
 var galleryAjax = {};
+var selectedLang;
 
 $(document).ready(function() {
+  selectedLang = $('.selected-lang').val();
+  console.log(selectedLang);
   if ($('#hdrItems').length > 0) {
     var macyInstance = Macy({
       container: '#hdrItems',
@@ -447,41 +451,102 @@ function getGalleryAjax(id, artist_id) {
           html += '<div class="gallery-data-info__top">';
             html += '<label class="gallery-number">No. ' + ("0000000" + val.g_id).slice(-7) + '</label>';
 
-            html += '<h2>' + val.g_title + '<span>(' + val.g_category_name + ')</span></h2>';
+            if (selectedLang == 'en') {
+              html += '<h2>' + val.g_title_en + '<span>(' + val.g_category_name_en + ')</span></h2>';
+            } else if (selectedLang == 'ch') {
+              html += '<h2>' + val.g_title_ch + '<span>(' + val.g_category_name_ch + ')</span></h2>';
+            } else if (selectedLang == 'ko') {
+              html += '<h2>' + val.g_title_ko + '<span>(' + val.g_category_name_ko + ')</span></h2>';
+            } else {
+              html += '<h2>' + val.g_title_en + '<span>(' + val.g_category_name_en + ')</span></h2>';
+            }
+            
             html += '<div class="gallery-data-items">';
               html += '<div class="gallery-data-content">';
+              if (selectedLang == 'en') {
+                html += '<label class="flex aic">Dimension: '; 
+              } else if (selectedLang == 'ch') {
+                html += '<label class="flex aic">规格: '; 
+              } else if (selectedLang == 'ko') {
                 html += '<label class="flex aic">크기: '; 
+              } else {
+                html += '<label class="flex aic">Dimension: '; 
+              }
                   html += val.g_width +' * ' + val.g_height + ' ' + val.g_unit;
                 html += '</label>';
               html += '</div>';
 
               html += '<div class="gallery-data-content">';
+              if (selectedLang == 'en') {
+                html += '<label class="flex aic">Price: '; 
+              } else if (selectedLang == 'ch') {
+                html += '<label class="flex aic">价格: '; 
+              } else if (selectedLang == 'ko') {
                 html += '<label class="flex aic">가격: '; 
-                  html += parseFloat(val.g_price) + ' RMB';
+              } else {
+                html += '<label class="flex aic">Price: '; 
+              }
+                  html += parseFloat(val.g_price) + ' USD';
                 html += '</label>';
               html += '</div>';
 
               html += '<div class="gallery-data-content__item active">';
-                html += '<label class="flex aic">작가: ' + val.g_artistname ;
+                if (selectedLang == 'en') {
+                  html += '<label class="flex aic">Artist: ' + val.g_artist_name_en ;
+                } else if (selectedLang == 'ch') {
+                  html += '<label class="flex aic">画家: ' + val.g_artist_name_ch ;
+                } else if (selectedLang == 'ko') {
+                  html += '<label class="flex aic">작가: ' + val.g_artist_name_ko ;
+                } else {
+                  html += '<label class="flex aic">Artist: ' + val.g_artist_name_en ;
+                }
+                
                   if (val.g_artist_des != '') {
                     html += '<img class="icon-up-arrow" src="/images/up-arrow-icon.png">';
                     html += '<img class="icon-down-arrow" src="/images/down-arrow-icon.png">';
                   }
                   
                 html += '</label>';
-                html += '<div>'+ val.g_artist_des +'</div>';
+                if (selectedLang == 'en') {
+                  html += '<div>'+ val.g_artist_description_en +'</div>';
+                } else if (selectedLang == 'ch') {
+                  html += '<div>'+ val.g_artist_description_ch +'</div>';
+                } else if (selectedLang == 'ko') {
+                  html += '<div>'+ val.g_artist_description_ko +'</div>';
+                } else {
+                  html += '<div>'+ val.g_artist_description_en +'</div>';
+                }
+                
               html += '</div>';
               
               if (val.g_description != '') {
                 html += '<div class="gallery-data-content__item active">';
-                  html += '<label class="flex aic">작품소개';
+                  if (selectedLang == 'en') {
+                    html += '<label class="flex aic">Introduction';
+                  } else if (selectedLang == 'ch') {
+                    html += '<label class="flex aic">作品介绍';
+                  } else if (selectedLang == 'ko') {
+                    html += '<label class="flex aic">작품소개';
+                  } else {
+                    html += '<label class="flex aic">Introduction';
+                  }
+                  
                     if (val.g_description != '') {
                       html += '<img class="icon-up-arrow" src="/images/up-arrow-icon.png">';
                       html += '<img class="icon-down-arrow" src="/images/down-arrow-icon.png">';
                     }
                     
                   html += '</label>';
-                  html += '<div>' + val.g_description + '</div>';
+                  if (selectedLang == 'en') {
+                    html += '<div>' + val.g_description_en + '</div>';
+                  } else if (selectedLang == 'ch') {
+                    html += '<div>' + val.g_description_ch + '</div>';
+                  } else if (selectedLang == 'ko') {
+                    html += '<div>' + val.g_description_ko + '</div>';
+                  } else {
+                    html += '<div>' + val.g_description_en + '</div>';
+                  }
+                  
                 html += '</div>';
               }
               
@@ -489,7 +554,16 @@ function getGalleryAjax(id, artist_id) {
                 var thumb_images = val.same_artist_images.split(',');
                 
                 html += '<div class="gallery-data-content__item">';
-                  html += '<label class="flex aic">화가의 다른 작품들';
+                  if (selectedLang == 'en') {
+                    html += '<label class="flex aic">Other paintings of this artist';
+                  } else if (selectedLang == 'ch') {
+                    html += '<label class="flex aic">该画家的其他作品';
+                  } else if (selectedLang == 'ko') {
+                    html += '<label class="flex aic">화가의 다른 작품들';
+                  } else {
+                    html += '<label class="flex aic">Other paintings of this artist';
+                  }
+                  
                     html += '<img class="icon-up-arrow" src="/images/up-arrow-icon.png">';
                     html += '<img class="icon-down-arrow" src="/images/down-arrow-icon.png">';
                   html += '</label>';
@@ -509,23 +583,58 @@ function getGalleryAjax(id, artist_id) {
             html += '<div class="gallery-pieces-buy flex aie jcb ">';
               html += '<div class="gallery-pieces-buy-info__inner">';
                 html += '<div class="gallery-pieces-buy-info flex aic">';
-                  html += '<label>수량: </label>';
+                  if (selectedLang == 'en') {
+                    html += '<label>Quantity: </label>';
+                  } else if (selectedLang == 'ch') {
+                    html += '<label>数量: </label>';
+                  } else if (selectedLang == 'ko') {
+                    html += '<label>수량: </label>';
+                  } else {
+                    html += '<label>Quantity: </label>';
+                  }
+                  
                   html += '<input class="gallery-pieces-count" type="number" value="1" min="1" max="'+ parseInt(val.g_pieces) +'">';
                   html += '<span> /' + parseInt(val.g_pieces) + ' </span>';
                 html += '</div>';
                 html += '<div class="gallery-pieces-buy-price flex aic">';
-                  html += '<label>금액: </label>';
-                  html += '<span><b>' + parseFloat(val.g_price / parseInt(val.g_pieces)).toFixed(2) + '</b> RMB</span>';
+                  if (selectedLang == 'en') {
+                    html += '<label>Price: </label>';
+                  } else if (selectedLang == 'ch') {
+                    html += '<label>价格: </label>';
+                  } else if (selectedLang == 'ko') {
+                    html += '<label>금액: </label>';
+                  } else {
+                    html += '<label>Price: </label>';
+                  }
+                  
+                  html += '<span><b>' + parseFloat(val.g_price / parseInt(val.g_pieces)).toFixed(2) + '</b> USD</span>';
                 html += '</div>';
               html += '</div>';
               html += '<div class="gallery-pieces-buy-btn">';
-                html += '<a href="#" class="btn-grey btn-purchase-fragments" data-gallery-id="'+ key +'">쪼각구매</a>';
+                if (selectedLang == 'en') {
+                  html += '<a href="#" class="btn-grey btn-purchase-fragments" data-gallery-id="'+ key +'">Buy Pieces</a>';
+                } else if (selectedLang == 'ch') {
+                  html += '<a href="#" class="btn-grey btn-purchase-fragments" data-gallery-id="'+ key +'">买件</a>';
+                } else if (selectedLang == 'ko') {
+                  html += '<a href="#" class="btn-grey btn-purchase-fragments" data-gallery-id="'+ key +'">쪼각구매</a>';
+                } else {
+                  html += '<a href="#" class="btn-grey btn-purchase-fragments" data-gallery-id="'+ key +'">Buy Pieces</a>';
+                }
+                
               html += '</div>';
             html += '</div>';
           }
             
-
-            html += '<div class="link-get-gallery text-right"><a href="/contact-gallery?g_id='+ key +'"><i>이 그림을 구입하려면</i></a></div>';
+            if (selectedLang == 'en') {
+              html += '<div class="link-get-gallery text-right"><a href="/contact-gallery?g_id='+ key +'"><i>To purchase this painting</i></a></div>';
+            } else if (selectedLang == 'ch') {
+              html += '<div class="link-get-gallery text-right"><a href="/contact-gallery?g_id='+ key +'"><i>要购买此作品</i></a></div>';
+            } else if (selectedLang == 'ko') {
+              html += '<div class="link-get-gallery text-right"><a href="/contact-gallery?g_id='+ key +'"><i>이 그림을 구입하려면</i></a></div>';
+            } else {
+              html += '<div class="link-get-gallery text-right"><a href="/contact-gallery?g_id='+ key +'"><i>To purchase this painting</i></a></div>';
+            }
+            
           html += '</div>';
         html += '</div>';
       });

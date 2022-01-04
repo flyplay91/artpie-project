@@ -30,7 +30,17 @@ class ApiGalleryController extends Controller
 
         $galleryObj = AdminGallerys::find($galleryId);
 
-        $artistName = DB::table('admin_artists')->where('id', $galleryObj->artist_id)->pluck('art_name')->first();
+        $artistNameEn = DB::table('admin_artists')->where('id', $galleryObj->artist_id)->pluck('art_name')->first();
+        $artistNameCh = DB::table('admin_artists')->where('id', $galleryObj->artist_id)->pluck('art_name_ch')->first();
+        $artistNameKo = DB::table('admin_artists')->where('id', $galleryObj->artist_id)->pluck('art_name_ko')->first();
+        $artistDescriptionEn = DB::table('admin_artists')->where('id', $galleryObj->artist_id)->pluck('art_description')->first();
+        $artistDescriptionCh = DB::table('admin_artists')->where('id', $galleryObj->artist_id)->pluck('art_description_ch')->first();
+        $artistDescriptionKo = DB::table('admin_artists')->where('id', $galleryObj->artist_id)->pluck('art_description_ko')->first();
+
+        $categoryNameEn = DB::table('admin_categories')->where('id', $galleryObj->category_id)->pluck('cat_name')->first();
+        $categoryNameCh = DB::table('admin_categories')->where('id', $galleryObj->category_id)->pluck('cat_name_ch')->first();
+        $categoryNameKo = DB::table('admin_categories')->where('id', $galleryObj->category_id)->pluck('cat_name_ko')->first();
+
         if (isset($galleryObj->piece_count)) {
             $galleryPieces = $galleryObj->piece_count;
         } else {
@@ -54,16 +64,27 @@ class ApiGalleryController extends Controller
             'g_id'  => $galleryObj->id,
             'g_artist_des'  => $artDesc,
             'g_image' => $galleryObj->image,
-            'g_title' => $galleryObj->title,
-            'g_description' => nl2br($galleryObj->description),
-            'g_artistname' => $artistName,
+            'g_title_en' => $galleryObj->title,
+            'g_title_ch' => $galleryObj->title_ch,
+            'g_title_ko' => $galleryObj->title_ko,
+            'g_description_en' => nl2br($galleryObj->description),
+            'g_description_ch' => nl2br($galleryObj->description_ch),
+            'g_description_ko' => nl2br($galleryObj->description_ko),
+            'g_artist_name_en' => $artistNameEn,
+            'g_artist_name_ch' => $artistNameCh,
+            'g_artist_name_ko' => $artistNameKo,
+            'g_artist_description_en' => $artistDescriptionEn,
+            'g_artist_description_ch' => $artistDescriptionCh,
+            'g_artist_description_ko' => $artistDescriptionKo,
             'g_price' => $galleryObj->retail_price,
             'g_pieces' => $galleryPieces,
             'g_width'   => $galleryObj->width,
             'g_height'  => $galleryObj->height,
             'g_unit'  => $galleryObj->unit,
             'same_artist_count' => $sameArtistCount,
-            'g_category_name' => $catName,
+            'g_category_name_en' => $categoryNameEn,
+            'g_category_name_ch' => $categoryNameCh,
+            'g_category_name_ko' => $categoryNameKo,
             'g_check_pieces' => $galleryObj->check_enable_pieces,
         );
 
