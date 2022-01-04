@@ -39,6 +39,8 @@
                 {{ $category->cat_name_ch }}
               @elseif (session()->get('locale') == 'ko')
                 {{ $category->cat_name_ko }}
+              @else 
+                {{ $category->cat_name }}
               @endif
               <div class="chkBox2_box"></div>
             </label>
