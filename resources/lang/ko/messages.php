@@ -1,14 +1,14 @@
 <?php
    
 return [
-    'header_menu_1' => '그림구입',
-    'header_menu_login' => '로그인',
-    'header_menu_register' => '등록',
-    'filter_category' => '종류',
-    'filter_category_1' => '펜화',
-    'filter_category_2' => '유화',
-    'filter_category_3' => '동양화',
-    'filter_category_4' => '조선화',
-    'filter_price' => '가격',
-  
+    'purchase_painting' => '그림구입',
+    'login' => '로그인',
+    'register' => '등록',
+    'category' => '종류',
+    'price' => '가격',
+    'email' => '전자우편',
+    'password' => '암호',
+    'remember_me' => '정보를 기억',
+    'forgot_password' => '암호를 잊엇습니까',
+    'no_account' => '아직 계정이 없습니까'
 ];

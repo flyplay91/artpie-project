@@ -29,7 +29,7 @@
       <div class="wrapper header-logo-nav flex aic jcb">
         <div class="header__logo flex aic">
           <a href="/" class="flex aic jcc"><img src="/images/logo.png"></a>
-          <a href="/" class="active">{{ __('messages.header_menu_1') }}</a>
+          <a href="/" class="active">{{ __('messages.purchase_painting') }}</a>
           @auth
             @if (auth()->user()->isSuperAdmin())
               <a href="/admin-gallery">Admin Dashboard</a>
@@ -64,9 +64,9 @@
             @endauth
             
             @guest
-            <a href="{{ route('login') }}">{{ __('messages.header_menu_login') }}</a>
+            <a href="{{ route('login') }}">{{ __('messages.login') }}</a>
               @if (Route::has('register'))
-                <a href="{{ route('register') }}">{{ __('messages.header_menu_register') }}</a>
+                <a href="{{ route('register') }}">{{ __('messages.register') }}</a>
               @endif
             @else
               <a href="{{ route('logout') }}">
