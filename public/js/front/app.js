@@ -2551,68 +2551,87 @@ function getGalleryAjax(id, artist_id) {
         html += parseFloat(val.g_price) + ' USD';
         html += '</label>';
         html += '</div>';
-        html += '<div class="gallery-data-content__item active">';
 
-        if (selectedLang == 'en') {
+        if (selectedLang == '') {
+          html += '<div class="gallery-data-content__item active">';
           html += '<label class="flex aic">Artist: ' + val.g_artist_name_en;
-        } else if (selectedLang == 'ch') {
-          html += '<label class="flex aic">画家: ' + val.g_artist_name_ch;
-        } else if (selectedLang == 'ko') {
-          html += '<label class="flex aic">작가: ' + val.g_artist_name_ko;
-        } else {
-          html += '<label class="flex aic">Artist: ' + val.g_artist_name_en;
-        }
-
-        if (val.g_artist_des != '') {
           html += '<img class="icon-up-arrow" src="/images/up-arrow-icon.png">';
           html += '<img class="icon-down-arrow" src="/images/down-arrow-icon.png">';
-        }
-
-        html += '</label>';
-
-        if (selectedLang == 'en') {
+          html += '</label>';
           html += '<div>' + val.g_artist_description_en + '</div>';
-        } else if (selectedLang == 'ch') {
-          html += '<div>' + val.g_artist_description_ch + '</div>';
-        } else if (selectedLang == 'ko') {
-          html += '<div>' + val.g_artist_description_ko + '</div>';
+          html += '</div>';
         } else {
-          html += '<div>' + val.g_artist_description_en + '</div>';
-        }
-
-        html += '</div>';
-
-        if (val.g_description != '') {
-          html += '<div class="gallery-data-content__item active">';
-
-          if (selectedLang == 'en') {
-            html += '<label class="flex aic">Introduction';
-          } else if (selectedLang == 'ch') {
-            html += '<label class="flex aic">作品介绍';
-          } else if (selectedLang == 'ko') {
-            html += '<label class="flex aic">작품소개';
-          } else {
-            html += '<label class="flex aic">Introduction';
-          }
-
-          if (val.g_description != '') {
+          if (val.g_artist_description_en != '' && selectedLang == 'en') {
+            html += '<div class="gallery-data-content__item active">';
+            html += '<label class="flex aic">Artist: ' + val.g_artist_name_en;
             html += '<img class="icon-up-arrow" src="/images/up-arrow-icon.png">';
             html += '<img class="icon-down-arrow" src="/images/down-arrow-icon.png">';
+            html += '</label>';
+            html += '<div>' + val.g_artist_description_en + '</div>';
+            html += '</div>';
           }
 
-          html += '</label>';
+          if (val.g_artist_description_ch != '' && selectedLang == 'ch') {
+            html += '<div class="gallery-data-content__item active">';
+            html += '<label class="flex aic">画家: ' + val.g_artist_name_ch;
+            html += '<img class="icon-up-arrow" src="/images/up-arrow-icon.png">';
+            html += '<img class="icon-down-arrow" src="/images/down-arrow-icon.png">';
+            html += '</label>';
+            html += '<div>' + val.g_artist_description_ch + '</div>';
+            html += '</div>';
+          }
 
-          if (selectedLang == 'en') {
+          if (val.g_artist_description_ko != '' && selectedLang == 'ko') {
+            html += '<div class="gallery-data-content__item active">';
+            html += '<label class="flex aic">작가: ' + val.g_artist_name_ko;
+            html += '<img class="icon-up-arrow" src="/images/up-arrow-icon.png">';
+            html += '<img class="icon-down-arrow" src="/images/down-arrow-icon.png">';
+            html += '</label>';
+            html += '<div>' + val.g_artist_description_ko + '</div>';
+            html += '</div>';
+          }
+        }
+
+        if (selectedLang == '') {
+          if (val.g_description_en != '' && selectedLang == 'en') {
+            html += '<div class="gallery-data-content__item active">';
+            html += '<label class="flex aic">Description';
+            html += '<img class="icon-up-arrow" src="/images/up-arrow-icon.png">';
+            html += '<img class="icon-down-arrow" src="/images/down-arrow-icon.png">';
+            html += '</label>';
             html += '<div>' + val.g_description_en + '</div>';
-          } else if (selectedLang == 'ch') {
+            html += '</div>';
+          }
+        } else {
+          if (val.g_description_en != '' && selectedLang == 'en') {
+            html += '<div class="gallery-data-content__item active">';
+            html += '<label class="flex aic">Description';
+            html += '<img class="icon-up-arrow" src="/images/up-arrow-icon.png">';
+            html += '<img class="icon-down-arrow" src="/images/down-arrow-icon.png">';
+            html += '</label>';
+            html += '<div>' + val.g_description_en + '</div>';
+            html += '</div>';
+          }
+
+          if (val.g_description_ch != '' && selectedLang == 'ch') {
+            html += '<div class="gallery-data-content__item active">';
+            html += '<label class="flex aic">作品介绍';
+            html += '<img class="icon-up-arrow" src="/images/up-arrow-icon.png">';
+            html += '<img class="icon-down-arrow" src="/images/down-arrow-icon.png">';
+            html += '</label>';
             html += '<div>' + val.g_description_ch + '</div>';
-          } else if (selectedLang == 'ko') {
-            html += '<div>' + val.g_description_ko + '</div>';
-          } else {
-            html += '<div>' + val.g_description_en + '</div>';
+            html += '</div>';
           }
 
-          html += '</div>';
+          if (val.g_description_ko != '' && selectedLang == 'ko') {
+            html += '<div class="gallery-data-content__item active">';
+            html += '<label class="flex aic">작품소개';
+            html += '<img class="icon-up-arrow" src="/images/up-arrow-icon.png">';
+            html += '<img class="icon-down-arrow" src="/images/down-arrow-icon.png">';
+            html += '</label>';
+            html += '<div>' + val.g_description_ko + '</div>';
+            html += '</div>';
+          }
         }
 
         if (val.same_artist_count > 1) {

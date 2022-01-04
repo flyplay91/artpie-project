@@ -52,6 +52,7 @@ class ApiGalleryController extends Controller
         $artDesc = '';
         $artId = $galleryObj->artist_id;
         $artistObj = AdminArtists::find($artId);
+        
         if (isset($artistObj->art_description)) {
             $artDesc = $artistObj->art_description;
             $artDesc = nl2br($artDesc);
@@ -73,9 +74,9 @@ class ApiGalleryController extends Controller
             'g_artist_name_en' => $artistNameEn,
             'g_artist_name_ch' => $artistNameCh,
             'g_artist_name_ko' => $artistNameKo,
-            'g_artist_description_en' => $artistDescriptionEn,
-            'g_artist_description_ch' => $artistDescriptionCh,
-            'g_artist_description_ko' => $artistDescriptionKo,
+            'g_artist_description_en' => nl2br($artistDescriptionEn),
+            'g_artist_description_ch' => nl2br($artistDescriptionCh),
+            'g_artist_description_ko' => nl2br($artistDescriptionKo),
             'g_price' => $galleryObj->retail_price,
             'g_pieces' => $galleryPieces,
             'g_width'   => $galleryObj->width,
