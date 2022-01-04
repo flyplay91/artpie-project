@@ -80,10 +80,9 @@
       <div class="footer__inner wrapper flex aic jcb">
         <div class="footer-nav">
           <ul class="flex aic">
-            <li><a href="#">홈페지공유</a></li>
-            <li><a href="#">사용계약</a></li>
-            <li><a href="#">개인정보보호</a></li>
-            <li><a href="#">련계</a></li>
+            <li><a href="#">{{ __('messages.terms_of_use') }}</a></li>
+            <li><a href="#">{{ __('messages.privacy_policy') }}</a></li>
+            <li><a href="#">{{ __('messages.contact_us') }}</a></li>
           </ul>
         </div>
         <div class="footer-copyright">

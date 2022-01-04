@@ -20,4 +20,7 @@ return [
     'setting' => 'Setting',
     'deposit_funds' => 'Deposit Funds',
     'title_painter' => 'Title / Painter',
+    'terms_of_use' => 'Terms of Use',
+    'privacy_policy' => 'Privacy Policy',
+    'contact_us' => 'Contact Us',
 ];

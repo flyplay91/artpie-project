@@ -20,5 +20,8 @@ return [
     'setting' => '设置',
     'deposit_funds' => '存款',
     'title_painter' => '画作题目 / 画家姓名',
+    'terms_of_use' => '使用条款',
+    'privacy_policy' => '隐私政策',
+    'contact_us' => '联系我们',
   
 ];

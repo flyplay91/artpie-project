@@ -20,4 +20,7 @@ return [
     'setting' => '설정',
     'deposit_funds' => '입금',
     'title_painter' => '그림제목/화가이름',
+    'terms_of_use' => '사용계약',
+    'privacy_policy' => '개인정보보호',
+    'contact_us' => '련계',
 ];
