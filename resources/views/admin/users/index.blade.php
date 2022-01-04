@@ -3,26 +3,25 @@
 @section('content')
 
 <div class="block-admin-users mt-3">
-  <h2>Users</h2>
+  <h2>사용자 정보</h2>
 
   <table class="table table-bordered">
     <thead>
       <tr>
-        <th scope="col">User ID</th>
-        <th scope="col">Name</th>
-        <th scope="col">Email/Phone</th>
-        <th scope="col">Email Verified</th>
-        <th scope="col">Address 1</th>
-        <th scope="col">Address 2</th>
-        <th scope="col">Address 3</th>
-        <th scope="col">Address 4</th>
-        <th scope="col">Address 5</th>
-        <th scope="col">Total Price</th>
-        <th scope="col">Invest Price</th>
-        <th scope="col">Investor</th>
+        <th scope="col">사용자 ID</th>
+        <th scope="col">이름</th>
+        <th scope="col">전자우편/폰번호</th>
+        <th scope="col">주소 1</th>
+        <th scope="col">주소 2</th>
+        <th scope="col">주소 3</th>
+        <th scope="col">주소 4</th>
+        <th scope="col">주소 5</th>
+        <th scope="col">총 가격</th>
+        <th scope="col">투자 가격</th>
+        <th scope="col">투자가</th>
         <th scope="col">Admin</th>
-        <th scope="col" style="width: 100px;">View</th>
-        <th scope="col" style="width: 120px;">Action</th>
+        <th scope="col" style="width: 100px;">보기</th>
+        <th scope="col" style="width: 120px;">동작</th>
       </tr>
     </thead>
     <tbody>
@@ -32,7 +31,6 @@
             <th scope="row">{{ $user->id }}</th>
             <td>{{ $user->name }}</td>
             <td>{{ $user->email }}</td>
-            <td>{{ $user->email_veficied_at }}</td>
             <td>{{ $user->address_1 }}</td>
             <td>{{ $user->address_2 }}</td>
             <td>{{ $user->address_3 }}</td>

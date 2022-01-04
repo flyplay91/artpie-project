@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="block-admin-orders mt-3">
-  <h2>Orders</h2>
+  <h2>주문 정보</h2>
 
   <table class="table table-bordered">
     <thead>
