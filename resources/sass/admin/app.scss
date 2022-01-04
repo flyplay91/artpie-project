@@ -187,7 +187,7 @@ body {
 }
 .wrapper {
   padding: 0 5px;
-  max-width: 1550px;
+  max-width: 1750px;
   min-width: 240px;
   margin: 0 auto;
 }
@@ -770,26 +770,40 @@ img {
 }
 
 .btn-add-category,
-.btn-add-artist {
+.btn-add-artist,
+.btn-edit-category,
+.btn-edit-artist,
+.btn-delete-category,
+.btn-delete-artist {
   border-radius: 4px;
   border: solid 1px #bdbdbd;
   background-color: #f0f0f0;
   color: #434343;
   padding: 6px 10px;
   display: inline-block;
-  margin-bottom: 5px;
 
   &:hover {
     text-decoration: none;
+    color: #434343;
   }
 }
 .insert-category {
-  bottom: -40px;
-  width: 100%;
+  width: 500px;
+  z-index: 111;
+  padding: 10px;
+  display: none;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--white);
+  border-radius: 10px;
 
-  input {
-    width: 80%;
-    margin-right: 10px;
+  &.active {
+    display: flex;
+  }
+
+  .btn-category-insert-cancel {
+    width: 100%;
   }
 
   a {
@@ -806,6 +820,49 @@ img {
   }
 }
 
+.btn-category-insert-cancel,
+.btn-category-update-cancel {
+  width: 100%;
+
+  a {
+    border-radius: 4px;
+    border: solid 1px #bdbdbd;
+    background-color: #f0f0f0;
+    color: #434343;
+    padding: 6px 10px;
+    display: inline-block;
+  
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
+
+.popup-update-category-artist {
+  bottom: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+  width: 500px;
+  z-index: 111;
+  padding: 10px;
+  background-color: var(--white);
+  border-radius: 10px;
+
+  &.active {
+    display: block;
+  }
+
+  &.update-artist-popup {
+    bottom: 10%;
+  }
+}
+
+.btns-insert-cancel-artist a,
+.btns-update-cancel-artist a {
+  padding: 6px 10px;
+}
+
 .form-save-gallery .btn-grey,
 .form-delete-gallery .btn-grey {
   opacity: 0;
@@ -814,13 +871,6 @@ img {
   height: 0;
 }
 
-.insert-category {
-  display: none;
-
-  &.active {
-    display: flex;
-  }
-}
 .piece-count {
   opacity: 0;
   visibility: hidden;
@@ -943,6 +993,7 @@ img {
 .btn-view-profile,
 .btn-status {
   padding: 8px 10px;
+  display: inline-block;
 }
 
 .block-admin-users {

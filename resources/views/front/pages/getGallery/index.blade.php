@@ -82,7 +82,7 @@
 
           <div class="btns-save-cancel text-right">
             <a href="javascript:void(0)" class="btn-grey btn-save">구입요청 보내기</a>
-            <a href="javascript:void(0)" class="btn-grey btn-cancel">취소</a>
+            <a href="/" class="btn-grey btn-cancel">취소</a>
           </div>
         </div>
       

@@ -23,6 +23,7 @@ Route::post('api-search-gallerys', 'ApiSearchGallerysController@index');
 
 Route::post('api-get-gallery', 'ApiGalleryController@index');
 Route::post('api-investor-user', 'ApiInvestorUserController@index');
+Route::post('api-admin-user', 'ApiAdminUserController@index');
 Route::post('api-billing', 'ApiBillingController@index');
 
 
@@ -30,6 +31,13 @@ Route::post('api-billing', 'ApiBillingController@index');
 Route::post('api-select-header-data', 'ApiChangeHeaderDataController@index');
 Route::post('api-select-collections', 'ApiSelectCollectionsController@index');
 Route::post('api-categories', 'ApiCategoriesController@index');
-Route::post('api-artists', 'ApiArtistsController@index');
+Route::post('api-update-categories', 'ApiUpdateCategoriesController@index');
+Route::post('api-delete-categories', 'ApiDeleteCategoriesController@index');
+Route::post('api-get-categories', 'ApiGetCategoriesController@index');
 
+Route::post('api-artists', 'ApiArtistsController@index');
 Route::post('purchase-fragments', 'ApiGalleryController@purchaseFragments');
+Route::post('api-get-artist', 'ApiGetArtistController@index');
+Route::post('api-update-artist', 'ApiUpdateArtistController@index');
+Route::post('api-delete-artist', 'ApiDeleteArtistController@index');
+

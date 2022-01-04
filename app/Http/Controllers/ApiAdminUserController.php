@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\AdminArtists;
-use DB;
+use App\User;
 
-class ApiArtistsController extends Controller
+class ApiAdminUserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,39 +14,36 @@ class ApiArtistsController extends Controller
      */
     public function index(Request $request)
     {
-        $artistNameEn = $request->artist_name_en;
-        $artistDescriptionEn = $request->artist_description_en;
-        $artistNameCh = $request->artist_name_ch;
-        $artistDescriptionCh = $request->artist_description_ch;
-        $artistNameKo = $request->artist_name_ko;
-        $artistDescriptionKo = $request->artist_description_ko;
+        $checkUser = $request->checked;
         
-
-        $artistIdNameArr = [];
-
-        $artistObjs = array('art_name' => $artistNameEn, 'art_description' => $artistDescriptionEn, 'art_name_ch' => $artistNameCh, 'art_description_ch' => $artistDescriptionCh, 'art_name_ko' => $artistNameKo, 'art_description_ko' => $artistDescriptionKo, 'created_at' =>  \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now());
+        $userId = $request->user_id;
+        $userObj = User::find($userId);
         
-        DB::table('admin_artists')->insert($artistObjs);
-        
-        $artistDatas = DB::select('SELECT * FROM admin_artists');
-
-        foreach($artistDatas as $artistData) {
-            $artistIdNameArr[$artistData->id] = $artistData->art_name;
+        if ($checkUser == 'true') {
+            User::where('id', $userId)
+            ->update([
+                'role' => 'admin',
+            ]);
+        } else {
+            User::where('id', $userId)
+            ->update([
+                'role' => 'buyer',
+            ]);
         }
         
 
         try {
-			return response()->json([
-			    'artists' => $artistIdNameArr,
-			]);
-		} catch (Exception $e) {
-		    echo 'Caught exception: '. $e->getMessage() ."\n";
+            return response()->json([
+                'success' => '0',
+            ]);
+        } catch (Exception $e) {
+            echo 'Caught exception: '. $e->getMessage() ."\n";
 
-		    return response()->json([
-			    'failed' => '1',
-			    'error_message' => $e->getMessage(),
-			]);
-		}
+            return response()->json([
+                'failed' => '1',
+                'error_message' => $e->getMessage(),
+            ]);
+        }
     }
 
     /**

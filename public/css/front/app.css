@@ -1404,7 +1404,7 @@ a[data-zoom-id] img,
                               General layout styles
 ==============================================================================*/
 /*================ Login & Signup ================*/
-.login-signup-form {
+.auth-form {
   box-shadow: 0px 2px 7px 6px rgba(0, 0, 0, 0.43);
   max-width: 600px;
   padding: 50px 30px;
@@ -1415,18 +1415,19 @@ a[data-zoom-id] img,
   transform: translate(-50%, -50%);
   width: 100%;
 }
-.login-signup-form .input-group-text {
+.auth-form .input-group-text {
   width: 100px;
   justify-content: center;
 }
-.login-signup-form h2 {
+.auth-form h2 {
   margin-bottom: 20px;
 }
-.login-signup-form .login-form__save-forget .boxCtnt .chkBox2 {
+.auth-form .login-form__save-forget .boxCtnt .chkBox2 {
   margin: 0;
 }
-.login-signup-form .register-form__submit button,
-.login-signup-form .login-form__submit button {
+.auth-form .register-form__submit button,
+.auth-form .reset-password-form__submit button,
+.auth-form .login-form__submit button {
   width: 100%;
 }
 

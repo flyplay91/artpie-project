@@ -1,9 +1,8 @@
-<link rel="icon" type="image/x-icon" href="/images/favicon.png">
+@extends('front.layouts.app')
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<link href="{{ asset('css/front/app.css') }}" rel="stylesheet">
+@section('content')
 
-<div class="login-signup-form register-form">
+<div class="auth-form register-form">
   <h2 class="text-center">새로 등록</h2>
   <form method="POST" action="{{ route('register') }}">
       @csrf
@@ -62,10 +61,13 @@
       </div>
     </div>
 
-    <div class="register-form__submit mt-4">
+    <div class="register-form__submit mt-4 mb-3">
       <button type="submit" class="btn btn-grey">
         등록
       </button>
     </div>
   </form>
+
+  <p class="text-center">이미 계정이 있습니까? <a href="{{ route('login') }}">로그인</a></p>
 </div>
+@endsection

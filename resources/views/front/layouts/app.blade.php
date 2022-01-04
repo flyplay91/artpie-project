@@ -29,7 +29,7 @@
       <div class="wrapper header-logo-nav flex aic jcb">
         <div class="header__logo flex aic">
           <a href="/" class="flex aic jcc"><img src="/images/logo.png"></a>
-          <a href="/" class="active">그림구입</a>
+          <a href="/" class="active">{{ __('messages.header_menu_1') }}</a>
           @auth
             @if (auth()->user()->isSuperAdmin())
               <a href="/admin-gallery">Admin Dashboard</a>
@@ -39,13 +39,20 @@
         <div class="header__nav">
           <div class="header__navInner flex aic">
             <div class="header-nav-dropdown language">
-              <label>Korean</label>
+              <select class="form-control changeLang">
+                <option value="en" {{ session()->get('locale') == 'en' ? 'selected' : '' }}>English</option>
+                <option value="ch" {{ session()->get('locale') == 'ch' ? 'selected' : '' }}>Chinese</option>
+                <option value="ko" {{ session()->get('locale') == 'ko' ? 'selected' : '' }}>Korean</option>
+              </select>
+              <!-- <label>Korean</label>
               <ul>
                 <li><a href="">Korean</a></li>
                 <li><a href="">Chinese</a></li>
                 <li><a href="">English</a></li>
-              </ul>
+              </ul> -->
             </div>
+
+            @auth
             <div class="header-nav-dropdown my-profile">
               <label>Profile</label>
               <ul>
@@ -53,11 +60,12 @@
                 <li><a href="/setting">설정</a></li>
               </ul>
             </div>
+            @endauth
             
             @guest
-            <a href="{{ route('login') }}">{{ __('Login') }}</a>
+            <a href="{{ route('login') }}">{{ __('messages.header_menu_login') }}</a>
               @if (Route::has('register'))
-                <a href="{{ route('register') }}">{{ __('Register') }}</a>
+                <a href="{{ route('register') }}">{{ __('messages.header_menu_register') }}</a>
               @endif
             @else
               <a href="{{ route('logout') }}">
@@ -73,7 +81,7 @@
         @yield('content')
     </div>
 
-    <div class="footer <?php if((Route::currentRouteName() == 'setting.index') || (Route::currentRouteName() == 'checkout.index') || (Route::currentRouteName() == 'contact-gallery.index')) { echo 'fixed-footer'; } ?>">
+    <div class="footer {{Request::path()}} <?php if((Request::path() == 'setting') || (Request::path() == 'contact-gallery') || (Request::path() == 'login') || (Request::path() == 'register') || (Request::path() == 'forget-password')) { echo 'fixed-footer'; } ?>">
       <div class="footer__inner wrapper flex aic jcb">
         <div class="footer-nav">
           <ul class="flex aic">
@@ -84,10 +92,20 @@
           </ul>
         </div>
         <div class="footer-copyright">
-          Copyright@ 2021 ArtPie LLC
+          Copyright@ 2021 KoldArt LLC
         </div>
       </div>
     </div>
   </div>
 </body>
+
+<script type="text/javascript">
+  
+    var url = "{{ route('changeLang') }}";
+  
+    $(".changeLang").change(function(){
+        window.location.href = url + "?lang="+ $(this).val();
+    });
+  
+</script>
 </html>

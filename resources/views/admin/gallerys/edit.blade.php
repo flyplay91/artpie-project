@@ -54,7 +54,9 @@
 
                 <div class="form-group mb-3">
                   <label>그림 제목</label>
-                  <input type="text" value="{{ $gallery->title }}" name="title" class="form-control">
+                  <input type="text" value="{{ $gallery->title_ko }}" placeholder="제목(조선어)" name="title_ko" class="form-control mb-2">
+                  <input type="text" value="{{ $gallery->title_ch }}" placeholder="제목(중어)" name="title_ch" class="form-control mb-2">
+                  <input type="text" value="{{ $gallery->title }}" placeholder="제목(영어)" name="title" class="form-control">
                 </div>
 
                 <div class="flex aic jcb mb-3">
@@ -124,7 +126,9 @@
 
                 <div class="form-group mb-3">
                   <label>설명</label>
-                  <textarea name="description" rows="7" class="form-control">{{ $gallery->description }}</textarea>
+                  <textarea name="description_ko" rows="7" placeholder="설명(조선어)" class="form-control mb-2">{{ $gallery->description_ko }}</textarea>
+                  <textarea name="description_ch" rows="7" placeholder="설명(중어)" class="form-control mb-2">{{ $gallery->description_ch }}</textarea>
+                  <textarea name="description" rows="7" placeholder="설명(영어)" class="form-control">{{ $gallery->description }}</textarea>
                 </div>
 
                 <div class="form-group mb-3">
@@ -149,19 +153,28 @@
                       <option value="0">분류 선택</option>
                       @if (isset($categories))
                         @foreach ($categories as $category)
-                        <option @if ($gallery->category_id == $category->id) selected @endif value="{{ $category->id }}">{{ $category->cat_name }}</option>
+                        <option @if ($gallery->category_id == $category->id) selected @endif value="{{ $category->id }}">{{ $category->cat_name_ko }}</option>
                         @endforeach
                       @endif
                     </select>
                   </div>
-                  <div class="form-group w-45 position-relative">
-                    <a href="javascript:void(0)" class="btn-add-category">새 분류 추가...</a>
-                    <div class="flex aic insert-category position-absolute">
-                      <input type="text" value="" name="category_name" class="form-control insert-cat-name">
-                      <a href="javascript:void(0)" class="btn-insert-category">추가</a>
+                  <div class="form-group w-45">
+                    <a href="javascript:void(0)" class="btn-add-category">분류 추가</a>
+                    <a href="javascript:void(0)" class="btn-edit-category">분류 수정</a>
+                    <a href="javascript:void(0)" class="btn-delete-category">분류 삭제</a>
+                    <div class="flex aic flex-column insert-category position-absolute">
+                      <input type="text" value="" placeholder="분류(영어)" class="form-control insert-cat-name-en mb-2">
+                      <input type="text" value="" placeholder="분류(중어)" class="form-control insert-cat-name-ch mb-2">
+                      <input type="text" value="" placeholder="분류(조선어)" class="form-control insert-cat-name-ko mb-2">
+                      <div class="btn-category-insert-cancel flex aie jce">
+                        <a href="javascript:void(0)" class="btn-insert-category mr-2">추가</a>
+                        <a href="javascript:void(0)" class="btn-cancel-category">취소</a>
+                      </div>
                     </div>
                   </div>
                 </div>
+
+                
 
                 <div class="flex jcb aie mb-5">
                   <div class="form-group w-45">
@@ -170,14 +183,25 @@
                       <option value="0">창작가 선택</option>
                       @if (isset($artists))
                         @foreach ($artists as $artist)
-                        <option @if ($gallery->artist_id == $artist->id) selected @endif value="{{ $artist->id }}">{{ $artist->art_name }}</option>
+                        <option @if ($gallery->artist_id == $artist->id) selected @endif value="{{ $artist->id }}">{{ $artist->art_name_ko }}</option>
                         @endforeach
                       @endif
                     </select>
-                    <input type="hidden" name="artist_name" class="input-artist-name">
+
+                    @if (isset($artists))
+                      @foreach ($artists as $artist)
+                        @if ($gallery->artist_id == $artist->id) 
+                          <input type="hidden" name="artist_name" value="{{$gallery->artist_name}}" class="input-artist-name">
+                          <input type="hidden" name="artist_name_ch" value="{{$gallery->artist_name_ch}}" class="input-artist-name-ch">
+                          <input type="hidden" name="artist_name_ko" value="{{$gallery->artist_name_ko}}" class="input-artist-name-ko">
+                        @endif
+                      @endforeach
+                    @endif
                   </div>
                   <div class="form-group w-45 position-relative">
-                    <a href="javascript:void(0)" class="btn-add-artist">새 창작가 추가...</a>
+                    <a href="javascript:void(0)" class="btn-add-artist">창작가 추가</a>
+                    <a href="javascript:void(0)" class="btn-edit-artist">창작가 수정</a>
+                    <a href="javascript:void(0)" class="btn-delete-artist">창작가 삭제</a>
                   </div>
                 </div>
                 
@@ -195,7 +219,6 @@
                   <label for="inputDate">갱신 날자</label>
                   <input type="input" class="form-control date-picker" value="{{ $gallery->updated_date ? $gallery->updated_date : (Carbon\Carbon::now()->format('m/d/Y')) }}" name="updated_date">
                 </div>
-
 
                 <div class="form-group mb-3">
                   <label for="usr">원본</label>
@@ -230,24 +253,26 @@
     </div>
 
     <div class="popup-insert-artist flex flex-column insert-artist position-absolute">
-        <div class="input-group insert-artist-input">
-          <div class="input-group-prepend">
-            <span class="input-group-text">창작가 이름</span>
-          </div>
-          <input type="text" value="" name="art_name" class="form-control insert-artist-name">
-        </div>
+      <div class="mb-3">
+        <input type="text" value="" placeholder="창작가 이름(영어)" name="art_name" class="form-control insert-artist-name mb-2">
+        <textarea name="art_description" rows="5" value="" placeholder="창작가 경력(영어)" class="form-control insert-artist-description"></textarea>
+      </div>
+      <div class="mb-3">
+        <input type="text" value="" placeholder="창작가 이름(중어)" name="art_name_ch" class="form-control insert-artist-name-ch mb-2">
+        <textarea name="art_description_ch" rows="5" value="" placeholder="창작가 경력(중어)" class="form-control insert-artist-description-ch"></textarea>
+      </div>
+      <div class="mb-3">
+        <input type="text" value="" placeholder="창작가 이름(조선어)" name="art_name_ko" class="form-control insert-artist-name-ko mb-2">
+        <textarea name="art_description_ko" rows="5" value="" placeholder="창작가 경력(조선어)" class="form-control insert-artist-description-ko"></textarea>
+      </div>
+      <div class="btns-insert-cancel-artist flex aic jce mt-3">
+        <a href="javascript:void(0)" class="btn-grey btn-insert-artist">추가</a>
+        <a href="javascript:void(0)" class="btn-grey btn-cancel-artist">취소</a>
+      </div>
+    </div>
 
-        <div class="input-group insert-artist-textarea">
-          <div class="input-group-prepend">
-            <span class="input-group-text">창작가 경력</span>
-          </div>
-          <textarea name="art_description" value="" class="form-control insert-artist-description"></textarea>
-        </div>
-        <div class="btns-insert-cancel-artist flex aic jce">
-          <a href="javascript:void(0)" class="btn-grey btn-insert-artist">추가</a>
-          <a href="javascript:void(0)" class="btn-grey btn-cancel-artist">취소</a>
-        </div>
-        
+    <div class="popup-update-category-artist position-absolute">
+      
     </div>
   </div>
 

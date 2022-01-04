@@ -132,9 +132,8 @@ class AdminGallerysController extends Controller
         $allChecked = "true";
 
         foreach($data as $key => $value) {
-            if ($key != 'description' && $key != 'keywords' && $key != 'materials' 
-                && $key != 'paint_date' && $key != 'piece_count' 
-                && $key != 'category_name' && $key !='artist_name') {
+            if ($key != 'description_ch' && $key != 'description' && $key != 'description_ko' && $key != 'keywords' && $key != 'materials' 
+                && $key != 'paint_date' && $key != 'piece_count') {
                 if (empty($value)) {
                     $allChecked = "false";
                 }
@@ -154,12 +153,13 @@ class AdminGallerysController extends Controller
         $data['all_checked'] = $allChecked;
 
         $gallery = AdminGallerys::find($id);
-        if (isset($request->check_enable_pieces)) {
-            $gallery['check_enable_pieces'] = 'yes';
-        } else {
-            $gallery['check_enable_pieces'] = 'no';
 
+        if (isset($request->check_enable_pieces)) {
+            $data['check_enable_pieces'] = 'yes';
+        } else {
+            $data['check_enable_pieces'] = 'no';
         }
+
         $gallery->update($data);
         
         return redirect()->route('admin-gallery.index')

@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\AdminArtists;
-use DB;
+use App\AdminCategories;
 
-class ApiArtistsController extends Controller
+class ApiGetCategoriesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,30 +14,24 @@ class ApiArtistsController extends Controller
      */
     public function index(Request $request)
     {
-        $artistNameEn = $request->artist_name_en;
-        $artistDescriptionEn = $request->artist_description_en;
-        $artistNameCh = $request->artist_name_ch;
-        $artistDescriptionCh = $request->artist_description_ch;
-        $artistNameKo = $request->artist_name_ko;
-        $artistDescriptionKo = $request->artist_description_ko;
-        
+        $selectedCatId = $request->selected_cat_id;
+        $category = AdminCategories::find($selectedCatId);
 
-        $artistIdNameArr = [];
+        $catIdNameArr = [];
+        
+        $category_en = $category->cat_name;
+        $category_ch = $category->cat_name_ch;
+        $category_ko = $category->cat_name_ko;
 
-        $artistObjs = array('art_name' => $artistNameEn, 'art_description' => $artistDescriptionEn, 'art_name_ch' => $artistNameCh, 'art_description_ch' => $artistDescriptionCh, 'art_name_ko' => $artistNameKo, 'art_description_ko' => $artistDescriptionKo, 'created_at' =>  \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now());
-        
-        DB::table('admin_artists')->insert($artistObjs);
-        
-        $artistDatas = DB::select('SELECT * FROM admin_artists');
-
-        foreach($artistDatas as $artistData) {
-            $artistIdNameArr[$artistData->id] = $artistData->art_name;
-        }
-        
+        $catIdNameArr[$category->id] = array(
+            'category_en' => $category_en,
+            'category_ch' => $category_ch,
+            'category_ko' => $category_ko
+        );
 
         try {
 			return response()->json([
-			    'artists' => $artistIdNameArr,
+			    'category' => $catIdNameArr,
 			]);
 		} catch (Exception $e) {
 		    echo 'Caught exception: '. $e->getMessage() ."\n";

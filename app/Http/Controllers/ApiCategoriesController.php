@@ -15,15 +15,13 @@ class ApiCategoriesController extends Controller
      */
     public function index(Request $request)
     {
-        $catName = $request->cat_name;
-        
-        if (!$catName) {
-            return;
-        }
-
+        $catNameEn = $request->cat_name_en;
+        $catNameCh = $request->cat_name_ch;
+        $catNameKo = $request->cat_name_ko;
+      
         $catIdNameArr = [];
 
-        $catObjs = array('cat_name' => $catName, 'created_at' =>  \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now());
+        $catObjs = array('cat_name' => $catNameEn, 'cat_name_ch' => $catNameCh, 'cat_name_ko' => $catNameKo, 'created_at' =>  \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now());
         DB::table('admin_categories')->insert($catObjs);
         
         $catDatas = DB::select('SELECT * FROM admin_categories');
@@ -99,7 +97,7 @@ class ApiCategoriesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
     }
 
     /**
