@@ -6,7 +6,11 @@
   }
 
   .header {
-    display: none;
+    .header__logo,
+    .header__nav a {
+      display: none;
+    }
+    
   }
 
   .footer {

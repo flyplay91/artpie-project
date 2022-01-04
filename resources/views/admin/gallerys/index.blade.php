@@ -69,7 +69,7 @@
             @method('PUT')
             @csrf
             <input type="text" value="" name="coll_name" class="form-control edit-coll-name" required>
-            <button type="submit" class="btn btn-grey">Update</button>
+            <button type="submit" class="btn btn-grey">변경</button>
           </form>
         </div>
         <div class="block-coll__delete">
@@ -82,25 +82,50 @@
       </div>
 
       <div id="adGallerysItems">
+        @if (session('success'))
+        <div class="hdrItems-list active hdrItems-list--addmore">
+          <div class="hdrItems-list__inner flex aic jcc" style="height: 200px">
+            <a class="btn-gallery-create" href="">그림추가</a>
+          </div>
+        </div>
+        @else
         <div class="hdrItems-list hdrItems-list--addmore">
           <div class="hdrItems-list__inner flex aic jcc" style="height: 200px">
             <a class="btn-gallery-create" href="">그림추가</a>
           </div>
         </div>
+        @endif
 
         @if (isset($gallerys))
-          @foreach ($gallerys as $gallery)
-            <div class="hdrItems-list">
-              <div class="hdrItems-list__inner @if ($gallery->all_checked == 'false') required @endif">
-                <a href="{{ route('admin-gallery.edit',$gallery->id) }}">
-                  @if ($gallery->all_checked == 'false')
-                    <div class="hdrItems-list__inner-overlay"><label>편집요청</label></div>
-                  @endif
-                  <img src="/images/{{ $gallery->resized_image }}">
-                </a>
+          @if (session('success'))
+            @foreach ($gallerys as $gallery)
+              @if (session('success') == $gallery->coll_id)
+                <div class="hdrItems-list aaa">
+                  <div class="hdrItems-list__inner @if ($gallery->all_checked == 'false') required @endif">
+                    <a href="{{ route('admin-gallery.edit',$gallery->id) }}">
+                      @if ($gallery->all_checked == 'false')
+                        <div class="hdrItems-list__inner-overlay"><label>편집요청</label></div>
+                      @endif
+                      <img src="/images/{{ $gallery->resized_image }}">
+                    </a>
+                  </div>
+                </div>
+              @endif
+            @endforeach
+          @else
+            @foreach ($gallerys as $gallery)
+              <div class="hdrItems-list bbb">
+                <div class="hdrItems-list__inner @if ($gallery->all_checked == 'false') required @endif">
+                  <a href="{{ route('admin-gallery.edit',$gallery->id) }}">
+                    @if ($gallery->all_checked == 'false')
+                      <div class="hdrItems-list__inner-overlay"><label>편집요청</label></div>
+                    @endif
+                    <img src="/images/{{ $gallery->resized_image }}">
+                  </a>
+                </div>
               </div>
-            </div>
-          @endforeach
+            @endforeach
+          @endif
         @endif
       </div>
     </div>

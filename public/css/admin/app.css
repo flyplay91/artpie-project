@@ -427,13 +427,9 @@ img {
 }
 
 .coll-btns {
-  display: none;
   position: relative;
   padding-bottom: 10px;
   z-index: 1;
-}
-.coll-btns.active {
-  display: flex;
 }
 .coll-btns .selected-coll-name {
   margin-bottom: 0;
@@ -442,6 +438,16 @@ img {
 }
 .coll-btns .block-coll__delete {
   margin-left: 10px;
+  display: none;
+}
+.coll-btns .block-coll__delete.active {
+  display: block;
+}
+.coll-btns .block-coll__edit {
+  display: none;
+}
+.coll-btns .block-coll__edit.active {
+  display: block;
 }
 .coll-btns .block-coll__edit form {
   position: absolute;

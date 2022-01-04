@@ -457,14 +457,9 @@ img {
 }
 
 .coll-btns {
-  display: none;
   position: relative;
   padding-bottom: 10px;
   z-index: 1;
-
-  &.active {
-    display: flex;
-  }
 
   .selected-coll-name {
     margin-bottom: 0;
@@ -474,9 +469,17 @@ img {
 
   .block-coll__delete {
     margin-left: 10px;
+    display: none;
+    &.active {
+      display: block;
+    }
   }
 
   .block-coll__edit {
+    display: none;
+    &.active {
+      display: block;
+    }
     form {
       position: absolute;
       margin-top: 10px;

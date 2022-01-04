@@ -2445,7 +2445,8 @@ img {
     margin: 0 auto 0;
   }
 
-  .header {
+  .header .header__logo,
+.header .header__nav a {
     display: none;
   }
 
