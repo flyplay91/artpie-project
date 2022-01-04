@@ -32,5 +32,13 @@ return [
     'old_password' => '旧密码',
     'new_password' => '新密码',
     'are_you_sure' => '你确定吗',
+    'dimension' => '规格',
+    'artist' => '画家',
+    'phone_nuber' => '电话',
+    'recipient_name' => '收货人姓名',
+    'recipient_description' => '描述（请填写付款方式和发货方式，还有其他要求）',
+    'agree_terms_use' => '我同意使用条款（退货政策）',
+    'order_request' => '订单请求',
+    'cancel' => '取消',
   
 ];

@@ -32,4 +32,12 @@ return [
     'old_password' => '이전 패스워드',
     'new_password' => '새 패스워드',
     'are_you_sure' => '확실합니까',
+    'dimension' => '크기',
+    'artist' => '작가',
+    'phone_nuber' => '전화번호',
+    'recipient_name' => '수하인 이름',
+    'recipient_description' => '설명(지불방법, 배송, 기타 요구사항을 기입하십시오.)',
+    'agree_terms_use' => '사용계약(환불정책)에 동의합니다.',
+    'order_request' => '구입요청 보내기',
+    'cancel' => '취소',
 ];

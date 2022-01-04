@@ -32,4 +32,13 @@ return [
     'old_password' => 'Old Password',
     'new_password' => 'New Password',
     'are_you_sure' => 'Are you sure',
+    'dimension' => 'Dimension',
+    'artist' => 'Artist',
+    'phone_nuber' => 'Tel',
+    'recipient_name' => 'Recipient name',
+    'recipient_description' => 'Description (Please fill payment and shipping method, other requirements)',
+    'agree_terms_use' => 'I agree with the terms of use (return policy)',
+    'order_request' => 'Order Request',
+    'cancel' => 'Cancel',
+    
 ];
