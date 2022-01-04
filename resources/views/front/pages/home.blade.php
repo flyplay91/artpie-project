@@ -99,7 +99,7 @@
                   @elseif (session()->get('locale') == 'ko')
                     {{ $gallery->title_ko }}
                   @else 
-                    {{ $gallery->cat_name }}
+                    {{ $gallery->title }}
                   @endif
                 </label>
                 @if (isset($artists))
