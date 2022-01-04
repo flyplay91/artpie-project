@@ -248,6 +248,8 @@ $(document).ready(function() {
     $('#mainWrapper').removeClass('active');
     $('.bg-overlay').removeClass('active');
     $('.popup-gallery-data').removeClass('active');
+    $('.popup-user').removeClass('active');
+    
   });
 
   $('body').on('click', '.gallery-search a', function() {

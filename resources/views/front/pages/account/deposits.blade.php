@@ -3,17 +3,23 @@
 @section('content')
   <div class="account-deposits-page">
     <div class="container">
-      <div class="block-admin-orders mt-3">
+      <div class="block-admin-deposit">
         <h2>입금</h2>
         <form class="deposit-form" method="post" action="{{ route('process-deposit') }}">
           @csrf
-          <img src="/images/wechat-icon.png" />
 
-          <label>
-            액수
-            <input type="number" name="amount" />
-          </label>
-          <button class="btn btn-primary" type="submit">요청 보내기</button>
+          <div class="deposit-form__inner flex aic jca">
+            <img src="/images/wechat-icon.png" />
+          
+            <div class="deposit-form-price flex aic jcb">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">액수</span>
+                </div>
+                <input type="number" name="amount" class="form-control">
+              </div>
+              <button class="btn btn-grey" type="submit">요청 보내기</button>
+            </div>
         </div>
 
         <h2>입금리력</h2>

@@ -23,5 +23,14 @@ return [
     'terms_of_use' => '使用条款',
     'privacy_policy' => '隐私政策',
     'contact_us' => '联系我们',
+    'my_account' => '我的账户',
+    'address' => '地址',
+    'update_information' => '信息更新',
+    'update_password' => '密码变更',
+    'close_account' => '关闭账户',
+    'save_changes' => '保存更改',
+    'old_password' => '旧密码',
+    'new_password' => '新密码',
+    'are_you_sure' => '你确定吗',
   
 ];

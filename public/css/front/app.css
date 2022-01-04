@@ -2511,9 +2511,20 @@ img {
   }
 }
 /* Account Page */
+.account-deposits-page .block-admin-deposit {
+  margin-top: 100px;
+  box-shadow: 0px 2px 7px 6px rgba(0, 0, 0, 0.43);
+  border-radius: 5px;
+  padding: 20px 15px;
+  position: relative;
+}
 .account-deposits-page .deposit-form {
   text-align: center;
   margin: 100px 0;
+}
+.account-deposits-page .deposit-form .deposit-form-price .input-group {
+  height: 46px;
+  margin-right: 10px;
 }
 .account-deposits-page .deposit-form img {
   width: auto;

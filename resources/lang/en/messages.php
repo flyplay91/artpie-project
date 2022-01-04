@@ -23,4 +23,13 @@ return [
     'terms_of_use' => 'Terms of Use',
     'privacy_policy' => 'Privacy Policy',
     'contact_us' => 'Contact Us',
+    'my_account' => 'My Account',
+    'address' => 'Address',
+    'update_information' => 'Update Information',
+    'update_password' => 'Update Password',
+    'close_account' => 'Close Account',
+    'save_changes' => 'Save Changes',
+    'old_password' => 'Old Password',
+    'new_password' => 'New Password',
+    'are_you_sure' => 'Are you sure',
 ];
