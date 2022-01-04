@@ -23,10 +23,12 @@ class ApiGalleryController extends Controller
         $galleryId = $request->gallery_id;
         $artistId = $request->artist_id;
         
-        $sameArtistObj = DB::table('admin_gallerys')->where('artist_id', $artistId)->get();
-        $sameArtistCount = count($sameArtistObj);
+        // $sameArtistObj = DB::table('admin_gallerys')->where('artist_id', $artistId)->get();
+        // $sameArtistCount = count($sameArtistObj);
 
-        $sameArtistsImageObj = DB::select("SELECT GROUP_CONCAT(image) as images FROM `admin_gallerys` WHERE `artist_id` = '".$artistId."' AND `id` != $galleryId  GROUP BY `artist_id`");
+        $sameArtistsImageObj = DB::select("SELECT GROUP_CONCAT(image) as images FROM `admin_gallerys` WHERE `artist_id` = '".$artistId."' AND `id` != '".$galleryId."' AND `all_checked` = 'true'  GROUP BY `artist_id`");
+        $sameArtistCount = count($sameArtistsImageObj);
+        
 
         $galleryObj = AdminGallerys::find($galleryId);
 
@@ -89,10 +91,11 @@ class ApiGalleryController extends Controller
             'g_check_pieces' => $galleryObj->check_enable_pieces,
         );
 
-        if (count($sameArtistsImageObj) > 0) {
+        if ($sameArtistCount > 0) {
             $sameArtistsImage = $sameArtistsImageObj[0]->images;
             $galleryObjArr[$galleryObj->id]['same_artist_images'] = $sameArtistsImage;
         }
+        
         try {
 			return response()->json([
                 'gallery_Obj' => $galleryObjArr,

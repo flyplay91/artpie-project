@@ -575,7 +575,7 @@ function getGalleryAjax(id, artist_id) {
               
               
               
-              if (val.same_artist_count > 1) {
+              if (val.same_artist_count >= 1) {
                 var thumb_images = val.same_artist_images.split(',');
                 
                 html += '<div class="gallery-data-content__item">';
