@@ -105,7 +105,17 @@
                 @if (isset($artists))
                   @foreach ($artists as $artist)
                     @if ($artist->id == $gallery->artist_id)
-                      <span>{{ $artist->art_name }}</span>
+                      <span>
+                        @if (session()->get('locale') == 'en')
+                          {{ $artist->art_name }}
+                        @elseif (session()->get('locale') == 'ch')
+                          {{ $artist->art_name_ch }}
+                        @elseif (session()->get('locale') == 'ko')
+                          {{ $artist->art_name_ko }}
+                        @else 
+                          {{ $artist->art_name }}
+                        @endif
+                      </span>
                     @endif
                   @endforeach
                 @endif
