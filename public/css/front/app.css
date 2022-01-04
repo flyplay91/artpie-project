@@ -2445,6 +2445,9 @@ img {
     margin: 0 auto 0;
   }
 
+  .header {
+    padding: 10px;
+  }
   .header .header__logo,
 .header .header__nav a {
     display: none;
