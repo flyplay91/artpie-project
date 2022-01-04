@@ -58,6 +58,7 @@
               <ul>
                 <li><a href="">나의 갤러리</a></li>
                 <li><a href="/setting">설정</a></li>
+                <li><a href="/account/deposits">입금</a></li>
               </ul>
             </div>
             @endauth
