@@ -53,7 +53,7 @@ class ApiSelectGallerysController extends Controller
         
         foreach($galleryObjs as $galleryObj) {
             $galleryIdImageArr[$galleryObj->id] = array(
-                'g_image' => $galleryObj->image,
+                'g_image' => $galleryObj->resized_image,
                 'g_title' => $galleryObj->title,
                 'g_artist_name' => $galleryObj->artist_name,
                 'g_artist_id' => $galleryObj->artist_id
