@@ -69,7 +69,7 @@
             @guest
             <a href="{{ route('login') }}">{{ __('messages.login') }}</a>
               @if (Route::has('register'))
-                <a href="{{ route('register') }}">{{ __('messages.register') }}</a>
+                <!-- <a href="{{ route('register') }}">{{ __('messages.register') }}</a> -->
               @endif
             @else
               <a href="{{ route('logout') }}">

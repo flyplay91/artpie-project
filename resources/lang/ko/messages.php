@@ -1,7 +1,7 @@
 <?php
    
 return [
-    'purchase_painting' => '그림구입',
+    'purchase_painting' => '그림보기',
     'login' => '로그인',
     'register' => '등록',
     'logout'  => '나가기',

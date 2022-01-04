@@ -46,7 +46,7 @@
           <div class="chkBox2_box"></div>
         </label>
       </div>
-      <a href="/forget-password">{{ __('messages.forgot_password') }}?</a>
+      <!-- <a href="/forget-password">{{ __('messages.forgot_password') }}?</a> -->
     </div>
   
     <div class="login-form__submit mt-4 mb-3">
@@ -56,6 +56,6 @@
     </div>
   </form>
 
-  <p class="text-center">{{ __('messages.no_account') }}? <a href="{{ route('register') }}">{{ __('messages.register') }}</a></p>
+  <!-- <p class="text-center">{{ __('messages.no_account') }}? <a href="{{ route('register') }}">{{ __('messages.register') }}</a></p> -->
 </div>
 @endsection
