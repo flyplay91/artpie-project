@@ -91,7 +91,17 @@
           <div class="hdrItems-list">
             <div class="hdrItems-list__inner position-relative">
               <div class="hdrItems-list__tooltip position-absolute">
-                <label>{{ $gallery->title }}</label>
+                <label>
+                  @if (session()->get('locale') == 'en')
+                    {{ $gallery->title }}
+                  @elseif (session()->get('locale') == 'ch')
+                    {{ $gallery->title_ch }}
+                  @elseif (session()->get('locale') == 'ko')
+                    {{ $gallery->title_ko }}
+                  @else 
+                    {{ $gallery->cat_name }}
+                  @endif
+                </label>
                 @if (isset($artists))
                   @foreach ($artists as $artist)
                     @if ($artist->id == $gallery->artist_id)

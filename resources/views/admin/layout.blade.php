@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>KoldArt Dashboard</title>
+    <title>KArtPie Dashboard</title>
     <link rel="icon" type="image/x-icon" href="/images/favicon.png">
 
     <!-- Styles -->
