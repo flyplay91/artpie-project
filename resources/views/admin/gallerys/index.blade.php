@@ -96,7 +96,7 @@
                   @if ($gallery->all_checked == 'false')
                     <div class="hdrItems-list__inner-overlay"><label>편집요청</label></div>
                   @endif
-                  <img src="/images/{{ $gallery->image }}">
+                  <img src="/images/{{ $gallery->resized_image }}">
                 </a>
               </div>
             </div>

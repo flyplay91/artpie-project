@@ -57,7 +57,21 @@ class AdminGallerysController extends Controller
             $destinationPath = public_path().'/images/';
             $file->move($destinationPath,$fileName);
             
-            $gallerys->image = $fileName ;
+            $gallerys->image = $fileName;
+
+            $resizedImage = \Image::make($destinationPath . $fileName);
+            $resizedImage->resize(400, null, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+
+            $withoutExtFileName = preg_replace('/\\.[^.\\s]{3,4}$/', '', $fileName);
+            $renamedImage = $withoutExtFileName . '_resized';
+            $info = getimagesize($destinationPath . $fileName);
+            $extension = image_type_to_extension($info[2]);
+            $renamedImage = $renamedImage . $extension ;
+            
+            $resizedImage->save($destinationPath . $renamedImage);
+            $gallerys->resized_image = $renamedImage;
         }
 
         $gallerys->all_checked = 'false';
@@ -106,21 +120,6 @@ class AdminGallerysController extends Controller
     public function update(Request $request, $id)
     {   
         $request->validate([
-            // 'title' => 'required',
-            // 'sign'  => 'required',
-            // 'frame'  => 'required',
-            // 'width'  => 'required',
-            // 'height'  => 'required',
-            // 'unit'  => 'required',
-            // 'actual_price' => 'required',
-            // 'retail_price'  => 'required',
-            // 'check_enable_pieces'  => 'required',
-            // 'safe_children' => 'required',
-            // 'category_id' => 'required',
-            // 'artist_id'   =>  'required',
-            // 'registered_date' => 'required',
-            // 'updated_date'  =>  'required',
-            // 'original'   =>  'required',
         ]);
         
         $width = intval($request->width);
@@ -148,7 +147,24 @@ class AdminGallerysController extends Controller
             $file->move($destinationPath,$fileName);
 
             $data['image'] = $fileName;
+
+            $resizedImage = \Image::make($destinationPath . $fileName);
+            $resizedImage->resize(400, null, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+
+            $withoutExtFileName = preg_replace('/\\.[^.\\s]{3,4}$/', '', $fileName);
+            $renamedImage = $withoutExtFileName . '_resized';
+            $info = getimagesize($destinationPath . $fileName);
+            $extension = image_type_to_extension($info[2]);
+            $renamedImage = $renamedImage . $extension ;
+            
+            $resizedImage->save($destinationPath . $renamedImage);
+            $data['resized_image'] = $renamedImage;
         }
+
+        
+
         $data['size'] = $size;
         $data['all_checked'] = $allChecked;
 

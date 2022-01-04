@@ -122,7 +122,7 @@
               </div>
               <a class="image-gallery" href="javascript:void(0)" data-id="{{ $gallery->id }}" data-artist-id="{{ $gallery->artist_id }}">
                 <div class="hdrItems-list__inner-overlay"></div>
-                <img src="/images/{{ $gallery->image }}">
+                <img src="/images/{{ $gallery->resized_image }}">
               </a>
             </div>
           </div>
