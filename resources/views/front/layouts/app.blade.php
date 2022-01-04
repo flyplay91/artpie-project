@@ -93,7 +93,7 @@
           </ul>
         </div>
         <div class="footer-copyright">
-          Copyright@ 2021 KoldArt LLC
+          Copyright@ 2022 Hunchun Longchao  Co., LTD
         </div>
       </div>
     </div>
