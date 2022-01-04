@@ -40,4 +40,11 @@ return [
     'agree_terms_use' => '사용계약(환불정책)에 동의합니다.',
     'order_request' => '구입요청 보내기',
     'cancel' => '취소',
+    'send_request' => '요청 보내기',
+    'deposit_history' => '입금리력',
+    'history_no' => '리력번호',
+    'depositor_no' => '입금자번호',
+    'depositor_name' => '입금자이름',
+    'amount' => '액수',
+    'status' => '상태',
 ];

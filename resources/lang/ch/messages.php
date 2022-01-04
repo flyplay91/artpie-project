@@ -40,5 +40,12 @@ return [
     'agree_terms_use' => '我同意使用条款（退货政策）',
     'order_request' => '订单请求',
     'cancel' => '取消',
+    'send_request' => '发送请求',
+    'deposit_history' => '存款历史',
+    'history_no' => '历史编号',
+    'depositor_no' => '存款人编号',
+    'depositor_name' => '存款人姓名',
+    'amount' => '存款额',
+    'status' => '状态',
   
 ];

@@ -40,5 +40,11 @@ return [
     'agree_terms_use' => 'I agree with the terms of use (return policy)',
     'order_request' => 'Order Request',
     'cancel' => 'Cancel',
-    
+    'send_request' => 'Send Request',
+    'deposit_history' => 'Deposit History',
+    'history_no' => 'History No',
+    'depositor_no' => 'Depositor No',
+    'depositor_name' => 'Depositor Name',
+    'amount' => 'Amount',
+    'status' => 'Status',
 ];

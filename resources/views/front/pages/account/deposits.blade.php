@@ -18,20 +18,20 @@
                 </div>
                 <input type="number" name="amount" class="form-control">
               </div>
-              <button class="btn btn-grey" type="submit">요청 보내기</button>
+              <button class="btn btn-grey" type="submit">{{ __('messages.send_request') }}</button>
             </div>
         </div>
 
-        <h2>입금리력</h2>
+        <h2>{{ __('messages.deposit_history') }}</h2>
 
         <table class="table table-bordered">
           <thead>
             <tr>
-              <th scope="col">리력번호</th>
-              <th scope="col">입금자번호</th>
-              <th scope="col">입금자이름</th>
-              <th scope="col">액수</th>
-              <th scope="col">상태</th>
+              <th scope="col">{{ __('messages.history_no') }}</th>
+              <th scope="col">{{ __('messages.depositor_no') }}</th>
+              <th scope="col">{{ __('messages.depositor_name') }}</th>
+              <th scope="col">{{ __('messages.amount') }}</th>
+              <th scope="col">{{ __('messages.status') }}</th>
             </tr>
           </thead>
           <tbody>
