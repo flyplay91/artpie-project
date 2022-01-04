@@ -46,6 +46,14 @@ class User extends Authenticatable
     }
 
     /**
+     * Get all of the users's fragments.
+     */
+    public function deposits()
+    {
+        return $this->hasMany(Deposits::class);
+    }
+
+    /**
      * checks if the user is super admin
      * @return bool
      */

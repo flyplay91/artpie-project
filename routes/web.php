@@ -37,6 +37,9 @@ Route::resource('checkout', 'front\CheckoutController')->middleware('auth');
 Route::resource('pay', 'front\PayController')->middleware('auth');
 Route::resource('order', 'front\OrderInfoController')->middleware('auth');
 
+Route::group(['middleware' => ['auth']], function () {
+  Route::get('deposits', 'front\AccountController@deposits');
+});
 
 
 // Admin
