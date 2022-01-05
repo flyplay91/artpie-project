@@ -35,7 +35,8 @@
                 <img src="/images/{{ $gallery->resized_image }}">
               </div>
 
-              <div class="input-group btns-change-add-images mt-3 mb-3 flex aic jcb">
+              {{--
+              <div class="input-group btns-change-add-images flex aic jcb">
                 <a href="javascript:void(0)" class="btn-change-image">Change Image</a>
                 <a href="javascript:void(0)" class="btn-additional-images">Upload Additional Image</a>
               </div> 
@@ -44,6 +45,7 @@
                 <input type="file" name="image" multiple class="custom-file-input form-control" id="customFile">
                 <label class="custom-file-label" for="customFile">Select Images</label>
               </div>
+              --}}
             </div>
 
             <div class="block-change-gallery-data">
