@@ -89,7 +89,7 @@ $(document).ready(function() {
 
   $(window).scroll(function() {
     if (!ajaxLoading) {
-      if ($(document).height() - $(this).height() == $(this).scrollTop()) {
+      if ($(window).scrollTop() + $(window).height() >= $(document).height()) {
         page++;
         
         selected_coll_ids = []

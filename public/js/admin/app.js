@@ -79,7 +79,7 @@ $(document).ready(function () {
   loadMoreData(page, selected_coll_ids);
   $(window).scroll(function () {
     if (!ajaxLoading) {
-      if ($(document).height() - $(this).height() == $(this).scrollTop()) {
+      if ($(window).scrollTop() + $(window).height() >= $(document).height()) {
         page++;
         selected_coll_ids = [];
         $('.ad-gallerys-sidebar .chkBox2').each(function () {

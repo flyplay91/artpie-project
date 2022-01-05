@@ -32,7 +32,7 @@
           <div class="col-md-12">
             <div class="block-change-image-des">
               <div class="input-group mb-3 td-img m-auto">
-                <img src="/images/{{ $gallery->image }}">
+                <img src="/images/{{ $gallery->resized_image }}">
               </div>
 
               <div class="input-group btns-change-add-images mt-3 mb-3 flex aic jcb">
