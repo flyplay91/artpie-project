@@ -97,11 +97,11 @@
 
                 <div class="flex aic jcb mb-3">
                   <div class="form-group w-30">
-                    <label>구입가격</label>
+                    <label>구입가격(USD)</label>
                     <input type="text" value="{{ $gallery->actual_price }}" name="actual_price" class="form-control">
                   </div>
                   <div class="form-group w-30">
-                    <label>판매가격</label>
+                    <label>판매가격(USD)</label>
                     <input type="text" value="{{ $gallery->retail_price }}" name="retail_price" class="form-control">
                   </div>
 

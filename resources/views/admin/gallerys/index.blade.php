@@ -128,6 +128,11 @@
           @endif
         @endif
       </div>
+
+      <input type="hidden" class="loadmore-click-count" value="">
+      <div class="gallery-loadmore">
+        <a href="javascript:void(0)" class="btn-grey btn-loadmore">Lord More</a>
+      </div>
     </div>
   </div>
 </div>
