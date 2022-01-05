@@ -575,6 +575,9 @@ img {
 .ad-gallerys__lists .ad-gallerys-items .hdrItems-list .hdrItems-list__inner.required {
   border-color: #ff2525;
 }
+.ad-gallerys__lists .ad-gallerys-items .hdrItems-list .hdrItems-list__inner a {
+  display: block;
+}
 .ad-gallerys__lists .ad-gallerys-items .hdrItems-list .hdrItems-list__inner .btn-gallery-create {
   border-radius: 4px;
   border: solid 1px #bdbdbd;
