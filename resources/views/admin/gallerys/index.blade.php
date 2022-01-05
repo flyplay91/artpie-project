@@ -82,7 +82,7 @@
           </div>
         </div>
 
-        <a href="" class="btn btn-grey btn-add-gallery">추가</a>
+        <a href="" class="btn btn-grey btn-add-gallery">그림추가</a>
       </div>
 
       <div id="adGallerysItems">
