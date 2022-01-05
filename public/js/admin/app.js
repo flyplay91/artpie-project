@@ -126,6 +126,7 @@ $(document).ready(function () {
             noLoaded++;
 
             if (noOfImages == noLoaded) {
+              console.log('aaa');
               $('#adGallerysItems .hdrItems-list').addClass('initialized');
               macyInstance.reInit();
             }

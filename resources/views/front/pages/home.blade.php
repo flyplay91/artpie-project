@@ -50,7 +50,7 @@
 
       <div class="hdrItem--price-size">
         <div class="filterItems hdrItem--price boxCtnt">
-          <span class="fTtl">{{ __('messages.price') }}</span>
+          <span class="fTtl">{{ __('messages.price') }} (USD)</span>
           <label class="chkBox2">
             <input type="checkbox" class="checkbox-filter checkbox-any-filter" value="any" checked="checked"> Any
             <div class="chkBox2_box"></div>

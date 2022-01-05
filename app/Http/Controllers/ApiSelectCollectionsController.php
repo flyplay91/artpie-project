@@ -34,7 +34,6 @@ class ApiSelectCollectionsController extends Controller
     
         if ($request->ajax()) {
             $html = '';
-
             if (isset($galleryObjs)) {
                 if (session('success')) {
                     foreach ($galleryObjs as $galleryObj) {

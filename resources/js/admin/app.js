@@ -1,3 +1,5 @@
+
+
 var baseUrl = window.location.protocol + '//' + window.location.host + '/';
 
 
@@ -138,6 +140,7 @@ $(document).ready(function() {
           $('#adGallerysItems img').on('load', function() {
             noLoaded++;
             if (noOfImages == noLoaded) {
+              console.log('aaa');
               $('#adGallerysItems .hdrItems-list').addClass('initialized');
               macyInstance.reInit();
             }
