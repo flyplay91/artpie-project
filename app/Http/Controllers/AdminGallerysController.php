@@ -164,8 +164,6 @@ class AdminGallerysController extends Controller
             $data['resized_image'] = $renamedImage;
         }
 
-        
-
         $data['size'] = $size;
         $data['all_checked'] = $allChecked;
 
@@ -180,7 +178,7 @@ class AdminGallerysController extends Controller
         $gallery->update($data);
         
         return redirect()->route('admin-gallery.index')
-                        ->with('success','any');
+                        ->with('success',$gallery->coll_id);
     }
 
     /**
@@ -197,6 +195,6 @@ class AdminGallerysController extends Controller
         $gallery->delete();
   
         return redirect()->route('admin-gallery.index')
-                        ->with('success','Product deleted successfully');
+                        ->with('success',$gallery->coll_id);
     }
 }

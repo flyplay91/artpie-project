@@ -120,6 +120,7 @@ $(document).ready(function() {
       },
     })
     .done(function(data) {
+      
       if(data.length == 0) {
         if ($('.checkbox-coll:checked').length == 1) {
           var selected_coll_id = $('.checkbox-coll:checked').data('id');
@@ -142,6 +143,7 @@ $(document).ready(function() {
             }
           });
         }
+        
       }
 
       if ($('.checkbox-coll:checked').length == 1) {
