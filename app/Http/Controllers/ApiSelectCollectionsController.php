@@ -35,21 +35,6 @@ class ApiSelectCollectionsController extends Controller
         if ($request->ajax()) {
             $html = '';
 
-            
-            if (session('success') || ($selectedCollIds[0] != 'any' && count($selectedCollIds) == 1)) {
-                $html.='<div class="hdrItems-list active hdrItems-list--addmore">';
-                    $html.='<div class="hdrItems-list__inner flex aic jcc" style="height: 200px">';
-                        $html.='<a class="btn-gallery-create" href="/admin-gallery/create?'.$selectedCollIds[0].'">그림추가</a>';
-                    $html.='</div>';
-                $html.='</div>';
-            } else {
-                $html.='<div class="hdrItems-list hdrItems-list--addmore">';
-                    $html.='<div class="hdrItems-list__inner flex aic jcc" style="height: 200px">';
-                        $html.='<a class="btn-gallery-create" href="/admin-gallery/create?'.$selectedCollIds[0].'">그림추가</a>';
-                    $html.='</div>';
-                $html.='</div>';
-            }
-            
             if (isset($galleryObjs)) {
                 if (session('success')) {
                     foreach ($galleryObjs as $galleryObj) {
@@ -95,31 +80,6 @@ class ApiSelectCollectionsController extends Controller
         }
 
         return view('admin.gallerys.index');
-        
-
-        // $galleryIdImageArr = [];
-        
-        // foreach($galleryObjs as $galleryObj) {
-        //     $galleryIdImageArr[$galleryObj->id] = array(
-        //         'g_image' => $galleryObj->resized_image,
-        //         'g_all_checked' => $galleryObj->all_checked,
-        //     );
-        // }
-        
-        // try {
-		// 	return response()->json([
-		// 	    'collection_ids' => $selectedCollIds,
-        //         'gallery_ids_images' => $galleryIdImageArr
-		// 	]);
-		// } catch (Exception $e) {
-		//     echo 'Caught exception: '. $e->getMessage() ."\n";
-
-		//     return response()->json([
-		// 	    'failed' => '1',
-		// 	    'error_message' => $e->getMessage(),
-		// 	]);
-		// }
-        
     }
 
     /**

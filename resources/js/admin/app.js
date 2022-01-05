@@ -140,6 +140,10 @@ $(document).ready(function() {
       }
 
       if ($('.checkbox-coll:checked').length == 1) {
+        var selected_coll_id = $('.checkbox-coll:checked').data('id');
+        $('.btn-add-gallery').attr('href', '/admin-gallery/create?'+selected_coll_id);
+        $('.btn-add-gallery').addClass('active');
+        
         if ($('.hdrItems-list').length == 1) {
           $('.block-coll__edit').addClass('active');
           $('.block-coll__delete').addClass('active');
@@ -148,6 +152,7 @@ $(document).ready(function() {
           $('.block-coll__delete').removeClass('active');
         }
       } else {
+        $('.btn-add-gallery').removeClass('active');
         $('.block-coll__edit').removeClass('active');
         $('.block-coll__delete').removeClass('active');
       }

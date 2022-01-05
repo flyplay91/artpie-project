@@ -431,6 +431,12 @@ img {
   padding-bottom: 10px;
   z-index: 1;
 }
+.coll-btns .btn-add-gallery {
+  display: none;
+}
+.coll-btns .btn-add-gallery.active {
+  display: block;
+}
 .coll-btns .selected-coll-name {
   margin-bottom: 0;
   margin-right: 10px;

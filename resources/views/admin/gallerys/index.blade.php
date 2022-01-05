@@ -61,24 +61,28 @@
     </div>
     
     <div class="ad-gallerys-items">
-      <div class="coll-btns flex aic">
-        <label class="selected-coll-name"></label>
-        <div class="block-coll__edit">
-          <button type="button" class="btn btn-grey btn-edit-del-coll">변경</button>
-          <form class="flex aic" action="" method="POST" enctype="multipart/form-data">
-            @method('PUT')
-            @csrf
-            <input type="text" value="" name="coll_name" class="form-control edit-coll-name" required>
-            <button type="submit" class="btn btn-grey">변경</button>
-          </form>
+      <div class="coll-btns flex aic jcb">
+        <div class="coll-btns__edit-delete flex aic">
+          <label class="selected-coll-name"></label>
+          <div class="block-coll__edit">
+            <button type="button" class="btn btn-grey btn-edit-del-coll">변경</button>
+            <form class="flex aic" action="" method="POST" enctype="multipart/form-data">
+              @method('PUT')
+              @csrf
+              <input type="text" value="" name="coll_name" class="form-control edit-coll-name" required>
+              <button type="submit" class="btn btn-grey">변경</button>
+            </form>
+          </div>
+          <div class="block-coll__delete">
+            <form class="flex aic" action="" method="POST" enctype="multipart/form-data">
+              @method('DELETE')
+              @csrf
+              <button type="submit" class="btn btn-grey btn-edit-del-coll">삭제</button>
+            </form>
+          </div>
         </div>
-        <div class="block-coll__delete">
-          <form class="flex aic" action="" method="POST" enctype="multipart/form-data">
-            @method('DELETE')
-            @csrf
-            <button type="submit" class="btn btn-grey btn-edit-del-coll">삭제</button>
-          </form>
-        </div>
+
+        <a href="" class="btn btn-grey btn-add-gallery">추가</a>
       </div>
 
       <div id="adGallerysItems">
