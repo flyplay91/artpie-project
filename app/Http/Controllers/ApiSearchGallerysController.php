@@ -52,6 +52,8 @@ class ApiSearchGallerysController extends Controller
         $galleryObjs = $galleryObjs->where('all_checked', 'true')
                                     ->where('title', 'like', '%' . $selectedValue . '%')
                                     ->orWhere('artist_name', 'like', '%' . $selectedValue . '%')
+                                    ->orWhere('artist_name_ch', 'like', '%' . $selectedValue . '%')
+                                    ->orWhere('artist_name_ko', 'like', '%' . $selectedValue . '%')
                                     ->orWhere('keywords', 'like', '%' . $selectedValue . '%')->get();
 
         $galleryIdImageArr = [];

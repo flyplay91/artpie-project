@@ -448,6 +448,17 @@ $(document).ready(function() {
     $('.popup-update-category-artist').removeClass('active');
   });
 
+  $('.form-group').on('change', 'select.selectbox-artists', function (e) {
+  
+    var en_name = $(e.target).find("option:selected").attr('data-name-en');
+    var ch_name = $(e.target).find("option:selected").attr('data-name-ch');
+    var ko_name = $(e.target).find("option:selected").attr('data-name-ko');
+    
+    $('.input-artist-name').val(en_name);
+    $('.input-artist-name-ch').val(ch_name);
+    $('.input-artist-name-ko').val(ko_name);
+
+  });
   $('body').on('click', '.btn-edit-artist', function() {
     var selected_artist_id = $('.selectbox-artists option:selected').val();
     if (selected_artist_id != 0) {

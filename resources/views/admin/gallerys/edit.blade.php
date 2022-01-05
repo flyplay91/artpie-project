@@ -183,20 +183,15 @@
                       <option value="0">창작가 선택</option>
                       @if (isset($artists))
                         @foreach ($artists as $artist)
-                        <option @if ($gallery->artist_id == $artist->id) selected @endif value="{{ $artist->id }}">{{ $artist->art_name_ko }}</option>
+                        <option @if ($gallery->artist_id == $artist->id) selected @endif value="{{ $artist->id }}" data-name-en="{{ $artist->art_name }}" data-name-ko="{{ $artist->art_name_ko }}" data-name-ch="{{ $artist->art_name_ch }}">{{ $artist->art_name_ko }}</option>
                         @endforeach
                       @endif
                     </select>
 
-                    @if (isset($artists))
-                      @foreach ($artists as $artist)
-                        @if ($gallery->artist_id == $artist->id) 
-                          <input type="hidden" name="artist_name" value="{{$gallery->artist_name}}" class="input-artist-name">
-                          <input type="hidden" name="artist_name_ch" value="{{$gallery->artist_name_ch}}" class="input-artist-name-ch">
-                          <input type="hidden" name="artist_name_ko" value="{{$gallery->artist_name_ko}}" class="input-artist-name-ko">
-                        @endif
-                      @endforeach
-                    @endif
+                    <input type="hidden" name="artist_name" value="{{$artist->artist_name}}" class="input-artist-name">
+                    <input type="hidden" name="artist_name_ch" value="{{$artist->artist_name_ch}}" class="input-artist-name-ch">
+                    <input type="hidden" name="artist_name_ko" value="{{$artist->artist_name_ko}}" class="input-artist-name-ko">
+                        
                   </div>
                   <div class="form-group w-45 position-relative">
                     <a href="javascript:void(0)" class="btn-add-artist">창작가 추가</a>
