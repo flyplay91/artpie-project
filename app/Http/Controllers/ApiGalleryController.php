@@ -67,6 +67,7 @@ class ApiGalleryController extends Controller
             'g_id'  => $galleryObj->id,
             'g_artist_des'  => $artDesc,
             'g_image' => $galleryObj->image,
+            'g_resized_image' => $galleryObj->resized_image,
             'g_title_en' => $galleryObj->title,
             'g_title_ch' => $galleryObj->title_ch,
             'g_title_ko' => $galleryObj->title_ko,

@@ -449,7 +449,7 @@ function getGalleryAjax(id, artist_id) {
         
         html += '<div class="gallery-data-image" data-id="'+ key +'">';
           html += `<a href="/images/${val.g_image}" class="MagicZoom" data-options="cssClass: mz-show-arrows; zoomPosition: inner; zoomMode:off;" >`;
-            html += `<img src="/images/${val.g_image}" />`;
+            html += `<img src="/images/${val.g_resized_image}" />`;
           html += '</a>';  
         html += '</div>';
         html += '<div class="gallery-data-info flex flex-column jcb">';
