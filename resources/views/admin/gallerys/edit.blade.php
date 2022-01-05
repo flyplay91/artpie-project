@@ -137,7 +137,7 @@
                 </div>
 
                 <div class="form-group mb-3">
-                  <label>이 그림은 어린이들이 봐도 됩니까?</label>
+                  <label class="safe-children-label">이 그림은 어린이들이 봐도 됩니까?</label>
                   <label class="form-check-label">
                     <input type="radio" class="form-check-input" name="safe_children" value="yes" @if ($gallery->safe_children == 'yes') checked="checked" @endif>예, 봐도 됩니다.
                   </label>

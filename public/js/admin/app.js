@@ -423,7 +423,60 @@ $(document).ready(function () {
     $('.input-artist-name').val(en_name);
     $('.input-artist-name-ch').val(ch_name);
     $('.input-artist-name-ko').val(ko_name);
-  });
+  }); // Edit page validate
+
+  var title_ko = $('input[name=title_ko]').val();
+  var title_ch = $('input[name=title_ch]').val();
+  var title_en = $('input[name=title]').val();
+  var width = $('input[name=width]').val();
+  var height = $('input[name=height]').val();
+  var actual_price = $('input[name=actual_price]').val();
+  var retail_price = $('input[name=retail_price]').val();
+  var check_safe_children = $('input[name=safe_children]').is(':checked');
+  var select_category = $('.selectbox-categories option:selected').val();
+  var selectbox_artists = $('.selectbox-artists option:selected').val();
+
+  if (title_ko == '') {
+    $('input[name=title_ko]').css('border-color', 'red');
+  }
+
+  if (title_ch == '') {
+    $('input[name=title_ch]').css('border-color', 'red');
+  }
+
+  if (title_en == '') {
+    $('input[name=title]').css('border-color', 'red');
+  }
+
+  if (width == '') {
+    $('input[name=width]').css('border-color', 'red');
+  }
+
+  if (height == '') {
+    $('input[name=height]').css('border-color', 'red');
+  }
+
+  if (actual_price == '') {
+    $('input[name=actual_price]').css('border-color', 'red');
+  }
+
+  if (retail_price == '') {
+    $('input[name=retail_price]').css('border-color', 'red');
+  }
+
+  if (check_safe_children == false) {
+    $('.safe-children-label').css('border', 'solid 1px red');
+  }
+
+  if (select_category == '0') {
+    $('.selectbox-categories').css('border-color', 'red');
+  }
+
+  if (selectbox_artists == '0') {
+    $('.selectbox-artists').css('border-color', 'red');
+  } // ======================================================================= //
+
+
   $('body').on('click', '.btn-edit-artist', function () {
     var selected_artist_id = $('.selectbox-artists option:selected').val();
 
