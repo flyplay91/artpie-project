@@ -22,6 +22,8 @@ $(document).ready(function() {
   // Date Picker
   $('.date-picker').datepicker({
   });
+
+  
   
   
   $('body').on('click', '.btn-add-coll', function() {
@@ -134,13 +136,13 @@ $(document).ready(function() {
       } else {
         $('.ajax-loading').hide();
         $('#adGallerysItems').append(data);
+        $('.lazy').Lazy();
         
         noOfImages = $('#adGallerysItems img').length;
         if ($('#adGallerysItems').length > 0) {
           $('#adGallerysItems img').on('load', function() {
             noLoaded++;
             if (noOfImages == noLoaded) {
-              console.log('aaa');
               $('#adGallerysItems .hdrItems-list').addClass('initialized');
               macyInstance.reInit();
             }

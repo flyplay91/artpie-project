@@ -48,7 +48,7 @@ class ApiSelectCollectionsController extends Controller
                                     if ($galleryObj->all_checked == 'false') {
                                         $html.='<div class="hdrItems-list__inner-overlay"><label>편집요청</label></div>';
                                     }
-                                    $html.='<img src="/images/'.$galleryObj->resized_image.'">';
+                                        $html.='<img src="/images/'.$galleryObj->resized_image.'" class="lazy" data-src="/images/'.$galleryObj->resized_image.'">';
                                     $html.='</a>';
                                 $html.='</div>';
                             $html.='</div>';
@@ -67,7 +67,7 @@ class ApiSelectCollectionsController extends Controller
                                 if ($galleryObj->all_checked == 'false') {
                                     $html.='<div class="hdrItems-list__inner-overlay"><label>편집요청</label></div>';
                                 }
-                                    $html.='<img src="/images/'.$galleryObj->resized_image.'">';
+                                    $html.='<img src="/images/'.$galleryObj->resized_image.'" class="lazy" data-src="/images/'.$galleryObj->resized_image.'">';
                                 $html.='</a>';
                             $html.='</div>';
                         $html.='</div>';

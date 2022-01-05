@@ -119,6 +119,7 @@ $(document).ready(function () {
       } else {
         $('.ajax-loading').hide();
         $('#adGallerysItems').append(data);
+        $('.lazy').Lazy();
         noOfImages = $('#adGallerysItems img').length;
 
         if ($('#adGallerysItems').length > 0) {
@@ -126,7 +127,6 @@ $(document).ready(function () {
             noLoaded++;
 
             if (noOfImages == noLoaded) {
-              console.log('aaa');
               $('#adGallerysItems .hdrItems-list').addClass('initialized');
               macyInstance.reInit();
             }
