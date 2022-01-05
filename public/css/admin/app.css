@@ -522,6 +522,20 @@ img {
   transform: rotate(45deg);
 }
 
+.ajax-loading {
+  top: 25%;
+  left: 50%;
+  text-align: center;
+  font-size: 20px;
+}
+.ajax-loading img {
+  width: 50px;
+  height: 50px;
+}
+
+.ad-gallerys__lists {
+  margin-bottom: 100px;
+}
 .ad-gallerys__lists .ad-gallerys-sidebar {
   width: 20%;
   background-color: var(--white);
@@ -532,10 +546,10 @@ img {
   position: relative;
   padding-top: 10px;
 }
-.ad-gallerys__lists .ad-gallerys-items #adGallerysItems {
+.ad-gallerys__lists .ad-gallerys-items #adGallerysItems .hdrItems-list {
   opacity: 0;
 }
-.ad-gallerys__lists .ad-gallerys-items #adGallerysItems.initialized {
+.ad-gallerys__lists .ad-gallerys-items #adGallerysItems .hdrItems-list.initialized {
   opacity: 1;
 }
 .ad-gallerys__lists .ad-gallerys-items .hdrItems-list.hdrItems-list--addmore {

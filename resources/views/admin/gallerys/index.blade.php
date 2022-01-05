@@ -82,6 +82,8 @@
       </div>
 
       <div id="adGallerysItems">
+      {{-- here loads gallerys --}}
+      {{--
         @if (session('success'))
         <div class="hdrItems-list active hdrItems-list--addmore">
           <div class="hdrItems-list__inner flex aic jcc" style="height: 200px">
@@ -127,12 +129,11 @@
             @endforeach
           @endif
         @endif
+      --}}
       </div>
 
-      <input type="hidden" class="loadmore-click-count" value="">
-      <div class="gallery-loadmore">
-        <a href="javascript:void(0)" class="btn-grey btn-loadmore">Lord More</a>
-      </div>
+      <div class="ajax-loading"><img src="{{ asset('images/preloader.gif') }}" /></div>
+      
     </div>
   </div>
 </div>

@@ -47,9 +47,12 @@ $(document).ready(function() {
       }
     });
 
-    macyInstance.on(macyInstance.constants.EVENT_IMAGE_COMPLETE, function (ctx) {
+    setTimeout(function() {
       $('#hdrItems').addClass('initialized');
-    });
+    }, 1000);
+    // macyInstance.on(macyInstance.constants.EVENT_IMAGE_COMPLETE, function (ctx) {
+    //   $('#hdrItems').addClass('initialized');
+    // });
   }
 
   

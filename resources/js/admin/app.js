@@ -15,10 +15,6 @@ $(document).ready(function() {
         400: 1
       }
     });
-
-    macyInstance.on(macyInstance.constants.EVENT_IMAGE_COMPLETE, function (ctx) {
-      $('#adGallerysItems').addClass('initialized');
-    });
   }
 
   // Date Picker
@@ -43,6 +39,12 @@ $(document).ready(function() {
     $('.coll-btns .block-coll__edit form').toggleClass('active');
   });
   
+
+  var page = 1;
+  var noOfImages = 0;
+  var noLoaded = 0;
+  var selected_coll_ids = [];
+  var ajaxLoading = false;
   
   $('.checkbox-filter-coll').change(function() {
     var selected_coll_ids = [];
@@ -68,86 +70,94 @@ $(document).ready(function() {
       }
     });
 
+    $("#adGallerysItems").empty();
+    page = 1;
+    noOfImages = 0;
+    noLoaded = 0;
+    loadMoreData(page, selected_coll_ids);
+  });
+  
+
+  $('.ad-gallerys-sidebar .chkBox2').each(function() {
+    if ($(this).find('.checkbox-filter-coll:checked').length > 0) {
+      var selected_coll_id = $(this).find('.checkbox-filter-coll:checked').data('id');
+      selected_coll_ids.push(selected_coll_id);
+    }
+  });
+  
+  loadMoreData(page, selected_coll_ids);
+
+  $(window).scroll(function() {
+    if (!ajaxLoading) {
+      if ($(document).height() - $(this).height() == $(this).scrollTop()) {
+        page++;
+        
+        selected_coll_ids = []
+        $('.ad-gallerys-sidebar .chkBox2').each(function() {
+          if ($(this).find('.checkbox-filter-coll:checked').length > 0) {
+            var selected_coll_id = $(this).find('.checkbox-filter-coll:checked').data('id');
+            selected_coll_ids.push(selected_coll_id);
+          }
+        });
+
+        loadMoreData(page, selected_coll_ids);
+      }
+    }
+  });    
+  // run function when user click load more button
+  function loadMoreData(page, selected_coll_ids) {
+    ajaxLoading = true;
     $.ajax({
-      url: "/api/api-select-collections",
-      method: "post",
-       beforeSend: function(){
-         $("#adGallerysItems").empty();
-       },
+      url: baseUrl + "api/api-select-collections",
+      type: 'get',
+      datatype: 'html',
+      beforeSend: function() {
+        $('.ajax-loading').html('Loading..').show();
+      },
       data: {
+        page: page,
         selected_collection_ids: selected_coll_ids,
       },
-      success: function(result) {
-        var hide_add_more = false;
-        if (result.collection_ids[0] == 'any') {
-          hide_add_more = true;
-        }
-        if (typeof result.collection_ids != 'undefined') {
-          var coll_count = result.collection_ids.length;
-        }
+    })
+    .done(function(data) {
+      if(data.length == 0) {
+        $('.ajax-loading').html("No more gallerys!");
+        return;
+      } else {
+        $('.ajax-loading').hide();
+        $('#adGallerysItems').append(data);
         
-        var html = '';
-        
-        if (hide_add_more != true) {
-          if (coll_count == 1) {
-            html += '<div class="hdrItems-list active hdrItems-list--addmore">';
-              html += '<div class="hdrItems-list__inner flex aic jcc" style="height: 200px">';
-                html += '<a class="btn-gallery-create" href="'+ baseUrl +'admin-gallery/create?'+ result.collection_ids + '">Add More Items</a>';
-              html += '</div>';
-            html += '</div>';  
-          }
-        }
-        
-        $.each(result.gallery_ids_images, function (key, val) {
-          html += '<div class="hdrItems-list">';
-            if (val.g_all_checked == 'false') {
-              html += '<div class="hdrItems-list__inner required">';  
-            } else {
-              html += '<div class="hdrItems-list__inner">';
-            }
-              html += '<a href="' + baseUrl + 'admin-gallery/'+ key +'/edit">';
-                if (val.g_all_checked == 'false') {
-                  html += '<div class="hdrItems-list__inner-overlay"><label>Edit required</label></div>';
-                }
-                html += '<img src="/images/'+ val.g_image +'">';
-              html += '</a>';
-            html += '</div>';
-          html += '</div>';
-        });
-        
-        $('#adGallerysItems').append(html);
-
-        var noOfImages = $('#adGallerysItems img').length;
-        var noLoaded = 0;
+        noOfImages = $('#adGallerysItems img').length;
         if ($('#adGallerysItems').length > 0) {
           $('#adGallerysItems img').on('load', function() {
             noLoaded++;
             if (noOfImages == noLoaded) {
+              $('#adGallerysItems .hdrItems-list').addClass('initialized');
               macyInstance.reInit();
             }
-          })
-          
-        }
-
-        if ($('.checkbox-coll:checked').length == 1) {
-          if ($('.hdrItems-list').length == 1) {
-            $('.block-coll__edit').addClass('active');
-            $('.block-coll__delete').addClass('active');
-          } else {
-            $('.block-coll__edit').addClass('active');
-            $('.block-coll__delete').removeClass('active');
-          }
-        } else {
-          $('.block-coll__edit').removeClass('active');
-          $('.block-coll__delete').removeClass('active');
+          });
         }
       }
+
+      if ($('.checkbox-coll:checked').length == 1) {
+        if ($('.hdrItems-list').length == 1) {
+          $('.block-coll__edit').addClass('active');
+          $('.block-coll__delete').addClass('active');
+        } else {
+          $('.block-coll__edit').addClass('active');
+          $('.block-coll__delete').removeClass('active');
+        }
+      } else {
+        $('.block-coll__edit').removeClass('active');
+        $('.block-coll__delete').removeClass('active');
+      }
+
+      ajaxLoading = false;
+    })
+    .fail(function(jqXHR, ajaxOptions, thrownError) {
+      alert('Something went wrong.');
     });
-
-  });
-
-  
-  
+  }
   // Update gallery page click change image button
   $('body').on('click', '.btn-change-image', function() {
     $('.block-change-image input').trigger('click');

@@ -2097,6 +2097,7 @@ img {
 .popup-gallery-data .popup-gallery-data__inner .gallery-data-image img {
   -o-object-fit: contain;
      object-fit: contain;
+  min-height: 200px;
 }
 .popup-gallery-data .popup-gallery-data__inner .gallery-data-info {
   width: 35%;

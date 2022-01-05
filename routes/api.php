@@ -29,7 +29,7 @@ Route::post('api-billing', 'ApiBillingController@index');
 
 
 Route::post('api-select-header-data', 'ApiChangeHeaderDataController@index');
-Route::post('api-select-collections', 'ApiSelectCollectionsController@index');
+Route::get('api-select-collections', 'ApiSelectCollectionsController@index');
 Route::post('api-categories', 'ApiCategoriesController@index');
 Route::post('api-update-categories', 'ApiUpdateCategoriesController@index');
 Route::post('api-delete-categories', 'ApiDeleteCategoriesController@index');

@@ -60,4 +60,5 @@ Route::group(['middleware' => ['auth', 'checkSuperAdmin']], function () {
 
   Route::resource('admin-gallery', 'AdminGallerysController');
   Route::resource('admin-collection', 'AdminCollectionsController');
+
 });

@@ -133,6 +133,7 @@ class AdminGallerysController extends Controller
         foreach($data as $key => $value) {
             if ($key != 'description_ch' && $key != 'description' && $key != 'description_ko' && $key != 'keywords' && $key != 'materials' 
                 && $key != 'paint_date' && $key != 'piece_count') {
+                    
                 if (empty($value)) {
                     $allChecked = "false";
                 }
