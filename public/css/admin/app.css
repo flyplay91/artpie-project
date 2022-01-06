@@ -559,7 +559,7 @@ img {
   opacity: 1;
 }
 .ad-gallerys__lists .ad-gallerys-items .hdrItems-list {
-  max-width: 50%;
+  max-width: calc(33.3333% - 16.6667px);
 }
 .ad-gallerys__lists .ad-gallerys-items .hdrItems-list.hdrItems-list--addmore {
   display: none;

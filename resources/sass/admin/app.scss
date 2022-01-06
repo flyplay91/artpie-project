@@ -615,8 +615,8 @@ img {
     }
 
     .hdrItems-list {
-      max-width: 50%;
-      
+      max-width: calc(33.3333% - 16.6667px);
+
       &.hdrItems-list--addmore {
         display: none;
 
