@@ -80,7 +80,7 @@ $(document).ready(function () {
       return;
     }
 
-    if ($(window).scrollTop() + $(window).height() >= $(document).height()) {
+    if ($(window).scrollTop() + $(window).height() >= $('body').height()) {
       page++;
       selected_coll_ids = [];
       $('.ad-gallerys-sidebar .chkBox2').each(function () {

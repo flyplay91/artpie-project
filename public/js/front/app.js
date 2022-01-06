@@ -2184,7 +2184,7 @@ $(document).ready(function () {
       return;
     }
 
-    if ($(window).scrollTop() + $(window).height() >= $(document).height()) {
+    if ($(window).scrollTop() + $(window).height() >= $('body').height()) {
       page++;
       category_ids_arr = [];
       price_arr = [];
