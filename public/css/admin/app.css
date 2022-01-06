@@ -558,6 +558,9 @@ img {
 .ad-gallerys__lists .ad-gallerys-items #adGallerysItems .hdrItems-list.initialized {
   opacity: 1;
 }
+.ad-gallerys__lists .ad-gallerys-items .hdrItems-list {
+  max-width: 50%;
+}
 .ad-gallerys__lists .ad-gallerys-items .hdrItems-list.hdrItems-list--addmore {
   display: none;
 }

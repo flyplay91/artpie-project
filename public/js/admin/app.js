@@ -122,10 +122,10 @@ $(document).ready(function () {
         $('.ajax-loading').hide();
         $('#adGallerysItems').append(data);
         $('.lazy').Lazy();
-        noOfImages = $('#adGallerysItems img').length;
         $('#adGallerysItems img').not('.loaded').on('load', function () {
           $(this).addClass('loaded');
           noLoaded++;
+          noOfImages = $('#adGallerysItems img').length;
 
           if (noOfImages == noLoaded) {
             $('#adGallerysItems .hdrItems-list').addClass('initialized');
