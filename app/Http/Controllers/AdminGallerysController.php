@@ -71,7 +71,6 @@ class AdminGallerysController extends Controller
             $renamedImage = $renamedImage . $extension ;
             
             $resizedImage->save($destinationPath . $renamedImage);
-            $gallerys->resized_image = $renamedImage;
         }
 
         $gallerys->all_checked = 'false';
@@ -161,7 +160,6 @@ class AdminGallerysController extends Controller
             $renamedImage = $renamedImage . $extension ;
             
             $resizedImage->save($destinationPath . $renamedImage);
-            $data['resized_image'] = $renamedImage;
         }
 
         $data['size'] = $size;

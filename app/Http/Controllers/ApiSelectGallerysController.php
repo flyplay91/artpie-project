@@ -57,6 +57,14 @@ class ApiSelectGallerysController extends Controller
 
             if (isset($galleryObjs)) {
                 foreach ($galleryObjs as $galleryObj) {
+                    $fileName = $galleryObj->image;
+                    $destinationPath = public_path().'/images/';
+                    $withoutExtFileName = preg_replace('/\\.[^.\\s]{3,4}$/', '', $fileName);
+                    $renamedImage = $withoutExtFileName . '_resized';
+                    
+                    $info = getimagesize($destinationPath . $fileName);
+                    $extension = image_type_to_extension($info[2]);
+                    $renamedImage = $renamedImage . $extension ;
                     
                     if ($galleryObj->all_checked == 'true') {
                     $html .= '<div class="hdrItems-list">';
@@ -93,7 +101,7 @@ class ApiSelectGallerysController extends Controller
                             $html .= '</div>';
                             $html .= '<a class="image-gallery" href="javascript:void(0)" data-id="'.$galleryObj->id.'" data-artist-id="'.$galleryObj->artist_id.'">';
                                 $html .= '<div class="hdrItems-list__inner-overlay"></div>';
-                                $html .= '<img src="/images/'.$galleryObj->resized_image.'">';
+                                $html .= '<img src="/images/'.$renamedImage.'">';
                             $html .= '</a>';
                         $html .= '</div>';
                     $html .= '</div>';
@@ -107,29 +115,6 @@ class ApiSelectGallerysController extends Controller
 
         return view('front.pages.home');
 
-        // $galleryIdImageArr = [];
-        
-        // foreach($galleryObjs as $galleryObj) {
-        //     $galleryIdImageArr[$galleryObj->id] = array(
-        //         'g_image' => $galleryObj->resized_image,
-        //         'g_title' => $galleryObj->title,
-        //         'g_artist_name' => $galleryObj->artist_name,
-        //         'g_artist_id' => $galleryObj->artist_id
-        //     );
-        // }
-        
-        // try {
-        //     return response()->json([
-        //             'gallery_ids_images' => $galleryIdImageArr
-        //         ]);
-        //     } catch (Exception $e) {
-        //         echo 'Caught exception: '. $e->getMessage() ."\n";
-
-        //         return response()->json([
-        //         'failed' => '1',
-        //         'error_message' => $e->getMessage(),
-        //     ]);
-        // }
     }
 
     /**

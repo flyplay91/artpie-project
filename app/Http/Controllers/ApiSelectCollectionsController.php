@@ -37,6 +37,15 @@ class ApiSelectCollectionsController extends Controller
             if (isset($galleryObjs)) {
                 if (session('success')) {
                     foreach ($galleryObjs as $galleryObj) {
+                        $fileName = $galleryObj->image;
+                        $destinationPath = public_path().'/images/';
+                        $withoutExtFileName = preg_replace('/\\.[^.\\s]{3,4}$/', '', $fileName);
+                        $renamedImage = $withoutExtFileName . '_resized';
+                        
+                        $info = getimagesize($destinationPath . $fileName);
+                        $extension = image_type_to_extension($info[2]);
+                        $renamedImage = $renamedImage . $extension ;
+                        
                         if (session('success') == $galleryObj->coll_id) {
                             $html.='<div class="hdrItems-list">';
                                 if ($galleryObj->all_checked == 'false') {
@@ -48,7 +57,7 @@ class ApiSelectCollectionsController extends Controller
                                     if ($galleryObj->all_checked == 'false') {
                                         $html.='<div class="hdrItems-list__inner-overlay"><label>편집요청</label></div>';
                                     }
-                                        $html.='<img src="/images/'.$galleryObj->resized_image.'" class="" data-src="/images/'.$galleryObj->resized_image.'">';
+                                        $html.='<img src="/images/'.$renamedImage.'" class="">';
                                     $html.='</a>';
                                 $html.='</div>';
                             $html.='</div>';
@@ -57,6 +66,15 @@ class ApiSelectCollectionsController extends Controller
                     
                 } else {
                     foreach ($galleryObjs as $galleryObj) {
+                        $fileName = $galleryObj->image;
+                        $destinationPath = public_path().'/images/';
+                        $withoutExtFileName = preg_replace('/\\.[^.\\s]{3,4}$/', '', $fileName);
+                        $renamedImage = $withoutExtFileName . '_resized';
+                        
+                        $info = getimagesize($destinationPath . $fileName);
+                        $extension = image_type_to_extension($info[2]);
+                        $renamedImage = $renamedImage . $extension ;
+                        
                         $html.='<div class="hdrItems-list">';
                             if ($galleryObj->all_checked == 'false') {
                                 $html.='<div class="hdrItems-list__inner required">';    
@@ -67,7 +85,7 @@ class ApiSelectCollectionsController extends Controller
                                 if ($galleryObj->all_checked == 'false') {
                                     $html.='<div class="hdrItems-list__inner-overlay"><label>편집요청</label></div>';
                                 }
-                                    $html.='<img src="/images/'.$galleryObj->resized_image.'" class="" data-src="/images/'.$galleryObj->resized_image.'">';
+                                    $html.='<img src="/images/'.$renamedImage.'" class="">';
                                 $html.='</a>';
                             $html.='</div>';
                         $html.='</div>';
