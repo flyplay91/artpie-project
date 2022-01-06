@@ -2019,15 +2019,22 @@ img {
   border-radius: 4px;
 }
 
-#hdrItems {
+#hdrItems .hdrItems-list {
   opacity: 0;
 }
-#hdrItems.initialized {
+#hdrItems .hdrItems-list.initialized {
   opacity: 1;
 }
 
 .hdrItems {
   margin-top: 50px;
+  margin-bottom: 50px;
+  flex-wrap: wrap;
+}
+.hdrItems .ajax-loading {
+  width: 100%;
+  text-align: center;
+  font-size: 20px;
 }
 
 .hdrItems-list__inner {

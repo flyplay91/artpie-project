@@ -18,7 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('api-select-gallerys', 'ApiSelectGallerysController@index');
+Route::get('api-select-gallerys', 'ApiSelectGallerysController@index');
 Route::post('api-search-gallerys', 'ApiSearchGallerysController@index');
 
 Route::post('api-get-gallery', 'ApiGalleryController@index');

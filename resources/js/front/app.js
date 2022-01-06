@@ -77,6 +77,53 @@ $(document).ready(function() {
   });
 
   // Filter ajax
+  var page = 1;
+  var noOfImages = 0;
+  var noLoaded = 0;
+  var category_ids_arr = [];
+  var price_arr = [];
+  var ajaxLoading = false;
+
+  $('.hdrItem--category .chkBox2').each(function() {
+    if ($(this).find('.checkbox-filter:checked').length > 0) {
+      var selected_cat_id = $(this).find('.checkbox-filter:checked').val();
+      category_ids_arr.push(selected_cat_id);
+    }
+  });
+  $('.hdrItem--price .chkBox2').each(function() {
+    if ($(this).find('.checkbox-filter:checked').length > 0) {
+      var selected_price = $(this).find('.checkbox-filter:checked').val();
+      price_arr.push(selected_price);
+    }
+  });
+  
+  loadMoreData(page, category_ids_arr, price_arr);
+
+  $(window).scroll(function() {
+    if (!ajaxLoading) {
+      if ($(window).scrollTop() + $(window).height() >= $(document).height()) {
+        page++;
+        
+        category_ids_arr = [];
+        price_arr = [];
+        $('.hdrItem--category .chkBox2').each(function() {
+          if ($(this).find('.checkbox-filter:checked').length > 0) {
+            var selected_cat_id = $(this).find('.checkbox-filter:checked').val();
+            category_ids_arr.push(selected_cat_id);
+          }
+        });
+        $('.hdrItem--price .chkBox2').each(function() {
+          if ($(this).find('.checkbox-filter:checked').length > 0) {
+            var selected_price = $(this).find('.checkbox-filter:checked').val();
+            price_arr.push(selected_price);
+          }
+        });
+
+        loadMoreData(page, category_ids_arr, price_arr);
+      }
+    }
+  });  
+
   $('.checkbox-filter').change(function() {
     var category_ids_arr = [];
     var price_arr = [];
@@ -94,39 +141,107 @@ $(document).ready(function() {
       }
     });
 
+    $("#hdrItems").empty();
+    page = 1;
+    noOfImages = 0;
+    noLoaded = 0;
+    loadMoreData(page, category_ids_arr, price_arr);
+
+    // $.ajax({
+    //   url: "/api/api-select-gallerys",
+    //   method: "post",
+    //    beforeSend: function(){
+    //      $("#hdrItems").empty();
+    //    },
+    //   data: {
+    //     selected_cat_ids: category_ids_arr,
+    //     selected_price: price_arr,
+    //   },
+      
+    //   success: function(result) {
+    //     var html = '';
+
+    //     $.each(result.gallery_ids_images, function (key, val) {
+    //       html += '<div class="hdrItems-list">';
+    //         html += '<div class="hdrItems-list__inner position-relative">';
+    //           html += '<div class="hdrItems-list__tooltip position-absolute"><label>'+ val.g_title +'</label><span>' + val.g_artist_name + '</span></div>';
+    //           html += '<a class="image-gallery" href="javascript:void(0)" data-id="'+ key +'" data-artist-id="'+ val.g_artist_id +'">';
+    //             html += '<div class="hdrItems-list__inner-overlay"></div>';
+    //             html += '<img src="/images/'+ val.g_image +'">';
+    //           html += '</a>';
+    //         html += '</div>';
+    //       html += '</div>';
+    //     });
+        
+    //     $('#hdrItems').append(html);
+    //     if ($('#hdrItems').length > 0) {
+    //       macyInstance.reInit();
+    //     }
+    //   }
+    // });
+  });
+
+  function loadMoreData(page, category_ids_arr, price_arr) {
+    ajaxLoading = true;
     $.ajax({
-      url: "/api/api-select-gallerys",
-      method: "post",
-       beforeSend: function(){
-         $("#hdrItems").empty();
-       },
+      url: baseUrl + "api/api-select-gallerys",
+      type: 'get',
+      datatype: 'html',
+      beforeSend: function() {
+        $('.ajax-loading').html('Loading..').show();
+      },
       data: {
+        page: page,
         selected_cat_ids: category_ids_arr,
         selected_price: price_arr,
       },
+    })
+    .done(function(data) {
       
-      success: function(result) {
-        var html = '';
-
-        $.each(result.gallery_ids_images, function (key, val) {
-          html += '<div class="hdrItems-list">';
-            html += '<div class="hdrItems-list__inner position-relative">';
-              html += '<div class="hdrItems-list__tooltip position-absolute"><label>'+ val.g_title +'</label><span>' + val.g_artist_name + '</span></div>';
-              html += '<a class="image-gallery" href="javascript:void(0)" data-id="'+ key +'" data-artist-id="'+ val.g_artist_id +'">';
-                html += '<div class="hdrItems-list__inner-overlay"></div>';
-                html += '<img src="/images/'+ val.g_image +'">';
-              html += '</a>';
-            html += '</div>';
-          html += '</div>';
-        });
+      if(data.length == 0) {
+        $('.ajax-loading').html("No more gallerys!");
+        return;
+      } else {
+        $('.ajax-loading').hide();
+        $('#hdrItems').append(data);
         
-        $('#hdrItems').append(html);
+        noOfImages = $('#hdrItems img').length;
         if ($('#hdrItems').length > 0) {
-          macyInstance.reInit();
+          $('#hdrItems img').on('load', function() {
+            noLoaded++;
+            if (noOfImages == noLoaded) {
+              $('#hdrItems .hdrItems-list').addClass('initialized');
+              macyInstance.reInit();
+            }
+          });
         }
+        
       }
+
+      if ($('.checkbox-coll:checked').length == 1) {
+        var selected_coll_id = $('.checkbox-coll:checked').data('id');
+        $('.btn-add-gallery').attr('href', '/admin-gallery/create?'+selected_coll_id);
+        $('.btn-add-gallery').addClass('active');
+        
+        if ($('.hdrItems-list').length == 1) {
+          $('.block-coll__edit').addClass('active');
+          $('.block-coll__delete').addClass('active');
+        } else {
+          $('.block-coll__edit').addClass('active');
+          $('.block-coll__delete').removeClass('active');
+        }
+      } else {
+        $('.btn-add-gallery').removeClass('active');
+        $('.block-coll__edit').removeClass('active');
+        $('.block-coll__delete').removeClass('active');
+      }
+
+      ajaxLoading = false;
+    })
+    .fail(function(jqXHR, ajaxOptions, thrownError) {
+      alert('Something went wrong.');
     });
-  });
+  }
 
   // Update gallery popup
   $('body').on('click', '.gallery-data-content__item', function() {

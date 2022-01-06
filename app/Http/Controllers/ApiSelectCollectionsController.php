@@ -29,7 +29,7 @@ class ApiSelectCollectionsController extends Controller
         }
 
         // $galleryObjs = $galleryObjs->get();
-        $galleryObjs = $galleryObjs->orderBy('updated_at', 'desc')->paginate(5);
+        $galleryObjs = $galleryObjs->orderBy('updated_at', 'desc')->paginate(8);
         
     
         if ($request->ajax()) {

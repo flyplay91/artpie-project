@@ -84,7 +84,8 @@
   @endauth
 
   <div id="hdrItems" class="w-75">
-    
+    {{-- here loads gallerys --}}
+    {{--
     @if (isset($gallerys))
       @foreach ($gallerys as $gallery)
         @if ($gallery->all_checked == 'true')
@@ -129,7 +130,9 @@
         @endif
       @endforeach
     @endif
+    --}}
   </div>
+  <div class="ajax-loading"><img src="{{ asset('images/preloader.gif') }}" /></div>
 
   <div class="popup-gallery-data position-fixed" data-user-id="{{ Auth::id() }}">
     <div class="popup-gallery-data__inner flex jcb"></div>

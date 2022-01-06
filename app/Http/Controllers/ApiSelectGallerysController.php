@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\AdminGallerys;
+use App\AdminArtists;
 use DB;
 
 class ApiSelectGallerysController extends Controller
@@ -15,6 +16,7 @@ class ApiSelectGallerysController extends Controller
      */
     public function index(Request $request)
     {
+        $artists = AdminArtists::all();
         $selectedCatIds = $request->selected_cat_ids;
         $selectedPrices = $request->selected_price;
 
@@ -22,7 +24,7 @@ class ApiSelectGallerysController extends Controller
         
         if (!empty($selectedCatIds)) {
             if (!in_array('any', $selectedCatIds)) {
-                $galleryObjs = $galleryObjs->whereIn('category_id',$selectedCatIds);
+                $galleryObjs->whereIn('category_id',$selectedCatIds);
             }
         }
 
@@ -31,47 +33,103 @@ class ApiSelectGallerysController extends Controller
         
         if (!empty($selectedPrices)) {
             if (!in_array('any', $selectedPrices)) {
-                $galleryObjs = $galleryObjs->where(function($query) use ($galleryObjs, $selectedPrices) {
-                    foreach($selectedPrices as $selectedPrice) {
+                $galleryObjs->where(function($galleryObjs) use ($selectedPrices) {
+                    foreach($selectedPrices as $k => $selectedPrice) {
                         $splitedPrice = explode('_', $selectedPrice);
                         $minPrice = $splitedPrice[0];
                         $maxPrice = $splitedPrice[1];
 
                         if ($maxPrice == 'max') {
-                            $galleryObjs = $galleryObjs->orWhere('retail_price', '>=', $minPrice);        
+                            $galleryObjs->orWhere('retail_price', '>=', $minPrice);        
                         } else {
-                            $galleryObjs = $galleryObjs->orWhereBetween('retail_price',[$minPrice, $maxPrice]);        
+                            $galleryObjs->orWhereBetween('retail_price',[$minPrice, $maxPrice]);        
                         }
                     }
                 });
             }
         }
         
-        $galleryObjs = $galleryObjs->where('all_checked', 'true')->get();
+        // $galleryObjs = $galleryObjs->where('all_checked', 'true')->get();
+        $galleryObjs = $galleryObjs->where('all_checked', 'true')->orderBy('updated_at', 'desc')->paginate(9);
 
-        $galleryIdImageArr = [];
-        
-        foreach($galleryObjs as $galleryObj) {
-            $galleryIdImageArr[$galleryObj->id] = array(
-                'g_image' => $galleryObj->resized_image,
-                'g_title' => $galleryObj->title,
-                'g_artist_name' => $galleryObj->artist_name,
-                'g_artist_id' => $galleryObj->artist_id
-            );
-        }
-        
-        try {
-            return response()->json([
-                    'gallery_ids_images' => $galleryIdImageArr
-                ]);
-            } catch (Exception $e) {
-                echo 'Caught exception: '. $e->getMessage() ."\n";
+        if ($request->ajax()) {
+            $html = '';
 
-                return response()->json([
-                'failed' => '1',
-                'error_message' => $e->getMessage(),
-            ]);
+            if (isset($galleryObjs)) {
+                foreach ($galleryObjs as $galleryObj) {
+                    
+                    if ($galleryObj->all_checked == 'true') {
+                    $html .= '<div class="hdrItems-list">';
+                        $html .= '<div class="hdrItems-list__inner position-relative">';
+                            $html .= '<div class="hdrItems-list__tooltip position-absolute">';
+                                $html .= '<label>';
+                                if (session()->get('locale') == 'en') {
+                                    $html .= $galleryObj->title;
+                                } else if (session()->get('locale') == 'ch') {
+                                    $html .= $galleryObj->title_ch;
+                                } else if (session()->get('locale') == 'ko') {
+                                    $html .= $galleryObj->title_ko;
+                                } else {
+                                    $html .= $galleryObj->title;
+                                }
+                                $html .= '</label>';
+                                if (isset($artists)) {
+                                    foreach ($artists as $artist) {
+                                        if ($artist->id == $galleryObj->artist_id) {
+                                        $html .= '<span>';
+                                            if (session()->get('locale') == 'en') {
+                                                $html .= $artist->art_name;
+                                            } else if (session()->get('locale') == 'ch') {
+                                                $html .= $artist->art_name_ch;
+                                            } else if (session()->get('locale') == 'ko') {
+                                                $html .= $artist->art_name_ko;
+                                            } else {
+                                                $html .= $artist->art_name;
+                                            }
+                                            $html .= '</span>';
+                                        }
+                                    }
+                                }
+                            $html .= '</div>';
+                            $html .= '<a class="image-gallery" href="javascript:void(0)" data-id="'.$galleryObj->id.'" data-artist-id="'.$galleryObj->artist_id.'">';
+                                $html .= '<div class="hdrItems-list__inner-overlay"></div>';
+                                $html .= '<img src="/images/'.$galleryObj->resized_image.'">';
+                            $html .= '</a>';
+                        $html .= '</div>';
+                    $html .= '</div>';
+                    }
+                }
+            }
+
+            return $html;
+
         }
+
+        return view('front.pages.home');
+
+        // $galleryIdImageArr = [];
+        
+        // foreach($galleryObjs as $galleryObj) {
+        //     $galleryIdImageArr[$galleryObj->id] = array(
+        //         'g_image' => $galleryObj->resized_image,
+        //         'g_title' => $galleryObj->title,
+        //         'g_artist_name' => $galleryObj->artist_name,
+        //         'g_artist_id' => $galleryObj->artist_id
+        //     );
+        // }
+        
+        // try {
+        //     return response()->json([
+        //             'gallery_ids_images' => $galleryIdImageArr
+        //         ]);
+        //     } catch (Exception $e) {
+        //         echo 'Caught exception: '. $e->getMessage() ."\n";
+
+        //         return response()->json([
+        //         'failed' => '1',
+        //         'error_message' => $e->getMessage(),
+        //     ]);
+        // }
     }
 
     /**
