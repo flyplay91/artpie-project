@@ -23,6 +23,15 @@
     </div>
     @endif
     
+    @php
+      $srcPath = public_path().'/images/'.$gallery->image;
+
+      $filename = pathinfo($srcPath, PATHINFO_FILENAME);
+      $ext = pathinfo($srcPath, PATHINFO_EXTENSION);
+      $targetWidth = 800;
+      $filenameResized = $filename . '_resized_'.$targetWidth.'x.'.$ext;
+      
+    @endphp
 
     <div class="edit-image-form">
       <form class="form-save-gallery" action="{{ route('admin-gallery.update',$gallery->id) }}" method="POST" enctype="multipart/form-data">
@@ -32,7 +41,7 @@
           <div class="col-md-12">
             <div class="block-change-image-des">
               <div class="input-group mb-3 td-img m-auto">
-                <img src="/images/{{ $gallery->resized_image }}">
+                <img src="/images/{{ $filenameResized }}">
               </div>
 
               {{--

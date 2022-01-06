@@ -85,52 +85,6 @@
 
   <div id="hdrItems" class="w-75">
     {{-- here loads gallerys --}}
-    {{--
-    @if (isset($gallerys))
-      @foreach ($gallerys as $gallery)
-        @if ($gallery->all_checked == 'true')
-          <div class="hdrItems-list">
-            <div class="hdrItems-list__inner position-relative">
-              <div class="hdrItems-list__tooltip position-absolute">
-                <label>
-                  @if (session()->get('locale') == 'en')
-                    {{ $gallery->title }}
-                  @elseif (session()->get('locale') == 'ch')
-                    {{ $gallery->title_ch }}
-                  @elseif (session()->get('locale') == 'ko')
-                    {{ $gallery->title_ko }}
-                  @else 
-                    {{ $gallery->title }}
-                  @endif
-                </label>
-                @if (isset($artists))
-                  @foreach ($artists as $artist)
-                    @if ($artist->id == $gallery->artist_id)
-                      <span>
-                        @if (session()->get('locale') == 'en')
-                          {{ $artist->art_name }}
-                        @elseif (session()->get('locale') == 'ch')
-                          {{ $artist->art_name_ch }}
-                        @elseif (session()->get('locale') == 'ko')
-                          {{ $artist->art_name_ko }}
-                        @else 
-                          {{ $artist->art_name }}
-                        @endif
-                      </span>
-                    @endif
-                  @endforeach
-                @endif
-              </div>
-              <a class="image-gallery" href="javascript:void(0)" data-id="{{ $gallery->id }}" data-artist-id="{{ $gallery->artist_id }}">
-                <div class="hdrItems-list__inner-overlay"></div>
-                <img src="/images/{{ $gallery->resized_image }}">
-              </a>
-            </div>
-          </div>
-        @endif
-      @endforeach
-    @endif
-    --}}
   </div>
   <div class="ajax-loading"><img src="{{ asset('images/preloader.gif') }}" /></div>
 

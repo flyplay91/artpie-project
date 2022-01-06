@@ -57,14 +57,12 @@ class ApiSelectGallerysController extends Controller
 
             if (isset($galleryObjs)) {
                 foreach ($galleryObjs as $galleryObj) {
-                    $fileName = $galleryObj->image;
-                    $destinationPath = public_path().'/images/';
-                    $withoutExtFileName = preg_replace('/\\.[^.\\s]{3,4}$/', '', $fileName);
-                    $renamedImage = $withoutExtFileName . '_resized';
-                    
-                    $info = getimagesize($destinationPath . $fileName);
-                    $extension = image_type_to_extension($info[2]);
-                    $renamedImage = $renamedImage . $extension ;
+                    $srcPath = public_path().'/images/'.$galleryObj->image;
+
+                    $filename = pathinfo($srcPath, PATHINFO_FILENAME);
+                    $ext = pathinfo($srcPath, PATHINFO_EXTENSION);
+                    $targetWidth = 400;
+                    $filenameResized = $filename . '_resized_'.$targetWidth.'x.'.$ext;
                     
                     if ($galleryObj->all_checked == 'true') {
                     $html .= '<div class="hdrItems-list">';
@@ -101,7 +99,7 @@ class ApiSelectGallerysController extends Controller
                             $html .= '</div>';
                             $html .= '<a class="image-gallery" href="javascript:void(0)" data-id="'.$galleryObj->id.'" data-artist-id="'.$galleryObj->artist_id.'">';
                                 $html .= '<div class="hdrItems-list__inner-overlay"></div>';
-                                $html .= '<img src="/images/'.$renamedImage.'">';
+                                $html .= '<img src="/images/'.$filenameResized.'">';
                             $html .= '</a>';
                         $html .= '</div>';
                     $html .= '</div>';

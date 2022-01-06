@@ -7,8 +7,16 @@
     <h3>{{ __('messages.purchase_painting') }}</h3>
     <div class="get-gallery__inner">
       <div class="get-gallery-image-info flex jcb">
+        @php
+          $srcPath = public_path().'/images/'.$gallery->image;
+
+          $filename = pathinfo($srcPath, PATHINFO_FILENAME);
+          $ext = pathinfo($srcPath, PATHINFO_EXTENSION);
+          $targetWidth = 400;
+          $filenameResized = $filename . '_resized_'.$targetWidth.'x.'.$ext;
+        @endphp
         <div class="get-gallery-image">
-          <img src="/images/{{ $gallery->image }}">
+          <img src="/images/{{ $filenameResized }}">
         </div>
         <div class="get-gallery-info">
           <label class="gallery-number">No. {{ sprintf("%07d", $gallery->id) }}</label>

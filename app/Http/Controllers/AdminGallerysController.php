@@ -8,6 +8,8 @@ use App\AdminCategories;
 use App\AdminArtists;
 use App\AdminHeaderData;
 
+use Illuminate\Support\Facades\Log;
+
 
 class AdminGallerysController extends Controller
 {
@@ -35,6 +37,34 @@ class AdminGallerysController extends Controller
         return view('admin.gallerys.create');
     }
 
+    protected function resizeImage($srcPath, $targetWidth)
+    {
+        if (!file_exists($srcPath) || is_dir($srcPath)) {
+            Log::error(__FUNCTION__.': Invalid path: '.$srcPath);
+            return false;
+        }
+
+        if (!$targetWidth) {
+            return false;
+        }
+
+        // Read source file
+        $image = \Image::make($srcPath);
+
+        // Generate new filename
+        $filename = pathinfo($srcPath, PATHINFO_FILENAME);
+        $ext = pathinfo($srcPath, PATHINFO_EXTENSION);
+        $filenameResized = $filename . '_resized_'.$targetWidth.'x.'.$ext;
+        $pathResized = pathinfo($srcPath, PATHINFO_DIRNAME).DIRECTORY_SEPARATOR.$filenameResized;
+
+        // Resize to 400x
+        $image->resize($targetWidth, null, function ($constraint) {
+            $constraint->aspectRatio();
+        });
+
+        return $image->save($pathResized);
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -54,23 +84,26 @@ class AdminGallerysController extends Controller
         if($file = $request->hasFile('image')) {
             $file = $request->file('image');
             $fileName = $file->getClientOriginalName();
-            $destinationPath = public_path().'/images/';
-            $file->move($destinationPath,$fileName);
-            
+            $dir = public_path().'/images/';
+
+            // Full path to saved file
+            $src = $dir . $fileName;
+            while (file_exists($src)) {
+                $fn = pathinfo($src, PATHINFO_FILENAME);
+                $ext = pathinfo($src, PATHINFO_EXTENSION);
+                $src = $dir.$fn.'_1.'.$ext;
+            }
+
+            $fileName = pathinfo($src, PATHINFO_BASENAME);
+
+            $file->move($dir, $fileName);
             $gallerys->image = $fileName;
 
-            $resizedImage = \Image::make($destinationPath . $fileName);
-            $resizedImage->resize(400, null, function ($constraint) {
-                $constraint->aspectRatio();
-            });
+            // Resize to 400x
+            $this->resizeImage($src, 400);
 
-            $withoutExtFileName = preg_replace('/\\.[^.\\s]{3,4}$/', '', $fileName);
-            $renamedImage = $withoutExtFileName . '_resized';
-            $info = getimagesize($destinationPath . $fileName);
-            $extension = image_type_to_extension($info[2]);
-            $renamedImage = $renamedImage . $extension ;
-            
-            $resizedImage->save($destinationPath . $renamedImage);
+            // Resize to 800x
+            $this->resizeImage($src, 800);
         }
 
         $gallerys->all_checked = 'false';
@@ -137,29 +170,6 @@ class AdminGallerysController extends Controller
                     $allChecked = "false";
                 }
             }
-        }
-
-        if($file = $request->hasFile('image')) {
-            
-            $file = $request->file('image');
-            $fileName = $file->getClientOriginalName();
-            $destinationPath = public_path().'/images/';
-            $file->move($destinationPath,$fileName);
-
-            $data['image'] = $fileName;
-
-            $resizedImage = \Image::make($destinationPath . $fileName);
-            $resizedImage->resize(400, null, function ($constraint) {
-                $constraint->aspectRatio();
-            });
-
-            $withoutExtFileName = preg_replace('/\\.[^.\\s]{3,4}$/', '', $fileName);
-            $renamedImage = $withoutExtFileName . '_resized';
-            $info = getimagesize($destinationPath . $fileName);
-            $extension = image_type_to_extension($info[2]);
-            $renamedImage = $renamedImage . $extension ;
-            
-            $resizedImage->save($destinationPath . $renamedImage);
         }
 
         $data['size'] = $size;
