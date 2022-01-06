@@ -99,28 +99,30 @@ $(document).ready(function() {
   
   loadMoreData(page, category_ids_arr, price_arr);
 
-  $(window).scroll(function() {
-    if (!ajaxLoading) {
-      if ($(window).scrollTop() + $(window).height() >= $(document).height()) {
-        page++;
-        
-        category_ids_arr = [];
-        price_arr = [];
-        $('.hdrItem--category .chkBox2').each(function() {
-          if ($(this).find('.checkbox-filter:checked').length > 0) {
-            var selected_cat_id = $(this).find('.checkbox-filter:checked').val();
-            category_ids_arr.push(selected_cat_id);
-          }
-        });
-        $('.hdrItem--price .chkBox2').each(function() {
-          if ($(this).find('.checkbox-filter:checked').length > 0) {
-            var selected_price = $(this).find('.checkbox-filter:checked').val();
-            price_arr.push(selected_price);
-          }
-        });
+  $(window).on('scroll', function() {
+    if (ajaxLoading) {
+      return;
+    }
 
-        loadMoreData(page, category_ids_arr, price_arr);
-      }
+    if ($(window).scrollTop() + $(window).height() >= $(document).height()) {
+      page++;
+      
+      category_ids_arr = [];
+      price_arr = [];
+      $('.hdrItem--category .chkBox2').each(function() {
+        if ($(this).find('.checkbox-filter:checked').length > 0) {
+          var selected_cat_id = $(this).find('.checkbox-filter:checked').val();
+          category_ids_arr.push(selected_cat_id);
+        }
+      });
+      $('.hdrItem--price .chkBox2').each(function() {
+        if ($(this).find('.checkbox-filter:checked').length > 0) {
+          var selected_price = $(this).find('.checkbox-filter:checked').val();
+          price_arr.push(selected_price);
+        }
+      });
+
+      loadMoreData(page, category_ids_arr, price_arr);
     }
   });  
 
@@ -206,16 +208,16 @@ $(document).ready(function() {
         $('#hdrItems').append(data);
         
         noOfImages = $('#hdrItems img').length;
-        if ($('#hdrItems').length > 0) {
-          $('#hdrItems img').on('load', function() {
-            noLoaded++;
-            if (noOfImages == noLoaded) {
-              $('#hdrItems .hdrItems-list').addClass('initialized');
+        $('#hdrItems img').on('load', function() {
+          noLoaded++;
+          if (noOfImages == noLoaded) {
+            $('#hdrItems .hdrItems-list').addClass('initialized');
+
+            if (!ajaxLoading) {
               macyInstance.reInit();
             }
-          });
-        }
-        
+          }
+        });        
       }
 
       if ($('.checkbox-coll:checked').length == 1) {

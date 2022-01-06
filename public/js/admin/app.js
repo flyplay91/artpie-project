@@ -77,19 +77,21 @@ $(document).ready(function () {
     }
   });
   loadMoreData(page, selected_coll_ids);
-  $(window).scroll(function () {
-    if (!ajaxLoading) {
-      if ($(window).scrollTop() + $(window).height() >= $(document).height()) {
-        page++;
-        selected_coll_ids = [];
-        $('.ad-gallerys-sidebar .chkBox2').each(function () {
-          if ($(this).find('.checkbox-filter-coll:checked').length > 0) {
-            var selected_coll_id = $(this).find('.checkbox-filter-coll:checked').data('id');
-            selected_coll_ids.push(selected_coll_id);
-          }
-        });
-        loadMoreData(page, selected_coll_ids);
-      }
+  $(window).on('scroll', function () {
+    if (ajaxLoading) {
+      return;
+    }
+
+    if ($(window).scrollTop() + $(window).height() >= $(document).height()) {
+      page++;
+      selected_coll_ids = [];
+      $('.ad-gallerys-sidebar .chkBox2').each(function () {
+        if ($(this).find('.checkbox-filter-coll:checked').length > 0) {
+          var selected_coll_id = $(this).find('.checkbox-filter-coll:checked').data('id');
+          selected_coll_ids.push(selected_coll_id);
+        }
+      });
+      loadMoreData(page, selected_coll_ids);
     }
   }); // run function when user click load more button
 
@@ -121,17 +123,18 @@ $(document).ready(function () {
         $('#adGallerysItems').append(data);
         $('.lazy').Lazy();
         noOfImages = $('#adGallerysItems img').length;
+        $('#adGallerysItems img').not('.loaded').on('load', function () {
+          $(this).addClass('loaded');
+          noLoaded++;
 
-        if ($('#adGallerysItems').length > 0) {
-          $('#adGallerysItems img').on('load', function () {
-            noLoaded++;
+          if (noOfImages == noLoaded) {
+            $('#adGallerysItems .hdrItems-list').addClass('initialized');
 
-            if (noOfImages == noLoaded) {
-              $('#adGallerysItems .hdrItems-list').addClass('initialized');
+            if (!ajaxLoading) {
               macyInstance.reInit();
             }
-          });
-        }
+          }
+        });
       }
 
       if ($('.checkbox-coll:checked').length == 1) {
