@@ -4,6 +4,10 @@ var __webpack_exports__ = {};
   !*** ./resources/js/admin/app.js ***!
   \***********************************/
 var baseUrl = window.location.protocol + '//' + window.location.host + '/';
+var page = 1;
+var selected_coll_ids = [];
+var ajaxLoading = false;
+var forceReinit = false;
 $(document).ready(function () {
   if ($('#adGallerysItems').length > 0) {
     var macyInstance = Macy({
@@ -36,11 +40,6 @@ $(document).ready(function () {
   $('body').on('click', '.btn-edit-del-coll', function () {
     $('.coll-btns .block-coll__edit form').toggleClass('active');
   });
-  var page = 1;
-  var noOfImages = 0;
-  var noLoaded = 0;
-  var selected_coll_ids = [];
-  var ajaxLoading = false;
   $('.checkbox-filter-coll').change(function () {
     var selected_coll_ids = [];
 
@@ -97,6 +96,7 @@ $(document).ready(function () {
 
   function loadMoreData(page, selected_coll_ids) {
     ajaxLoading = true;
+    forceReinit = false;
     $.ajax({
       url: baseUrl + "api/api-select-collections",
       type: 'get',
@@ -110,6 +110,8 @@ $(document).ready(function () {
       }
     }).done(function (data) {
       if (data.length == 0) {
+        forceReinit = true;
+
         if ($('.checkbox-coll:checked').length == 1) {
           var selected_coll_id = $('.checkbox-coll:checked').data('id');
           $('.btn-add-gallery').attr('href', '/admin-gallery/create?' + selected_coll_id);
@@ -117,21 +119,18 @@ $(document).ready(function () {
         }
 
         $('.ajax-loading').html("No more gallerys!");
-        return;
       } else {
+        var $list = $('#adGallerysItems');
         $('.ajax-loading').hide();
-        $('#adGallerysItems').append(data);
+        $list.append(data);
         $('.lazy').Lazy();
-        var nImages = $(data).find('img').length;
-        var nLoaded = 0;
-        $('#adGallerysItems img').not('.loaded').on('load', function () {
+        $list.find('img').not('.loaded').on('load', function () {
           $(this).addClass('loaded');
-          nLoaded++;
 
-          if (nImages == nLoaded) {
+          if ($list.find('img').not('.loaded').length == 0) {
             $('#adGallerysItems .hdrItems-list').addClass('initialized');
 
-            if (!ajaxLoading) {
+            if (!ajaxLoading || forceReinit) {
               macyInstance.reInit();
             }
           }
