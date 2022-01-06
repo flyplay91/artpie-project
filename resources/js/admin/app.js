@@ -145,8 +145,7 @@ $(document).ready(function() {
           $(this).addClass('loaded');
 
           if ($list.find('img').not('.loaded').length == 0) {
-            $('#adGallerysItems .hdrItems-list').addClass('initialized');
-            console.log('reInit');
+            $list.find('.hdrItems-list').addClass('initialized');
             macyInstance.reInit();
           }
         });        

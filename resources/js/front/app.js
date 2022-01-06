@@ -78,8 +78,6 @@ $(document).ready(function() {
 
   // Filter ajax
   var page = 1;
-  var noOfImages = 0;
-  var noLoaded = 0;
   var category_ids_arr = [];
   var price_arr = [];
   var ajaxLoading = false;
@@ -145,8 +143,6 @@ $(document).ready(function() {
 
     $("#hdrItems").empty();
     page = 1;
-    noOfImages = 0;
-    noLoaded = 0;
     loadMoreData(page, category_ids_arr, price_arr);
 
     // $.ajax({
@@ -185,6 +181,9 @@ $(document).ready(function() {
 
   function loadMoreData(page, category_ids_arr, price_arr) {
     ajaxLoading = true;
+
+    const $list = $('#hdrItems');
+
     $.ajax({
       url: baseUrl + "api/api-select-gallerys",
       type: 'get',
@@ -202,22 +201,19 @@ $(document).ready(function() {
       
       if(data.length == 0) {
         $('.ajax-loading').html("No more gallerys!");
-        return;
+        
       } else {
         $('.ajax-loading').hide();
-        $('#hdrItems').append(data);
-        
-        noOfImages = $('#hdrItems img').length;
-        $('#hdrItems img').on('load', function() {
-          noLoaded++;
-          if (noOfImages == noLoaded) {
-            $('#hdrItems .hdrItems-list').addClass('initialized');
+        $list.append(data);
 
-            if (!ajaxLoading) {
-              macyInstance.reInit();
-            }
+        $list.find('img').not('.loaded').on('load', function() {
+          $(this).addClass('loaded');
+
+          if ($list.find('img').not('.loaded').length == 0) {
+            $list.find('.hdrItems-list').addClass('initialized');
+            macyInstance.reInit();
           }
-        });        
+        });     
       }
 
       if ($('.checkbox-coll:checked').length == 1) {
