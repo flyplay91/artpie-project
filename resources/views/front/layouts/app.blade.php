@@ -11,13 +11,13 @@
   <link rel="icon" type="image/x-icon" href="/images/favicon.png">
 
   <!-- Styles -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
   <link href="{{ asset('css/front/app.css') }}" rel="stylesheet">
 
 
   <!-- Script -->
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/macy@2.5.1/dist/macy.min.js"></script>
+  <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('js/macy.min.js') }}"></script>
   <script type="text/javascript" src="{{ asset('js/front/app.js') }}"></script>
   
 </head>

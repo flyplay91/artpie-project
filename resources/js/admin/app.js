@@ -139,7 +139,6 @@ $(document).ready(function() {
       } else {
         $('.ajax-loading').hide();
         $list.append(data);
-        $('.lazy').Lazy();
 
         $list.find('img').not('.loaded').on('load', function() {
           $(this).addClass('loaded');
