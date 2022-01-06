@@ -1,7 +1,7 @@
 <?php
   
 return [
-    'purchase_painting' => 'Purchase Painting',
+    'purchase_painting' => 'View Arts',
     'login' => 'Login',
     'register'  => 'Register',
     'logout'  => 'Logout',
