@@ -1,7 +1,7 @@
 <?php
    
 return [
-    'purchase_painting' => '查看画作',
+    'purchase_painting' => '美术作品',
     'login' => '登录',
     'register' => '注册',
     'logout'  => '注销',
