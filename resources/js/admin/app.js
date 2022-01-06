@@ -140,14 +140,15 @@ $(document).ready(function() {
         $('.ajax-loading').hide();
         $('#adGallerysItems').append(data);
         $('.lazy').Lazy();
-               
+
+        const nImages = $(data).find('img').length;
+        var nLoaded = 0;
+
         $('#adGallerysItems img').not('.loaded').on('load', function() {
           $(this).addClass('loaded');
-          noLoaded++;
+          nLoaded++;
 
-          noOfImages = $('#adGallerysItems img').length;
-
-          if (noOfImages == noLoaded) {
+          if (nImages == nLoaded) {
             $('#adGallerysItems .hdrItems-list').addClass('initialized');
 
             if (!ajaxLoading) {
