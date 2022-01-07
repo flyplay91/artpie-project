@@ -36,27 +36,60 @@
 @endif
 
 <div class="mygallery-lists">
-  <div class="mygallery-list flex">
-    <div class="mygallery-list__image">
-      <img src="/images/IMG_5513_resized_400x.jpg">
-    </div>
+  @if (!empty($gallerys))
+    @foreach ($gallerys as $gallery)
+      @php
+        $srcPath = public_path().'/images/'.$gallery->image;
+        $filename = pathinfo($srcPath, PATHINFO_FILENAME);
+        $ext = pathinfo($srcPath, PATHINFO_EXTENSION);
+        $targetWidth = 400;
+        $filenameResized = $filename . '_resized_'.$targetWidth.'x.'.$ext;
+      @endphp
+      <div class="mygallery-list flex">
+        <div class="mygallery-list__image">
+          <img src="/images/{{ $filenameResized }}">
+        </div>
 
-    <div class="mygallery-list__info">
-      <h3>고양이</h3>
-      <div class="mygallery-status">
-        <label>상태:</label>
-        <span>Pending</span>
+        <div class="mygallery-list__info">
+          <h3>
+            @if (session()->get('locale') == 'en')
+              {{ $gallery->title }}
+            @elseif (session()->get('locale') == 'ch')
+              {{ $gallery->title_ch }}
+            @elseif (session()->get('locale') == 'ko')
+              {{ $gallery->title_ko }}
+            @else
+              {{ $gallery->title }}
+            @endif
+          </h3>
+          <div class="mygallery-status">
+            <label>상태:</label>
+            <span>Pending</span>
+          </div>
+          <div class="mygallery-total-price">
+            <label>가격:</label>
+            <span>20000 (USD)</span>
+          </div>
+          <div class="mygallery-pieces">
+            <label>소유개수:</label>
+            <span>1000개 (20000개중)</span>
+          </div>
+          <div class="mygallery-price">
+            <label>구입한 금액:</label>
+            <span>1000 (USD)</span>
+          </div>
+          <div class="mygallery-current-value">
+            <label>현재 가치:</label>
+            <span>1500 (USD) (수익률 150%)</span>
+          </div>
+          <div class="mygallery-current-value">
+            <label>희망판매가격:</label>
+            <span>2000 (USD)</span>
+          </div>
+        </div>
       </div>
-      <div class="mygallery-total-price">
-        <label>가격:</label>
-        <span>20000 (USD)</span>
-      </div>
-      <div class="mygallery-pieces">
-        <label>소유개수:</label>
-        <span>1000<</span>
-      </div>
-    </div>
-  </div>
+    @endforeach
+  @endif
 </div>
 
 @endsection

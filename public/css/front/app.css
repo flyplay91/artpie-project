@@ -2498,6 +2498,24 @@ img {
   font-size: 20px;
 }
 
+.mygallery-lists {
+  margin-top: 50px;
+}
+.mygallery-lists .mygallery-list {
+  border-bottom: solid 1px #ced4da;
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
+.mygallery-lists .mygallery-list:last-child {
+  border: none;
+}
+.mygallery-lists .mygallery-list .mygallery-list__image {
+  width: 400px;
+}
+.mygallery-lists .mygallery-list .mygallery-list__info {
+  margin-left: 30px;
+}
+
 /* Homepage */
 @media screen and (max-width: 768px) {
   .hdrBg {

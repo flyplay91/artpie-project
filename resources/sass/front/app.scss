@@ -2663,5 +2663,28 @@ img {
   }
 }
 
+.mygallery-lists {
+  margin-top: 50px;
+
+  .mygallery-list {
+    border-bottom: solid 1px #ced4da;
+    padding-bottom: 20px;
+    padding-top: 20px;
+
+    &:last-child {
+      border: none;
+    }
+
+    .mygallery-list__image {
+      width: 400px;
+    }
+
+    .mygallery-list__info {
+      margin-left: 30px
+    }
+  }
+  
+}
+
 
 @import 'custom';
