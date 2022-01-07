@@ -37,7 +37,7 @@ return [
     'artist' => 'Artist',
     'phone_nuber' => 'Phone Number',
     'recipient_name' => 'Recipient name',
-    'recipient_description' => 'Description (Please fill payment and shipping method, other requirements)',
+    'recipient_description' => 'Memo (Please fill the payment method, shipping and other requirements)',
     'agree_terms_use' => 'I agree with the terms of use (return policy)',
     'order_request' => 'Order Request',
     'cancel' => 'Cancel',
