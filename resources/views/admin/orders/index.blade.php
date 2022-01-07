@@ -32,7 +32,7 @@
           <td>{{ $order->billing_name }}</td>
           <td>{{ $order->billing_email }}</td>
           <td>{{ $order->billing_phone }}</td>
-          <td>¥ {{ number_format($order->total_price, 2, '.', '') }}</td>
+          <td>$ {{ number_format($order->total_price, 2, '.', '') }}</td>
           <td>{{ $order->billing_address }}</td>
           <td>{{ $order->updated_at }}</td>
           <td><a href="javascript:void(0)" data-order-id="{{ $order->id }}" class="btn-view-items btn-grey">View</a></td>
