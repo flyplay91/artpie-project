@@ -2388,6 +2388,7 @@ img {
   top: -50px;
   left: 50%;
   transform: translateX(-50%);
+  color: red;
 }
 .error-message.active {
   display: block;

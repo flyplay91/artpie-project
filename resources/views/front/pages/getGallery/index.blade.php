@@ -2,8 +2,6 @@
 
 @section('content')
 
-  <div class="error-message position-absolute message--empty-fills">{{ __('messages.fill_fields') }}</div>
-  <div class="error-message position-absolute message--invalid-email">{{ __('messages.invalid_email') }}</div>
   <div class="error-message position-absolute message--agree-terms">{{ __('messages.agree_terms_message') }}</div>
 
   @if (isset($gallery))
