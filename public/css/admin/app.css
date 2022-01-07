@@ -443,6 +443,7 @@ img {
   position: relative;
   padding-bottom: 10px;
   z-index: 1;
+  margin-bottom: 50px;
 }
 .coll-btns .btn-add-gallery {
   display: none;
