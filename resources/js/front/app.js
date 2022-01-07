@@ -468,6 +468,11 @@ $(document).ready(function() {
         }
       });
     } else {
+      $('input[name="billing_email"]') .css('border-color', '#ced4da');
+      $('input[name="billing_phone"]') .css('border-color', '#ced4da');
+      $('input[name="billing_address"]') .css('border-color', '#ced4da');
+      $('input[name="billing_name"]') .css('border-color', '#ced4da');
+
       $('.error-message.message--agree-terms').addClass('active');
       setTimeout(function() { 
         $('.error-message.message--agree-terms').removeClass('active');
