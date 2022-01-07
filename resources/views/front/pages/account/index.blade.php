@@ -17,7 +17,7 @@
             <label>크기: {{ $gallery->width }} * {{ $gallery->height }} {{ $gallery->unit }}</label>
           </div>
           <div class="get-gallery-info-item">
-            <label>가격: {{ $gallery->retail_price }} RMB</label>
+            <label>가격: {{ $gallery->retail_price }} USD</label>
           </div>
           <div class="get-gallery-info-item">
             <label>작가: {{ $artist->art_name }}</label>

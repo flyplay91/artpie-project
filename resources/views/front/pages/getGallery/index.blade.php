@@ -48,7 +48,7 @@
             <label>{{ __('messages.dimension') }}: {{ $gallery->width }} * {{ $gallery->height }} {{ $gallery->unit }}</label>
           </div>
           <div class="get-gallery-info-item">
-            <label>{{ __('messages.price') }}: {{ $gallery->retail_price }} RMB</label>
+            <label>{{ __('messages.price') }}: {{ $gallery->retail_price }} USD</label>
           </div>
           <div class="get-gallery-info-item">
             <label>{{ __('messages.artist') }}: 
