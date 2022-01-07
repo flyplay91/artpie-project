@@ -64,7 +64,9 @@
           </h3>
           <div class="mygallery-status">
             <label>상태:</label>
-            <span>Pending</span>
+            <span>
+              
+            </span>
           </div>
           <div class="mygallery-total-price">
             <label>가격:</label>
