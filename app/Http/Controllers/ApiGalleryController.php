@@ -10,6 +10,7 @@ use App\AdminCategories;
 use DB;
 use App\User;
 use App\Setting;
+use App\Orders;
 
 class ApiGalleryController extends Controller
 {
@@ -54,6 +55,8 @@ class ApiGalleryController extends Controller
         $artDesc = '';
         $artId = $galleryObj->artist_id;
         $artistObj = AdminArtists::find($artId);
+
+        $orders = Orders::all();
         
         if (isset($artistObj->art_description)) {
             $artDesc = $artistObj->art_description;
@@ -102,6 +105,25 @@ class ApiGalleryController extends Controller
             $sameArtistsImage = $sameArtistsImageObj[0]->images;
             $galleryObjArr[$galleryObj->id]['same_artist_images'] = $sameArtistsImage;
         }
+
+        $isSoldout = false;
+        foreach($orders as $order) {
+            if ($order->gallery_id == $galleryId) {
+                if ($order->status == 'cancel') {
+                    $isSoldout = false;
+                } else {
+                    $isSoldout = true;
+                }
+            }
+        }
+
+        if ($isSoldout == true) {
+            $galleryObjArr[$galleryObj->id]['g_sold_out'] = 'sold_out';
+        } else {
+            $galleryObjArr[$galleryObj->id]['g_sold_out'] = 'sold_in';
+        }
+
+        
         
         try {
 			return response()->json([

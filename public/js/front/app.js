@@ -2765,9 +2765,10 @@ function getGalleryAjax(id, artist_id) {
 
         html += '</div>';
         html += '</div>';
+        console.log(val.g_sold_out);
         html += '<div class="gallery-data-info__bottom">';
 
-        if (val.g_check_pieces == 'yes' && $('.logged-user').val() == 1) {
+        if (val.g_check_pieces == 'yes' && $('.logged-user').val() == 1 && val.g_sold_out == 'sold_in') {
           html += '<div class="gallery-pieces-buy flex aie jcb ">';
           html += '<div class="gallery-pieces-buy-info__inner">';
           html += '<div class="gallery-pieces-buy-info flex aic">';
@@ -2817,13 +2818,29 @@ function getGalleryAjax(id, artist_id) {
         }
 
         if (selectedLang == 'en') {
-          html += '<div class="link-get-gallery text-right"><a href="/contact-gallery?g_id=' + key + '"><i>To purchase this painting</i></a></div>';
+          if (val.g_sold_out == 'sold_out') {
+            html += '<div class="link-get-gallery text-right"><i>This picture has been sold out.</i></div>';
+          } else {
+            html += '<div class="link-get-gallery text-right"><a href="/contact-gallery?g_id=' + key + '"><i>To purchase this picture</i></a></div>';
+          }
         } else if (selectedLang == 'ch') {
-          html += '<div class="link-get-gallery text-right"><a href="/contact-gallery?g_id=' + key + '"><i>要购买此作品</i></a></div>';
+          if (val.g_sold_out == 'sold_out') {
+            html += '<div class="link-get-gallery text-right"><i>这幅画已经卖完了。</i></div>';
+          } else {
+            html += '<div class="link-get-gallery text-right"><a href="/contact-gallery?g_id=' + key + '"><i>要购买此作品</i></a></div>';
+          }
         } else if (selectedLang == 'ko') {
-          html += '<div class="link-get-gallery text-right"><a href="/contact-gallery?g_id=' + key + '"><i>이 그림을 구입하려면</i></a></div>';
+          if (val.g_sold_out == 'sold_out') {
+            html += '<div class="link-get-gallery text-right"><i>이 그림은 이미 팔렸습니다.</i></div>';
+          } else {
+            html += '<div class="link-get-gallery text-right"><a href="/contact-gallery?g_id=' + key + '"><i>이 그림을 구입하려면</i></a></div>';
+          }
         } else {
-          html += '<div class="link-get-gallery text-right"><a href="/contact-gallery?g_id=' + key + '"><i>To purchase this painting</i></a></div>';
+          if (val.g_sold_out == 'sold_out') {
+            html += '<div class="link-get-gallery text-right"><i>This picture has been sold out.</i></div>';
+          } else {
+            html += '<div class="link-get-gallery text-right"><a href="/contact-gallery?g_id=' + key + '"><i>To purchase this picture</i></a></div>';
+          }
         }
 
         html += '</div>';
