@@ -115,7 +115,7 @@ $(document).ready(function () {
           $('.btn-add-gallery').addClass('active');
         }
 
-        $('.ajax-loading').html("No more gallerys!");
+        $('.ajax-loading').html("No more!");
       } else {
         $('.ajax-loading').hide();
         $list.append(data);

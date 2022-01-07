@@ -134,7 +134,7 @@ $(document).ready(function() {
           $('.btn-add-gallery').attr('href', '/admin-gallery/create?'+selected_coll_id);
           $('.btn-add-gallery').addClass('active');
         }
-        $('.ajax-loading').html("No more gallerys!");
+        $('.ajax-loading').html("No more!");
 
       } else {
         $('.ajax-loading').hide();
