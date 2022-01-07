@@ -70,7 +70,7 @@
             <form class="flex aic" action="{{ route('admin-collection.update',$collection->id) }}" method="POST" enctype="multipart/form-data">
               @method('PUT')
               @csrf
-              <input type="text" value="" name="coll_name" class="form-control edit-coll-name" required>
+              <input type="text" value="{{ $collection->coll_name }}" name="coll_name" class="form-control edit-coll-name" required>
               <button type="submit" class="btn btn-grey">변경</button>
             </form>
           </div>
