@@ -109,10 +109,12 @@ class ApiGalleryController extends Controller
         $isSoldout = false;
         foreach($orders as $order) {
             if ($order->gallery_id == $galleryId) {
+                
                 if ($order->status == 'cancel') {
                     $isSoldout = false;
                 } else {
                     $isSoldout = true;
+                    break;
                 }
             }
         }

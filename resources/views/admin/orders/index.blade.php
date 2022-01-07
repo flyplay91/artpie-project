@@ -27,7 +27,7 @@
         @endphp
         @foreach($orders as $order)
         <tr class="text-right">
-          <th scope="row">{{ $i++ }}</th>
+          <th scope="row" data-order-id="{{ $order->id }}">{{ $i++ }}</th>
           <td>{{ $order->gallery->title_ko }}</td>
           <td>{{ $order->billing_name }}</td>
           <td>{{ $order->billing_email }}</td>
