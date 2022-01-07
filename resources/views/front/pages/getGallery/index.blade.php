@@ -2,10 +2,22 @@
 
 @section('content')
 
+  <div class="error-message position-absolute message--empty-fills">{{ __('messages.fill_fields') }}</div>
+  <div class="error-message position-absolute message--invalid-email">{{ __('messages.invalid_email') }}</div>
+  <div class="error-message position-absolute message--agree-terms">{{ __('messages.agree_terms_message') }}</div>
+
   @if (isset($gallery))
   <div class="get-gallery">
-    <h3>{{ __('messages.purchase_painting') }}</h3>
+    
+    <div class="get-gallery-success">
+      <h3>{{ __('messages.thank_you_message') }}</h3>
+      <div class="get-gallery-success-btn text-right">
+        <a href="/" class="btn-grey">Ok</a>
+      </div>
+    </div>
+
     <div class="get-gallery__inner">
+      <h3>{{ __('messages.purchase_painting') }}</h3>
       <div class="get-gallery-image-info flex jcb">
         @php
           $srcPath = public_path().'/images/'.$gallery->image;

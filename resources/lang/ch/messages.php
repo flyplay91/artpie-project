@@ -48,6 +48,9 @@ return [
     'depositor_name' => '存款人姓名',
     'amount' => '存款额',
     'status' => '状态',
-    'get_gallery_message' => '购买作品需要同意使用合同（退款政策）。',
+    'agree_terms_message' => '购买作品需要同意使用合同（退款政策）。',
+    'fill_fields' => '请您输入下面信息。',
+    'invalid_email' => '邮箱格式不正确。',
+    'thank_you_message' => '谢谢。 我们将24小时之内用邮件（或电话）联系您。',
   
 ];

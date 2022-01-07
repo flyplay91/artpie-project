@@ -48,6 +48,9 @@ return [
     'depositor_name' => 'Depositor Name',
     'amount' => 'Amount',
     'status' => 'Status',
-    'get_gallery_message' => 'Please agree to Terms of Use (Return Policy) in order to purchase art.',
+    'agree_terms_message' => 'Please agree to Terms of Use (Return Policy) in order to purchase art.',
+    'fill_fields' => 'Please fill the information below.',
+    'invalid_email' => 'Invalid E-mail format.',
+    'thank_you_message' => 'Thank you. We will reach you by email (or telephone) within 24 hours.',
     
 ];

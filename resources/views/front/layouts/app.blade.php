@@ -81,7 +81,7 @@
       </div>
     </div>
 
-    <div class="body wrapper">
+    <div class="body wrapper @if (Request::path() == 'contact-gallery') position-relative @endif">
         @yield('content')
     </div>
 

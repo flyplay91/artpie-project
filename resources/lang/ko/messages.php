@@ -48,5 +48,8 @@ return [
     'depositor_name' => '입금자이름',
     'amount' => '액수',
     'status' => '상태',
-    'get_gallery_message' => '작품을 구입하려면 사용계약(환불정책에)에 동의하여야 합니다.',
+    'agree_terms_message' => '작품을 구입하려면 사용계약(환불정책에)에 동의하여야 합니다.',
+    'fill_fields' => '아래의 정보들을 입력하십시오.',
+    'invalid_email' => '전자우편이 형식이 옳지 않습니다.',
+    'thank_you_message' => '감사합니다. 24시간내로 전자우편(혹은 전화)으로 련계하겠습니다.',
 ];

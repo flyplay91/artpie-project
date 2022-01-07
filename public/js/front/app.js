@@ -2449,19 +2449,22 @@ $(document).ready(function () {
     var billing_phone = $('.billing-phone').val();
     var billing_address = $('.billing-address').val();
     var billing_name = $('.billing-name').val();
-    var billing_comment = $('.billing-comment').val();
-
-    if (IsEmail(billing_email) == false) {
-      alert('Wrong email format!');
-      return false;
-    } // if(getValidNumber(billing_phone)==false){
+    var billing_comment = $('.billing-comment').val(); // if(getValidNumber(billing_phone)==false){
     //   alert('Wrong number format!')
     //   return false;
     // }
 
-
     if (billing_email == '' || billing_phone == '' || billing_address == '' || billing_name == '') {
-      alert('아래의 정보들을 입력하십시오.');
+      $('.error-message.message--empty-fills').addClass('active');
+      setTimeout(function () {
+        $('.error-message.message--empty-fills').removeClass('active');
+      }, 5000);
+
+      if (IsEmail(billing_email) == false) {
+        // $('.error-message.invalid-email').addClass('active');
+        $('input[name="billing_email"]').css('border-color', 'red');
+        return false;
+      }
     }
 
     if ($('.check-billing-info').is(':checked')) {
@@ -2480,21 +2483,17 @@ $(document).ready(function () {
         },
         success: function success(result) {
           if (result.success == 'ok') {
-            $('.get-gallery').empty();
-            $('.get-gallery').append('<h3>감사합니다. 인차 련락하겠습니다.</h3>');
+            $('.get-gallery__inner').empty();
+            $('.error-message').removeClass('active');
+            $('.get-gallery-success').addClass('active');
           }
         }
       });
     } else {
-      if (selectedLang == 'en') {
-        alert('Please agree to Terms of Use (Return Policy) in order to purchase art.');
-      } else if (selectedLang == 'ch') {
-        alert('购买作品需要同意使用合同（退款政策）。');
-      } else if (selectedLang == 'ko') {
-        alert('작품을 구입하려면 사용계약(환불정책에)에 동의하여야 합니다.');
-      } else {
-        alert('Please agree to Terms of Use (Return Policy) in order to purchase art.');
-      }
+      $('.error-message.message--agree-terms').addClass('active');
+      setTimeout(function () {
+        $('.error-message.message--agree-terms').removeClass('active');
+      }, 5000);
     }
   });
   $(document).on('click', '.btn-purchase-fragments', function () {

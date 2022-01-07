@@ -2379,6 +2379,17 @@ img {
 /*============================================================================
                               Get gallery page styles
 ==============================================================================*/
+.error-message {
+  display: none;
+  text-align: center;
+  top: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.error-message.active {
+  display: block;
+}
+
 .get-gallery {
   box-shadow: 0px 2px 7px 6px rgba(0, 0, 0, 0.43);
   max-width: 700px;
@@ -2386,19 +2397,35 @@ img {
   padding: 20px 30px;
   border-radius: 5px;
 }
-.get-gallery > h3 {
-  padding-bottom: 10px;
-  text-align: center;
-  border-bottom: solid 1px #ced4da;
+.get-gallery .get-gallery-success {
+  display: none;
+}
+.get-gallery .get-gallery-success.active {
+  display: block;
+}
+.get-gallery .get-gallery-success h3 {
+  font-size: 20px;
+}
+.get-gallery .get-gallery-success .get-gallery-success-btn {
+  margin-top: 15px;
+}
+.get-gallery .get-gallery-success .get-gallery-success-btn a {
+  display: inline-block;
 }
 .get-gallery .get-gallery__inner {
   border-radius: 5px;
   position: relative;
   margin-top: 20px;
 }
+.get-gallery .get-gallery__inner > h3 {
+  padding-bottom: 10px;
+  text-align: center;
+  border-bottom: solid 1px #ced4da;
+}
 .get-gallery .get-gallery__inner .get-gallery-image-info {
   border-bottom: solid 1px #ced4da;
   padding-bottom: 20px;
+  padding-top: 20px;
 }
 .get-gallery .get-gallery__inner .get-gallery-image-info .get-gallery-image {
   width: 180px;
