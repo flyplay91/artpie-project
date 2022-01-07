@@ -48,4 +48,5 @@ return [
     'depositor_name' => '입금자이름',
     'amount' => '액수',
     'status' => '상태',
+    'get_gallery_message' => '작품을 구입하려면 사용계약(환불정책에)에 동의하여야 합니다.',
 ];

@@ -117,7 +117,8 @@
         <div class="agree-check-btns flex aic jcb">
           <div class="boxCtnt">
             <label class="chkBox2">
-              <input type="checkbox" class="check-billing-info" name="check_billing_info"><a href="/contract"><i>{{ __('messages.agree_terms_use') }}</i>
+              <input type="checkbox" class="check-billing-info" name="check_billing_info">
+              <a href="/contract"><i>{{ __('messages.agree_terms_use') }}</i></a>
               <div class="chkBox2_box"></div>
             </label>
           </div>

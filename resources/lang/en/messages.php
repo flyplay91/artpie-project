@@ -48,4 +48,6 @@ return [
     'depositor_name' => 'Depositor Name',
     'amount' => 'Amount',
     'status' => 'Status',
+    'get_gallery_message' => 'Please agree to Terms of Use (Return Policy) in order to purchase art.',
+    
 ];

@@ -48,5 +48,6 @@ return [
     'depositor_name' => '存款人姓名',
     'amount' => '存款额',
     'status' => '状态',
+    'get_gallery_message' => '购买作品需要同意使用合同（退款政策）。',
   
 ];

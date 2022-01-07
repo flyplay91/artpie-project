@@ -406,10 +406,10 @@ $(document).ready(function() {
       return false;
     }
 
-    if(getValidNumber(billing_phone)==false){
-      alert('Wrong number format!')
-      return false;
-    }
+    // if(getValidNumber(billing_phone)==false){
+    //   alert('Wrong number format!')
+    //   return false;
+    // }
 
     if (billing_email == '' || billing_phone == '' || billing_address == '' || billing_name == '') {
       alert('아래의 정보들을 입력하십시오.');
@@ -437,7 +437,16 @@ $(document).ready(function() {
         }
       });
     } else {
-      alert('사용계약에 동의하십시오.');
+      if (selectedLang == 'en') {
+        alert('Please agree to Terms of Use (Return Policy) in order to purchase art.');
+      } else if (selectedLang == 'ch') {
+        alert('购买作品需要同意使用合同（退款政策）。');
+      } else  if (selectedLang == 'ko') {
+        alert('작품을 구입하려면 사용계약(환불정책에)에 동의하여야 합니다.');
+      } else {
+        alert('Please agree to Terms of Use (Return Policy) in order to purchase art.');
+      }
+      
     }
   });
 
