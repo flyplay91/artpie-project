@@ -2594,5 +2594,38 @@ img {
     }
   }
 }
+
+/*============================================================================
+                              My Gallery page styles
+==============================================================================*/
+.mygallery-hero {
+  padding-top: 20%;
+}
+.mygallery-price-info-btns {
+  max-width: 650px;
+  margin: 0 auto 100px;
+
+  .mygallery-price-info {
+    label {
+      color: var(--white);
+      display: block;
+      font-size: 22px;
+    }
+
+    .mygallery-price-label {
+      margin-right: 25px;
+    }
+  }
+
+  .mygallery-price-btns {
+    a {
+      display: inline-block;
+      background-color: #e2e2e2;
+      padding: 6px 20px;
+      font-size: 20px;
+    }
+  }
+}
+
+
 @import 'custom';
-// @import 'touchnswipe.min';

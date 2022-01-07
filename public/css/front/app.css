@@ -2442,6 +2442,32 @@ img {
   margin-left: 10px;
 }
 
+/*============================================================================
+                              My Gallery page styles
+==============================================================================*/
+.mygallery-hero {
+  padding-top: 20%;
+}
+
+.mygallery-price-info-btns {
+  max-width: 650px;
+  margin: 0 auto 100px;
+}
+.mygallery-price-info-btns .mygallery-price-info label {
+  color: var(--white);
+  display: block;
+  font-size: 22px;
+}
+.mygallery-price-info-btns .mygallery-price-info .mygallery-price-label {
+  margin-right: 25px;
+}
+.mygallery-price-info-btns .mygallery-price-btns a {
+  display: inline-block;
+  background-color: #e2e2e2;
+  padding: 6px 20px;
+  font-size: 20px;
+}
+
 /* Homepage */
 @media screen and (max-width: 768px) {
   .hdrBg {

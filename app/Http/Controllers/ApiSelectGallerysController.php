@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\AdminGallerys;
 use App\AdminArtists;
 use DB;
+use Session;
 
 class ApiSelectGallerysController extends Controller
 {

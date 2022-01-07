@@ -59,7 +59,7 @@
             <div class="header-nav-dropdown my-profile">
               <label>{{ __('messages.profile') }}</label>
               <ul>
-                <li><a href="">{{ __('messages.my_gallery') }}</a></li>
+                <li><a href="/my-gallery">{{ __('messages.my_gallery') }}</a></li>
                 <li><a href="/setting">{{ __('messages.setting') }}</a></li>
                 <li><a href="/account/deposits">{{ __('messages.deposit_funds') }}</a></li>
               </ul>

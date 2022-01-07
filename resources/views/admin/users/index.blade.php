@@ -38,18 +38,23 @@
             <td>{{ $user->address_5 }}</td>
             <td></td>
             <td></td>
+            @if ($user->email == 'superadmin@kartpie.com')
+            <td></td>
+            <td>Super Admin</td>
+            <td></td>
+            <td></td>
+            @else
             <td class="investor-user">
-            <label class="chkBox2">
-              <input type="checkbox" data-user-id="{{ $user->id }}" @if ($user->role == 'buyer') checked="checked" @endif>
-              <div class="chkBox2_box"></div>
-            </label>
+              <label class="chkBox2">
+                <input type="checkbox" data-user-id="{{ $user->id }}" @if ($user->role == 'buyer') checked="checked" @endif>
+                <div class="chkBox2_box"></div>
+              </label>
             </td>
-
             <td class="admin-user">
-            <label class="chkBox2">
-              <input type="checkbox" data-user-id="{{ $user->id }}" @if ($user->role == 'admin') checked="checked" @endif>
-              <div class="chkBox2_box"></div>
-            </label>
+              <label class="chkBox2">
+                <input type="checkbox" data-user-id="{{ $user->id }}" @if ($user->role == 'admin') checked="checked" @endif>
+                <div class="chkBox2_box"></div>
+              </label>
             </td>
 
             <td><a href="" class="btn-view-profile btn-grey">보기 </a></td>
@@ -60,6 +65,7 @@
                 <button type="submit" class="btn btn-grey btn-delete-gallery">삭제</button>
               </form>
             </td>
+            @endif
           </tr>
         @endforeach
       @endif

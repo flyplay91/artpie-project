@@ -2220,35 +2220,7 @@ $(document).ready(function () {
     });
     $("#hdrItems").empty();
     page = 1;
-    loadMoreData(page, category_ids_arr, price_arr); // $.ajax({
-    //   url: "/api/api-select-gallerys",
-    //   method: "post",
-    //    beforeSend: function(){
-    //      $("#hdrItems").empty();
-    //    },
-    //   data: {
-    //     selected_cat_ids: category_ids_arr,
-    //     selected_price: price_arr,
-    //   },
-    //   success: function(result) {
-    //     var html = '';
-    //     $.each(result.gallery_ids_images, function (key, val) {
-    //       html += '<div class="hdrItems-list">';
-    //         html += '<div class="hdrItems-list__inner position-relative">';
-    //           html += '<div class="hdrItems-list__tooltip position-absolute"><label>'+ val.g_title +'</label><span>' + val.g_artist_name + '</span></div>';
-    //           html += '<a class="image-gallery" href="javascript:void(0)" data-id="'+ key +'" data-artist-id="'+ val.g_artist_id +'">';
-    //             html += '<div class="hdrItems-list__inner-overlay"></div>';
-    //             html += '<img src="/images/'+ val.g_image +'">';
-    //           html += '</a>';
-    //         html += '</div>';
-    //       html += '</div>';
-    //     });
-    //     $('#hdrItems').append(html);
-    //     if ($('#hdrItems').length > 0) {
-    //       macyInstance.reInit();
-    //     }
-    //   }
-    // });
+    loadMoreData(page, category_ids_arr, price_arr);
   });
 
   function loadMoreData(page, category_ids_arr, price_arr) {
