@@ -134,7 +134,7 @@ $(document).ready(function () {
         $('.btn-add-gallery').attr('href', '/admin-gallery/create?' + selected_coll_id);
         $('.btn-add-gallery').addClass('active');
 
-        if ($('.hdrItems-list').length == 1) {
+        if ($('.hdrItems-list').length == 0) {
           $('.block-coll__edit').addClass('active');
           $('.block-coll__delete').addClass('active');
         } else {
