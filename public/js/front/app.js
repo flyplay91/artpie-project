@@ -2455,15 +2455,36 @@ $(document).ready(function () {
     // }
 
     if (billing_email == '' || billing_phone == '' || billing_address == '' || billing_name == '') {
-      $('.error-message.message--empty-fills').addClass('active');
-      setTimeout(function () {
-        $('.error-message.message--empty-fills').removeClass('active');
-      }, 5000);
-
-      if (IsEmail(billing_email) == false) {
-        // $('.error-message.invalid-email').addClass('active');
+      // $('.error-message.message--empty-fills').addClass('active');
+      // setTimeout(function() { 
+      //   $('.error-message.message--empty-fills').removeClass('active');
+      // }, 5000);
+      if (IsEmail(billing_email) == false || billing_email == '') {
         $('input[name="billing_email"]').css('border-color', 'red');
         return false;
+      } else {
+        $('input[name="billing_email"]').css('border-color', '#ced4da');
+      }
+
+      if (billing_phone == '') {
+        $('input[name="billing_phone"]').css('border-color', 'red');
+        return false;
+      } else {
+        $('input[name="billing_phone"]').css('border-color', '#ced4da');
+      }
+
+      if (billing_address == '') {
+        $('input[name="billing_address"]').css('border-color', 'red');
+        return false;
+      } else {
+        $('input[name="billing_address"]').css('border-color', '#ced4da');
+      }
+
+      if (billing_name == '') {
+        $('input[name="billing_name"]').css('border-color', 'red');
+        return false;
+      } else {
+        $('input[name="billing_name"]').css('border-color', '#ced4da');
       }
     }
 
