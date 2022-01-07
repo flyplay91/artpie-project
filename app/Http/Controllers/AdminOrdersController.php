@@ -15,7 +15,7 @@ class AdminOrdersController extends Controller
      */
     public function index()
     {
-        $orders = Orders::all();
+        $orders = Orders::orderBy('updated_at', 'asc')->get();
         return view('admin.orders.index', compact('orders'));
     }
 

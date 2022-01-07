@@ -8,9 +8,9 @@
   <table class="table table-bordered">
     <thead>
       <tr>
-        <th scope="col">주문 번호</th>
+        <th scope="col">No</th>
         <th scope="col">그림 제목</th>
-        <th scope="col">하수인 이름</th>
+        <th scope="col">수하인 이름</th>
         <th scope="col">전자우편</th>
         <th scope="col">전화번호</th>
         <th scope="col">총 가격</th>
@@ -22,9 +22,12 @@
     </thead>
     <tbody>
       @if (!empty($orders))
+        @php
+          $i = 1;
+        @endphp
         @foreach($orders as $order)
         <tr>
-          <th scope="row">{{ $order->id }}</th>
+          <th scope="row">{{ $i++ }}</th>
           <td>{{ $order->gallery->title }}</td>
           <td>{{ $order->billing_name }}</td>
           <td>{{ $order->billing_email }}</td>
