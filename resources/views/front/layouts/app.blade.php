@@ -41,7 +41,7 @@
           <a href="/" class="active">{{ __('messages.purchase_painting') }}</a>
           @auth
             @if (auth()->user()->isSuperAdmin())
-              <a href="/admin-gallery">Admin Dashboard</a>
+              <a href="/admin-gallery">{{ __('messages.admin_dashboard') }}</a>
             @endif
           @endauth
         </div>

@@ -2,6 +2,7 @@
    
 return [
     'purchase_painting' => '그림보기',
+    'admin_dashboard' => '관리자 페지',
     'login' => '로그인',
     'register' => '등록',
     'logout'  => '나가기',

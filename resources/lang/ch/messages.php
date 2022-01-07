@@ -2,6 +2,7 @@
    
 return [
     'purchase_painting' => '美术作品',
+    'admin_dashboard' => 'Admin Dashboard',
     'login' => '登录',
     'register' => '注册',
     'logout'  => '注销',

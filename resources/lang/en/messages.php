@@ -2,6 +2,7 @@
   
 return [
     'purchase_painting' => 'View Arts',
+    'admin_dashboard' => 'Admin Dashboard',
     'login' => 'Login',
     'register'  => 'Register',
     'logout'  => 'Logout',
