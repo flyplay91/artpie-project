@@ -23,7 +23,7 @@ class CreateOrdersTable extends Migration
             $table->string('billing_name');
             $table->text('comment')->nullable();
             $table->float('total_price');
-            $table->enum('status', ['completed', 'pending'])->default('pending');
+            $table->enum('status', ['processing', 'waiting', 'sending', 'completed', 'cancel'])->default('processing');
             $table->timestamps();
         });
     }
