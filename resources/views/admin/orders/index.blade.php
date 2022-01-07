@@ -28,7 +28,7 @@
         @foreach($orders as $order)
         <tr>
           <th scope="row">{{ $i++ }}</th>
-          <td>{{ $order->gallery->title }}</td>
+          <td>{{ $order->gallery->title_ko }}</td>
           <td>{{ $order->billing_name }}</td>
           <td>{{ $order->billing_email }}</td>
           <td>{{ $order->billing_phone }}</td>
