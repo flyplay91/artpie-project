@@ -2075,6 +2075,12 @@ img {
     &.initialized {
       opacity: 1;
     }
+
+    &.piece-gallery {
+      .hdrItems-list__inner {
+        border-color: blue;
+      }
+    }
   }
 }
 .hdrItems {

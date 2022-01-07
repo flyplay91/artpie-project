@@ -2021,6 +2021,9 @@ img {
 #hdrItems .hdrItems-list.initialized {
   opacity: 1;
 }
+#hdrItems .hdrItems-list.piece-gallery .hdrItems-list__inner {
+  border-color: blue;
+}
 
 .hdrItems {
   margin-top: 50px;

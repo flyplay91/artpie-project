@@ -66,46 +66,49 @@ class ApiSelectGallerysController extends Controller
                     $filenameResized = $filename . '_resized_'.$targetWidth.'x.'.$ext;
 
                     
-
                     if ($galleryObj->all_checked == 'true') {
-                    $html .= '<div class="hdrItems-list">';
-                        $html .= '<div class="hdrItems-list__inner position-relative">';
-                            $html .= '<div class="hdrItems-list__tooltip position-absolute">';
-                                $html .= '<label>';
-                                if ($selectedLang == 'en') {
-                                    $html .= $galleryObj->title;
-                                } else if ($selectedLang == 'ch') {
-                                    $html .= $galleryObj->title_ch;
-                                } else if ($selectedLang == 'ko') {
-                                    $html .= $galleryObj->title_ko;
-                                } else {
-                                    $html .= $galleryObj->title;
-                                }
-                                $html .= '</label>';
-                                if (isset($artists)) {
-                                    foreach ($artists as $artist) {
-                                        if ($artist->id == $galleryObj->artist_id) {
-                                        $html .= '<span>';
-                                            if ($selectedLang == 'en') {
-                                                $html .= $artist->art_name;
-                                            } else if ($selectedLang == 'ch') {
-                                                $html .= $artist->art_name_ch;
-                                            } else if ($selectedLang == 'ko') {
-                                                $html .= $artist->art_name_ko;
-                                            } else {
-                                                $html .= $artist->art_name;
+                        if ($galleryObj->check_enable_pieces == 'yes') {
+                            $html .= '<div class="hdrItems-list piece-gallery">';
+                        } else {
+                            $html .= '<div class="hdrItems-list">';
+                        }
+                            $html .= '<div class="hdrItems-list__inner position-relative">';
+                                $html .= '<div class="hdrItems-list__tooltip position-absolute">';
+                                    $html .= '<label>';
+                                    if ($selectedLang == 'en') {
+                                        $html .= $galleryObj->title;
+                                    } else if ($selectedLang == 'ch') {
+                                        $html .= $galleryObj->title_ch;
+                                    } else if ($selectedLang == 'ko') {
+                                        $html .= $galleryObj->title_ko;
+                                    } else {
+                                        $html .= $galleryObj->title;
+                                    }
+                                    $html .= '</label>';
+                                    if (isset($artists)) {
+                                        foreach ($artists as $artist) {
+                                            if ($artist->id == $galleryObj->artist_id) {
+                                            $html .= '<span>';
+                                                if ($selectedLang == 'en') {
+                                                    $html .= $artist->art_name;
+                                                } else if ($selectedLang == 'ch') {
+                                                    $html .= $artist->art_name_ch;
+                                                } else if ($selectedLang == 'ko') {
+                                                    $html .= $artist->art_name_ko;
+                                                } else {
+                                                    $html .= $artist->art_name;
+                                                }
+                                                $html .= '</span>';
                                             }
-                                            $html .= '</span>';
                                         }
                                     }
-                                }
+                                $html .= '</div>';
+                                $html .= '<a class="image-gallery" href="javascript:void(0)" data-id="'.$galleryObj->id.'" data-artist-id="'.$galleryObj->artist_id.'">';
+                                    $html .= '<div class="hdrItems-list__inner-overlay"></div>';
+                                    $html .= '<img src="/images/'.$filenameResized.'">';
+                                $html .= '</a>';
                             $html .= '</div>';
-                            $html .= '<a class="image-gallery" href="javascript:void(0)" data-id="'.$galleryObj->id.'" data-artist-id="'.$galleryObj->artist_id.'">';
-                                $html .= '<div class="hdrItems-list__inner-overlay"></div>';
-                                $html .= '<img src="/images/'.$filenameResized.'">';
-                            $html .= '</a>';
                         $html .= '</div>';
-                    $html .= '</div>';
                     }
                 }
             }
