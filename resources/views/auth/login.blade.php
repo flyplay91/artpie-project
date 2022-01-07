@@ -56,6 +56,6 @@
     </div>
   </form>
 
-  <!-- <p class="text-center">{{ __('messages.no_account') }}? <a href="{{ route('register') }}">{{ __('messages.register') }}</a></p> -->
+  <p class="text-center">{{ __('messages.no_account') }}? <a href="{{ route('register') }}">{{ __('messages.register') }}</a></p>
 </div>
 @endsection
