@@ -36,7 +36,7 @@ $(document).ready(function () {
     }
   }); // Toggle edit collection form
 
-  $('body').on('click', '.btn-edit-del-coll', function () {
+  $('body').on('click', '.btn-edit-coll', function () {
     $('.coll-btns .block-coll__edit form').toggleClass('active');
   });
   $('.checkbox-filter-coll').change(function () {

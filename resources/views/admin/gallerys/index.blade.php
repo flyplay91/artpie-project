@@ -66,8 +66,8 @@
         <div class="coll-btns__edit-delete flex aic">
           <label class="selected-coll-name"></label>
           <div class="block-coll__edit">
-            <button type="button" class="btn btn-grey btn-edit-del-coll">변경</button>
-            <form class="flex aic" action="" method="POST" enctype="multipart/form-data">
+            <button type="button" class="btn btn-grey btn-edit-coll">변경</button>
+            <form class="flex aic" action="{{ route('admin-collection.update',$collection->id) }}" method="POST" enctype="multipart/form-data">
               @method('PUT')
               @csrf
               <input type="text" value="" name="coll_name" class="form-control edit-coll-name" required>
@@ -75,10 +75,10 @@
             </form>
           </div>
           <div class="block-coll__delete">
-            <form class="flex aic" action="" method="POST" enctype="multipart/form-data">
+            <form class="flex aic" action="{{ route('admin-collection.destroy',$collection->id) }}" method="POST" enctype="multipart/form-data">
               @method('DELETE')
               @csrf
-              <button type="submit" class="btn btn-grey btn-edit-del-coll">삭제</button>
+              <button type="submit" class="btn btn-grey btn-del-coll">삭제</button>
             </form>
           </div>
         </div>
