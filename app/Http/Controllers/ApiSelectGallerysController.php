@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\AdminGallerys;
 use App\AdminArtists;
 use DB;
-use Session;
 
 class ApiSelectGallerysController extends Controller
 {
@@ -20,7 +19,8 @@ class ApiSelectGallerysController extends Controller
         $artists = AdminArtists::all();
         $selectedCatIds = $request->selected_cat_ids;
         $selectedPrices = $request->selected_price;
-
+        $selectedLang = $request->selected_lang;
+        
         $galleryObjs = DB::table('admin_gallerys');
         
         if (!empty($selectedCatIds)) {
@@ -64,17 +64,19 @@ class ApiSelectGallerysController extends Controller
                     $ext = pathinfo($srcPath, PATHINFO_EXTENSION);
                     $targetWidth = 400;
                     $filenameResized = $filename . '_resized_'.$targetWidth.'x.'.$ext;
+
                     
+
                     if ($galleryObj->all_checked == 'true') {
                     $html .= '<div class="hdrItems-list">';
                         $html .= '<div class="hdrItems-list__inner position-relative">';
                             $html .= '<div class="hdrItems-list__tooltip position-absolute">';
                                 $html .= '<label>';
-                                if (session()->get('locale') == 'en') {
+                                if ($selectedLang == 'en') {
                                     $html .= $galleryObj->title;
-                                } else if (session()->get('locale') == 'ch') {
+                                } else if ($selectedLang == 'ch') {
                                     $html .= $galleryObj->title_ch;
-                                } else if (session()->get('locale') == 'ko') {
+                                } else if ($selectedLang == 'ko') {
                                     $html .= $galleryObj->title_ko;
                                 } else {
                                     $html .= $galleryObj->title;
@@ -84,11 +86,11 @@ class ApiSelectGallerysController extends Controller
                                     foreach ($artists as $artist) {
                                         if ($artist->id == $galleryObj->artist_id) {
                                         $html .= '<span>';
-                                            if (session()->get('locale') == 'en') {
+                                            if ($selectedLang == 'en') {
                                                 $html .= $artist->art_name;
-                                            } else if (session()->get('locale') == 'ch') {
+                                            } else if ($selectedLang == 'ch') {
                                                 $html .= $artist->art_name_ch;
-                                            } else if (session()->get('locale') == 'ko') {
+                                            } else if ($selectedLang == 'ko') {
                                                 $html .= $artist->art_name_ko;
                                             } else {
                                                 $html .= $artist->art_name;

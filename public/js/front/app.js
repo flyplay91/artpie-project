@@ -2178,7 +2178,7 @@ $(document).ready(function () {
       price_arr.push(selected_price);
     }
   });
-  loadMoreData(page, category_ids_arr, price_arr);
+  loadMoreData(page, category_ids_arr, price_arr, selectedLang);
   $(window).on('scroll', function () {
     if (ajaxLoading) {
       return;
@@ -2200,7 +2200,7 @@ $(document).ready(function () {
           price_arr.push(selected_price);
         }
       });
-      loadMoreData(page, category_ids_arr, price_arr);
+      loadMoreData(page, category_ids_arr, price_arr, selectedLang);
     }
   });
   $('.checkbox-filter').change(function () {
@@ -2220,10 +2220,10 @@ $(document).ready(function () {
     });
     $("#hdrItems").empty();
     page = 1;
-    loadMoreData(page, category_ids_arr, price_arr);
+    loadMoreData(page, category_ids_arr, price_arr, selectedLang);
   });
 
-  function loadMoreData(page, category_ids_arr, price_arr) {
+  function loadMoreData(page, category_ids_arr, price_arr, selectedLang) {
     ajaxLoading = true;
     var $list = $('#hdrItems');
     $.ajax({
@@ -2236,7 +2236,8 @@ $(document).ready(function () {
       data: {
         page: page,
         selected_cat_ids: category_ids_arr,
-        selected_price: price_arr
+        selected_price: price_arr,
+        selected_lang: selectedLang
       }
     }).done(function (data) {
       if (data.length == 0) {
