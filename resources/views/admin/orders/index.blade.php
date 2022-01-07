@@ -105,16 +105,17 @@
               </form>
             </div>
           </td>
-          <td style="text-transform: capitalize;">
+          <td>
+          
             @if ($order->status == 'processing')
               구매요청중
             @elseif ($order->status == 'waiting')
               지불대기중
             @elseif ($order->status == 'sending')
-            배송중
+              배송중
             @elseif ($order->status == 'completed')
               완료
-            @elsif ($order->status == 'cancel')
+            @elseif ($order->status == 'cancel')
               주문취소
             @endif
           </td>
