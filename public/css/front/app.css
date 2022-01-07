@@ -2382,7 +2382,7 @@ img {
 .get-gallery {
   box-shadow: 0px 2px 7px 6px rgba(0, 0, 0, 0.43);
   max-width: 700px;
-  margin: 100px auto 0;
+  margin: 100px auto;
   padding: 20px 30px;
   border-radius: 5px;
 }
@@ -2427,7 +2427,7 @@ img {
   margin-left: 5px;
 }
 .get-gallery .get-gallery__inner .get-gallery-contact .input-group-text {
-  width: 120px;
+  width: 150px;
   display: inline-block;
   text-align: center;
 }

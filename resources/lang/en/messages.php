@@ -34,7 +34,7 @@ return [
     'are_you_sure' => 'Are you sure',
     'dimension' => 'Dimension',
     'artist' => 'Artist',
-    'phone_nuber' => 'Tel',
+    'phone_nuber' => 'Phone Number',
     'recipient_name' => 'Recipient name',
     'recipient_description' => 'Description (Please fill payment and shipping method, other requirements)',
     'agree_terms_use' => 'I agree with the terms of use (return policy)',
