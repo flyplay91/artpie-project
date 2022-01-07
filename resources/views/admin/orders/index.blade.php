@@ -89,20 +89,35 @@
                 @csrf
                 @method('PUT')
                 <div class="update-status mt-3">
-                  <label>Status</label>
+                  <label>상태</label>
                   <select class="browser-default custom-select" name="status">
-                    <option value="completed" @if ($order->status == 'completed') selected @endif>Completed</option>
-                    <option value="pending" @if ($order->status == 'pending') selected @endif>Pending</option>
+                    <option value="processing" @if ($order->status == 'processing') selected @endif>처리중</option>
+                    <option value="waiting" @if ($order->status == 'waiting') selected @endif>지불대기중</option>
+                    <option value="sending" @if ($order->status == 'sending') selected @endif>배송중</option>
+                    <option value="completed" @if ($order->status == 'completed') selected @endif>완료</option>
+                    <option value="cancel" @if ($order->status == 'cancel') selected @endif>주문취소</option>
                   </select>
                 </div>
                 <div class="btns-order-status text-right">
-                  <button type="submit" class="btn-update-status btn-grey">Update</button>
-                  <a href="javascript:void(0)" class="btn-cancel-status btn-grey">Cancel</a>
+                  <button type="submit" class="btn-update-status btn-grey">변경</button>
+                  <a href="javascript:void(0)" class="btn-cancel-status btn-grey">취소</a>
                 </div>
               </form>
             </div>
           </td>
-          <td style="text-transform: capitalize;">{{ $order->status }}</td>
+          <td style="text-transform: capitalize;">
+            @if ($order->status == 'processing')
+              처리중
+            @elseif ($order->status == 'waiting')
+              지불대기중
+            @elseif ($order->status == 'sending')
+            배송중
+            @elseif ($order->status == 'completed')
+              완료
+            @elsif ($order->status == 'cancel')
+              주문취소
+            @endif
+          </td>
         </tr>
         @endforeach
       @endif
