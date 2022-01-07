@@ -21,7 +21,7 @@ class MyGalleryController extends Controller
         
         $gallerys = [];
         $headerdata = AdminHeaderData::latest('id')->first();
-        $orders = Orders::where('user_id', Auth::user()->id)->get();
+        $orders = Orders::where('user_id', Auth::user()->id)->where('status', '!=', 'cancel')->get();
 
         foreach ($orders as $order) {
             $gallerys[] = AdminGallerys::find($order->gallery_id);
