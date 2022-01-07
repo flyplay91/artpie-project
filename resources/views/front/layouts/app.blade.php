@@ -57,7 +57,7 @@
 
             @auth
             <div class="header-nav-dropdown my-profile">
-              <label>{{ __('messages.profile') }}</label>
+              <label>{{auth()->user()->name }}</label>
               <ul>
                 <li><a href="/my-gallery">{{ __('messages.my_gallery') }}</a></li>
                 <li><a href="/setting">{{ __('messages.setting') }}</a></li>
