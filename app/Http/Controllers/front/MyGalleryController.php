@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\AdminGallerys;
 use App\AdminHeaderData;
-use App\orders;
+use App\Orders;
 use Auth;
 
 class MyGalleryController extends Controller
@@ -21,7 +21,7 @@ class MyGalleryController extends Controller
         
         $gallerys = [];
         $headerdata = AdminHeaderData::latest('id')->first();
-        $orders = orders::where('user_id', Auth::user()->id)->get();
+        $orders = Orders::where('user_id', Auth::user()->id)->get();
 
         foreach ($orders as $order) {
             $gallerys[] = AdminGallerys::find($order->gallery_id);
