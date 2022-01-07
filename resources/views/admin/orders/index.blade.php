@@ -91,7 +91,7 @@
                 <div class="update-status mt-3">
                   <label>상태</label>
                   <select class="browser-default custom-select" name="status">
-                    <option value="processing" @if ($order->status == 'processing') selected @endif>처리중</option>
+                    <option value="processing" @if ($order->status == 'processing') selected @endif>구매요청중</option>
                     <option value="waiting" @if ($order->status == 'waiting') selected @endif>지불대기중</option>
                     <option value="sending" @if ($order->status == 'sending') selected @endif>배송중</option>
                     <option value="completed" @if ($order->status == 'completed') selected @endif>완료</option>
@@ -107,7 +107,7 @@
           </td>
           <td style="text-transform: capitalize;">
             @if ($order->status == 'processing')
-              처리중
+              구매요청중
             @elseif ($order->status == 'waiting')
               지불대기중
             @elseif ($order->status == 'sending')
