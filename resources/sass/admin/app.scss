@@ -243,12 +243,33 @@ img {
 /*============================================================================
                               Header styles
 ==============================================================================*/
+
 .ad-header {
   width: 100%;
   position: relative;
   z-index: 2;
   background-color: #f0f0f0;
 }
+
+.ad-header-nav {
+  position: relative;
+  z-index: 1;
+  background-color: var(--header-bg);
+
+  a {
+    padding: 0 25px;
+    color: var(--white);
+    font-size: 15px;
+    font-weight: 700;
+    height: 68px;
+    line-height: 68px;
+
+    img {
+      max-width: 120px;
+    }
+  }
+}
+
 .header-logo-nav {
   .header__nav {
     & > a {
@@ -362,7 +383,7 @@ img {
   padding-top: 30%;
   background-size: cover;
   position: relative;
-  margin: -70px auto 0;
+  margin: -100px auto 0;
   
   @include media-query($medium-up) {
     box-shadow: 0 -15px 40px 15px rgb(0 0 0 / 70%);

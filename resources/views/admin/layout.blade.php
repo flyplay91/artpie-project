@@ -25,6 +25,12 @@
   <div id="adWrapper" class="position-relative @if (Route::currentRouteName() == 'admin-order.index') long-height @endif">
     <div class="bg-overlay position-absolute"></div>
     <div class="ad-header">
+      <div class="ad-header-nav">
+        <div class="ad-header-nav__inner wrapper flex">
+          <a href="/" class="flex aic jcc"><img src="/images/logo.png"></a>
+          <a href="/" class="active">그림보기</a>
+        </div>
+      </div>
       @yield('main-header')
 
       <div class="wrapper header-logo-nav flex aic">
