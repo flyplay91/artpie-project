@@ -26,7 +26,7 @@
           $i = 1;
         @endphp
         @foreach($orders as $order)
-        <tr>
+        <tr class="text-right">
           <th scope="row">{{ $i++ }}</th>
           <td>{{ $order->gallery->title_ko }}</td>
           <td>{{ $order->billing_name }}</td>
