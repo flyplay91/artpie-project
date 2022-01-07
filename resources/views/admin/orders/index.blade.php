@@ -44,7 +44,7 @@
                 </div>
                 <div class="order-items-info">
                     <label class="order-items-gallery-number">No. {{ sprintf("%07d", $order->gallery->id) }}</label>
-                    <h2>{{ $order->gallery->title }}<span>({{ $order->gallery->category_id }})</span></h2>
+                    <h2>{{ $order->gallery->title_ko }}<span>({{ $order->gallery->category->cat_name_ko }})</span></h2>
                     <div class="order-items-info-item">
                       <label>크기: {{ $order->gallery->width }} * {{ $order->gallery->height }} {{ $order->gallery->unit }}</label>
                     </div>
@@ -52,7 +52,7 @@
                       <label>가격: {{ $order->gallery->retail_price }} USD</label>
                     </div>
                     <div class="order-items-info-item">
-                      <label>작가: {{ $order->gallery->artist_id }}</label>
+                      <label>작가: {{ $order->gallery->artist_name_ko }}</label>
                     </div>
                   <h2></h2>
                 </div>
