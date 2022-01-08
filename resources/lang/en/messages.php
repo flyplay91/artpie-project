@@ -59,7 +59,7 @@ return [
     'invalid_email' => 'Invalid E-mail format.',
     'thank_you_message' => 'Thank you. We will reach you by email (or telephone) within 24 hours.',
     'available_balance' => 'Available Balance',
-    'paid_amount' => 'Open Balance',
+    'paid_amount' => 'Paid Amount',
     'current_value' => 'Current Price',
     'expected_profit' => 'Expected Income',
     
