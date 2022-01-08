@@ -17,8 +17,8 @@ class DepositsController extends Controller
     public function index()
     {
         $deposits = Deposits::orderByRaw("FIELD(status, \"pending\", \"completed\")")->get();
-        $orders = Orders::where('status', 'processing')->get();
-        $processingOrderCount = count($orders);
+        $processingOrders = Orders::where('status', 'processing')->get();
+        $processingOrderCount = count($processingOrders);
         return view('admin.deposits.index',compact('deposits', 'processingOrderCount'));
     }
 

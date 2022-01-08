@@ -17,8 +17,8 @@ class AdminOrdersController extends Controller
     public function index()
     {
         $orders = Orders::orderBy('created_at', 'desc')->get();
-        $orders = Orders::where('status', 'processing')->get();
-        $processingOrderCount = count($orders);
+        $processingOrders = Orders::where('status', 'processing')->get();
+        $processingOrderCount = count($processingOrders);
         return view('admin.orders.index', compact('orders', 'processingOrderCount'));
     }
 
