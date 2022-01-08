@@ -2537,7 +2537,7 @@ img {
 }
 .mygallery-lists .mygallery-list .mygallery-list__info .mygallery-total-price,
 .mygallery-lists .mygallery-list .mygallery-list__info .mygallery-artist {
-  margin-bottom: 15px;
+  margin-bottom: 0;
 }
 
 /* Homepage */
