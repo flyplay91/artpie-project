@@ -2862,7 +2862,7 @@ function getGalleryAjax(id, artist_id) {
         } else if (selectedLang == 'ko') {
           if (val.g_sold_out == 'sold_out') {
             if (val.g_sold_out_user_id != 'undefined' && val.g_sold_out_user_id == auth_id) {
-              html += '<div class="link-get-gallery text-right"><i>당신은 이미 이 그림을 삿습니다.</i></div>';
+              html += '<div class="link-get-gallery text-right"><i>당신은 이 그림을 이미 구매하였습니다.</i></div>';
             } else {
               html += '<div class="link-get-gallery text-right"><i>이 그림은 이미 팔렸습니다.</i></div>';
             }
