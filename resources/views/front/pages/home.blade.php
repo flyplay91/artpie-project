@@ -20,6 +20,10 @@
 </div>
 @endif
 
+<div class="page-title">
+  <h3>{{ __('messages.purchase_painting') }}</h3>
+</div>
+
 <div class="hdrItems flex jcb">
   <div class="hdrItems-sidebar W-20">
     <div class="hdrItems-sidebar__inner">
