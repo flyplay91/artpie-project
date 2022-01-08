@@ -57,42 +57,88 @@
         </div>
 
         <div class="mygallery-list__info">
+          <label class="gallery-number">No. {{ sprintf("%07d", $gallery->id) }}</label>
           <h3>
             @if (session()->get('locale') == 'en')
               {{ $gallery->title }}
+              <span>(
+                @foreach ($categories as $category)
+                  @if ($gallery->category_id == $category->id)
+                    {{ $category->cat_name }}
+                  @endif
+                @endforeach
+                )</span>
             @elseif (session()->get('locale') == 'ch')
               {{ $gallery->title_ch }}
+              <span>(
+                @foreach ($categories as $category)
+                  @if ($gallery->category_id == $category->id)
+                    {{ $category->cat_name_ch }}
+                  @endif
+                @endforeach
+                )</span>
             @elseif (session()->get('locale') == 'ko')
               {{ $gallery->title_ko }}
+              <span>(
+                @foreach ($categories as $category)
+                  @if ($gallery->category_id == $category->id)
+                    {{ $category->cat_name_ko }}
+                  @endif
+                @endforeach
+                )</span>
             @else
               {{ $gallery->title }}
+              <span>(
+                @foreach ($categories as $category)
+                  @if ($gallery->category_id == $category->id)
+                    {{ $category->cat_name }}
+                  @endif
+                @endforeach
+                )</span>
             @endif
           </h3>
-          <div class="mygallery-status">
-            <label>상태:</label>
-            <span>
-              
-            </span>
-          </div>
+
           <div class="mygallery-total-price">
             <label>가격:</label>
             <span>{{ $gallery->retail_price }} (USD)</span>
           </div>
-          <div class="mygallery-pieces">
-            <label>소유개수:</label>
-            <span>1000개 (20000개중)</span>
+         
+          <div class="mygallery-status">
+            <label>작가:</label>
+            <span>
+              @foreach ($artists as $artist)
+                @if ($gallery->artist_id == $artist->id)
+                  @if (session()->get('locale') == 'en')
+                    {{ $artist->art_name }}
+                  @elseif (session()->get('locale') == 'ch')
+                  {{ $artist->art_name_ch }}
+                  @elseif (session()->get('locale') == 'ko')
+                  {{ $artist->art_name_ko }}
+                  @else
+                    {{ $gallery->title }}
+                  @endif
+                @endif
+              @endforeach
+            </span>
           </div>
-          <div class="mygallery-price">
-            <label>구입한 금액:</label>
-            <span>1000 (USD)</span>
-          </div>
-          <div class="mygallery-current-value">
-            <label>현재 가치:</label>
-            <span>1500 (USD) (수익률 150%)</span>
-          </div>
-          <div class="mygallery-current-value">
-            <label>희망판매가격:</label>
-            <span>2000 (USD)</span>
+
+          <div class="mygallery-status">
+            <label>상태:</label>
+            <span>
+              @foreach ($orders as $order)
+                @if ($gallery->id == $order->gallery_id)
+                  @if ($order->status == 'processing')
+                    구매요청중
+                  @elseif ($order->status == 'waiting')
+                    지불대기중
+                  @elseif ($order->status == 'sending')
+                    배송중
+                  @elseif ($order->status == 'completed')
+                    완료
+                  @endif      
+                @endif
+              @endforeach
+            </span>
           </div>
         </div>
       </div>

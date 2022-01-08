@@ -41,6 +41,7 @@ class AdminGallerys extends Model
         return $this->belongsTo(AdminCategories::class, 'category_id');
     }
 
+
     public function remainingPieces() {
         $fragments = $this->fragments()->get();
         $pieces = $this->piece_count;

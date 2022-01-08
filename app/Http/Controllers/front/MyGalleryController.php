@@ -7,7 +7,10 @@ use Illuminate\Http\Request;
 use App\AdminGallerys;
 use App\AdminHeaderData;
 use App\Orders;
+use App\AdminArtists;
+use App\AdminCategories;
 use Auth;
+use DB;
 
 class MyGalleryController extends Controller
 {
@@ -22,12 +25,14 @@ class MyGalleryController extends Controller
         $gallerys = [];
         $headerdata = AdminHeaderData::latest('id')->first();
         $orders = Orders::where('user_id', Auth::user()->id)->where('status', '!=', 'cancel')->get();
+        $artists = AdminArtists::all();
+        $categories = AdminCategories::all();
 
         foreach ($orders as $order) {
             $gallerys[] = AdminGallerys::find($order->gallery_id);
         }
         
-        return view('front.pages.myGallery.index',compact('gallerys', 'headerdata'));
+        return view('front.pages.myGallery.index',compact('gallerys', 'headerdata', 'artists', 'categories', 'orders'));
     }
 
     /**
