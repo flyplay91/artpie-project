@@ -20,6 +20,7 @@ return [
     'my_gallery' => '나의 갤러리',
     'setting' => '설정',
     'deposit_funds' => '입금',
+    'withdraw' => '출금',
     'title_painter' => '그림제목/화가이름',
     'terms_of_use' => '사용계약',
     'privacy_policy' => '개인정보보호',
@@ -57,4 +58,8 @@ return [
     'fill_fields' => '아래의 정보들을 입력하십시오.',
     'invalid_email' => '전자우편이 형식이 옳지 않습니다.',
     'thank_you_message' => '감사합니다. 24시간내로 전자우편(혹은 전화)으로 련계하겠습니다.',
+    'available_balance' => '사용가능한 금액',
+    'paid_amount' => '투자한 금액',
+    'current_value' => '현재 가치',
+    'expected_profit' => '예상 수입금액',
 ];

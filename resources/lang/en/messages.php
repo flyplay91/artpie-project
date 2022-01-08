@@ -19,7 +19,8 @@ return [
     'profile' => 'Profile',
     'my_gallery' => 'My gallery',
     'setting' => 'Setting',
-    'deposit_funds' => 'Deposit Funds',
+    'deposit_funds' => 'Deposit',
+    'withdraw' => 'Withdraw',
     'title_painter' => 'Title / Painter',
     'terms_of_use' => 'Terms of Use',
     'privacy_policy' => 'Privacy Policy',
@@ -57,5 +58,9 @@ return [
     'fill_fields' => 'Please fill the information below.',
     'invalid_email' => 'Invalid E-mail format.',
     'thank_you_message' => 'Thank you. We will reach you by email (or telephone) within 24 hours.',
+    'available_balance' => 'Available Balance',
+    'paid_amount' => 'Open Balance',
+    'current_value' => 'Current Price',
+    'expected_profit' => 'Expected Income',
     
 ];

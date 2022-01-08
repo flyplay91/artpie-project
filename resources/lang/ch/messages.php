@@ -19,7 +19,8 @@ return [
     'profile' => '个人资料',
     'my_gallery' => '我的图片库',
     'setting' => '设置',
-    'deposit_funds' => '存款',
+    'deposit_funds' => '充钱',
+    'withdraw' => '取款',
     'title_painter' => '画作题目 / 画家姓名',
     'terms_of_use' => '使用条款',
     'privacy_policy' => '隐私政策',
@@ -57,5 +58,9 @@ return [
     'fill_fields' => '请您输入下面信息。',
     'invalid_email' => '邮箱格式不正确。',
     'thank_you_message' => '谢谢。 我们将24小时之内用邮件（或电话）联系您。',
+    'available_balance' => '钱包',
+    'paid_amount' => '投资',
+    'current_value' => '现在价值',
+    'expected_profit' => '预期收入',
   
 ];

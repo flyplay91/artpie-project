@@ -7,10 +7,10 @@
     <div class="mygallery-price-info-btns flex jcb">
       <div class="mygallery-price-info flex">
         <div class="mygallery-price-label text-right">
-          <label>사용가능한 금액:</label>
-          <label>투자한 금액:</label>
-          <label>현재 가치:</label>
-          <label>예상 수입금액:</label>
+          <label>{{ __('messages.available_balance') }}:</label>
+          <label>{{ __('messages.paid_amount') }}:</label>
+          <label>{{ __('messages.current_value') }}:</label>
+          <label>{{ __('messages.title_painter') }}:</label>
         </div>
         <div class="mygallery-price-value text-left">
           <label>10000 (USD)</label>
@@ -20,8 +20,8 @@
         </div>
       </div>
       <div class="mygallery-price-btns">
-        <a href="" class="btn-grey">출금</a>
-        <a href="" class="btn-grey">입금</a>
+        <a href="" class="btn-grey">{{ __('messages.withdraw') }}</a>
+        <a href="" class="btn-grey">{{ __('messages.deposit_funds') }}</a>
       </div>
     </div>
 
