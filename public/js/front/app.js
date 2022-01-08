@@ -2666,7 +2666,18 @@ function getGalleryAjax(id, artist_id) {
           html += '</div>';
         } else {
           html += '<div class="gallery-data-content__item active">';
-          html += '<label class="flex aic">Artist: ' + val.g_artist_name_en;
+
+          if (selectedLang == 'en') {
+            html += '<label class="flex aic">Artist: ' + val.g_artist_name_en;
+          }
+
+          if (selectedLang == 'ch') {
+            html += '<label class="flex aic">画家: ' + val.g_artist_name_ch;
+          }
+
+          if (selectedLang == 'ko') {
+            html += '<label class="flex aic">작가: ' + val.g_artist_name_ko;
+          }
 
           if (val.g_artist_description_en != '' && selectedLang == 'en') {
             html += '<img class="icon-up-arrow" src="/images/up-arrow-icon.png">';
