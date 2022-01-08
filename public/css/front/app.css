@@ -2522,6 +2522,23 @@ img {
 .mygallery-lists .mygallery-list .mygallery-list__info {
   margin-left: 30px;
 }
+.mygallery-lists .mygallery-list .mygallery-list__info .gallery-number {
+  margin: 0;
+}
+.mygallery-lists .mygallery-list .mygallery-list__info h3 {
+  padding: 10px 0 10px;
+  line-height: 1;
+  font-size: 26px;
+  margin-bottom: 25px;
+}
+.mygallery-lists .mygallery-list .mygallery-list__info h3 span {
+  font-size: 18px;
+  margin-left: 5px;
+}
+.mygallery-lists .mygallery-list .mygallery-list__info .mygallery-total-price,
+.mygallery-lists .mygallery-list .mygallery-list__info .mygallery-artist {
+  margin-bottom: 20px;
+}
 
 /* Homepage */
 @media screen and (max-width: 768px) {

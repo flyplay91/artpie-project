@@ -99,12 +99,23 @@
           </h3>
 
           <div class="mygallery-total-price">
-            <label>가격:</label>
+            <label>
+              {{ __('messages.dimension') }}:
+            </label>
+            <span>{{ $gallery->width }} * {{ $gallery->height }} {{ $gallery->unit }}</span>
+          </div>
+
+          <div class="mygallery-total-price">
+            <label>
+              {{ __('messages.price') }}:
+            </label>
             <span>{{ $gallery->retail_price }} (USD)</span>
           </div>
          
-          <div class="mygallery-status">
-            <label>작가:</label>
+          <div class="mygallery-artist">
+            <label>
+              {{ __('messages.artist') }}:
+            </label>
             <span>
               @foreach ($artists as $artist)
                 @if ($gallery->artist_id == $artist->id)
@@ -123,7 +134,9 @@
           </div>
 
           <div class="mygallery-status">
-            <label>상태:</label>
+            <label>
+              {{ __('messages.status') }}:
+            </label>
             <span>
               @foreach ($orders as $order)
                 @if ($gallery->id == $order->gallery_id)
