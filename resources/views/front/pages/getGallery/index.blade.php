@@ -10,7 +10,7 @@
     <div class="get-gallery-success">
       <h3>{{ __('messages.thank_you_message') }}</h3>
       <div class="get-gallery-success-btn text-right">
-        <a href="/" class="btn-grey">Ok</a>
+        <a href="/my-gallery" class="btn-grey">Ok</a>
       </div>
     </div>
 
