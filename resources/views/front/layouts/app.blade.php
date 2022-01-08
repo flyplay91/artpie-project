@@ -24,6 +24,10 @@
 
 <body>
   <div id="mainWrapper">
+    @auth
+      <input type="hidden" class="auth-id" value="{{ Auth::user()->id }}">
+    @endauth
+
     @if (session()->get('locale') == 'en')
       <input type="hidden" class="selected-lang" value="en">
     @elseif (session()->get('locale') == 'ch')

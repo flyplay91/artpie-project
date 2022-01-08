@@ -568,6 +568,13 @@ function getGalleryAjax(id, artist_id) {
       MagicZoom.stop()
       
       $.each(result.gallery_Obj, function (key, val) {
+
+        if ($('.auth-id').length != 0) {
+          var auth_id = $('.auth-id').val();
+        } else {
+          var auth_id = $('.auth-id').val();
+        }
+        
         
         html += '<div class="gallery-data-image" data-id="'+ key +'">';
           html += `<a href="/images/${val.g_image}" class="MagicZoom" data-options="cssClass: mz-show-arrows; zoomPosition: inner; zoomMode:off;" >`;
@@ -739,7 +746,7 @@ function getGalleryAjax(id, artist_id) {
 
             html += '</div>';
           html += '</div>';
-console.log(val.g_sold_out)
+
           html += '<div class="gallery-data-info__bottom">';
           if ((val.g_check_pieces == 'yes') && ($('.logged-user').val() == 1) && (val.g_sold_out == 'sold_in')) {
             html += '<div class="gallery-pieces-buy flex aie jcb ">';
@@ -786,24 +793,36 @@ console.log(val.g_sold_out)
               html += '</div>';
             html += '</div>';
           }
-            
+            console.log(val.g_sold_out_user_id)
             if (selectedLang == 'en') {
               if (val.g_sold_out == 'sold_out') {
-                html += '<div class="link-get-gallery text-right"><i>This picture has been sold out.</i></div>';
+                if (val.g_sold_out_user_id != 'undefined' && val.g_sold_out_user_id == auth_id) {
+                  html += '<div class="link-get-gallery text-right"><i>You already purchased this picture.</i></div>';  
+                } else {
+                  html += '<div class="link-get-gallery text-right"><i>This picture has been sold out.</i></div>';
+                }
               } else {
                 html += '<div class="link-get-gallery text-right"><a href="/contact-gallery?g_id='+ key +'"><i>To purchase this picture</i></a></div>';  
               }
               
             } else if (selectedLang == 'ch') {
               if (val.g_sold_out == 'sold_out') {
-                html += '<div class="link-get-gallery text-right"><i>这幅画已经卖完了。</i></div>';
+                if (val.g_sold_out_user_id != 'undefined' && val.g_sold_out_user_id == auth_id) {
+                  html += '<div class="link-get-gallery text-right"><i>您已经购买了这幅画。</i></div>';  
+                } else {
+                  html += '<div class="link-get-gallery text-right"><i>这幅画已经卖完了。</i></div>';
+                }
               } else {
                 html += '<div class="link-get-gallery text-right"><a href="/contact-gallery?g_id='+ key +'"><i>要购买此作品</i></a></div>';
               }
               
             } else if (selectedLang == 'ko') {
               if (val.g_sold_out == 'sold_out') {
-                html += '<div class="link-get-gallery text-right"><i>이 그림은 이미 팔렸습니다.</i></div>';
+                if (val.g_sold_out_user_id != 'undefined' && val.g_sold_out_user_id == auth_id) {
+                  html += '<div class="link-get-gallery text-right"><i>당신은 이미 이 그림을 삿습니다.</i></div>';  
+                } else {
+                  html += '<div class="link-get-gallery text-right"><i>이 그림은 이미 팔렸습니다.</i></div>';
+                }
               } else {
                 html += '<div class="link-get-gallery text-right"><a href="/contact-gallery?g_id='+ key +'"><i>이 그림을 구입하려면</i></a></div>';
               }

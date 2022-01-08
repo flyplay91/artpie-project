@@ -114,6 +114,7 @@ class ApiGalleryController extends Controller
                     $isSoldout = false;
                 } else {
                     $isSoldout = true;
+                    $orderedUserId = $order->user_id;
                     break;
                 }
             }
@@ -121,6 +122,7 @@ class ApiGalleryController extends Controller
 
         if ($isSoldout == true) {
             $galleryObjArr[$galleryObj->id]['g_sold_out'] = 'sold_out';
+            $galleryObjArr[$galleryObj->id]['g_sold_out_user_id'] = $orderedUserId;
         } else {
             $galleryObjArr[$galleryObj->id]['g_sold_out'] = 'sold_in';
         }
