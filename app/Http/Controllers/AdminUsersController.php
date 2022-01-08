@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Orders;
 use App\User;
+use Auth;
 
 class AdminUsersController extends Controller
 {
@@ -15,7 +17,9 @@ class AdminUsersController extends Controller
     public function index()
     {
         $users = User::all();
-        return view('admin.users.index',compact('users'));
+        $orders = Orders::where('user_id', Auth::user()->id)->where('status', 'processing')->get();
+        $processingOrderCount = count($orders);
+        return view('admin.users.index',compact('users', 'processingOrderCount'));
     }
 
     /**

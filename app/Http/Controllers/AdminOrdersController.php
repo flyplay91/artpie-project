@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Orders;
 use App\OrderLineItems;
+use Auth;
 
 class AdminOrdersController extends Controller
 {
@@ -16,7 +17,9 @@ class AdminOrdersController extends Controller
     public function index()
     {
         $orders = Orders::orderBy('created_at', 'desc')->get();
-        return view('admin.orders.index', compact('orders'));
+        $orders = Orders::where('user_id', Auth::user()->id)->where('status', 'processing')->get();
+        $processingOrderCount = count($orders);
+        return view('admin.orders.index', compact('orders', 'processingOrderCount'));
     }
 
     /**

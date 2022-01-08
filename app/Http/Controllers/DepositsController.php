@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Deposits;
+use App\Orders;
+use Auth;
 
 class DepositsController extends Controller
 {
@@ -15,7 +17,9 @@ class DepositsController extends Controller
     public function index()
     {
         $deposits = Deposits::orderByRaw("FIELD(status, \"pending\", \"completed\")")->get();
-        return view('admin.deposits.index',compact('deposits'));
+        $orders = Orders::where('user_id', Auth::user()->id)->where('status', 'processing')->get();
+        $processingOrderCount = count($orders);
+        return view('admin.deposits.index',compact('deposits', 'processingOrderCount'));
     }
 
     /**

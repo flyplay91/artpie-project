@@ -7,6 +7,8 @@ use App\AdminCollections;
 use App\AdminCategories;
 use App\AdminArtists;
 use App\AdminHeaderData;
+use App\Orders;
+use Auth;
 
 use Illuminate\Support\Facades\Log;
 
@@ -20,11 +22,14 @@ class AdminGallerysController extends Controller
      */
     public function index()
     {
+        
         // $gallerys = AdminGallerys::latest()->first();
         $gallerys = AdminGallerys::orderBy('updated_at', 'desc')->get();
         $collections = AdminCollections::all();
         $headerData = AdminHeaderData::latest('id')->first();
-        return view('admin.gallerys.index',compact('gallerys', 'collections', 'headerData'));
+        $orders = Orders::where('user_id', Auth::user()->id)->where('status', 'processing')->get();
+        $processingOrderCount = count($orders);
+        return view('admin.gallerys.index',compact('gallerys', 'collections', 'headerData', 'processingOrderCount'));
     }
 
     /**

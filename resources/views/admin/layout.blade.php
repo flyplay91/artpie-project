@@ -37,7 +37,12 @@
         <div class="header__nav flex aic">
           <a href="/admin-gallery" class="@if(Route::currentRouteName() == 'admin-gallery.index')active @endif">그림</a>
           <a href="/admin-user" class="@if(Route::currentRouteName() == 'admin-user.index')active @endif">사용자</a>
-          <a href="/admin-order" class="@if(Route::currentRouteName() == 'admin-order.index')active @endif">주문</a>
+          <a href="/admin-order" class="@if(Route::currentRouteName() == 'admin-order.index')active @endif">
+            주문
+            @if (!empty($processingOrderCount))
+              <span>({{ $processingOrderCount }})</span>
+            @endif
+          </a>
           <a href="/admin-deposit" class="@if(Route::currentRouteName() == 'admin-deposit.index')active @endif">입금</a>
           <!-- <label class="sub-menu">
             Payments
