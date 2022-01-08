@@ -47,7 +47,9 @@
       @endphp
       <div class="mygallery-list flex">
         <div class="mygallery-list__image">
-          <img src="/images/{{ $filenameResized }}">
+          <a href="javascript:void(0)" class="image-gallery" data-id="{{ $gallery->id }}">
+            <img src="/images/{{ $filenameResized }}" />
+          </a>
         </div>
 
         <div class="mygallery-list__info">
@@ -70,7 +72,7 @@
           </div>
           <div class="mygallery-total-price">
             <label>가격:</label>
-            <span>20000 (USD)</span>
+            <span>{{ $gallery->retail_price }} (USD)</span>
           </div>
           <div class="mygallery-pieces">
             <label>소유개수:</label>
@@ -91,6 +93,10 @@
         </div>
       </div>
     @endforeach
+
+    <div class="popup-gallery-data position-fixed" data-user-id="{{ Auth::id() }}">
+      <div class="popup-gallery-data__inner flex jcb"></div>
+    </div>
   @endif
 </div>
 
