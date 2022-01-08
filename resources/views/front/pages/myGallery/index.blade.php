@@ -135,19 +135,19 @@
 
           <div class="mygallery-status">
             <label>
-              {{ __('messages.status') }}:
+              {{ __('messages.buy_status') }}:
             </label>
             <span>
               @foreach ($orders as $order)
                 @if ($gallery->id == $order->gallery_id)
                   @if ($order->status == 'processing')
-                    구매요청중
+                    {{ __('messages.in_purchase') }}
                   @elseif ($order->status == 'waiting')
-                    지불대기중
+                    {{ __('messages.waiting_for_payment') }}
                   @elseif ($order->status == 'sending')
-                    배송중
+                    {{ __('messages.in_delivery') }}
                   @elseif ($order->status == 'completed')
-                    완료
+                    {{ __('messages.purchase_completed') }}
                   @endif      
                 @endif
               @endforeach

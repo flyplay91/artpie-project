@@ -24,7 +24,7 @@ class MyGalleryController extends Controller
         
         $gallerys = [];
         $headerdata = AdminHeaderData::latest('id')->first();
-        $orders = Orders::where('user_id', Auth::user()->id)->where('status', '!=', 'cancel')->get();
+        $orders = Orders::where('user_id', Auth::user()->id)->where('status', '!=', 'cancel')->orderBy('created_at', 'desc')->get();
         $artists = AdminArtists::all();
         $categories = AdminCategories::all();
 
