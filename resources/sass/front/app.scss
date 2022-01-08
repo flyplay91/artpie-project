@@ -2665,10 +2665,13 @@ img {
 
 .page-title {
   margin-top: 50px;
+  h3 {
+    font-size: 18px;
+  }
 }
 
 .mygallery-lists {
-  margin-top: 30px;
+  margin-top: 10px;
 
   .mygallery-list {
     border-bottom: solid 1px #ced4da;

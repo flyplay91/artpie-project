@@ -35,7 +35,7 @@
 </div>
 @endif
 
-<div class="page-title text-center">
+<div class="page-title">
   <h3>{{ Auth::user()->name }}-{{ __('messages.my_gallery') }}</h3>
 </div>
 
