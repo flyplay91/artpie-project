@@ -36,7 +36,7 @@
 @endif
 
 <div class="page-title">
-  <h3>{{ Auth::user()->name }}-{{ __('messages.my_gallery') }}</h3>
+  <h3>{{ Auth::user()->name }} / {{ __('messages.my_gallery') }}</h3>
 </div>
 
 <div class="mygallery-lists">
