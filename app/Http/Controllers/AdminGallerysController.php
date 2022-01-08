@@ -27,7 +27,7 @@ class AdminGallerysController extends Controller
         $gallerys = AdminGallerys::orderBy('updated_at', 'desc')->get();
         $collections = AdminCollections::all();
         $headerData = AdminHeaderData::latest('id')->first();
-        $orders = Orders::where('user_id', Auth::user()->id)->where('status', 'processing')->get();
+        $orders = Orders::where('status', 'processing')->get();
         $processingOrderCount = count($orders);
         return view('admin.gallerys.index',compact('gallerys', 'collections', 'headerData', 'processingOrderCount'));
     }

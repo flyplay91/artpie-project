@@ -17,7 +17,7 @@ class AdminUsersController extends Controller
     public function index()
     {
         $users = User::all();
-        $orders = Orders::where('user_id', Auth::user()->id)->where('status', 'processing')->get();
+        $orders = Orders::where('status', 'processing')->get();
         $processingOrderCount = count($orders);
         return view('admin.users.index',compact('users', 'processingOrderCount'));
     }
