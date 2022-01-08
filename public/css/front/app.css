@@ -2535,9 +2535,15 @@ img {
   font-size: 18px;
   margin-left: 5px;
 }
+.mygallery-lists .mygallery-list .mygallery-list__info .mygallery-size,
 .mygallery-lists .mygallery-list .mygallery-list__info .mygallery-total-price,
 .mygallery-lists .mygallery-list .mygallery-list__info .mygallery-artist {
-  margin-bottom: 0;
+  margin-bottom: 5px;
+  font-size: 16px;
+}
+.mygallery-lists .mygallery-list .mygallery-list__info .mygallery-status {
+  margin-bottom: 0px;
+  font-size: 18px;
 }
 
 /* Homepage */

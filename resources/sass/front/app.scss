@@ -2705,10 +2705,16 @@ img {
         }
       }
 
+      .mygallery-size,
       .mygallery-total-price,
       .mygallery-artist {
-        margin-bottom: 0;
+        margin-bottom: 5px;
+        font-size: 16px;
       } 
+      .mygallery-status {
+        margin-bottom: 0px;
+        font-size: 18px;
+      }
     }
   }
   

@@ -98,7 +98,7 @@
             @endif
           </h3>
 
-          <div class="mygallery-total-price">
+          <div class="mygallery-size">
             <label>
               {{ __('messages.dimension') }}:
             </label>
