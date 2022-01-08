@@ -35,6 +35,10 @@
 </div>
 @endif
 
+<div class="page-title text-center">
+  <h3>{{ Auth::user()->name }}-{{ __('messages.my_gallery') }}</h3>
+</div>
+
 <div class="mygallery-lists">
   @if (!empty($gallerys))
     @foreach ($gallerys as $gallery)
