@@ -188,6 +188,7 @@ class AdminGallerysController extends Controller
             $data['check_enable_pieces'] = 'no';
         }
 
+        $gallery->touch();
         $gallery->update($data);
         
         return redirect()->route('admin-gallery.index')
