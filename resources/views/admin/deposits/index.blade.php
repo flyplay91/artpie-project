@@ -8,27 +8,38 @@
 
     <table class="table table-bordered">
       <thead>
-        <tr>
-          <th scope="col">번호</th>
-          <th scope="col">입금자번호</th>
-          <th scope="col">입금자이름</th>
-          <th scope="col">액수</th>
+        <tr class="text-center">
+          <th scope="col">No</th>
+          <th scope="col">입금자 ID</th>
+          <th scope="col">이름</th>
+          <th scope="col">금액(USD)</th>
           <th scope="col">상태</th>
-          <th scope="col"></th>
+          <th scope="col">동작</th>
         </tr>
       </thead>
       <tbody>
         @if (!empty($deposits))
           @foreach($deposits as $deposit)
-          <tr>
+          <tr class="text-right">
             <th scope="row">{{ $deposit->id }}</th>
             <td>{{ $deposit->user->id }}</td>
             <td>{{ $deposit->user->name }}</td>
-            <td>{{ $deposit->amount }}</td>
-            <td class="status">{{ $deposit->status }}</td>
+            <td>{{ number_format($deposit->amount, 2, '.', ' ') }}</td>
+            <td class="status">
+              @if ($deposit->status == 'pending')
+                처리중
+              @elseif ($deposit->status == 'complete')
+                완료
+              @else
+                취소
+              @endif
+            </td>
             <td>
               @if ($deposit->status == 'pending')
                 <button class="btn btn-warning btn-confirm-deposit" data-deposit-id="{{ $deposit->id }}">확인</button>
+              @endif
+              @if ($deposit->status != 'cancel')
+                <button class="btn btn-warning btn-cancel-deposit" data-deposit-id="{{ $deposit->id }}">취소</button>
               @endif
             </td>
           </tr>
