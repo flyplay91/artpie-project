@@ -16,9 +16,9 @@
         </div>
         <div class="mygallery-price-value text-left">
           <label>{{ number_format($user->balance, 2, '.', ' ') }} (USD)</label>
-          <label>20000 (USD)</label>
-          <label>20123 (USD)</label>
-          <label>21000 (USD)</label>
+          <label>{{ number_format($user->paid_amount, 2, '.', ' ') }} (USD)</label>
+          <label>{{ number_format($user->available_income, 2, '.', ' ') }} (USD)</label>
+          <label>{{ number_format($user->available_profit, 2, '.', ' ') }} (USD)</label>
         </div>
       </div>
       <div class="mygallery-price-btns">

@@ -20,6 +20,15 @@ class User extends Authenticatable
     ];
 
     /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = [
+        'paid_amount', 'available_income', 'available_profit'
+    ];
+
+    /**
      * The attributes that should be hidden for arrays.
      *
      * @var array
@@ -75,5 +84,38 @@ class User extends Authenticatable
      */
     public function isBuyer() {
         return $this->role == 'buyer';
+    }
+
+    public function getPaidAmountAttribute()
+    {
+        $result = 0.00;
+        
+        foreach($this->fragments as $fragment) {
+            $result += $fragment->piece_count * $fragment->buy_price;
+        }
+
+        return $result;
+    }
+
+    public function getAvailableIncomeAttribute()
+    {
+        $result = 0.00;
+        
+        foreach($this->fragments as $fragment) {
+            $result += $fragment->piece_count * $fragment->sell_price;
+        }
+
+        return $result;
+    }
+
+    public function getAvailableProfitAttribute()
+    {
+        $result = 0.00;
+        
+        foreach($this->fragments as $fragment) {
+            $result += $fragment->piece_count * ($fragment->sell_price - $fragment->buy_price);
+        }
+
+        return $result;
     }
 }

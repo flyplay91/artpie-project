@@ -90,6 +90,7 @@ class ApiGalleryController extends Controller
             'g_artist_description_ch' => nl2br($artistDescriptionCh),
             'g_artist_description_ko' => nl2br($artistDescriptionKo),
             'g_price' => $galleryObj->retail_price,
+            'g_current_price' => $galleryObj->current_price(),
             'g_pieces' => $galleryPieces,
             'g_width'   => $galleryObj->width,
             'g_height'  => $galleryObj->height,
@@ -180,6 +181,14 @@ class ApiGalleryController extends Controller
         }
 
         $availablePieceCount = $gallery->piece_count - $fragment->piece_count;
+
+        if ($availablePieceCount <= 0) {
+            return response()->json([
+                'success' => false,
+                'data' => "No pieces are available!"
+            ]);
+        }
+        
         $requestedPieceCount = $availablePieceCount > $requestedPieceCount ? $requestedPieceCount : $availablePieceCount;
         $fragmentPrice = $fragment->piece_count * $fragment->buy_price;
         $fragmentPieces = $fragment->piece_count;

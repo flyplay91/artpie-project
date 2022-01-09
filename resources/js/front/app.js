@@ -499,6 +499,7 @@ $(document).ready(function() {
   });
 
   $(document).on('click', '.btn-purchase-fragments', function() {
+    let self = this;
     let galleryId = $(this).attr('data-gallery-id');
     let pieceCount = $(this).closest('.gallery-pieces-buy').find('.gallery-pieces-count').val();
     let userId = $(this).closest('.popup-gallery-data').data('user-id');
@@ -513,6 +514,9 @@ $(document).ready(function() {
       },
       success: function(result) {
         console.log(result);
+        $('#mainWrapper').removeClass('active');
+        $('.bg-overlay').removeClass('active');
+        $(self).closest('.popup-gallery-data').removeClass('active');
       }
     });
   })
@@ -637,7 +641,7 @@ function getGalleryAjax(id, artist_id) {
               } else {
                 html += '<label class="flex aic">Price: '; 
               }
-                  html += parseFloat(val.g_price) + ' USD';
+                  html += parseFloat(val.g_current_price) + ' USD';
                 html += '</label>';
               html += '</div>';
 

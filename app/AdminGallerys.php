@@ -52,4 +52,18 @@ class AdminGallerys extends Model
 
         return $pieces;
     }
+
+    public function current_price() {
+        if ($this->check_enable_pieces != 'yes') {
+            return $this->retail_price;
+        }
+
+        $result = $this->retail_price / $this->piece_count * $this->remainingPieces();
+
+        foreach($this->fragments as $fragment) {
+            $result += $fragment->piece_count * $fragment->sell_price;
+        }
+
+        return $result;
+    }
 }
