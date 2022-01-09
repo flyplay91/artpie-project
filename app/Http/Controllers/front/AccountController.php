@@ -42,7 +42,7 @@ class AccountController extends Controller
 
         $deposits = Auth::user()->deposits();
         $deposits = $deposits->orderByRaw("FIELD(status, \"pending\", \"completed\")")->get();
-        return view('front.pages.account.deposits',compact('deposits'))
-                ->with('success','Password is updated successfully');;
+        return redirect()->route('my-gallery.index')
+                        ->with('success', 'Deposit is created successfully.');
     }
 }
