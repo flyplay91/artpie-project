@@ -19,6 +19,8 @@ class ApiSearchGallerysController extends Controller
         $selectedCatIds = $request->selected_cat_ids;
         $selectedPrices = $request->selected_price;
         $selectedValue = $request->selected_search_val;
+        $selectedLang = $request->selected_lang;
+        
 
         $galleryObjs = DB::table('admin_gallerys');
         $artists = AdminArtists::all();
@@ -49,6 +51,13 @@ class ApiSearchGallerysController extends Controller
             }
         }
 
+        if ($selectedLang == 'en') {
+
+        } else if ($selectedLang == 'ch') {
+
+        } else if ($selectedLang == 'ko') {
+            
+        }
         $galleryObjs = $galleryObjs->where('all_checked', 'true')
                                     ->where('title', 'like', '%' . $selectedValue . '%')
                                     ->orwhere('title_ch', 'like', '%' . $selectedValue . '%')
@@ -56,7 +65,7 @@ class ApiSearchGallerysController extends Controller
                                     ->orWhere('artist_name', 'like', '%' . $selectedValue . '%')
                                     ->orWhere('artist_name_ch', 'like', '%' . $selectedValue . '%')
                                     ->orWhere('artist_name_ko', 'like', '%' . $selectedValue . '%')
-                                    ->orWhere('keywords', 'like', '%' . $selectedValue . '%')->get();
+                                    ->orWhere('keywords', 'like', '%' . $selectedValue . '%')->orderBy('updated_at', 'desc')->get();
 
         $galleryIdImageArr = [];
         
@@ -67,7 +76,8 @@ class ApiSearchGallerysController extends Controller
             $targetWidth = 400;
             $filenameResized = $filename . '_resized_'.$targetWidth.'x.'.$ext;
 
-            $galleryIdImageArr[$galleryObj->id] = array(
+            $galleryIdImageArr[] = array(
+                'g_id' => $galleryObj->id,
                 'g_image' => $filenameResized,
                 'g_title_en' => $galleryObj->title,
                 'g_title_ch' => $galleryObj->title_ch,
@@ -76,6 +86,7 @@ class ApiSearchGallerysController extends Controller
                 'g_artist_name_ch' => $galleryObj->artist_name_ch,
                 'g_artist_name_ko' => $galleryObj->artist_name_ko
             );
+            
         }
         
         try {

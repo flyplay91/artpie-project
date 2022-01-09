@@ -337,14 +337,8 @@ $(document).ready(function() {
     
   });
 
-  $('.gallery-search input').keyup(function(e){
-    if(e.keyCode == 13) {
-      $('.gallery-search a').trigger('click');
-    }
-    
-  });
-
-  $('body').on('click', '.gallery-search a', function() {
+  $('body').on('submit', '#gallery_search_form', function(event) {
+    event.preventDefault();
     var category_ids_arr = [];
     var price_arr = [];
     var search_val = $('.gallery-search input').val();
@@ -374,6 +368,7 @@ $(document).ready(function() {
         selected_cat_ids: category_ids_arr,
         selected_price: price_arr,
         selected_search_val: search_val,
+        selected_lang: selectedLang
       },
       success: function(result) {
         var html = '';
@@ -392,7 +387,7 @@ $(document).ready(function() {
               }
 
               
-              html += '<a class="image-gallery" href="javascript:void(0)" data-id="'+ key +'">';
+              html += '<a class="image-gallery" href="javascript:void(0)" data-id="'+ val.g_id +'">';
                 html += '<div class="hdrItems-list__inner-overlay"></div>';
                 html += '<img src="/images/'+ val.g_image +'">';
               html += '</a>';

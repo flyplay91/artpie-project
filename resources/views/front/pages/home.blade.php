@@ -12,8 +12,10 @@
 
     <div class="sBoxW">
       <div class="sBox gallery-search">
-        <input type="text" name="s" placeholder="{{ __('messages.title_painter') }}" class="s">
-        <a href="javascript:void(0)"><img src="/images/search-icon.png"></a>
+        <form id="gallery_search_form" class="flex jcb">
+          <input type="text" name="s" placeholder="{{ __('messages.title_painter') }}" class="s">
+          <button><img src="/images/search-icon.png"></button>
+        </form>
       </div>
     </div>
   </div>
