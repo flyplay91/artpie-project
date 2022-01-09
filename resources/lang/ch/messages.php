@@ -8,6 +8,7 @@ return [
     'logout'  => '注销',
     'category' => '种类',
     'price' => '价格',
+    'price_2' => '存款额',
     'email' => '邮箱',
     'name' => '姓名',
     'password' => '密码',

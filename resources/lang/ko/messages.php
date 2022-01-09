@@ -8,6 +8,7 @@ return [
     'logout'  => '나가기',
     'category' => '종류',
     'price' => '가격',
+    'price_2' => '충전금액',
     'email' => '전자우편',
     'name' => '이름',
     'password' => '패스워드',

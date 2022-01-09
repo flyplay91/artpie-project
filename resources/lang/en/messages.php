@@ -8,6 +8,7 @@ return [
     'logout'  => 'Logout',
     'category' => 'Category',
     'price' => 'Price',
+    'price_2' => 'Amount',
     'email' => 'Email',
     'name' => 'Name',
     'password' => 'Password',
