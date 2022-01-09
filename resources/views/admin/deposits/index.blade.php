@@ -36,10 +36,10 @@
             </td>
             <td>
               @if ($deposit->status == 'pending')
-                <button class="btn btn-warning btn-confirm-deposit" data-deposit-id="{{ $deposit->id }}">확인</button>
+                <button class="btn btn-grey btn-confirm-deposit" data-deposit-id="{{ $deposit->id }}">확인</button>
               @endif
               @if ($deposit->status != 'cancel')
-                <button class="btn btn-warning btn-cancel-deposit" data-deposit-id="{{ $deposit->id }}">취소</button>
+                <button class="btn btn-grey btn-cancel-deposit" data-deposit-id="{{ $deposit->id }}">취소</button>
               @endif
             </td>
           </tr>
