@@ -61,5 +61,5 @@ return [
     'available_balance' => '사용가능한 금액',
     'paid_amount' => '투자한 금액',
     'current_value' => '현재 가치',
-    'expected_profit' => '예상 수입금액',
+    'expected_profit' => '예상 리득금액',
 ];

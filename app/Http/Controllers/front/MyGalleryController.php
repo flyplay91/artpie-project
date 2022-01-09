@@ -10,6 +10,7 @@ use App\Orders;
 use App\AdminArtists;
 use App\AdminCategories;
 use Auth;
+use App\User;
 use DB;
 
 class MyGalleryController extends Controller
@@ -31,8 +32,11 @@ class MyGalleryController extends Controller
         foreach ($orders as $order) {
             $gallerys[] = AdminGallerys::find($order->gallery_id);
         }
+
+        $userId = Auth::user()->id;
+        $user = User::find($userId);
         
-        return view('front.pages.myGallery.index',compact('gallerys', 'headerdata', 'artists', 'categories', 'orders'));
+        return view('front.pages.myGallery.index',compact('gallerys', 'headerdata', 'artists', 'categories', 'orders', 'user'));
     }
 
     /**
