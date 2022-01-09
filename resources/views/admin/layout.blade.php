@@ -49,17 +49,12 @@
               <span>({{ $processingDepositCount }})</span>
             @endif
           </a>
-          <!-- <label class="sub-menu">
-            Payments
-            <ul>
-              <li><a href="/admin-deposit">Deposit</a></li>
-              <li><a href="/admin-widraw">Widraw</a></li>
-              <li><a href="/admin-transaction">Transaction</a></li>
-            </ul>
-          </label>
-          <a href="" class="">Tickets</a>
-          <a href="" class="">Manage</a>
-          <a href="" class="">Settings</a> -->
+          <a href="" class="">
+            출금
+          </a>
+          <a href="" class="">
+            지불리력
+          </a>
         </div>
       </div>
     </div>

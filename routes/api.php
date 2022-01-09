@@ -42,3 +42,4 @@ Route::post('api-get-artist', 'ApiGetArtistController@index');
 Route::post('api-update-artist', 'ApiUpdateArtistController@index');
 Route::post('api-delete-artist', 'ApiDeleteArtistController@index');
 
+

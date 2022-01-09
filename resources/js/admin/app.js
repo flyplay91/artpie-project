@@ -236,10 +236,6 @@ $(document).ready(function() {
 
   // Update page save & delete
   $('body').on('click', '.btn-save-gallery-trigger', function() {
-    // $('.input-artist-name').val($('.selectbox-artists').find(":selected").text());
-    // $('.input-artist-name-ch').val($('.update-artist .insert-artist-name-ch').val());
-    // $('.input-artist-name-ko').val($('.update-artist .insert-artist-name-ko').val());
-    
     $('.btn-save-gallery').trigger('click');
   });
   $('body').on('click', '.btn-delete-gallery-trigger', function() {
@@ -751,6 +747,30 @@ $(document).ready(function() {
         }
       });
     }
+  });
+
+  // Deposit page buttons event
+  $('body').on('click', '.block-admin-deposits .btn', function() {
+    var button_event = '';
+    if ($(this).hasClass('btn-confirm-deposit')) {
+      button_event = 'confirm';
+    } else {
+      button_event = 'cancel';
+    }
+    var depositId = $(this).closest('tr').data('deposit-id');
+
+    $.ajax({
+      url: "/api/confirm-deposit",
+      method: "post",
+      data: {
+        user_id: user_id,
+        checked: 'true',
+        buttonEvent: button_event
+      },
+      success: function(result) {
+        console.log(result);
+      }
+    });
   });
 
   // image upload change event

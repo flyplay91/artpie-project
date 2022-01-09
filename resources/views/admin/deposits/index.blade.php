@@ -2,7 +2,7 @@
 
 @section('content')
 
-  <div class="block-admin-orders mt-3">
+  <div class="block-admin-deposits mt-3">
     <h2>입금리력</h2>
 
     <table class="table table-bordered">
@@ -20,7 +20,7 @@
       <tbody>
         @if (!empty($deposits))
           @foreach($deposits as $deposit)
-          <tr class="text-right">
+          <tr class="text-right" data-deposit-id="{{ $deposit->id }}">
             <th scope="row">{{ $deposit->id }}</th>
             <td>{{ $deposit->created_at }}</td>
             <td>{{ $deposit->user->id }}</td>
