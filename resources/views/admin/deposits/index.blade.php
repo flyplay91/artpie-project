@@ -2,7 +2,6 @@
 
 @section('content')
 
-<div class="container">
   <div class="block-admin-orders mt-3">
     <h2>입금리력</h2>
 
@@ -10,7 +9,8 @@
       <thead>
         <tr class="text-center">
           <th scope="col">No</th>
-          <th scope="col">입금자 ID</th>
+          <th scope="col">날자 시간</th>
+          <th scope="col">사용자 ID</th>
           <th scope="col">이름</th>
           <th scope="col">금액(USD)</th>
           <th scope="col">상태</th>
@@ -22,6 +22,7 @@
           @foreach($deposits as $deposit)
           <tr class="text-right">
             <th scope="row">{{ $deposit->id }}</th>
+            <td>{{ $deposit->created_at }}</td>
             <td>{{ $deposit->user->id }}</td>
             <td>{{ $deposit->user->name }}</td>
             <td>{{ number_format($deposit->amount, 2, '.', ' ') }}</td>
@@ -48,5 +49,4 @@
       </tbody>
     </table>
   </div>
-</div>
 @endsection
