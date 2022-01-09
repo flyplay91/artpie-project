@@ -362,56 +362,55 @@ $(document).ready(function() {
       }
     });
     
-    if (search_val != '') {
-      const $list = $('#hdrItems');
-      $.ajax({
-        url: "/api/api-search-gallerys",
-        method: "post",
-        beforeSend: function(){
-          $list.empty();
-        },
-        data: {
-          selected_cat_ids: category_ids_arr,
-          selected_price: price_arr,
-          selected_search_val: search_val,
-        },
-        success: function(result) {
-          var html = '';
+    
+    const $list = $('#hdrItems');
+    $.ajax({
+      url: "/api/api-search-gallerys",
+      method: "post",
+      beforeSend: function(){
+        $list.empty();
+      },
+      data: {
+        selected_cat_ids: category_ids_arr,
+        selected_price: price_arr,
+        selected_search_val: search_val,
+      },
+      success: function(result) {
+        var html = '';
 
-          $.each(result.gallery_ids_images, function (key, val) {
-            html += '<div class="hdrItems-list">';
-              html += '<div class="hdrItems-list__inner position-relative">';
-                if (selectedLang == 'en') {
-                  html += '<div class="hdrItems-list__tooltip position-absolute"><label>'+ val.g_title_en +'</label><span>' + val.g_artist_name_en + '</span></div>';
-                } else if (selectedLang == 'ch') {
-                  html += '<div class="hdrItems-list__tooltip position-absolute"><label>'+ val.g_title_ch +'</label><span>' + val.g_artist_name_ch + '</span></div>';
-                } else if (selectedLang == 'ko') {
-                  html += '<div class="hdrItems-list__tooltip position-absolute"><label>'+ val.g_title_ko +'</label><span>' + val.g_artist_name_ko + '</span></div>';
-                } else {
-                  html += '<div class="hdrItems-list__tooltip position-absolute"><label>'+ val.g_title_en +'</label><span>' + val.g_artist_name_en + '</span></div>';
-                }
+        $.each(result.gallery_ids_images, function (key, val) {
+          html += '<div class="hdrItems-list">';
+            html += '<div class="hdrItems-list__inner position-relative">';
+              if (selectedLang == 'en') {
+                html += '<div class="hdrItems-list__tooltip position-absolute"><label>'+ val.g_title_en +'</label><span>' + val.g_artist_name_en + '</span></div>';
+              } else if (selectedLang == 'ch') {
+                html += '<div class="hdrItems-list__tooltip position-absolute"><label>'+ val.g_title_ch +'</label><span>' + val.g_artist_name_ch + '</span></div>';
+              } else if (selectedLang == 'ko') {
+                html += '<div class="hdrItems-list__tooltip position-absolute"><label>'+ val.g_title_ko +'</label><span>' + val.g_artist_name_ko + '</span></div>';
+              } else {
+                html += '<div class="hdrItems-list__tooltip position-absolute"><label>'+ val.g_title_en +'</label><span>' + val.g_artist_name_en + '</span></div>';
+              }
 
-                
-                html += '<a class="image-gallery" href="javascript:void(0)" data-id="'+ key +'">';
-                  html += '<div class="hdrItems-list__inner-overlay"></div>';
-                  html += '<img src="/images/'+ val.g_image +'">';
-                html += '</a>';
-              html += '</div>';
+              
+              html += '<a class="image-gallery" href="javascript:void(0)" data-id="'+ key +'">';
+                html += '<div class="hdrItems-list__inner-overlay"></div>';
+                html += '<img src="/images/'+ val.g_image +'">';
+              html += '</a>';
             html += '</div>';
-          });
-          
-          $list.append(html);
-          $list.find('img').not('.loaded').on('load', function() {
-            $(this).addClass('loaded');
-  
-            if ($list.find('img').not('.loaded').length == 0) {
-              $list.find('.hdrItems-list').addClass('initialized');
-              macyInstance.reInit();
-            }
-          });
-        }
-      });
-    }
+          html += '</div>';
+        });
+        
+        $list.append(html);
+        $list.find('img').not('.loaded').on('load', function() {
+          $(this).addClass('loaded');
+
+          if ($list.find('img').not('.loaded').length == 0) {
+            $list.find('.hdrItems-list').addClass('initialized');
+            macyInstance.reInit();
+          }
+        });
+      }
+    });
   });
 
   // Contact gallery page
