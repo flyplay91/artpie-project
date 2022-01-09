@@ -10,7 +10,7 @@
           <label>{{ __('messages.available_balance') }}:</label>
           <label>{{ __('messages.paid_amount') }}:</label>
           <label>{{ __('messages.current_value') }}:</label>
-          <label>{{ __('messages.title_painter') }}:</label>
+          <label>{{ __('messages.expected_profit') }}:</label>
         </div>
         <div class="mygallery-price-value text-left">
           <label>10000 (USD)</label>
