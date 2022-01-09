@@ -98,7 +98,7 @@ $(document).ready(function() {
   loadMoreData(page, category_ids_arr, price_arr, selectedLang);
 
   $(window).on('scroll', function() {
-    if (ajaxLoading) {
+    if (ajaxLoading || $('.gallery-search input').val() != '') {
       return;
     }
 
@@ -169,7 +169,7 @@ $(document).ready(function() {
     .done(function(data) {
       
       if(data.length == 0) {
-        $('.ajax-loading').html("No more gallerys!");
+        $('.ajax-loading').html("No more!");
         
       } else {
         $('.ajax-loading').hide();
@@ -337,6 +337,13 @@ $(document).ready(function() {
     
   });
 
+  $('.gallery-search input').keyup(function(e){
+    if(e.keyCode == 13) {
+      $('.gallery-search a').trigger('click');
+    }
+    
+  });
+
   $('body').on('click', '.gallery-search a', function() {
     var category_ids_arr = [];
     var price_arr = [];
@@ -356,12 +363,13 @@ $(document).ready(function() {
     });
     
     if (search_val != '') {
+      const $list = $('#hdrItems');
       $.ajax({
         url: "/api/api-search-gallerys",
         method: "post",
-         beforeSend: function(){
-           $("#hdrItems").empty();
-         },
+        beforeSend: function(){
+          $list.empty();
+        },
         data: {
           selected_cat_ids: category_ids_arr,
           selected_price: price_arr,
@@ -382,10 +390,15 @@ $(document).ready(function() {
             html += '</div>';
           });
           
-          $('#hdrItems').append(html);
-          if ($('#hdrItems').length > 0) {
-            macyInstance.reInit();
-          }
+          $list.append(html);
+          $list.find('img').not('.loaded').on('load', function() {
+            $(this).addClass('loaded');
+  
+            if ($list.find('img').not('.loaded').length == 0) {
+              $list.find('.hdrItems-list').addClass('initialized');
+              macyInstance.reInit();
+            }
+          });
         }
       });
     }
