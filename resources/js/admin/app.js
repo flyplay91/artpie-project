@@ -765,7 +765,7 @@ $(document).ready(function() {
       data: {
         user_id: user_id,
         checked: 'true',
-        buttonEvent: button_event
+        status: button_event
       },
       success: function(result) {
         console.log(result);

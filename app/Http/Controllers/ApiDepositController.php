@@ -18,7 +18,7 @@ class ApiDepositController extends Controller
     {
         $deposit = Deposits::find($request->deposit_id);
         $user = $deposit->user;
-        $buttonEvent = $request->buttonEvent;
+        $status = $request->status;
 
         $depositAmount = $deposit->amount;
         $oldBalance = $user->balance;
