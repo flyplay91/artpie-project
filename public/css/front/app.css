@@ -2485,6 +2485,9 @@ img {
 .mygallery-hero {
   padding-top: 20%;
 }
+.mygallery-hero.buyer-user {
+  padding-top: 30%;
+}
 
 .mygallery-price-info-btns {
   max-width: 650px;

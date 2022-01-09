@@ -2,8 +2,10 @@
 
 @section('content')
 @if (isset($headerdata))
-<div class="hdrBg mygallery-hero" style="background-image: url('/images/<?php echo $headerdata->image ?>')">
+<div class="hdrBg mygallery-hero @if ($user->role == 'buyer') buyer-user @endif" style="background-image: url('/images/<?php echo $headerdata->image ?>')">
   <div class="bHdr">
+    
+    @if ($user->role != 'buyer')
     <div class="mygallery-price-info-btns flex jcb">
       <div class="mygallery-price-info flex">
         <div class="mygallery-price-label text-right">
@@ -24,6 +26,7 @@
         <a href="" class="btn-grey">{{ __('messages.deposit_funds') }}</a>
       </div>
     </div>
+    @endif
 
     <div class="sBoxW">
       <div class="sBox gallery-search">
