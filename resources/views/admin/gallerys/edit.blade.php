@@ -211,19 +211,19 @@
                   </div>
                 </div>
                 
-                <div class="form-group">
+                <div class="form-group mb-3">
                   <label for="inputDate">창작 날자</label>
                   <input type="text" class="form-control" value="{{ $gallery->paint_date }}" name="paint_date">
                 </div>
 
-                <div class="form-group">
+                <div class="form-group mb-3">
                   <label for="inputDate">등록 날자</label>
                   <input type="input" class="form-control date-picker" value="{{ $gallery->registered_date ? $gallery->registered_date : (Carbon\Carbon::now()->format('m/d/Y')) }}" name="registered_date">
                 </div>
 
-                <div class="form-group">
-                  <label for="inputDate">갱신 날자</label>
-                  <input type="input" class="form-control date-picker" value="{{ $gallery->updated_date ? $gallery->updated_date : (Carbon\Carbon::now()->format('m/d/Y')) }}" name="updated_date">
+                <div class="form-group mb-3">
+                  <label class="mb-0" for="inputDate">갱신 날자</label>
+                  <span>{{ $gallery->updated_at->format('Y-m-d H:i:s') }}</span>
                 </div>
 
                 <div class="form-group mb-3">
