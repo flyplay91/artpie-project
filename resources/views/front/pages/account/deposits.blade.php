@@ -48,7 +48,13 @@
             @endif
           </tbody>
         </table>
+
+        <div class="text-right">
+          <a href="/my-gallery" class="btn btn-grey">{{ __('messages.cancel') }}</a>
+        </div>
       </div>
+
+      
     </div>
   </div>
 @endsection

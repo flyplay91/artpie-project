@@ -23,7 +23,7 @@
       </div>
       <div class="mygallery-price-btns">
         <a href="" class="btn-grey">{{ __('messages.withdraw') }}</a>
-        <a href="" class="btn-grey">{{ __('messages.deposit_funds') }}</a>
+        <a href="/account/deposits" class="btn-grey">{{ __('messages.deposit_funds') }}</a>
       </div>
     </div>
     @endif

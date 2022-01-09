@@ -65,7 +65,6 @@
               <ul>
                 <li><a href="/my-gallery">{{ __('messages.my_gallery') }}</a></li>
                 <li><a href="/setting">{{ __('messages.setting') }}</a></li>
-                <li><a href="/account/deposits">{{ __('messages.deposit_funds') }}</a></li>
               </ul>
             </div>
             @endauth
