@@ -61,8 +61,12 @@ class ApiSearchGallerysController extends Controller
         foreach($galleryObjs as $galleryObj) {
             $galleryIdImageArr[$galleryObj->id] = array(
                 'g_image' => $galleryObj->image,
-                'g_title' => $galleryObj->title,
-                'g_artist_name' => $galleryObj->artist_name
+                'g_title_en' => $galleryObj->title,
+                'g_title_ch' => $galleryObj->title_ch,
+                'g_title_ko' => $galleryObj->title_ko,
+                'g_artist_name_en' => $galleryObj->artist_name,
+                'g_artist_name_ch' => $galleryObj->artist_name_ch,
+                'g_artist_name_ko' => $galleryObj->artist_name_ko
             );
         }
         
