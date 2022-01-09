@@ -59,8 +59,14 @@ class ApiSearchGallerysController extends Controller
         $galleryIdImageArr = [];
         
         foreach($galleryObjs as $galleryObj) {
+            $srcPath = public_path().'/images/'.$galleryObj->image;
+            $filename = pathinfo($srcPath, PATHINFO_FILENAME);
+            $ext = pathinfo($srcPath, PATHINFO_EXTENSION);
+            $targetWidth = 400;
+            $filenameResized = $filename . '_resized_'.$targetWidth.'x.'.$ext;
+
             $galleryIdImageArr[$galleryObj->id] = array(
-                'g_image' => $galleryObj->image,
+                'g_image' => $filenameResized,
                 'g_title_en' => $galleryObj->title,
                 'g_title_ch' => $galleryObj->title_ch,
                 'g_title_ko' => $galleryObj->title_ko,
