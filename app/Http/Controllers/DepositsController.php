@@ -16,10 +16,13 @@ class DepositsController extends Controller
      */
     public function index()
     {
-        $deposits = Deposits::orderByRaw("FIELD(status, \"pending\", \"completed\")")->get();
+        $deposits = Deposits::orderByRaw("FIELD(status, \"pending\", \"completed\")")->orderBy('updated_at', 'desc')->get();
         $processingOrders = Orders::where('status', 'processing')->get();
         $processingOrderCount = count($processingOrders);
-        return view('admin.deposits.index',compact('deposits', 'processingOrderCount'));
+
+        $processingDeposits = Deposits::where('status', 'pending')->get();
+        $processingDepositCount = count($processingDeposits);
+        return view('admin.deposits.index',compact('deposits', 'processingOrderCount' , 'processingDepositCount'));
     }
 
     /**

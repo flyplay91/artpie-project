@@ -43,7 +43,12 @@
               <span>({{ $processingOrderCount }})</span>
             @endif
           </a>
-          <a href="/admin-deposit" class="@if(Route::currentRouteName() == 'admin-deposit.index')active @endif">입금</a>
+          <a href="/admin-deposit" class="@if(Route::currentRouteName() == 'admin-deposit.index')active @endif">
+            입금
+            @if (!empty($processingDepositCount))
+              <span>({{ $processingDepositCount }})</span>
+            @endif
+          </a>
           <!-- <label class="sub-menu">
             Payments
             <ul>

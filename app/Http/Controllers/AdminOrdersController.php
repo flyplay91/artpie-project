@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Orders;
 use App\OrderLineItems;
+use App\Deposits;
 use Auth;
 
 class AdminOrdersController extends Controller
@@ -19,7 +20,10 @@ class AdminOrdersController extends Controller
         $orders = Orders::orderBy('created_at', 'desc')->get();
         $processingOrders = Orders::where('status', 'processing')->get();
         $processingOrderCount = count($processingOrders);
-        return view('admin.orders.index', compact('orders', 'processingOrderCount'));
+
+        $processingDeposits = Deposits::where('status', 'pending')->get();
+        $processingDepositCount = count($processingDeposits);
+        return view('admin.orders.index', compact('orders', 'processingOrderCount', 'processingDepositCount'));
     }
 
     /**

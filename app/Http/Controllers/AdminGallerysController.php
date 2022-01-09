@@ -8,6 +8,7 @@ use App\AdminCategories;
 use App\AdminArtists;
 use App\AdminHeaderData;
 use App\Orders;
+use App\Deposits;
 use Auth;
 
 use Illuminate\Support\Facades\Log;
@@ -29,7 +30,9 @@ class AdminGallerysController extends Controller
         $headerData = AdminHeaderData::latest('id')->first();
         $processingOrders = Orders::where('status', 'processing')->get();
         $processingOrderCount = count($processingOrders);
-        return view('admin.gallerys.index',compact('gallerys', 'collections', 'headerData', 'processingOrderCount'));
+        $processingDeposits = Deposits::where('status', 'pending')->get();
+        $processingDepositCount = count($processingDeposits);
+        return view('admin.gallerys.index',compact('gallerys', 'collections', 'headerData', 'processingOrderCount', 'processingDepositCount'));
     }
 
     /**
