@@ -2642,12 +2642,15 @@ img {
 }
 .account-deposits-page .deposit-form {
   text-align: center;
-  margin: 100px 0 20px;
+  margin: 100px auto 20px;
+  max-width: 800px;
+}
+.account-deposits-page .deposit-form .deposit-form-price {
+  width: 40%;
 }
 .account-deposits-page .deposit-form .deposit-form-price .input-group {
   height: 46px;
-  margin-right: 10px;
 }
 .account-deposits-page .deposit-form img {
-  width: auto;
+  max-width: 300px;
 }
