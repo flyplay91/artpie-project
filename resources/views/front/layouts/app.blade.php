@@ -90,21 +90,22 @@
 
     <div class="footer {{Request::path()}} <?php if((Request::path() == 'setting') || (Request::path() == 'contact-gallery') || (Request::path() == 'login') || (Request::path() == 'register') || (Request::path() == 'forget-password')  || (Request::path() == 'account/deposits')) { echo 'fixed-footer'; } ?>">
       <div class="footer__inner wrapper flex aic jcb">
-        
+      {{--
         <div class="footer-nav">
-        {{--
+        
           <ul class="flex aic">
             <li><a href="#">{{ __('messages.terms_of_use') }}</a></li>
             <li><a href="#">{{ __('messages.privacy_policy') }}</a></li>
             <li><a href="#">{{ __('messages.contact_us') }}</a></li>
           </ul>
-          --}}
+          
         </div>
         
         <div class="footer-copyright">
           Copyright@ 2022 Hunchun Longchao  Co., LTD
         </div>
       </div>
+      --}}
     </div>
   </div>
 </body>
