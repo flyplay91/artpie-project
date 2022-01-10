@@ -8,8 +8,8 @@
       @csrf
 
       <div class="deposit-form__inner flex aie jcb">
-        <img src="/images/wechat-icon.png" />
-      
+        <img src="/images/WeChat Image_20220104184111_resized_400x.jpg">
+        
         <div class="deposit-form-price flex-column flex aic jcb">
           
           <div class="flex jcb w-100 mt-2">
