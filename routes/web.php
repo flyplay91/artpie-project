@@ -36,6 +36,7 @@ Route::resource('', 'front\GallerysController');
 Route::resource('contact-gallery', 'front\ContactForGalleryController');
 Route::resource('setting', 'front\SettingController')->middleware('auth');
 Route::resource('my-gallery', 'front\MyGalleryController')->middleware('auth');
+Route::resource('my-order', 'front\MyOrderController')->middleware('auth');
 Route::resource('update-user-info', 'front\UpdateUserInfoController')->middleware('auth');
 Route::resource('checkout', 'front\CheckoutController')->middleware('auth');
 Route::resource('pay', 'front\PayController')->middleware('auth');

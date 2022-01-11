@@ -64,6 +64,7 @@
               <label data-user-id="{{ auth()->user()->id }}">{{auth()->user()->name }}</label>
               <ul>
                 <li><a href="/my-gallery">{{ __('messages.my_gallery') }}</a></li>
+                <li><a href="/my-order">My Order</a></li>
                 <li><a href="/setting">{{ __('messages.setting') }}</a></li>
               </ul>
             </div>
