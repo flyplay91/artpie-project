@@ -17,14 +17,17 @@ class ApiDepositController extends Controller
     public function confirmDeposit(Request $request)
     {
         $deposit = Deposits::find($request->deposit_id);
-        $user = $deposit->user;
+        $userId = $deposit->user_id;
+
+        $user = User::find($userId);
+        
         $status = $request->status;
 
         if ($status == 'confirm') {
             $depositAmount = $deposit->amount;
             $oldBalance = $user->balance;
             $newBalance = $oldBalance + $depositAmount;
-            $deposit->update(['status' => 'completed']);
+            $deposit->update(['status' => 'complete']);
             $user->update(['balance' => $newBalance]);
         } else {
             $deposit->update(['status' => 'cancel']);
@@ -32,6 +35,7 @@ class ApiDepositController extends Controller
 
         return response()->json([
             'success' => true,
+            'status' => $status,
             'data' => "Deposit status is updated"
         ]);
     }

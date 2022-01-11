@@ -687,48 +687,37 @@ $(document).ready(function () {
   }); // Deposit page buttons event
 
   $('body').on('click', '.block-admin-deposits .btn', function () {
-    var button_event = '';
+    var button_status = '';
 
     if ($(this).hasClass('btn-confirm-deposit')) {
-      button_event = 'confirm';
+      button_status = 'confirm';
     } else {
-      button_event = 'cancel';
+      button_status = 'cancel';
     }
 
     var depositId = $(this).closest('tr').data('deposit-id');
+    var $this = $(this);
     $.ajax({
       url: "/api/confirm-deposit",
       method: "post",
       data: {
-        user_id: user_id,
-        checked: 'true',
-        status: button_event
+        status: button_status,
+        deposit_id: depositId
       },
       success: function success(result) {
-        console.log(result);
+        if (result.status == 'confirm') {
+          $this.closest('tr').find('.status').text('완료');
+        } else {
+          $this.closest('tr').find('.status').text('취소');
+        }
+
+        $this.closest('td').find('button').hide();
       }
     });
   }); // image upload change event
 
   $('#uploadImage').change(function () {
     $('.btn-upload-image').trigger('click');
-  });
-  $(document).on('click', '.btn-confirm-deposit', function () {
-    var depositId = $(this).attr('data-deposit-id');
-    var parentRow = $(this).closest('tr');
-    $.ajax({
-      url: "/api/confirm-deposit",
-      method: "post",
-      data: {
-        deposit_id: depositId
-      },
-      success: function success(result) {
-        if (result.success) {
-          parentRow.find('.status').text('completed');
-          parentRow.find('.btn-confirm-deposit').remove();
-        }
-      }
-    });
   });
 });
 /******/ })()
