@@ -20,16 +20,19 @@ class ApiDepositController extends Controller
         $user = $deposit->user;
         $status = $request->status;
 
-        $depositAmount = $deposit->amount;
-        $oldBalance = $user->balance;
-        $newBalance = $oldBalance + $depositAmount;
-
-        $deposit->update(['status' => 'completed']);
-        $user->update(['balance' => $newBalance]);
+        if ($status == 'confirm') {
+            $depositAmount = $deposit->amount;
+            $oldBalance = $user->balance;
+            $newBalance = $oldBalance + $depositAmount;
+            $deposit->update(['status' => 'completed']);
+            $user->update(['balance' => $newBalance]);
+        } else {
+            $deposit->update(['status' => 'cancel']);
+        }
 
         return response()->json([
             'success' => true,
-            'data' => "Deposit is completed"
+            'data' => "Deposit status is updated"
         ]);
     }
 }
