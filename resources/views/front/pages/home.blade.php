@@ -84,9 +84,11 @@
   </div>
 
   @auth
-    <input type="hidden" class="logged-user" value="1">
-  @else
+    @if ($user->role == 'buyer')
     <input type="hidden" class="logged-user" value="0">
+    @else
+    <input type="hidden" class="logged-user" value="1">
+    @endif
   @endauth
 
   <div id="hdrItems" class="w-75">

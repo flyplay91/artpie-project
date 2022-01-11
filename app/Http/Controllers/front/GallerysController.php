@@ -8,6 +8,7 @@ use App\AdminGallerys;
 use App\AdminCategories;
 use App\AdminHeaderData;
 use App\AdminArtists;
+use Auth;
 
 class GallerysController extends Controller
 {
@@ -22,8 +23,10 @@ class GallerysController extends Controller
         $categories = AdminCategories::all();
         $artists = AdminArtists::all();
         $headerdata = AdminHeaderData::latest('id')->first();
+        $user = Auth::user();
         
-        return view('front.pages.home',compact('gallerys', 'categories', 'headerdata', 'artists'));
+        
+        return view('front.pages.home',compact('gallerys', 'categories', 'headerdata', 'artists', 'user'));
     }
 
     /**
