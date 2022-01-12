@@ -93,7 +93,7 @@ class AdminOrdersController extends Controller
             $senderEmail = $order->billing_email;
             $price = $order->total_price;
 
-            $transactionObj = array('description' => 'whole', 'piece_count' => 0, 'gallery_id' => $galleryId, 'gallery_title' => $order->gallery->title, 'sender' => $senderEmail, 'receiver' => 'KArtPie Admin', 'price' => $price, 'created_at' =>  \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now());
+            $transactionObj = array('description' => 'whole', 'piece_count' => 0, 'gallery_id' => $galleryId, 'gallery_title' => $order->gallery->title_ko, 'sender' => $senderEmail, 'receiver' => 'KArtPie Admin', 'price' => $price, 'created_at' =>  \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now());
             DB::table('transactions')->insert($transactionObj);
         }
 

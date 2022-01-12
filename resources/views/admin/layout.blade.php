@@ -52,7 +52,7 @@
           <a href="" class="">
             출금
           </a>
-          <a href="" class="">
+          <a href="admin-transaction" class="">
             지불리력
           </a>
         </div>

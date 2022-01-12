@@ -2,28 +2,40 @@
 
 @section('content')
 
-<div class="block-admin-orders mt-3">
-  <h2>입금리력</h2>
+<div class="block-admin-transactions mt-3">
+  <h2>지불리력</h2>
 
   <table class="table table-bordered">
     <thead>
       <tr>
-        <th scope="col">번호</th>
-        <th scope="col">입금자번호</th>
-        <th scope="col">입금자이름</th>
-        <th scope="col">액수</th>
-        <th scope="col">상태</th>
+        <th scope="col">리력 ID</th>
+        <th scope="col">설명</th>
+        <th scope="col">쪼각 개수</th>
+        <th scope="col">그림 ID</th>
+        <th scope="col">그림 제목</th>
+        <th scope="col">송금핸 사람</th>
+        <th scope="col">받은 사람</th>
+        <th scope="col">금액</th>
       </tr>
     </thead>
     <tbody>
-      @if (!empty($deposits))
-        @foreach($deposits as $deposit)
+      @if (!empty($transactions))
+        @foreach($transactions as $transaction)
         <tr>
-          <th scope="row">{{ $deposit->id }}</th>
-          <td>{{ $deposit->user->id }}</td>
-          <td>{{ $deposit->user->name }}</td>
-          <td>{{ $deposit->amount }}</td>
-          <td>{{ $deposit->status }}</td>
+          <th scope="row">{{ $transaction->id }}</th>
+          <td>
+            @if ($transaction->description == 'whole')
+              완전구매
+            @else
+              쪼각구매
+            @endif
+          </td>
+          <td>{{ $transaction->piece_count }}</td>
+          <td>{{ $transaction->gallery_id }}</td>
+          <td>{{ $transaction->gallery_title }}</td>
+          <td>{{ $transaction->sender }}</td>
+          <td>{{ $transaction->receiver }}</td>
+          <td>{{ $transaction->price }}</td>
         </tr>
         @endforeach
       @endif

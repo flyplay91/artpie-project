@@ -41,6 +41,7 @@ Route::resource('update-user-info', 'front\UpdateUserInfoController')->middlewar
 Route::resource('checkout', 'front\CheckoutController')->middleware('auth');
 Route::resource('pay', 'front\PayController')->middleware('auth');
 Route::resource('order', 'front\OrderInfoController')->middleware('auth');
+Route::resource('pay-history', 'front\PayHistoryController')->middleware('auth');
 
 Route::prefix('account')->middleware(['auth'])->group(function () {
   Route::get('deposits', 'front\AccountController@deposits');
