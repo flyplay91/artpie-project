@@ -58,18 +58,21 @@ class ApiSearchGallerysController extends Controller
         } else if ($selectedLang == 'ko') {
             
         }
-        $galleryObjs = $galleryObjs->where('all_checked', 'true')
-                                    ->where('title', 'like', '%' . $selectedValue . '%')
-                                    ->orwhere('title_ch', 'like', '%' . $selectedValue . '%')
-                                    ->orwhere('title_ko', 'like', '%' . $selectedValue . '%')
-                                    ->orWhere('artist_name', 'like', '%' . $selectedValue . '%')
-                                    ->orWhere('artist_name_ch', 'like', '%' . $selectedValue . '%')
-                                    ->orWhere('artist_name_ko', 'like', '%' . $selectedValue . '%')
-                                    ->orWhere('keywords', 'like', '%' . $selectedValue . '%')->orderBy('updated_at', 'desc')->get();
+        $searchedGalleryObjs = $galleryObjs->where('all_checked', 'true')
+                                    ->where(function($query) use ($selectedValue) {
+                                        $query->orwhere('title', 'like', '%' . $selectedValue . '%');
+                                        $query->orwhere('title_ch', 'like', '%' . $selectedValue . '%');
+                                        $query->orwhere('title_ko', 'like', '%' . $selectedValue . '%');
+                                        $query->orWhere('artist_name', 'like', '%' . $selectedValue . '%');
+                                        $query->orWhere('artist_name_ch', 'like', '%' . $selectedValue . '%');
+                                        $query->orWhere('artist_name_ko', 'like', '%' . $selectedValue . '%');
+                                        $query->orWhere('keywords', 'like', '%' . $selectedValue . '%');
+                                    })
+                                    ->orderBy('updated_at', 'desc')->get();
 
         $galleryIdImageArr = [];
         
-        foreach($galleryObjs as $galleryObj) {
+        foreach($searchedGalleryObjs as $galleryObj) {
             $srcPath = public_path().'/images/'.$galleryObj->image;
             $filename = pathinfo($srcPath, PATHINFO_FILENAME);
             $ext = pathinfo($srcPath, PATHINFO_EXTENSION);
