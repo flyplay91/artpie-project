@@ -59,7 +59,7 @@
       </div>
     </div>
 
-    <div class="ad-body  <?php if((Request::path() == 'admin-gallery') || (Route::currentRouteName() == 'admin-gallery.edit') || Route::currentRouteName() == 'admin-gallery.create' || Request::path() == 'admin-order' || Request::path() == 'admin-user' || Request::path() == 'admin-deposit') { echo 'wrapper'; } else { echo 'mt-3'; } ?>">
+    <div class="ad-body  <?php if((Request::path() == 'admin-gallery') || (Route::currentRouteName() == 'admin-gallery.edit') || Route::currentRouteName() == 'admin-gallery.create' || Request::path() == 'admin-order' || Request::path() == 'admin-user' || Request::path() == 'admin-deposit' || Request::path() == 'admin-transaction') { echo 'wrapper'; } else { echo 'mt-3'; } ?>">
       @yield('content')
     </div>
 
