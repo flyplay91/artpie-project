@@ -7,6 +7,7 @@ use App\Orders;
 use App\OrderLineItems;
 use App\Deposits;
 use Auth;
+use DB;
 
 class AdminOrdersController extends Controller
 {
@@ -83,8 +84,18 @@ class AdminOrdersController extends Controller
         ]);
 
         $data = $request->all();
+        
         $order = Orders::find($id);
         $order->update($data);
+        
+        if ($order->status == 'completed') {
+            $galleryId = $order->gallery_id;
+            $senderEmail = $order->billing_email;
+            $price = $order->total_price;
+
+            $transactionObj = array('description' => 'whole', 'piece_count' => 0, 'gallery_id' => $galleryId, 'gallery_title' => $order->gallery->title, 'sender' => $senderEmail, 'receiver' => 'KArtPie Admin', 'price' => $price, 'created_at' =>  \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now());
+            DB::table('transactions')->insert($transactionObj);
+        }
 
         return redirect()->route('admin-order.index')
                         ->with('success','Order status is updated successfully');
