@@ -157,7 +157,7 @@ $(document).ready(function() {
       type: 'get',
       datatype: 'html',
       beforeSend: function() {
-        $('.ajax-loading').html('Loading..').show();
+        $('.ajax-loading').html('Loading...').show();
       },
       data: {
         page: page,
@@ -814,7 +814,7 @@ function getGalleryAjax(id, artist_id) {
               html += '</div>';
             html += '</div>';
           }
-            console.log(val.g_sold_out_user_id)
+            
             if (selectedLang == 'en') {
               if (val.g_sold_out == 'sold_out') {
                 if (val.g_sold_out_user_id != 'undefined' && val.g_sold_out_user_id == auth_id) {
