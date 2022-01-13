@@ -63,5 +63,8 @@ return [
     'paid_amount' => 'Paid Amount',
     'current_value' => 'Current Price',
     'expected_profit' => 'Expected Income',
+    'own_pieces' => 'Own Pieces',
+    'invested_amount' => 'Invested Amount',
+    'selling_price' => 'Selling Price',
     
 ];

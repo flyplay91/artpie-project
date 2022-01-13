@@ -136,15 +136,15 @@
         <div class="mygallery-list__info">
           <div class="mygallery-status">
             <label>
-              가격:
+            {{ __('messages.price') }}:
             </label>
             <span>
-            {{ $gallery->current_price() }}USD
+            {{ $gallery->current_price() }} (USD)
             </span>
           </div>
           <div class="mygallery-status">
             <label>
-              소유개수:
+            {{ __('messages.own_pieces') }}:
             </label>
             <span>
             {{ $fragment->piece_count }}&nbsp;({{ $gallery->piece_count }}중)
@@ -152,26 +152,26 @@
           </div>
           <div class="mygallery-status">
             <label>
-              구입한 가격:
+            {{ __('messages.invested_amount') }}:
             </label>
             <span>
-            {{ $fragment->buy_price * $fragment->piece_count }}USD
+            {{ $fragment->buy_price * $fragment->piece_count }} (USD)
             </span>
           </div>
           <div class="mygallery-status">
             <label>
-              현재 가치:
+            {{ __('messages.current_value') }}:
             </label>
             <span>
-            {{ $gallery->current_price() / $gallery->piece_count * $fragment->piece_count }}USD
+            {{ $gallery->current_price() / $gallery->piece_count * $fragment->piece_count }} (USD)
             </span>
           </div>
           <div class="mygallery-status">
             <label>
-              희망판매가격:
+            {{ __('messages.selling_price') }}:
             </label>
             <span>
-            {{ $fragment->sell_price * $fragment->piece_count }}USD
+            {{ $fragment->sell_price * $fragment->piece_count }} (USD)
             </span>
           </div>
         </div>

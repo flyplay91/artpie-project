@@ -63,5 +63,8 @@ return [
     'paid_amount' => '投资',
     'current_value' => '现在价值',
     'expected_profit' => '预期收入',
+    'own_pieces' => '我的画片',
+    'invested_amount' => '投资额',
+    'selling_price' => '售价',
   
 ];

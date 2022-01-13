@@ -63,4 +63,7 @@ return [
     'paid_amount' => '투자한 금액',
     'current_value' => '현재 가치',
     'expected_profit' => '예상 리득금액',
+    'own_pieces' => '소유개수',
+    'invested_amount' => '구입한 가격',
+    'selling_price' => '희망판매 가격',
 ];
