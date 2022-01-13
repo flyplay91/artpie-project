@@ -171,7 +171,7 @@
               희망판매가격:
             </label>
             <span>
-            {{ $fragment->buy_price * $fragment->piece_count }}USD
+            {{ $fragment->sell_price * $fragment->piece_count }}USD
             </span>
           </div>
         </div>
