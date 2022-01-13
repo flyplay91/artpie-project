@@ -112,6 +112,9 @@ class AdminGallerysController extends Controller
 
             // Resize to 800x
             $this->resizeImage($src, 800);
+
+            // Resize to 2400x
+            $this->resizeImage($src, 2400);
         }
 
         $gallerys->all_checked = 'false';
