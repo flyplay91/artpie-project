@@ -101,6 +101,7 @@ class ResizeImage extends Command
             // Resize to 400x and 800x
             $this->resizeImage($path, 400);
             $this->resizeImage($path, 800);
+            $this->resizeImage($path, 2400);
         }
 
         if ($h) {
