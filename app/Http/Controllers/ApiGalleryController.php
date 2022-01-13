@@ -68,7 +68,9 @@ class ApiGalleryController extends Controller
         $filename = pathinfo($srcPath, PATHINFO_FILENAME);
         $ext = pathinfo($srcPath, PATHINFO_EXTENSION);
         $targetWidth = 800;
+        $targetWidthLarge = 2400;
         $filenameResized = $filename . '_resized_'.$targetWidth.'x.'.$ext;
+        $largeFilenameResized = $filename . '_resized_'.$targetWidthLarge.'x.'.$ext;
         
         $galleryObjArr = [];
 
@@ -77,6 +79,7 @@ class ApiGalleryController extends Controller
             'g_artist_des'  => $artDesc,
             'g_image' => $galleryObj->image,
             'g_resized_image' => $filenameResized,
+            'g_resized_image_large' => $largeFilenameResized,
             'g_title_en' => $galleryObj->title,
             'g_title_ch' => $galleryObj->title_ch,
             'g_title_ko' => $galleryObj->title_ko,
