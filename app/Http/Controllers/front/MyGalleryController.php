@@ -9,6 +9,7 @@ use App\AdminHeaderData;
 use App\Orders;
 use App\AdminArtists;
 use App\AdminCategories;
+use App\GalleryFragments;
 use Auth;
 use App\User;
 use DB;
@@ -25,18 +26,14 @@ class MyGalleryController extends Controller
         
         $gallerys = [];
         $headerdata = AdminHeaderData::latest('id')->first();
-        $orders = Orders::where('user_id', Auth::user()->id)->where('status', '!=', 'cancel')->orderBy('created_at', 'desc')->get();
+        $fragments = GalleryFragments::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->get();
         $artists = AdminArtists::all();
         $categories = AdminCategories::all();
-
-        foreach ($orders as $order) {
-            $gallerys[] = AdminGallerys::find($order->gallery_id);
-        }
 
         $userId = Auth::user()->id;
         $user = User::find($userId);
         
-        return view('front.pages.myGallery.index',compact('gallerys', 'headerdata', 'artists', 'categories', 'orders', 'user'));
+        return view('front.pages.myGallery.index',compact('headerdata', 'artists', 'categories', 'fragments', 'user'));
     }
 
     /**

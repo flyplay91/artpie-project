@@ -2729,8 +2729,16 @@ img {
         font-size: 18px;
       }
     }
+
+    .mygallery-list__status {
+
+    }
   }
   
+  .mygallery-list__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 

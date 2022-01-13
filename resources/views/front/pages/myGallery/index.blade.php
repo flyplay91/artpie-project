@@ -45,16 +45,17 @@
 </div>
 
 <div class="mygallery-lists">
-  @if (!empty($gallerys))
-    @foreach ($gallerys as $gallery)
+  @if (!empty($fragments))
+    @foreach ($fragments as $fragment)
       @php
+        $gallery = $fragment->gallery;
         $srcPath = public_path().'/images/'.$gallery->image;
         $filename = pathinfo($srcPath, PATHINFO_FILENAME);
         $ext = pathinfo($srcPath, PATHINFO_EXTENSION);
         $targetWidth = 400;
         $filenameResized = $filename . '_resized_'.$targetWidth.'x.'.$ext;
       @endphp
-      <div class="mygallery-list flex">
+      <div class="mygallery-list mygallery-list__grid">
         <div class="mygallery-list__image">
           <a href="javascript:void(0)" class="image-gallery" data-id="{{ $gallery->id }}">
             <img src="/images/{{ $filenameResized }}" />
@@ -109,13 +110,6 @@
             </label>
             <span>{{ $gallery->width }} * {{ $gallery->height }} {{ $gallery->unit }}</span>
           </div>
-
-          <div class="mygallery-total-price">
-            <label>
-              {{ __('messages.price') }}:
-            </label>
-            <span>{{ $gallery->retail_price }} (USD)</span>
-          </div>
          
           <div class="mygallery-artist">
             <label>
@@ -137,25 +131,47 @@
               @endforeach
             </span>
           </div>
+        </div>
 
+        <div class="mygallery-list__info">
           <div class="mygallery-status">
             <label>
-              {{ __('messages.buy_status') }}:
+              가격:
             </label>
             <span>
-              @foreach ($orders as $order)
-                @if ($gallery->id == $order->gallery_id)
-                  @if ($order->status == 'processing')
-                    {{ __('messages.in_purchase') }}
-                  @elseif ($order->status == 'waiting')
-                    {{ __('messages.waiting_for_payment') }}
-                  @elseif ($order->status == 'sending')
-                    {{ __('messages.in_delivery') }}
-                  @elseif ($order->status == 'completed')
-                    {{ __('messages.purchase_completed') }}
-                  @endif      
-                @endif
-              @endforeach
+            {{ $gallery->current_price() }}USD
+            </span>
+          </div>
+          <div class="mygallery-status">
+            <label>
+              소유개수:
+            </label>
+            <span>
+            {{ $fragment->piece_count }}&nbsp;({{ $gallery->piece_count }}중)
+            </span>
+          </div>
+          <div class="mygallery-status">
+            <label>
+              구입한 가격:
+            </label>
+            <span>
+            {{ $fragment->buy_price * $fragment->piece_count }}USD
+            </span>
+          </div>
+          <div class="mygallery-status">
+            <label>
+              현재 가치:
+            </label>
+            <span>
+            {{ $gallery->current_price() / $gallery->piece_count * $fragment->piece_count }}USD
+            </span>
+          </div>
+          <div class="mygallery-status">
+            <label>
+              희망판매가격:
+            </label>
+            <span>
+            {{ $fragment->buy_price * $fragment->piece_count }}USD
             </span>
           </div>
         </div>

@@ -2558,6 +2558,10 @@ img {
   margin-bottom: 0px;
   font-size: 18px;
 }
+.mygallery-lists .mygallery-list__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
 
 /* Homepage */
 @media screen and (max-width: 768px) {
