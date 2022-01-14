@@ -2384,6 +2384,7 @@ $(document).ready(function () {
       return;
     }
 
+    MagicZoom.stop();
     $('#mainWrapper').removeClass('active');
     $('.bg-overlay').removeClass('active');
     $('.popup-gallery-data').removeClass('active');
@@ -2626,7 +2627,7 @@ function getGalleryAjax(id, artist_id) {
         if ($('.auth-id').length != 0) {
           var auth_id = $('.auth-id').val();
         } else {
-          var auth_id = $('.auth-id').val();
+          var auth_id = 0;
         }
 
         html += '<div class="gallery-data-image" data-id="' + key + '">';

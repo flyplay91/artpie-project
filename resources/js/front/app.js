@@ -329,7 +329,7 @@ $(document).ready(function() {
     if ($(evt.target).hasClass('popup-gallery-data') || $(evt.target).closest('.popup-gallery-data').length > 0 || $(evt.target).hasClass('mz-expand') || $(evt.target).closest('.mz-expand').length > 0 || $(evt.target).hasClass('setting-page') || $(evt.target).closest('.setting-page').length > 0) {
         return;
     }
-
+    MagicZoom.stop();
     $('#mainWrapper').removeClass('active');
     $('.bg-overlay').removeClass('active');
     $('.popup-gallery-data').removeClass('active');
@@ -586,14 +586,14 @@ function getGalleryAjax(id, artist_id) {
       
       var html = '';
 
-      MagicZoom.stop()
+      MagicZoom.stop();
       
       $.each(result.gallery_Obj, function (key, val) {
 
         if ($('.auth-id').length != 0) {
           var auth_id = $('.auth-id').val();
         } else {
-          var auth_id = $('.auth-id').val();
+          var auth_id = 0;
         }
         
         
