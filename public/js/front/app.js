@@ -2623,6 +2623,7 @@ function getGalleryAjax(id, artist_id) {
     return;
   }
 
+  $('.popup-gallery-data').addClass('active');
   galleryAjax[id] = $.ajax({
     url: "/api/api-get-gallery",
     method: "post",
@@ -2638,7 +2639,6 @@ function getGalleryAjax(id, artist_id) {
       $('#mainWrapper').addClass('active');
       $('.bg-overlay').addClass('active');
       $('#mainWrapper').css('top', -scrolledTop + 'px');
-      $('.popup-gallery-data').addClass('active');
       var user_id = $('.popup-gallery-data').data('user-id');
       var html = '';
       MagicZoom.stop();
