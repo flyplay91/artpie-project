@@ -2576,6 +2576,7 @@ img {
   .hdrBg {
     padding-top: 5%;
     margin: 0 auto 0;
+    background: transparent !important;
   }
 
   .header {
