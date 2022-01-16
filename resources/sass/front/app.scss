@@ -2179,6 +2179,7 @@ img {
         object-fit: contain;
         min-height: 200px;
         height: auto !important;
+        max-height: 65vh !important;
       }
     }
 
