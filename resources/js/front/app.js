@@ -581,7 +581,6 @@ function getGalleryAjax(id, artist_id) {
   }
 
   $('.popup-gallery-data').addClass('active');
-  $('.popup-gallery-data__inner').empty();
 
   galleryAjax[id] = $.ajax({
     url: "/api/api-get-gallery",
@@ -875,7 +874,7 @@ function getGalleryAjax(id, artist_id) {
           html += '</div>';
         html += '</div>';
       });
-
+      $('.popup-gallery-data__inner').empty();
       $('.popup-gallery-data__inner').append(html);
 
       var popup_gallery_width = $('.popup-gallery-data').width();
