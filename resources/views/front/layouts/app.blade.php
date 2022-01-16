@@ -89,9 +89,10 @@
         @yield('content')
     </div>
 
+    {{--
     <div class="footer {{Request::path()}} <?php if((Request::path() == 'setting') || (Request::path() == 'contact-gallery') || (Request::path() == 'login') || (Request::path() == 'register') || (Request::path() == 'forget-password')  || (Request::path() == 'account/deposits')) { echo 'fixed-footer'; } ?>">
       <div class="footer__inner wrapper flex aic jcb">
-      {{--
+      
         <div class="footer-nav">
         
           <ul class="flex aic">
@@ -106,8 +107,9 @@
           Copyright@ 2022 Hunchun Longchao  Co., LTD
         </div>
       </div>
-      --}}
+      
     </div>
+    --}}
   </div>
 </body>
 
