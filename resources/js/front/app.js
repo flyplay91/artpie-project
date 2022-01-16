@@ -231,7 +231,10 @@ $(document).ready(function() {
   });
 
   $('body').on('click', '.bg-overlay label', function() {
+    let scrolledTop = $('#mainWrapper').position().top;
     $('#mainWrapper').removeClass('active');
+    $('#mainWrapper').css('top', 0);
+    $('html').animate({scrollTop: -scrolledTop}, 0);
     $('.bg-overlay').removeClass('active');
     $('.popup-user').removeClass('active');
     $('.popup-gallery-data').removeClass('active');
@@ -329,11 +332,17 @@ $(document).ready(function() {
     if ($(evt.target).hasClass('popup-gallery-data') || $(evt.target).closest('.popup-gallery-data').length > 0 || $(evt.target).hasClass('mz-expand') || $(evt.target).closest('.mz-expand').length > 0 || $(evt.target).hasClass('setting-page') || $(evt.target).closest('.setting-page').length > 0) {
         return;
     }
-    MagicZoom.stop();
-    $('#mainWrapper').removeClass('active');
-    $('.bg-overlay').removeClass('active');
-    $('.popup-gallery-data').removeClass('active');
-    $('.popup-user').removeClass('active');
+
+    if ($(evt.target).hasClass('bg-overlay')) {
+      MagicZoom.stop();
+      let scrolledTop = $('#mainWrapper').position().top;
+      $('#mainWrapper').removeClass('active');
+      $('#mainWrapper').css('top', 0);
+      $('html').animate({scrollTop: -scrolledTop}, 0);
+      $('.bg-overlay').removeClass('active');
+      $('.popup-gallery-data').removeClass('active');
+      $('.popup-user').removeClass('active');
+    }
     
   });
 
@@ -513,8 +522,10 @@ $(document).ready(function() {
         user_id: userId
       },
       success: function(result) {
-        console.log(result);
+        let scrolledTop = $('#mainWrapper').position().top;
         $('#mainWrapper').removeClass('active');
+        $('#mainWrapper').css('top', 0);
+        $('html').animate({scrollTop: -scrolledTop}, 0);
         $('.bg-overlay').removeClass('active');
         $(self).closest('.popup-gallery-data').removeClass('active');
       }
@@ -579,8 +590,10 @@ function getGalleryAjax(id, artist_id) {
       gallery_id: id
     },
     success: function(result) {
+      let scrolledTop = $(window).scrollTop();
       $('#mainWrapper').addClass('active');
       $('.bg-overlay').addClass('active');
+      $('#mainWrapper').css('top', -scrolledTop + 'px');
       $('.popup-gallery-data').addClass('active');
       var user_id = $('.popup-gallery-data').data('user-id');
       
