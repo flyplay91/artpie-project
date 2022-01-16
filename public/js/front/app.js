@@ -2624,6 +2624,7 @@ function getGalleryAjax(id, artist_id) {
   }
 
   $('.popup-gallery-data').addClass('active');
+  $('.popup-gallery-data__inner').empty();
   galleryAjax[id] = $.ajax({
     url: "/api/api-get-gallery",
     method: "post",
