@@ -342,6 +342,7 @@ $(document).ready(function() {
       $('.bg-overlay').removeClass('active');
       $('.popup-gallery-data').removeClass('active');
       $('.popup-user').removeClass('active');
+      $('.popup-gallery-data__inner').empty();
     }
     
   });
