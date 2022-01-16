@@ -51,7 +51,7 @@ class ApiSelectGallerysController extends Controller
         }
         
         // $galleryObjs = $galleryObjs->where('all_checked', 'true')->get();
-        $galleryObjs = $galleryObjs->where('all_checked', 'true')->orderBy('updated_at', 'desc')->paginate(9);
+        $galleryObjs = $galleryObjs->where('all_checked', 'true')->orderBy('updated_at', 'desc')->paginate(6);
 
         if ($request->ajax()) {
             $html = '';

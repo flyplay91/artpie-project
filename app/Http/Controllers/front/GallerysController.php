@@ -19,7 +19,7 @@ class GallerysController extends Controller
      */
     public function index()
     {
-        $gallerys = AdminGallerys::orderBy('updated_at', 'desc')->get();
+        $gallerys = AdminGallerys::orderBy('updated_at', 'desc')->paginate(6);
         $categories = AdminCategories::all();
         $artists = AdminArtists::all();
         $headerdata = AdminHeaderData::latest('id')->first();
