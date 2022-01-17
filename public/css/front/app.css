@@ -2571,6 +2571,33 @@ img {
   grid-template-columns: repeat(3, 1fr);
 }
 
+.mygallery-form {
+  margin-top: 20px;
+}
+.mygallery-form.active .btn-show-price-form {
+  display: none;
+}
+.mygallery-form.active .mygallery-formInner {
+  display: flex;
+}
+
+.mygallery-formInner {
+  display: none;
+  align-items: center;
+}
+
+.mygallery-form label {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  margin-bottom: 0;
+  margin-left: 20px;
+}
+
+.mygallery-form input {
+  margin-right: 10px;
+}
+
 /* Homepage */
 @media screen and (max-width: 768px) {
   .hdrBg {

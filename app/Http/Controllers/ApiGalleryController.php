@@ -238,4 +238,24 @@ class ApiGalleryController extends Controller
             'data' => "Pieces are successfully purchased"
         ]);
     }
+
+    /**
+     * Update fragment sell price
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function updateSellPrice(Request $request) {
+        $fragment = GalleryFragments::find($request->fragment_id);
+        $percentage = $request->percentage;
+
+        $buyPrice = $fragment->buy_price;
+        $updatedPrice = $buyPrice * $percentage / 100;
+        $fragment->sell_price = $updatedPrice;
+        $fragment->save();
+
+        return response()->json([
+            'success' => true,
+            'data' => $fragment->sell_price * $fragment->piece_count
+        ]);
+    }
 }

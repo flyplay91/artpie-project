@@ -531,7 +531,45 @@ $(document).ready(function() {
         $(self).closest('.popup-gallery-data').removeClass('active');
       }
     });
-  })
+  });
+
+  $(document).on('click', '.mygallery-form .btn-show-price-form', function() {
+    let formWrapper = $(this).closest('.mygallery-form');
+    formWrapper.addClass('active');
+  });
+
+  $(document).on('click', '.mygallery-form .btn-cancel-sell-price', function() {
+    let formWrapper = $(this).closest('.mygallery-form');
+    formWrapper.removeClass('active');
+  });
+
+  $(document).on('click', '.mygallery-form .btn-update-sell-price', function() {
+    var formWrapper = $(this).closest('.mygallery-form');
+    var infoWrapper = $(this).closest('.mygallery-list__info');
+    var fragmentId = formWrapper.attr('data-fragment-id');
+    var percentage = formWrapper.find('.sell-price-percentage').val();
+    console.log(percentage);
+
+    if (!percentage || !(percentage >= 50 && percentage <= 140)) {
+      alert('Price can be updated between 50% and 140%');
+      return false;
+    }
+
+    $.ajax({
+      url: "/api/update-sell-price",
+      method: "post",
+      data: {
+        fragment_id: fragmentId,
+        percentage: percentage
+      },
+      success: function(res) {
+        if (res.success) {
+          infoWrapper.find('.gallery-sell-price').text(res.data);
+          formWrapper.removeClass('active');
+        }
+      }
+    });
+  });
 });
 
 // Email validation

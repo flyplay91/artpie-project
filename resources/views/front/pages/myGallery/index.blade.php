@@ -110,6 +110,13 @@
             </label>
             <span>{{ $gallery->width }} * {{ $gallery->height }} {{ $gallery->unit }}</span>
           </div>
+
+          <div class="mygallery-total-price">
+            <label>
+              {{ __('messages.price') }}:
+            </label>
+            <span>{{ $gallery->current_price() }} (USD)</span>
+          </div>
          
           <div class="mygallery-artist">
             <label>
@@ -134,14 +141,6 @@
         </div>
 
         <div class="mygallery-list__info">
-          <div class="mygallery-status">
-            <label>
-            {{ __('messages.price') }}:
-            </label>
-            <span>
-            {{ $gallery->current_price() }} (USD)
-            </span>
-          </div>
           <div class="mygallery-status">
             <label>
             {{ __('messages.own_pieces') }}:
@@ -171,8 +170,21 @@
             {{ __('messages.selling_price') }}:
             </label>
             <span>
-            {{ $fragment->sell_price * $fragment->piece_count }} (USD)
+              <span class="gallery-sell-price">{{ $fragment->sell_price * $fragment->piece_count }}</span> (USD)
             </span>
+          </div>
+          <div class="mygallery-form" data-fragment-id="{{ $fragment->id }}">
+            <button class="btn btn-primary btn-show-price-form">Update Price</button>
+            <div class="mygallery-formInner">
+              <div class="form__actions">
+                <button class="btn btn-warning btn-update-sell-price">Update</button>
+                <button class="btn btn-info btn-cancel-sell-price">Cancel</button>
+              </div>
+              <label>
+                <input class="sell-price-percentage" type="number" min="50" max="140" value="120" />
+                <span>%</span>
+              </label>
+            </div>
           </div>
         </div>
       </div>
