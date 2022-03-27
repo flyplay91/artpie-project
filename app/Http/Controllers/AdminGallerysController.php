@@ -148,7 +148,8 @@ class AdminGallerysController extends Controller
     {
         $gallery = AdminGallerys::find($id);
         $categories = AdminCategories::all();
-        $artists = AdminArtists::all();
+        $artists = AdminArtists::orderBy('art_name_ko','asc')->get();
+        
         
         return view('admin.gallerys.edit', compact('gallery', 'categories', 'artists'));
     }
